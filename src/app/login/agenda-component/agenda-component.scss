@@ -1,0 +1,42 @@
+.backgroundLogin{
+    background-image: url(../../../../public/assets/img/img_login.jpg);
+    background-size: contain;
+    background-position: center;
+}
+
+.backgroundInit{
+   background-image: url(../../../../public/assets/img/img_agenda_bg.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-clip: padding-box; 
+}
+
+.glass:hover{
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+padding: 2px 15px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+
+.overflowClass{
+// @apply    overflow-y-auto  scrollbar-hide
+overflow-y: auto;
+
+
+}

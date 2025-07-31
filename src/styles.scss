@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@import 'flatpickr/dist/flatpickr.css';
+
+/* Tema opcional */
+// @import '~flatpickr/dist/themes/material_blue.css';
+.titulos{
+    font-family: "Poppins", sans-serif;
+}
+.letterGeneral{
+    font-family: "Work Sans", sans-serif; 
+}
+
+.inputGeneral {
+  @apply border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t  w-full px-3 py-2 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
+}
+
+.inputGeneral2 {
+  @apply border placeholder-gray-400 focus:outline-none focus:border-black w-full px-3 py-2 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-gray-100 border-gray-300 rounded-md;
+}
+
+.inputGeneral3 {
+  @apply border placeholder-gray-400 focus:outline-none focus:border-black w-full px-3 py-1.5 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-gray-100 border-gray-300 rounded-md;
+
+}
+.inputGeneral4 {
+  @apply border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t  w-full px-3 py-1.5 mt-0 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
+}
+
+.labelGeneral {
+  @apply bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute rounded-lg xl:text-sm lg:text-sm md:text-sm text-xs;
+}
+
+.labelGeneral2 {
+  @apply bg-white pt-0 pr-2 pb-0 pl-2 -mt-1 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute rounded-lg xl:text-sm lg:text-xs md:text-xs text-xs;
+}
+
+.inputInvalid {
+  @apply bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400;
+}
+
+.inputInvalid2 {
+  @apply bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pt-2.5 dark:bg-red-100 dark:border-red-400;
+
+}
+
+.selectGeneral{
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+}

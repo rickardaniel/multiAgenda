@@ -1,0 +1,42 @@
+// .form-input {
+//       width: 100%;
+//       font-size: 14px;
+//     }
+//     .form-input:disabled {
+//       background-color: #f5f5f5;
+//       cursor: not-allowed;
+//     }
+
+ .inline-calendar-wrapper {
+    //   display: inline-block;
+    //   padding: 10px;
+    //   margin: 10px;
+      border: transparent !important;
+      box-shadow: transparent 0px !important;
+    }
+    
+    /* Estilos personalizados para el calendario inline */
+:host ::ng-deep .flatpickr-calendar {
+  /* ... otros estilos ... */
+  box-shadow: none !important;        /* ← Sin sombra */
+  border: none !important;            /* ← Sin borde */
+  background: transparent !important; /* ← Fondo transparente */
+}
+    :host ::ng-deep .flatpickr-calendar.open {
+      display: block !important;
+    }
+
+    :host ::ng-deep .flatpickr-day.selected {
+      background: #e43838;
+      border-color: #e43838;
+      color: white;
+    }
+
+    :host ::ng-deep .flatpickr-day.today {
+      border-color: #e43838;
+      color: #e43838;
+    }
+
+    :host ::ng-deep .flatpickr-day:hover {
+      background: #f3f4f6;
+    }
