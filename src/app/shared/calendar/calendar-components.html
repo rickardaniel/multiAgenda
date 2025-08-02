@@ -1,14 +1,2 @@
-<!-- <input 
-      #dateInput
-      type="text" 
-      [placeholder]="placeholder"
-      [disabled]="disabled"
-      class="form-input px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    /> -->
-
-         <!-- <div  #dateInput id="dateInput" inline-datepicker #calendarContainer ></div> -->
-
-             <div 
-      #calendarContainer
-      class="inline-calendar-wrapper" (change)="selectDay($event)" >
-    </div>
+<div #calendarContainer class="inline-calendar-wrapper" (change)="selectDay($event)">
+</div>

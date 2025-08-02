@@ -12,5 +12,6 @@ export class App {
   protected readonly title = signal('multiAgenda');
     ngOnInit(): void {
     initFlowbite();
+    
   }
 }
