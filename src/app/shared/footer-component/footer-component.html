@@ -1,0 +1,23 @@
+<footer class="bg-gray-100 text-white py-4 px-6 flex-shrink-0 shadow-lg">
+    <div class="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+        <!-- Información de copyright -->
+        <div class="text-sm text-gray-700">
+            © {{ currentYear }} Powered by Punto Pymes
+        </div>
+
+        <!-- Enlaces del footer -->
+        <div class="flex flex-wrap justify-center gap-4 text-sm">
+            @for(link of footerLinks; track link ){
+            <a [href]="link.url" class="text-gray-700 hover:text-gray-900 hover:font-semibold transition-colors duration-200">
+                {{ link.text }}
+            </a>
+            }
+
+        </div>
+
+        <!-- Versión -->
+        <div class="text-sm text-gray-700">
+            Versión {{ appVersion }}
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+       "nombre": "Cardiología",
+       "descripcion": "Especialidad médica que se encarga del estudio, diagnóstico y tratamiento de las enfermedades del corazón",
+       "color": "#ef4444",
+       "icono": "heart"
+    },
+    {
+        "id": 2,
+       "nombre": "Neurología",
+       "descripcion": "Especialidad médica que estudia la estructura, función y enfermedades del sistema nervioso",
+       "color": "#8b5cf6",
+       "icono": "brain"
+    },
+    {
+        "id": 3,
+       "nombre": "Pediatría",
+       "descripcion": "Rama de la medicina que se especializa en la salud y las enfermedades de los niños",
+       "color": "#06b6d4",
+       "icono": "baby"
+    },
+    {
+        "id": 4,
+       "nombre": "Ginecología",
+       "descripcion": "Especialidad médica que se ocupa de la salud del aparato reproductor femenino",
+       "color": "#ec4899",
+       "icono": "female"
+    },
+    {
+        "id": 5,
+       "nombre": "Dermatología",
+       "descripcion": "Especialidad médica que se encarga del estudio de la piel y sus enfermedades",
+       "color": "#f59e0b",
+       "icono": "skin"
+    },
+    {
+        "id": 6,
+       "nombre": "Traumatología",
+       "descripcion": "Especialidad médica que se dedica al estudio de las lesiones del aparato locomotor",
+       "color": "#10b981",
+       "icono": "bone"
+    },
+    {
+        "id": 7,
+       "nombre": "Oftalmología",
+       "descripcion": "Especialidad médica que estudia las enfermedades de los ojos y su tratamiento",
+       "color": "#3b82f6",
+       "icono": "eye"
+    },
+    {
+        "id": 8,
+       "nombre": "Psiquiatría",
+       "descripcion": "Especialidad médica dedicada al estudio, diagnóstico y tratamiento de los trastornos mentales",
+       "color": "#6366f1",
+       "icono": "mind"
+    },
+    {
+        "id": 9,
+       "nombre": "Gastroenterología",
+       "descripcion": "Especialidad médica que se ocupa de las enfermedades del sistema digestivo",
+       "color": "#84cc16",
+       "icono": "stomach"
+    },
+    {
+        "id": 10,
+       "nombre": "Neumología",
+       "descripcion": "Especialidad médica que se encarga del estudio de las enfermedades del aparato respiratorio",
+       "color": "#14b8a6",
+       "icono": "lungs"
+    }
+]

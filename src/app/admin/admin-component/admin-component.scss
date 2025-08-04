@@ -1,0 +1,8 @@
+ .clip-top {
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        
+        /* Flecha hacia abajo para tooltip que sale hacia arriba (original) */
+        .clip-bottom {
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+        }

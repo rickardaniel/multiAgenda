@@ -1,190 +1,209 @@
 <div class="h-screen w-full flex flex-col overflow-hidden">
 
     <!-- ÁREA DEL GRID - OCUPA TODO EL ESPACIO DISPONIBLE -->
-    <div class="flex-2 overflow-auto">
+    <div class="flex-2 overflow-auto ">
         <div class="h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-3 gap-4 p-4">
 
             <div
                 class="2xl:col-span-1 xl:col-span-2 w-full !bg-gray-100 2xl:px-14 xl:px-10 lg:p-10  pt-8 pb-14 rounded-xl shadow-md ">
 
                 @if(flagStepOne){
-                <div class="">
-                    <h1 class="text-xl titulos font-semibold text-gray-600 mb-8">Agenda tu cita</h1>
+                <form [formGroup]="formInfoCita">
+                    <div class="">
+                        <h1 class="text-xl titulos font-semibold text-gray-600 mb-8">Agenda tu cita</h1>
+                        <!-- Step 1 -->
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-sm font-semibold text-gray-900">Elige cuándo quieres tu cita</h3>
 
-                    <!-- Step 1 -->
-                    <div class="mb-6">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-900">Elige cuándo quieres tu cita</h3>
-
-                                <p class="text-sm text-gray-600 pt-1">
-                                    Selecciona el servicio o especialidad y cuándo quieres ser atendido.
-                                </p>
-                            </div>
-                            <div class="pt-1">
-                                <svg class="" width="60" height="60" viewBox="-18.75 -18.75 187.5 187.5" version="1.1"
-                                    xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg); float: right;">
-                                    <circle r="65" cx="75" cy="75" fill="transparent" stroke="#ffffff"
-                                        stroke-width="15"></circle>
-                                    <circle r="65" cx="75" cy="75" stroke="#0ebeb2" stroke-width="15"
-                                        stroke-linecap="round" stroke-dashoffset="273px" fill="transparent"
-                                        stroke-dasharray="408.2px"></circle>
-                                    <text x="44px" y="85px" fill="#0ebeb2" font-size="40px" font-weight="bold"
-                                        style="transform:rotate(90deg) translate(0px, -146px)">1/3</text>
-                                </svg>
+                                    <p class="text-sm text-gray-600 pt-1">
+                                        Selecciona el servicio o especialidad y cuándo quieres ser atendido.
+                                    </p>
+                                </div>
+                                <div class="pt-1">
+                                    <svg class="" width="60" height="60" viewBox="-18.75 -18.75 187.5 187.5"
+                                        version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                        style="transform:rotate(-90deg); float: right;">
+                                        <circle r="65" cx="75" cy="75" fill="transparent" stroke="#ffffff"
+                                            stroke-width="15"></circle>
+                                        <circle r="65" cx="75" cy="75" stroke="#0ebeb2" stroke-width="15"
+                                            stroke-linecap="round" stroke-dashoffset="273px" fill="transparent"
+                                            stroke-dasharray="408.2px"></circle>
+                                        <text x="44px" y="85px" fill="#0ebeb2" font-size="40px" font-weight="bold"
+                                            style="transform:rotate(90deg) translate(0px, -146px)">1/3</text>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- VISTA 2xl -->
-                    <div class=" px-2 2xl:h-[38rem] 2xl:block xl:hidden lg:hidden md:hidden sm:hidden  "
-                        [ngClass]="{'overflowClass': flagClassOverflow, 'scrollbar-hide':flagClassOverflow}">
-                        <div class="space-y-6  ">
-                            <!-- Servicio o Especialidad -->
-                            <div>
-                                <label for="servicio" class="block text-sm font-medium text-gray-600 ">
-                                    Servicio o Especialidad *
-                                </label>
-                                <select class="inputGeneral4">
-                                    <option selected>Medicina general</option>
-                                    <option value="cardiologia">Cardiología</option>
-                                    <option value="dermatologia">Dermatología</option>
-                                    <option value="pediatria">Pediatría</option>
-                                    <option value="ginecologia">Ginecología</option>
-                                </select>
-                            </div>
+                        <!-- VISTA 2xl -->
+                        <div class=" px-2 2xl:h-[38rem] 2xl:block xl:hidden lg:hidden md:hidden sm:hidden  "
+                            [ngClass]="{'overflowClass': flagClassOverflow, 'scrollbar-hide':flagClassOverflow}">
+                            <div class="space-y-6  ">
+                                <!-- Servicio o Especialidad -->
 
-                            <!-- Profesional / Técnico -->
-                            <div>
-                                <label for="profesional" class="block text-sm font-medium text-gray-600">
-                                    Profesional / Técnico *
-                                </label>
-                                <select class="inputGeneral4">
-                                    <option selected>Dr. Luis Moreno</option>
-                                    <option value="dra-garcia">Dra. María García</option>
-                                    <option value="dr-rodriguez">Dr. Carlos Rodríguez</option>
-                                    <option value="dra-lopez">Dra. Ana López</option>
-                                </select>
-                            </div>
-
-                            <!-- Calendario -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 my-5">
-                                    Selecciona una fecha y hora
-                                </label>
-
-                                <!-- Calendar Header -->
-                                <div class="!w-full h-[22rem] bg-white flex justify-center py-5">
-                                    <app-calendar (dateSelect)="detectDate($event)"></app-calendar>
+                                <div>
+                                    <label for="servicio" class="block text-sm font-medium text-gray-600 ">
+                                        Servicio o Especialidad *
+                                    </label>
+                                    <div class="relative">
+                                        <select formControlName="especialidad" class="selectGeneral2"
+                                            (change)="selectEspecialidad($event)" required>
+                                            <option selected disabled value="" class="!text-gray-400">Seleccione una
+                                                opción</option>
+                                            @for(esp of especialidades; track esp){
+                                            <option [value]="esp.id">{{esp.nombre}}</option>
+                                            }
+                                        </select>
+                                        <div
+                                            class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                                            <i class="ri-expand-up-down-line text-red-600 "></i>
+                                        </div>
+                                    </div>
                                 </div>
 
-                            </div>
 
-                            <div class="mt-5">
-                                @if(flagClassOverflow){
-                                <label class="block text-sm font-medium text-gray-700 mb-2">
-                                    Selecciona un horario disponible
-                                </label>
-                                <div class="grid grid-cols-3 gap-2">
-                                    @for(h of horarios; track h.id){
-                                    <div class="col-span-1">
-                                        <button (click)="selectSchedule(h)" [class]="getButtonClasses(h.id)"
-                                            class="cursor-pointer w-full rounded-lg py-3.5 text-xs transition-all duration-200">
-                                            {{h.horaI}} - {{h.horaF}}
-                                        </button>
+                                <!-- Profesional / Técnico -->
+                                <div>
+                                    <label for="servicio" class="block text-sm font-medium text-gray-600 ">
+                                        Profesional / Técnico *
+                                    </label>
+                                    <div class="relative">
+                                        <select formControlName="medico" class="selectGeneral2" required>
+                                            <option selected value="" class="!text-gray-400">Seleccione una opción
+                                            </option>
+                                            @for(med of profesionalesAvaible; track med.id){
+                                            <option [value]="med.id">{{med.nombre}}</option>
+                                            }
+                                        </select>
+                                        <div
+                                            class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                                            <i class="ri-expand-up-down-line text-red-600 "></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Calendario -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 my-5">
+                                        Selecciona una fecha y hora
+                                    </label>
+
+                                    <!-- Calendar Header -->
+                                    <div class="!w-full h-[22rem] bg-white flex justify-center py-5">
+                                        <app-calendar (dateSelect)="detectDate($event)"></app-calendar>
+                                    </div>
+
+                                </div>
+
+                                <div class="mt-5">
+                                    @if(flagClassOverflow){
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        Selecciona un horario disponible
+                                    </label>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        @for(h of horarios; track h.id){
+                                        <div class="col-span-1">
+                                            <button (click)="selectSchedule(h)" [class]="getButtonClasses(h.id)"
+                                                class="cursor-pointer w-full rounded-lg py-3.5 text-xs transition-all duration-200">
+                                                {{h.horaI}} - {{h.horaF}}
+                                            </button>
+                                        </div>
+                                        }
                                     </div>
                                     }
                                 </div>
-                                }
-                            </div>
 
-                            <!-- Siguiente Button -->
-                            <div class="flex justify-end" #Horarios>
-                                <button (click)="nextStepTwo()" [disabled]="!selectedScheduleId" class="font-medium py-1.5 px-4 rounded-full text-sm transition duration-200
+                                <!-- Siguiente Button -->
+                                <div class="flex justify-end" #Horarios>
+                                    <button (click)="nextStepTwo()" [disabled]="!selectedScheduleId" class="font-medium py-1.5 px-4 rounded-full text-sm transition duration-200
                                         {{selectedScheduleId 
                                         ? 'bg-red-500 text-white shadow-lg hover:bg-red-600 cursor-pointer' 
                                         : 'bg-gray-200 text-gray-500 cursor-not-allowed'}}">
-                                    Siguiente
-                                </button>
+                                        Siguiente
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Vista XL -->
-                    <div
-                        class=" px-2 xl:h-[48vh] !lg:[30vh]  2xl:hidden xl:block lg:block md:hidden sm:hidden  overflow-y-scroll scrollbar-hide: ">
-                        <div class="space-y-5  ">
-                            <!-- Servicio o Especialidad -->
-                            <div>
-                                <label for="servicio" class="block text-sm font-medium text-gray-600 ">
-                                    Servicio o Especialidad *
-                                </label>
-                                <select class="inputGeneral4">
-                                    <option selected>Medicina general</option>
-                                    <option value="cardiologia">Cardiología</option>
-                                    <option value="dermatologia">Dermatología</option>
-                                    <option value="pediatria">Pediatría</option>
-                                    <option value="ginecologia">Ginecología</option>
-                                </select>
-                            </div>
-
-                            <!-- Profesional / Técnico -->
-                            <div>
-                                <label for="profesional" class="block text-sm font-medium text-gray-600">
-                                    Profesional / Técnico *
-                                </label>
-                                <select class="inputGeneral4">
-                                    <option selected>Dr. Luis Moreno</option>
-                                    <option value="dra-garcia">Dra. María García</option>
-                                    <option value="dr-rodriguez">Dr. Carlos Rodríguez</option>
-                                    <option value="dra-lopez">Dra. Ana López</option>
-                                </select>
-                            </div>
-
-                            <!-- Calendario -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700  mb-1">
-                                    Selecciona una fecha y hora
-                                </label>
-
-                                <!-- Calendar Header -->
-                                <div class="!w-full bg-white flex justify-center p-5">
-                                    <app-calendar (dateSelect)="detectDate($event)"></app-calendar>
+                        <!-- Vista XL -->
+                        <div
+                            class=" px-2 xl:h-[48vh] !lg:[30vh]  2xl:hidden xl:block lg:block md:hidden sm:hidden  overflow-y-scroll scrollbar-hide: ">
+                            <div class="space-y-5  ">
+                                <!-- Servicio o Especialidad -->
+                                <div>
+                                    <label for="servicio" class="block text-sm font-medium text-gray-600 ">
+                                        Servicio o Especialidad *
+                                    </label>
+                                    <select class="inputGeneral4">
+                                        <option selected>Medicina general</option>
+                                        <option value="cardiologia">Cardiología</option>
+                                        <option value="dermatologia">Dermatología</option>
+                                        <option value="pediatria">Pediatría</option>
+                                        <option value="ginecologia">Ginecología</option>
+                                    </select>
                                 </div>
 
-                            </div>
+                                <!-- Profesional / Técnico -->
+                                <div>
+                                    <label for="profesional" class="block text-sm font-medium text-gray-600">
+                                        Profesional / Técnico *
+                                    </label>
+                                    <select class="inputGeneral4">
+                                        <option selected>Dr. Luis Moreno</option>
+                                        <option value="dra-garcia">Dra. María García</option>
+                                        <option value="dr-rodriguez">Dr. Carlos Rodríguez</option>
+                                        <option value="dra-lopez">Dra. Ana López</option>
+                                    </select>
+                                </div>
 
-                            <div #Horarios>
-                                @if(flagClassOverflow){
-                                <label class="block text-sm font-medium text-gray-700 mb-2">
-                                    Selecciona un horario disponible
-                                </label>
-                                <div class="grid grid-cols-3 space-y-2 ">
-                                    @for(h of horarios; track h.id){
-                                    <div class="col-span-1 mr-2">
-                                        <button
-                                            class="bg-transparent hover:bg-white hover:shadow-md border border-gray-300 w-full rounded-lg py-3 text-xs ">
-                                            {{h.horaI}}-{{h.horaF}}
-                                        </button>
+                                <!-- Calendario -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700  mb-1">
+                                        Selecciona una fecha y hora
+                                    </label>
+
+                                    <!-- Calendar Header -->
+                                    <div class="!w-full bg-white flex justify-center p-5">
+                                        <app-calendar (dateSelect)="detectDate($event)"></app-calendar>
+                                    </div>
+
+                                </div>
+
+                                <div #Horarios>
+                                    @if(flagClassOverflow){
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        Selecciona un horario disponible
+                                    </label>
+                                    <div class="grid grid-cols-3 space-y-2 ">
+                                        @for(h of horarios; track h.id){
+                                        <div class="col-span-1 mr-2">
+                                            <button
+                                                class="bg-transparent hover:bg-white hover:shadow-md border border-gray-300 w-full rounded-lg py-3 text-xs ">
+                                                {{h.horaI}}-{{h.horaF}}
+                                            </button>
+                                        </div>
+                                        }
                                     </div>
                                     }
                                 </div>
-                                }
+
+
+                                <!-- Siguiente Button -->
+                                <div class="flex justify-end">
+                                    <button (click)="nextStepTwo()"
+                                        class="bg-gray-200  text-gray-500  font-medium py-1.5 px-4 rounded-full text-sm transition duration-200">
+                                        Siguiente
+                                    </button>
+                                </div>
+
                             </div>
-
-
-                            <!-- Siguiente Button -->
-                            <div class="flex justify-end">
-                                <button (click)="nextStepTwo()"
-                                    class="bg-gray-200  text-gray-500  font-medium py-1.5 px-4 rounded-full text-xs transition duration-200">
-                                    Siguiente
-                                </button>
-                            </div>
-
                         </div>
+
+
                     </div>
+                </form>
 
-
-                </div>
                 }@else if(flagStepTwo){
                 <div class="">
                     <h1 class="text-xl titulos font-semibold text-gray-600 mb-8"><i
@@ -218,127 +237,135 @@
                         </div>
                     </div>
 
+                    <form [formGroup]="formInfoUser">
+                        <div class="space-y-6">
+                            <!-- Cédula -->
+                            <div>
+                                <label for="servicio" class="block text-sm font-medium text-gray-600 ">
+                                    Cédula *
+                                </label>
+                                <input formControlName="cedula" type="text" class="inputGeneral4"
+                                    placeholder="Ej: 1100048520">
+                            </div>
 
-                    <div class="space-y-6">
-                        <!-- Cédula -->
-                        <div>
-                            <label for="servicio" class="block text-sm font-medium text-gray-600 ">
-                                Cédula *
-                            </label>
-                            <input type="text" class="inputGeneral4" placeholder="Ej: 1100048520">
-                        </div>
+                            <!-- Nombres -->
+                            <div>
+                                <label for="profesional" class="block text-sm font-medium text-gray-600">
+                                    Nombres *
+                                </label>
+                                <input formControlName="nombres" type="text" class="inputGeneral4"
+                                    placeholder="Ej: Ana María">
+                            </div>
+                            <!-- Apellidos -->
+                            <div>
+                                <label for="profesional" class="block text-sm font-medium text-gray-600">
+                                    Apellidos *
+                                </label>
+                                <input formControlName="apellidos" type="text" class="inputGeneral4"
+                                    placeholder="Ej: Torres Torres">
+                            </div>
+                            <!-- Correo -->
+                            <div>
+                                <label for="profesional" class="block text-sm font-medium text-gray-600">
+                                    Correo electrónico *
+                                </label>
+                                <input formControlName="correo" type="email" class="inputGeneral4"
+                                    placeholder="Ej: ana.torres@email.com">
+                            </div>
+                            <!-- Teléfono -->
+                            <div>
+                                <label for="profesional" class="block text-sm font-medium text-gray-600">
+                                    Teléfono *
+                                </label>
+                                <!-- <input type="phone" class="inputGeneral"> -->
 
-                        <!-- Nombres -->
-                        <div>
-                            <label for="profesional" class="block text-sm font-medium text-gray-600">
-                                Nombres *
-                            </label>
-                            <input type="text" class="inputGeneral4" placeholder="Ej: Ana María">
-                        </div>
-                        <!-- Apellidos -->
-                        <div>
-                            <label for="profesional" class="block text-sm font-medium text-gray-600">
-                                Apellidos *
-                            </label>
-                            <input type="text" class="inputGeneral4" placeholder="Ej: Torres Torres">
-                        </div>
-                        <!-- Correo -->
-                        <div>
-                            <label for="profesional" class="block text-sm font-medium text-gray-600">
-                                Correo electrónico *
-                            </label>
-                            <input type="email" class="inputGeneral4" placeholder="Ej: ana.torres@email.com">
-                        </div>
-                        <!-- Teléfono -->
-                        <div>
-                            <label for="profesional" class="block text-sm font-medium text-gray-600">
-                                Teléfono *
-                            </label>
-                            <!-- <input type="phone" class="inputGeneral"> -->
+                                <div (click)="closeDropdown()">
+                                    <form (click)="stopPropagation($event)">
+                                        <div class="flex">
+                                            <div class="relative">
+                                                <button type="button"
+                                                    (click)="toggleDropdown(); stopPropagation($event)"
+                                                    class="flex-shrink-0 z-10 inline-flex items-center justify-between py-1.5 px-3 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-200 min-w-fit">
 
-                            <div (click)="closeDropdown()">
-                                <form (click)="stopPropagation($event)">
-                                    <div class="flex">
-                                        <div class="relative">
-                                            <button type="button" (click)="toggleDropdown(); stopPropagation($event)"
-                                                class="flex-shrink-0 z-10 inline-flex items-center justify-between py-1.5 px-3 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-200 min-w-fit">
+                                                    <!-- Contenedor para imagen y código -->
+                                                    <div class="flex items-center space-x-2">
+                                                        <span class="w-5 h-5 rounded-full">
+                                                            <img [src]="selectedCategory.image"
+                                                                class=" object-cover flex-shrink-0"
+                                                                [alt]="selectedCategory.nameES">
+                                                        </span>
+                                                        <span
+                                                            class="whitespace-nowrap !text-gray-500">+{{selectedCategory.phoneCode}}</span>
+                                                    </div>
 
-                                                <!-- Contenedor para imagen y código -->
-                                                <div class="flex items-center space-x-2">
-                                                    <span class="w-5 h-5 rounded-full">
-                                                        <img [src]="selectedCategory.image"
-                                                            class=" object-cover flex-shrink-0"
-                                                            [alt]="selectedCategory.nameES">
-                                                    </span>
-                                                    <span
-                                                        class="whitespace-nowrap !text-gray-500">+{{selectedCategory.phoneCode}}</span>
-                                                </div>
+                                                    <!-- SVG flecha siempre visible -->
+                                                    <svg class="w-2.5 h-2.5 ml-2 flex-shrink-0 !text-gray-500"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 10 6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                                    </svg>
+                                                </button>
 
-                                                <!-- SVG flecha siempre visible -->
-                                                <svg class="w-2.5 h-2.5 ml-2 flex-shrink-0 !text-gray-500" fill="none"
-                                                    stroke="currentColor" viewBox="0 0 10 6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="m1 1 4 4 4-4" />
-                                                </svg>
-                                            </button>
+                                                <div *ngIf="dropdownOpen" (click)="stopPropagation($event)"
+                                                    class="absolute left-0 top-full mt-1 z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-56 h-72 overflow-hidden">
 
-                                            <div *ngIf="dropdownOpen" (click)="stopPropagation($event)"
-                                                class="absolute left-0 top-full mt-1 z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-56 h-72 overflow-hidden">
+                                                    <!-- Campo de búsqueda -->
+                                                    <div class="p-3 border-b border-gray-100">
+                                                        <input type="text" (keyup)="searchCountry($event)"
+                                                            placeholder="Buscar país..."
+                                                            class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                                    </div>
 
-                                                <!-- Campo de búsqueda -->
-                                                <div class="p-3 border-b border-gray-100">
-                                                    <input type="text" (keyup)="searchCountry($event)"
-                                                        placeholder="Buscar país..."
-                                                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                                </div>
-
-                                                <!-- Lista con scroll -->
-                                                <div class="h-full overflow-y-auto">
-                                                    <ul class="py-2 text-sm text-gray-700">
-                                                        @for(c of countries; track c){
-                                                        <li>
-                                                            <button type="button" (click)="selectCategory(c)"
-                                                                class="inline-flex w-full px-4 py-2 text-left hover:bg-gray-100 items-center gap-3">
-                                                                <img [src]="c.image"
-                                                                    class="w-5 h-5 rounded-full object-cover flex-shrink-0"
-                                                                    [alt]="c.nameES">
-                                                                <div>
-                                                                    <div class="font-medium">{{ c.nameES || c.name }}
+                                                    <!-- Lista con scroll -->
+                                                    <div class="h-full overflow-y-auto">
+                                                        <ul class="py-2 text-sm text-gray-700">
+                                                            @for(c of countries; track c){
+                                                            <li>
+                                                                <button type="button" (click)="selectCategory(c)"
+                                                                    class="inline-flex w-full px-4 py-2 text-left hover:bg-gray-100 items-center gap-3">
+                                                                    <img [src]="c.image"
+                                                                        class="w-5 h-5 rounded-full object-cover flex-shrink-0"
+                                                                        [alt]="c.nameES">
+                                                                    <div>
+                                                                        <div class="font-medium">{{ c.nameES || c.name
+                                                                            }}
+                                                                        </div>
+                                                                        <div class="text-xs text-gray-500">+{{
+                                                                            c.phoneCode
+                                                                            }}</div>
                                                                     </div>
-                                                                    <div class="text-xs text-gray-500">+{{ c.phoneCode
-                                                                        }}</div>
-                                                                </div>
-                                                            </button>
-                                                        </li>
-                                                        }
-                                                    </ul>
+                                                                </button>
+                                                            </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="relative w-full">
-                                            <input type="search" [placeholder]="" class="inputPhone"
-                                                placeholder="0991XXXXXX" required />
+                                            <div class="relative w-full">
+                                                <input type="search" [placeholder]="" class="inputPhone"
+                                                    formControlName="telefono" placeholder="0991XXXXXX" required />
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
 
 
 
+                            <!-- Siguiente Button -->
+                            <div class="flex justify-end">
+                                <button [disabled]="formInfoUser.invalid" (click)="nextStepThree()" class="bg-red-500  text-white   font-medium py-1.5 px-4 rounded-full text-sm transition duration-200 
+                                    disabled:cursor-not-allowed disabled:bg-gray-200
+                                    ">
+                                    Siguiente
+                                </button>
+                            </div>
+
                         </div>
+                    </form>
 
 
-
-                        <!-- Siguiente Button -->
-                        <div class="flex justify-end">
-                            <button (click)="nextStepThree()"
-                                class="bg-gray-200  text-gray-500  font-medium py-1.5 px-4 rounded-full text-xs transition duration-200">
-                                Siguiente
-                            </button>
-                        </div>
-
-                    </div>
                 </div>
                 }@else if(flagStepThree) {
                 <div class="">
@@ -374,74 +401,414 @@
                     </div>
 
                     <div class="space-y-6">
-                        <!-- Servicio o Especialidad -->
-                        <div>
-                            <label for="servicio" class="block text-sm font-medium text-gray-600 ">
-                                Servicio o Especialidad *
-                            </label>
-                            <select class="inputGeneral">
-                                <option selected>Medicina general</option>
-                                <option value="cardiologia">Cardiología</option>
-                                <option value="dermatologia">Dermatología</option>
-                                <option value="pediatria">Pediatría</option>
-                                <option value="ginecologia">Ginecología</option>
-                            </select>
-                        </div>
 
-                        <!-- Profesional / Técnico -->
-                        <div>
-                            <label for="profesional" class="block text-sm font-medium text-gray-600">
-                                Profesional / Técnico *
-                            </label>
-                            <select id="profesional" class="inputGeneral">
-                                <option selected>Dr. Luis Moreno</option>
-                                <option value="dra-garcia">Dra. María García</option>
-                                <option value="dr-rodriguez">Dr. Carlos Rodríguez</option>
-                                <option value="dra-lopez">Dra. Ana López</option>
-                            </select>
-                        </div>
+                        <div class="card bg-white shadow-lg rounded-lg px-10 py-5  ">
+                            <div style="line-height:1.5rem;">
+                                <p class="text-gray-700 font-semibold text-md  ">Cita en Clínica Médica Santa Ana</p>
+                                <p class="text-gray-500  text-xs  ">Confirmación de agendamiento</p>
+                            </div>
 
-                        <!-- Calendario -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700  pt-5 mb-2">
-                                Selecciona una fecha y hora
-                            </label>
+                            <div class="px-1 py-6 space-y-6">
 
-                            <!-- Calendar Header -->
-                            <div class="bg-white border border-gray-300 rounded-lg p-4">
-                                <div class="flex items-center justify-between mb-4">
-                                    <button type="button" class="p-1 hover:bg-gray-100 rounded">
-                                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 19l-7-7 7-7"></path>
-                                        </svg>
-                                    </button>
-                                    <h3 class="text-lg font-semibold text-gray-900">Julio 2025</h3>
-                                    <button type="button" class="p-1 hover:bg-gray-100 rounded">
-                                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9 5l7 7-7 7"></path>
-                                        </svg>
-                                    </button>
+                                <!-- Paciente -->
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-red-500 ">
+                                                person
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">
+                                            {{formInfoUser.get('nombres').value}}
+                                            {{formInfoUser.get('apellidos').value}}</p>
+                                        <p class="text-xs text-gray-500">Paciente</p>
+                                    </div>
                                 </div>
 
-                                <!-- Calendar Grid -->
+                                <div class="grid grid-cols-3 ">
+                                    <!-- Doctor -->
+                                    <div class="col-span-2">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="flex-shrink-0">
+                                                <div
+                                                    class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                                    <span class="material-symbols-outlined text-red-500 ">
+                                                        stethoscope
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-600">
+                                                    {{getNameProfetional(formInfoCita.get('medico').value)}}</p>
+                                                <p class="text-xs text-gray-500">Profesional</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Especialidad -->
+                                    <div class="col-span-1">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="flex-shrink-0">
+                                                <div
+                                                    class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                                    <span class="material-symbols-outlined text-red-500 ">
+                                                        stethoscope
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-600">{{
+                                                    getNameEspeciality(formInfoCita.get('especialidad').value)}}</p>
+                                                <p class="text-xs text-gray-500">Servicio</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="grid grid-cols-3 ">
+                                    <!-- Fecha -->
+                                    <div class="col-span-2">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="flex-shrink-0">
+                                                <div
+                                                    class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                                    <span class="material-symbols-outlined text-red-500">
+                                                        calendar_today
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-600">{{dateSelected |
+                                                    date:'fullDate'}}</p>
+                                                <p class="text-xs text-gray-500">Fecha</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Horario -->
+                                    <div class="col-span-1">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="flex-shrink-0">
+                                                <div
+                                                    class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                                    <span class="material-symbols-outlined text-red-500 ">
+                                                        schedule
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-600">
+                                                    {{getSchedule(selectedScheduleId)}}</p>
+                                                <p class="text-xs text-gray-500">Hora</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-3 ">
+                                    <!-- Correo -->
+                                    <div class="col-span-2">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="flex-shrink-0">
+                                                <div
+                                                    class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                                    <span class="material-symbols-outlined text-red-500">
+                                                        mail
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-600">
+                                                    {{formInfoUser.get('correo').value}}</p>
+                                                <p class="text-xs text-gray-500">Correo</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Telefono -->
+                                    <div class="col-span-1">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="flex-shrink-0">
+                                                <div
+                                                    class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                                    <span class="material-symbols-outlined text-red-500 ">
+                                                        call
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-600">
+                                                    {{formInfoUser.get('telefono').value}}</p>
+                                                <p class="text-xs text-gray-500">Teléfono</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Ubicación -->
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-red-500 ">
+                                                location_on
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">Consultorio Central - Piso 2</p>
+                                        <p class="text-xs text-gray-500">Lugar</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Footer con checkbox -->
+                        <div class="px-2 py-3 ">
+                            <div class="flex items-start space-x-3">
+                                @if(!flagTerms){
+                                <input type="checkbox" (input)="accepTerms($event)" value="1"
+                                    class="w-4 h-4 checkbox-red text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 focus:ring-2 checked:bg-red-600 checked:border-red-600">
+                                }@else{
+                                <input type="checkbox" checked (input)="accepTerms($event)" value="0"
+                                    class="w-4 h-4 checkbox-red text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 focus:ring-2 checked:bg-red-600 checked:border-red-600">
+
+                                }
+
+                                <label for="terms" class="text-xs text-gray-600 leading-relaxed">
+                                    Acepto los Términos y Condiciones y autorizo el tratamiento de mis datos personales
+                                    conforme a la política de privacidad.
+                                </label>
                             </div>
                         </div>
 
                         <!-- Siguiente Button -->
                         <div class="flex justify-end">
-                            <button
-                                class="bg-gray-200  text-gray-500  font-medium py-1.5 px-4 rounded-full text-xs transition duration-200">
+                            <button (click)="nextStepFour()" [disabled]="!flagTerms" class="bg-red-500  text-white   font-medium py-1.5 px-4 rounded-full text-sm transition duration-200 
+                                    disabled:cursor-not-allowed disabled:bg-gray-200">
                                 Siguiente
                             </button>
                         </div>
 
                     </div>
                 </div>
+                }@else if(flagStepFour) {
+                <div class="">
+                    <h1 class="text-xl  titulos font-semibold text-gray-600 mb-8">Agenda tu cita</h1>
+                </div>
+
+                <div class="card bg-white shadow-lg rounded-lg px-10 py-7 my-10  ">
+                    <div style="line-height:1.5rem;">
+                        <p class="text-gray-700 font-semibold text-md  text-center ">!Tu cita ha sido registrada con
+                            éxito!</p>
+                        <p class="text-gray-500  text-xs text-center ">Te hemos envíado la confirmación a tu correo
+                            electrónico y número de WhatsApp.</p>
+                    </div>
+
+                    <p class="text-gray-600 text-xs font-normal mt-10 ">Datos de la cita:</p>
+
+                    <div class="px-1 pt-3 pb-6 space-y-5">
+
+                        <!-- Paciente -->
+                        <div class="flex items-center space-x-3">
+                            <div class="flex-shrink-0">
+                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-red-500 ">
+                                        person
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">
+                                    {{formInfoUser.get('nombres').value}}
+                                    {{formInfoUser.get('apellidos').value}}</p>
+                                <p class="text-xs text-gray-500">Paciente</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 ">
+                            <!-- Doctor -->
+                            <div class="col-span-2">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-red-500 ">
+                                                stethoscope
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">
+                                            {{getNameProfetional(formInfoCita.get('medico').value)}}</p>
+                                        <p class="text-xs text-gray-500">Profesional</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Especialidad -->
+                            <div class="col-span-1">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-red-500 ">
+                                                stethoscope
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">{{
+                                            getNameEspeciality(formInfoCita.get('especialidad').value)}}</p>
+                                        <p class="text-xs text-gray-500">Servicio</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 ">
+                            <!-- Fecha -->
+                            <div class="col-span-2">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-red-500">
+                                                calendar_today
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">{{dateSelected |
+                                            date:'fullDate'}}</p>
+                                        <p class="text-xs text-gray-500">Fecha</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Horario -->
+                            <div class="col-span-1">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-red-500 ">
+                                                schedule
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">
+                                            {{getSchedule(selectedScheduleId)}}</p>
+                                        <p class="text-xs text-gray-500">Hora</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 ">
+                            <!-- Correo -->
+                            <div class="col-span-2">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-red-500">
+                                                mail
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">
+                                            {{formInfoUser.get('correo').value}}</p>
+                                        <p class="text-xs text-gray-500">Correo</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Telefono -->
+                            <div class="col-span-1">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-red-500 ">
+                                                call
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-600">
+                                            {{formInfoUser.get('telefono').value}}</p>
+                                        <p class="text-xs text-gray-500">Teléfono</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ubicación -->
+                        <div class="flex items-center space-x-3">
+                            <div class="flex-shrink-0">
+                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-red-500 ">
+                                        location_on
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Consultorio Central - Piso 2</p>
+                                <p class="text-xs text-gray-500">Lugar</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <p class="text-gray-600 text-xs font-normal mt-2 ">Contacto del negocio:</p>
+                    <div class="pb-1 py-3 ">
+                        <div class="flex items-center space-x-3">
+                            <div class="flex-shrink-0">
+                                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-red-500 ">
+                                        person
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">
+                                    correosantana&#64;medico.com
+                                </p>
+                                <p class="text-xs text-gray-500">Correo</p>
+                            </div>
+                        </div>
+                        <div class="px-1 pt-3 pb-6 space-y-6">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-red-500 ">
+                                            person
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600">
+                                        0998756987
+                                    </p>
+                                    <p class="text-xs text-gray-500">Teléfono</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-gray-500">
+                        Recuerda llegar 10 minutos antes de tu cita para validar tu ingreso. Si necesitas reagendar
+                        o tienes dudas, puedes comunicarte directamente con el negocio.
+                    </p>
+
+                    <div class="flex justify-end my-5">
+                        <button 
+                        (click)="resetAll()"
+                        class="bg-transparent text-red-500 text-semibold text-sm px-5 py-1.5 border-2 rounded-full border-gray-200
+                        cursor-pointer hover:bg-gray-200 hover:shadow-lg hover:font-semibold
+                        ">
+                            Volver al inicio
+                        </button>
+                    </div>
+
+                </div>
+
+
+
+
                 }
 
             </div>
@@ -464,26 +831,6 @@
     </div>
 
     <!-- FOOTER FIJO EN LA PARTE INFERIOR -->
-    <footer class="bg-gray-100 text-white py-4 px-6 flex-shrink-0 shadow-lg">
-        <div class="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
-            <!-- Información de copyright -->
-            <div class="text-sm text-gray-700">
-                © {{ currentYear }} Powered by Punto Pymes
-            </div>
-
-            <!-- Enlaces del footer -->
-            <div class="flex flex-wrap justify-center gap-4 text-sm">
-                <a *ngFor="let link of footerLinks" [href]="link.url"
-                    class="text-gray-700 hover:text-white transition-colors duration-200">
-                    {{ link.text }}
-                </a>
-            </div>
-
-            <!-- Versión -->
-            <div class="text-sm text-gray-700">
-                Versión {{ appVersion }}
-            </div>
-        </div>
-    </footer>
+    <app-footer-component></app-footer-component>
 
 </div>
