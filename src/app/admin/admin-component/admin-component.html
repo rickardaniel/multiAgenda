@@ -1,67 +1,167 @@
 <div class="h-screen w-full bg-white relative flex overflow-hidden">
 
-    <!-- Sidebar -->
-    <aside
-        class="h-full w-16 flex flex-col space-y-10 items-center justify-center relative bg-white text-gray-700 border-e-1 border-gray-200 ">
-        <!-- Profile -->
-        <div
-            class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-            </svg>
+    @if(!flagSidebar){
+
+    <div
+        class="flex flex-col items-center w-16 h-full overflow-hidden text-gray-700 bg-white rounded border-e-1 border-gray-200 transition duration-300 ease-in-out">
+        <a class="flex items-center justify-center mt-3.25" href="#">
+            <img src="assets/img/billing_logo_small.png" class="w-10" alt="">
+        </a>
+
+        <div class="flex flex-col items-center border-t border-gray-300">
+            <a class=" w-16  bg-gray-100 hover:bg-gray-300">
+                <div class="flex justify-center">
+                    <img src="assets/img/Agenda_Logo_Icon.svg" class="my-7" alt="">
+                </div>
+            </a>
+            <a
+                class="flex items-center justify-center w-12 h-12 mt-2  hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </a>
+            <a
+                class="flex items-center justify-center w-12 h-12 mt-2 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                <span class="material-symbols-outlined">
+                    schedule
+                </span>
+            </a>
+            <a
+                class="flex items-center justify-center w-12 h-12 mt-2 bg-red-100 rounded-full text-red-600 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                <span class="material-symbols-outlined">
+                    patient_list
+                </span>
+            </a>
+            <a
+                class="flex items-center justify-center w-12 h-12 mt-2 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                <span class="material-symbols-outlined">
+                    browse_activity
+                </span>
+            </a>
         </div>
+        <div class="flex flex-col items-center mt-2 border-t border-gray-300">
+            <a
+                class="flex items-center justify-center w-12 h-12 mt-2 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                <span class="material-symbols-outlined">
+                    settings
+                </span>
+            </a>
 
-        <!-- Courses -->
-        <div
-            class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
         </div>
+        <a (click)="openSidebar(true)" class=" w-16 h-16 mt-auto bg-gray-200 hover:bg-gray-300">
+            <div class="flex justify-center">
+                <span class="material-symbols-outlined py-2">
+                    right_panel_close
+                </span>
+            </div>
 
-        <!-- Theme -->
-        <div
-            class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
+            <div class="flex justify-center text-xs">
+
+                <i class="ri-copyright-line"></i> {{currentYear}}
+            </div>
+
+
+        </a>
+    </div>
+
+    }@else {
+
+    <div
+        class="flex flex-col items-center w-60 h-full overflow-hidden text-gray-700 bg-white rounded border-e-1 border-gray-200  transition duration-300 ease-in-out">
+        <a class=" w-full">
+            <img src="assets/img/Billing_Logo_Horizontal.svg" class=" w-4/5 ml-2.5 pt-3.5" alt="">
+        </a>
+
+        <a class=" w-full  bg-gray-200 border-b border-gray-200 border-t border-gray-300 "
+            style="padding: 0px !important; margin: 0px !important; ">
+            <div class="!my-3.5 ">
+                <div class="flex justify-center">
+                    <img src="assets/img/Agenda_Logo_Icon.svg" class="my-0" alt="">
+                </div>
+                <div class="flex justify-center">
+                    <h1 class="text-red-600 font-semibold ">Agenda</h1>
+                </div>
+            </div>
+
+        </a>
+        <div class="w-full px-2">
+
+            <div class="flex flex-col items-center w-full mt-1 ">
+
+                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" href="#">
+                    <span class="material-symbols-outlined">
+                        home
+                    </span>
+                    <span class="ml-2 text-sm font-medium">Inicio</span>
+                </a>
+                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" href="#">
+                    <span class="material-symbols-outlined">
+                        schedule
+                    </span>
+                    <span class="ml-2 text-sm font-medium">Citas</span>
+                </a>
+                <a class="flex items-center w-full h-12 px-3 mt-2 bg-gray-300 rounded" href="#">
+                    <span class="material-symbols-outlined">
+                        patient_list
+                    </span>
+                    <span class="ml-2 text-sm font-medium">Clientes</span>
+                </a>
+                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" href="#">
+                    <span class="material-symbols-outlined">
+                        browse_activity
+                    </span>
+                    <span class="ml-2 text-sm font-medium">Reportes</span>
+                </a>
+            </div>
+
+            <div class="flex flex-col items-center w-full mt-2 border-t border-gray-300">
+                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" href="#">
+                    <span class="material-symbols-outlined">
+                        settings
+                    </span>
+                    <span class="ml-2 text-sm font-medium">Configuración</span>
+                </a>
+
+                <!-- <a class="relative flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" href="#">
+
+                    <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                    </svg>
+                    <span class="ml-2 text-sm font-medium">Messages</span>
+                    <span class="absolute top-0 left-0 w-2 h-2 mt-2 ml-2 bg-indigo-500 rounded-full"></span>
+                </a> -->
+            </div>
         </div>
+        <a (click)="openSidebar(false)"
+            class="flex items-center justify-center w-full h-16 mt-auto bg-gray-200 hover:bg-gray-300">
+            <div class="flex justify-between items-center ">
+                <p class="text-sm mr-2"><i class="ri-copyright-line"></i> {{currentYear}} PuntoPymes CIA</p>
+                <span class="material-symbols-outlined">
+                    right_panel_open
+                </span>
+            </div>
+        </a>
+    </div>
 
-        <!-- Configuration -->
-        <div
-            class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-        </div>
-    </aside>
+    }
 
-
-
-    <div class="w-full h-full flex flex-col justify-between">
+    <div class="w-full h-full flex flex-col  ">
         <!-- Header -->
         <header
             class="h-16 w-full flex items-center justify-between px-5 border-b border-gray-200 bg-white text-gray-800">
 
             <!-- LOGO - LADO IZQUIERDO -->
-            <div class="flex items-center">
-                <h1 class="text-red-600 font-semibold text-lg">
+            <div class="flex items-center  ml-[45%] ">
+
+                <h1 class="text-red-600 font-semibold text-xl ">
                     AgendaSof
                 </h1>
             </div>
 
             <!-- ICONOS Y PERFIL - LADO DERECHO -->
-            <div class="flex items-center space-x-4">
-
-
+            <div class="flex items-center space-x-4 ">
 
                 <!-- Icono de Notificaciones -->
                 <a
@@ -129,13 +229,13 @@
                 </a>
 
                 <!-- Icono de Información -->
-                  <a
+                <a
                     class="group max-w-max relative mx-1 flex flex-col items-center justify-center rounded-full  p-1 text-gray-500 hover:bg-gray-200 hover:text-gray-600 relative cursor-pointer hover:bg-gray-100 p-2 rounded-full transition-colors">
                     <!-- Text/Icon goes here -->
                     <p class="text-xs text-center">
-                      <span class="material-symbols-outlined text-red-500">
-                        info
-                    </span>
+                        <span class="material-symbols-outlined text-red-500">
+                            info
+                        </span>
                     </p>
 
                     <div
@@ -147,11 +247,6 @@
                         </div>
                     </div>
                 </a>
-                <!-- <div class="cursor-pointer hover:bg-gray-100 p-2 rounded-full transition-colors">
-                    <span class="material-symbols-outlined text-red-500">
-                        info
-                    </span>
-                </div> -->
 
                 <!-- Separador vertical -->
                 <div class="h-6 w-px bg-gray-300"></div>
@@ -174,23 +269,19 @@
                 </div>
 
             </div>
+
         </header>
 
         <!-- Main -->
-        <main class="max-w-full h-full flex relative overflow-y-hidden">
+        <!-- <main class="max-w-full h-full flex relative overflow-y-hidden"> -->
+        <main class="max-w-full h-full px-7 py-5  bg-gray-100 overflow-y-scroll ">
             <!-- Container -->
-            <div
-                class="h-full w-full m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 overflow-y-scroll">
-                <!-- Container -->
+            <!-- <div
+                class="h-full w-full bg-gray-100  flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 overflow-y-scroll">                
 
-            </div>
+            </div> -->
+             <router-outlet></router-outlet>
         </main>
     </div>
 
 </div>
-
-
-<style>
-
-</style>
-<!-- This is an example component -->

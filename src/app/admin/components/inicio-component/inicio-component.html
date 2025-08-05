@@ -1,0 +1,126 @@
+<div class="p-1">
+    <div class="title">
+        <h1 class="text-sm"> Menu /</h1>
+
+        <h1 class="mt-4 font-semibold  text-xl ">AgendaSof Dashboard</h1>
+        <span class="text-xs">Bienvenido Richard Chimbo</span>
+
+    </div>
+</div>
+
+<div class="w-full">
+    <div class="grid grid-cols-10 space-x-5  z-1  mt-5  ">
+
+        <div class="col-span-2 ">
+
+            <div class="grid grid-cols-1 space-y-4 ">
+
+                <div class="col-span-1  bg-white  rounded-xl shadow-md  ">
+                    <h1 class="m-5 text-md  font-semibold text-gray-700 ">Calendario de citas</h1>
+
+                    <div class="flex justify-center ">
+                        <app-calendar></app-calendar>
+                    </div>
+
+
+                </div>
+                <div class="col-span-1   bg-white  rounded-xl shadow-md ">
+                    <div class="mx-5 mt-4 flex justify-start ">
+                        <span class="material-symbols-outlined mr-1 ">
+                            calendar_clock
+                        </span>
+
+                        <h1 class=" text-md  font-semibold text-gray-700 ">
+                            Próxima cita
+                        </h1>
+                    </div>
+                    <p class="text-xs text-gray-600 ml-5 mt-1 ">Tu proxima cita es en 10 minutos</p>
+
+                    <div class="flex justify-start items-center  mx-4 my-4 ">
+                        <span class="p-2 bg-purple-100 text-purple-500 font-medium  rounded-full mr-2  ">RC</span>
+                        <h1 class="text-gray-700 font-medium  text-sm ">Richard Chimbo</h1>
+                    </div>
+
+                    <div class="grid-cols-1 space-y-2 mx-4 ">
+                        <div class="col-span-1">
+                            <div class="flex justify-start items-center   ">
+                                <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
+                                    digital_wellbeing
+                                </span>
+                                <h1 class="text-gray-500 font-medium  text-xs   ml-2">Nutrición</h1>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="flex justify-start items-center  ">
+                                <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
+                                    person
+                                </span>
+                                <h1 class="text-gray-500 font-medium  text-xs  ml-2 ">Dr. Miguel Lituma</h1>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="grid grid-cols-2 ">
+                                <div class="col-span-1">
+                                    <div class="flex justify-start items-center">
+                                        <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
+                                            calendar_today
+                                        </span>
+                                        <h1 class="text-gray-500 font-medium  text-xs ml-2 ">2025/08/05</h1>
+                                    </div>
+                                </div>
+                                <div class="col-span-1">
+                                    <div class="flex justify-start items-center">
+                                        <span class="material-symbols-outlined text-gray-500 font-medium  text-xs">
+                                            schedule
+                                        </span>
+                                        <h1 class="text-gray-500 font-medium  text-xs  ml-2 ">11:00 - 12:00</h1>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="flex justify-start items-center  mx-4 mt-4 mb-20 ">
+                        <span
+                            class="px-5 py-1  bg-cyan-100 text-cyan-500 text-xs  rounded-full mr-2  ">Confirmada</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-span-6 ">
+            <div class="card w-full bg-white  rounded-lg ">
+                <!-- <h1 class="p-2 ml-2 text-red-500 font-medium text-sm ">
+                    Citas
+                </h1>
+
+                <hr class="text-gray-200"> -->
+                <app-big-calendar-component></app-big-calendar-component>
+
+            </div>
+
+        </div>
+        <div class="col-span-2 ">
+            <div class="grid grid-cols-1 ">
+                <div class="card  rounded-lg shadow-lg bg-white ">
+                    <h1 class="p-3 ml-2 text-red-500 font-medium text-md ">
+                        Citas
+                    </h1>
+                    <hr class="text-gray-200">
+                    <div class="flex justify-center  pt-25">
+                        <img class="" src="assets/img/illustration_empty_state_appointment.svg" alt="">
+
+                    </div>
+                    <div class="flex justify-center   pb-25">
+                        <p class="p-2 text-xs text-gray-600   " >Selecciona una fecha y revisa todas las citas del día.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

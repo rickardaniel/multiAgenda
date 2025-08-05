@@ -14,9 +14,12 @@ export const routes: Routes = [
   {
     path: 'administrador',
     loadComponent: () => import('./admin/admin-component/admin-component'),
-    // children: [
-    //   // <i class="bi bi-speedometer"></i>
-    //   {},
-    // ],
+    children: [
+               {
+                path:'', title: 'Inicio', 
+                 loadComponent:()=> import('../app/admin/components/inicio-component/inicio-component'),      
+                 
+            },
+    ],
   },
 ];

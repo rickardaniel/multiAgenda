@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
 @import "flowbite/src/themes/default";
 @import 'flatpickr/dist/flatpickr.css';
+/* Preline UI */
+// @source "./node_modules/preline/dist/*.js";
+// @import "./node_modules/preline/variants.css";
 
 /* Tema opcional */
 // @import '~flatpickr/dist/themes/material_blue.css';
