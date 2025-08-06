@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "professional": {
+      "name": "Alejandro Torres",
+      "initials": "AT",
+      "avatar": "avatar-blue"
+    },
+    "specialty": "Terapia física",
+    "timeSlot": "07:00 - 07:30",
+    "status": "completada",
+    "statusText": "Completada"
+  },
+  {
+    "id": 2,
+    "professional": {
+      "name": "Ana Lucía Pérez",
+      "initials": "AP",
+      "avatar": "avatar-purple"
+    },
+    "specialty": "Psicología",
+    "timeSlot": "07:30 - 08:00",
+    "status": "en-proceso",
+    "statusText": "En proceso"
+  },
+  {
+    "id": 3,
+    "professional": {
+      "name": "Andrés Gómez",
+      "initials": "AG",
+      "avatar": "avatar-green"
+    },
+    "specialty": "Nutrición",
+    "timeSlot": "08:00 - 08:30",
+    "status": "confirmada",
+    "statusText": "Confirmada"
+  },
+  {
+    "id": 4,
+    "professional": {
+      "name": "Daniela Mero",
+      "initials": "DM",
+      "avatar": "avatar-red"
+    },
+    "specialty": "Control pediátrico",
+    "timeSlot": "09:30 - 10:00",
+    "status": "pendiente",
+    "statusText": "Pendiente"
+  },
+  {
+    "id": 5,
+    "professional": {
+      "name": "Henry Álvarez",
+      "initials": "HA",
+      "avatar": "avatar-teal"
+    },
+    "specialty": "Consulta médica general",
+    "timeSlot": "10:00 - 10:30",
+    "status": "cancelada",
+    "statusText": "Cancelada"
+  },
+  {
+    "id": 6,
+    "professional": {
+      "name": "Sofía Villamar",
+      "initials": "SV",
+      "avatar": "avatar-pink"
+    },
+    "specialty": "Psicología",
+    "timeSlot": "10:30 - 11:00",
+    "status": "sin-confirmar",
+    "statusText": "Sin confirmar"
+  }
+]

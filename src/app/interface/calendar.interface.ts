@@ -3,6 +3,7 @@ export interface CalendarEvent {
   event_date: string;
   event_title: string;
   event_theme: EventTheme;
+  cant: number;
 }
 
 export type EventTheme = 'blue' | 'red' | 'yellow' | 'green' | 'purple';

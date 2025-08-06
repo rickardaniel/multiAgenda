@@ -9,18 +9,20 @@
         </a>
 
         <div class="flex flex-col items-center border-t border-gray-300">
-            <a class=" w-16  bg-gray-100 hover:bg-gray-300">
+            <a class=" w-16  bg-gray-100 "  >
                 <div class="flex justify-center">
                     <img src="assets/img/Agenda_Logo_Icon.svg" class="my-7" alt="">
                 </div>
             </a>
             <a
+            [routerLink]="['/administrador']" routerLinkActive="router-link-active" 
                 class="flex items-center justify-center w-12 h-12 mt-2  hover:bg-red-100 hover:text-red-600 hover:rounded-full">
                 <span class="material-symbols-outlined">
                     home
                 </span>
             </a>
             <a
+            [routerLink]="['/administrador/citas']" routerLinkActive="router-link-active" 
                 class="flex items-center justify-center w-12 h-12 mt-2 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
                 <span class="material-symbols-outlined">
                     schedule
@@ -146,7 +148,6 @@
     </div>
 
     }
-
     <div class="w-full h-full flex flex-col  ">
         <!-- Header -->
         <header
@@ -273,15 +274,12 @@
         </header>
 
         <!-- Main -->
-        <!-- <main class="max-w-full h-full flex relative overflow-y-hidden"> -->
-        <main class="max-w-full h-full px-7 py-5  bg-gray-100 overflow-y-scroll ">
-            <!-- Container -->
-            <!-- <div
-                class="h-full w-full bg-gray-100  flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 overflow-y-scroll">                
-
-            </div> -->
-             <router-outlet></router-outlet>
+        <main class="h-screen w-full flex flex-col overflow-hidden     bg-gray-100 overflow-y-hidden ">
+            <div class="flex-2 overflow-auto h-full px-7 py-5">
+                <router-outlet></router-outlet>
+            </div>
         </main>
     </div>
+
 
 </div>

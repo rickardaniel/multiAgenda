@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { FlowbiteService } from '../../services/flowbite-service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-component',
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, RouterModule],
   templateUrl: './admin-component.html',
   styleUrl: './admin-component.scss'
 })

@@ -15,11 +15,18 @@ export const routes: Routes = [
     path: 'administrador',
     loadComponent: () => import('./admin/admin-component/admin-component'),
     children: [
-               {
-                path:'', title: 'Inicio', 
-                 loadComponent:()=> import('../app/admin/components/inicio-component/inicio-component'),      
-                 
-            },
+      {
+        path: '',
+        title: 'Inicio',
+        loadComponent: () =>
+          import('../app/admin/components/inicio-component/inicio-component'),
+      },
+      {
+        path: 'citas',
+        title: 'Citas',
+        loadComponent: () =>
+          import('../app/admin/components/citas-component/citas-component'),
+      },
     ],
   },
 ];

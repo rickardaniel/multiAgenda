@@ -1,126 +1,349 @@
-<div class="p-1">
-    <div class="title">
-        <h1 class="text-sm"> Menu /</h1>
 
-        <h1 class="mt-4 font-semibold  text-xl ">AgendaSof Dashboard</h1>
-        <span class="text-xs">Bienvenido Richard Chimbo</span>
 
-    </div>
-</div>
+<!-- Container principal con padding y altura completa -->
+<div class=" w-full ">
+    <div class="">
+        <div class="p-1">
+            <div class="title">
+                <h1 class="text-sm"> Menu /</h1>
+                <h1 class="mt-4 font-semibold text-xl">AgendaSof Dashboard</h1>
+                <span class="text-xs">Bienvenido Richard Chimbo</span>
+            </div>
+        </div>
 
-<div class="w-full">
-    <div class="grid grid-cols-10 space-x-5  z-1  mt-5  ">
+        <!-- Grid principal ocupando todo el ancho disponible -->
+        <div class="grid grid-cols-10 gap-3 mt-5 h-full">
 
-        <div class="col-span-2 ">
+            <!-- Columna izquierda - 2 columnas -->
+            <div class="col-span-2 ">
 
-            <div class="grid grid-cols-1 space-y-4 ">
+                <div class="grid grid-cols-1 space-y-4 h-full ">
 
-                <div class="col-span-1  bg-white  rounded-xl shadow-md  ">
-                    <h1 class="m-5 text-md  font-semibold text-gray-700 ">Calendario de citas</h1>
+                    <div class="col-span-1  bg-white  rounded-xl shadow-md  ">
 
-                    <div class="flex justify-center ">
-                        <app-calendar></app-calendar>
+                        <h1 class="mx-5 mt-3.5 !mb-5 text-md  font-semibold text-gray-700 ">Calendario de citas</h1>
+                        <div class="flex justify-center !m-2 ">
+                            <app-calendar (dateSelect)="detectDate($event)"></app-calendar>
+                        </div>
+
                     </div>
 
+                    <div class="col-span-1   bg-white  rounded-xl shadow-md ">
+
+                        <div class="mx-5 mt-4 flex justify-start ">
+                            <span class="material-symbols-outlined mr-1 text-gray-600  !text-md">
+                                calendar_clock
+                            </span>
+                            <h1 class=" text-md  font-semibold text-gray-700 ">
+                                Próxima cita
+                            </h1>
+                        </div>
+                        <p class="text-xs text-gray-600 ml-5 mt-1 ">Tu proxima cita es en 10 minutos</p>
+                        <div class="flex justify-start items-center  mx-4 my-4 ">
+                            <span class="p-2 bg-purple-100 text-purple-500 font-medium  rounded-full mr-2  ">RC</span>
+                            <h1 class="text-gray-700 font-medium  text-sm ">Richard Chimbo</h1>
+                        </div>
+
+                        <div class="grid-cols-1 space-y-2 mx-4 ">
+                            <div class="col-span-1">
+                                <div class="flex justify-start items-center   ">
+                                    <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
+                                        digital_wellbeing
+                                    </span>
+                                    <h1 class="text-gray-500 font-medium  text-xs   ml-2">Nutrición</h1>
+                                </div>
+                            </div>
+                            <div class="col-span-1">
+                                <div class="flex justify-start items-center  ">
+                                    <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
+                                        person
+                                    </span>
+                                    <h1 class="text-gray-500 font-medium  text-xs  ml-2 ">Dr. Miguel Lituma</h1>
+                                </div>
+                            </div>
+                            <div class="col-span-1">
+                                <div class="grid grid-cols-2 ">
+                                    <div class="col-span-1">
+                                        <div class="flex justify-start items-center">
+                                            <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
+                                                calendar_today
+                                            </span>
+                                            <h1 class="text-gray-500 font-medium  text-xs ml-2 ">2025/08/05</h1>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-1">
+                                        <div class="flex justify-start items-center">
+                                            <span class="material-symbols-outlined text-gray-500 font-medium  text-xs">
+                                                schedule
+                                            </span>
+                                            <h1 class="text-gray-500 font-medium  text-xs  ml-2 ">11:00 - 12:00</h1>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="flex justify-start items-center  mx-4 mt-4 mb-20 ">
+                            <span
+                                class="px-5 py-1  bg-cyan-100 text-blue-700 text-xs  rounded-full mr-2  ">Confirmada</span>
+                        </div>
+                    </div>
 
                 </div>
-                <div class="col-span-1   bg-white  rounded-xl shadow-md ">
-                    <div class="mx-5 mt-4 flex justify-start ">
-                        <span class="material-symbols-outlined mr-1 ">
-                            calendar_clock
-                        </span>
 
-                        <h1 class=" text-md  font-semibold text-gray-700 ">
-                            Próxima cita
+            </div>
+
+            <!-- Columna central - 6 columnas -->
+            <div class="col-span-6 ">
+                <div class="card w-full bg-white h-full  rounded-lg  shadow-md ">
+                    <app-big-calendar-component (sendCitas)="getCitas($event)"
+                        [dateSelected]="dateSelected"></app-big-calendar-component>
+                </div>
+
+            </div>
+
+            <!-- Columna derecha - 2 columnas -->
+            <div class="col-span-2 ">
+                <div class="grid grid-cols-1 h-full ">
+                    <div class="card  rounded-lg shadow-lg bg-white ">
+                        <h1 class="p-3 ml-2 text-red-500 font-medium text-md ">
+                            Citas
                         </h1>
-                    </div>
-                    <p class="text-xs text-gray-600 ml-5 mt-1 ">Tu proxima cita es en 10 minutos</p>
+                        <hr class="text-gray-200 mb-2">
+                        @if(citasByDay.length==0){
 
-                    <div class="flex justify-start items-center  mx-4 my-4 ">
-                        <span class="p-2 bg-purple-100 text-purple-500 font-medium  rounded-full mr-2  ">RC</span>
-                        <h1 class="text-gray-700 font-medium  text-sm ">Richard Chimbo</h1>
-                    </div>
+                        <div class="flex justify-center  pt-25">
+                            <img class="" src="assets/img/illustration_empty_state_appointment.svg" alt="">
+                        </div>
+                        <div class="flex justify-center   pb-25">
+                            <p class="p-2 text-xs text-gray-600   ">Selecciona una fecha y revisa todas las citas del
+                                día.</p>
+                        </div>
+                        }@else {
 
-                    <div class="grid-cols-1 space-y-2 mx-4 ">
-                        <div class="col-span-1">
-                            <div class="flex justify-start items-center   ">
-                                <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
-                                    digital_wellbeing
-                                </span>
-                                <h1 class="text-gray-500 font-medium  text-xs   ml-2">Nutrición</h1>
-                            </div>
-                        </div>
-                        <div class="col-span-1">
-                            <div class="flex justify-start items-center  ">
-                                <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
-                                    person
-                                </span>
-                                <h1 class="text-gray-500 font-medium  text-xs  ml-2 ">Dr. Miguel Lituma</h1>
-                            </div>
-                        </div>
-                        <div class="col-span-1">
-                            <div class="grid grid-cols-2 ">
-                                <div class="col-span-1">
-                                    <div class="flex justify-start items-center">
-                                        <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
-                                            calendar_today
-                                        </span>
-                                        <h1 class="text-gray-500 font-medium  text-xs ml-2 ">2025/08/05</h1>
+
+                        <!-- Card de Cita Médica -->
+                        @for(cd of citasByDay; track cd){
+                        <div class="px-2 py-1">
+                            <div
+                                class="mx-2 w-full mx-auto bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                                <div class="p-4 ">
+                                    <!-- Información del profesional -->
+                                    <div class="  space-x-3">
+
+                                        <!-- Datos del profesional -->
+                                        <div class="flex justify-start items-center">
+                                            <div
+                                                class="w-6 h-6 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center">
+                                                <span
+                                                    class=" font-semibold text-xs">{{nameAvatar(cd.professional?.name)}}</span>
+                                            </div>
+                                            <h5 class=" ml-1.5 text-sm font-semibold text-gray-700">
+                                                {{cd.professional?.name}}
+                                            </h5>
+                                        </div>
+
+                                        <div class="flex items-center text-sm text-gray-500 mt-1">
+                                            <i class="ri-service-line mr-1.5"></i>
+                                            {{cd.specialty}}
+                                        </div>
+
+                                        <div class="flex justify-between items-center">
+                                            <!-- Lado izquierdo - Horario -->
+                                            <div class="flex items-center text-sm text-gray-500">
+                                                <i class="ri-time-line mr-1.5"></i>
+                                                07:00 - 07:30
+                                            </div>
+
+                                            <!-- Lado derecho - Estado -->
+                                            <div class="flex !justify-end  ">
+                                                <!-- Badge de estado -->
+                                                @if(cd.status=='completada'){
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-normal"
+                                                    [ngStyle]="{
+                                                                'background-color': getStatusColors(cd.status).bg,
+                                                                'color': getStatusColors(cd.status).text
+                                                            }">
+                                                    {{cd.statusText}}
+                                                </span>
+                                                }@else if(cd.status=='en-proceso'){
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-normal"
+                                                    [ngStyle]="{
+                                                                'background-color': getStatusColors(cd.status).bg,
+                                                                'color': getStatusColors(cd.status).text
+                                                            }">
+                                                    {{cd.statusText}}
+                                                </span>
+                                                }@else if(cd.status=='confirmada'){
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-normal"
+                                                    [ngStyle]="{
+                                                                'background-color': getStatusColors(cd.status).bg,
+                                                                'color': getStatusColors(cd.status).text
+                                                            }">
+                                                    {{cd.statusText}}
+                                                </span>
+                                                }@else if(cd.status=='pendiente'){
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-normal"
+                                                    [ngStyle]="{
+                                                                'background-color': getStatusColors(cd.status).bg,
+                                                                'color': getStatusColors(cd.status).text
+                                                            }">
+                                                    {{cd.statusText}}
+                                                </span>
+                                                }@else if(cd.status=='sin-confirmar'){
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-normal"
+                                                    [ngStyle]="{
+                                                                'background-color': getStatusColors(cd.status).bg,
+                                                                'color': getStatusColors(cd.status).text
+                                                            }">
+                                                    {{cd.statusText}}
+                                                </span>
+                                                }@else if(cd.status=='cancelada'){
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-normal"
+                                                    [ngStyle]="{
+                                                                'background-color': getStatusColors(cd.status).bg,
+                                                                'color': getStatusColors(cd.status).text
+                                                            }">
+                                                    {{cd.statusText}}
+                                                </span>
+                                                }
+
+                                            </div>
+                                        </div>
+
+
                                     </div>
-                                </div>
-                                <div class="col-span-1">
-                                    <div class="flex justify-start items-center">
-                                        <span class="material-symbols-outlined text-gray-500 font-medium  text-xs">
-                                            schedule
-                                        </span>
-                                        <h1 class="text-gray-500 font-medium  text-xs  ml-2 ">11:00 - 12:00</h1>
-                                    </div>
-                                </div>
 
+
+                                </div>
                             </div>
+                        </div>
 
+                        }
+
+
+                        <!-- Ejemplo con estado "En proceso" -->
+                        <!-- <div class="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 mt-4">
+        <div class="p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
+                        <span class="text-white font-semibold text-sm">AP</span>
+                    </div>
+                    <div>
+                        <h5 class="text-sm font-semibold text-gray-900">Ana Lucía Pérez</h5>
+                        <div class="flex items-center text-xs text-gray-500 mt-1">
+                            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2L3 7v11a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V7l-7-5z" clip-rule="evenodd"/>
+                            </svg>
+                            Psicología
+                        </div>
+                        <div class="flex items-center text-xs text-gray-500 mt-1">
+                            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                            </svg>
+                            07:30 - 08:00
                         </div>
                     </div>
-
-                    <div class="flex justify-start items-center  mx-4 mt-4 mb-20 ">
-                        <span
-                            class="px-5 py-1  bg-cyan-100 text-cyan-500 text-xs  rounded-full mr-2  ">Confirmada</span>
+                </div>
+                <div class="flex flex-col items-end space-y-2">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                        En proceso
+                    </span>
+                    <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
+                        <div class="w-2 h-2 bg-white rounded-full"></div>
                     </div>
                 </div>
             </div>
-
         </div>
-        <div class="col-span-6 ">
-            <div class="card w-full bg-white  rounded-lg ">
-                <!-- <h1 class="p-2 ml-2 text-red-500 font-medium text-sm ">
-                    Citas
-                </h1>
+    </div> -->
 
-                <hr class="text-gray-200"> -->
-                <app-big-calendar-component></app-big-calendar-component>
-
-            </div>
-
-        </div>
-        <div class="col-span-2 ">
-            <div class="grid grid-cols-1 ">
-                <div class="card  rounded-lg shadow-lg bg-white ">
-                    <h1 class="p-3 ml-2 text-red-500 font-medium text-md ">
-                        Citas
-                    </h1>
-                    <hr class="text-gray-200">
-                    <div class="flex justify-center  pt-25">
-                        <img class="" src="assets/img/illustration_empty_state_appointment.svg" alt="">
-
+                        <!-- Ejemplo con estado "Confirmada" -->
+                        <!-- <div class="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 mt-4">
+        <div class="p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                        <span class="text-white font-semibold text-sm">AG</span>
                     </div>
-                    <div class="flex justify-center   pb-25">
-                        <p class="p-2 text-xs text-gray-600   " >Selecciona una fecha y revisa todas las citas del día.</p>
+                    <div>
+                        <h5 class="text-sm font-semibold text-gray-900">Andrés Gómez</h5>
+                        <div class="flex items-center text-xs text-gray-500 mt-1">
+                            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2L3 7v11a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V7l-7-5z" clip-rule="evenodd"/>
+                            </svg>
+                            Nutrición
+                        </div>
+                        <div class="flex items-center text-xs text-gray-500 mt-1">
+                            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                            </svg>
+                            08:00 - 08:30
+                        </div>
                     </div>
                 </div>
-
+                <div class="flex flex-col items-end space-y-2">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        Confirmada
+                    </span>
+                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                        <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
-
         </div>
+    </div> -->
 
+                        <!-- Ejemplo con estado "Pendiente" -->
+                        <!-- <div class="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 mt-4">
+        <div class="p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
+                        <span class="text-white font-semibold text-sm">HA</span>
+                    </div>
+                    <div>
+                        <h5 class="text-sm font-semibold text-gray-900">Henry Álvarez</h5>
+                        <div class="flex items-center text-xs text-gray-500 mt-1">
+                            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2L3 7v11a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V7l-7-5z" clip-rule="evenodd"/>
+                            </svg>
+                            Consulta médica general
+                        </div>
+                        <div class="flex items-center text-xs text-gray-500 mt-1">
+                            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                            </svg>
+                            10:00 - 10:30
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-end space-y-2">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                        Pendiente
+                    </span>
+                    <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

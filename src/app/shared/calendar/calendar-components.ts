@@ -1,8 +1,19 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ElementRef,
+  ViewChild,
+  Input,
+  Output,
+  EventEmitter,
+  forwardRef,
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import flatpickr from 'flatpickr';
-import { Spanish } from 'flatpickr/dist/l10n/es.js' // Importa el idioma español
+import { Spanish } from 'flatpickr/dist/l10n/es.js'; // Importa el idioma español
+import { Instance } from 'flatpickr/dist/types/instance';
 
 @Component({
   selector: 'app-calendar',
@@ -10,13 +21,14 @@ import { Spanish } from 'flatpickr/dist/l10n/es.js' // Importa el idioma españo
   imports: [CommonModule],
   templateUrl: './calendar-components.html',
   styleUrl: './calendar-components.scss',
-  providers: [
-
-  ],
+  providers: [],
 })
-export default class CalendarComponetn implements OnInit, OnDestroy, ControlValueAccessor {
-  @ViewChild('calendarContainer', { static: true }) calendarContainer!: ElementRef;
-
+export default class CalendarComponetn
+  implements OnInit, OnDestroy, ControlValueAccessor
+{
+  @ViewChild('calendarContainer', { static: true })
+  calendarContainer!: ElementRef;
+  @ViewChild('dateInput') dateInput!: ElementRef;
   @Input() dateFormat = 'Y-m-d';
   @Input() enableTime = false;
   @Input() minDate?: string;
@@ -26,12 +38,22 @@ export default class CalendarComponetn implements OnInit, OnDestroy, ControlValu
 
   @Output() dateChange = new EventEmitter<string | Date | Date[]>();
   @Output() dateSelect = new EventEmitter<string | Date | Date[]>();
+  today= new Date();
+  // private flatpickrInstance: any;
+  private onChange = (value: any) => {};
+  private onTouched = () => {};
 
-  private flatpickrInstance: any;
-  private onChange = (value: any) => { };
-  private onTouched = () => { };
+  private flatpickrInstance!: Instance;
+  selectedDate: string = '';
 
   ngOnInit() {
+    this.initializeFlatpickr();
+    //  this.initFlatpickr();
+     this.dateSelect.emit(this.today);
+  }
+
+  ngAfterViewInit() {
+    // Aquí inicializas Flatpickr
     this.initializeFlatpickr();
   }
 
@@ -41,6 +63,18 @@ export default class CalendarComponetn implements OnInit, OnDestroy, ControlValu
     }
   }
 
+  initFlatpickr() {
+    this.flatpickrInstance = flatpickr(this.dateInput.nativeElement, {
+      dateFormat: 'm-d-Y',
+      mode: this.mode,
+      locale: Spanish,
+      onChange: (selectedDates, dateStr) => {
+        this.selectedDate = dateStr;
+        console.log('Fecha seleccionada:', dateStr);
+      },
+    });
+  }
+
   private initializeFlatpickr() {
     const options: any = {
       inline: true, // Esto hace que aparezca sin input
@@ -48,6 +82,7 @@ export default class CalendarComponetn implements OnInit, OnDestroy, ControlValu
       dateFormat: 'm-d-Y',
       mode: this.mode,
       locale: Spanish,
+      defaultDate: this.today,
       // minDate: 'today',
 
       onChange: (selectedDates: Date[], dateStr: string) => {
@@ -62,28 +97,33 @@ export default class CalendarComponetn implements OnInit, OnDestroy, ControlValu
         this.onChange(value);
         this.dateChange.emit(value);
         this.dateSelect.emit(value);
-      }
+        
+      },
     };
 
     // Añadir opciones condicionales
-    if (this.enableTime) {
-      options.enableTime = true;
-      options.time_24hr = true;
-    }
+    // if (this.enableTime) {
+    //   options.enableTime = true;
+    //   options.time_24hr = true;
+    // }
 
-    if (this.minDate) {
-      options.minDate = this.minDate;
-    }
+    // if (this.minDate) {
+    //   options.minDate = this.minDate;
+    // }
 
-    if (this.maxDate) {
-      options.maxDate = this.maxDate;
-    }
+    // if (this.maxDate) {
+    //   options.maxDate = this.maxDate;
+    // }
 
-    if (this.defaultDate) {
-      options.defaultDate = this.defaultDate;
-    }
+    // if (this.defaultDate) {
+    //   options.defaultDate = this.defaultDate;
+    // }
 
-    this.flatpickrInstance = flatpickr(this.calendarContainer.nativeElement, options);
+    this.flatpickrInstance = flatpickr(
+      this.calendarContainer.nativeElement,
+      options
+    );
+     this.dateSelect.emit(this.today);
   }
 
   // ControlValueAccessor methods
@@ -104,8 +144,12 @@ export default class CalendarComponetn implements OnInit, OnDestroy, ControlValu
   setDisabledState(isDisabled: boolean): void {
     // Para calendario inline, podrías ocultar/mostrar el componente
     if (this.calendarContainer) {
-      this.calendarContainer.nativeElement.style.pointerEvents = isDisabled ? 'none' : 'auto';
-      this.calendarContainer.nativeElement.style.opacity = isDisabled ? '0.5' : '1';
+      this.calendarContainer.nativeElement.style.pointerEvents = isDisabled
+        ? 'none'
+        : 'auto';
+      this.calendarContainer.nativeElement.style.opacity = isDisabled
+        ? '0.5'
+        : '1';
     }
   }
 
@@ -132,9 +176,9 @@ export default class CalendarComponetn implements OnInit, OnDestroy, ControlValu
     }
   }
 
-  selectDay(event){
-    console.log('event',event);
-    
-      this.dateSelect.emit(event)
+  selectDay(event) {
+    console.log('event', event);
+
+    this.dateSelect.emit(event);
   }
 }

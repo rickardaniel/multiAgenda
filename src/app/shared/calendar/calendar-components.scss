@@ -27,9 +27,10 @@
     }
 
     :host ::ng-deep .flatpickr-day.selected {
-      background: #e43838;
-      border-color: #e43838;
-      color: white;
+      background: red !important;
+      border-color: #e43838 !important;
+      color: white !important;
+      font-weight: bold;
     }
 
     :host ::ng-deep .flatpickr-day.today {
@@ -39,4 +40,5 @@
 
     :host ::ng-deep .flatpickr-day:hover {
       background: #f3f4f6;
+      font-weight: bold;
     }
