@@ -15,21 +15,21 @@
                 </div>
             </a>
             <a
-            [routerLink]="['/administrador']" routerLinkActive="router-link-active" 
+            [routerLink]="['/administrador']" routerLinkActive="router-link-active"  [routerLinkActiveOptions]="{ exact: true }"
                 class="flex items-center justify-center w-12 h-12 mt-2  hover:bg-red-100 hover:text-red-600 hover:rounded-full">
                 <span class="material-symbols-outlined">
                     home
                 </span>
             </a>
             <a
-            [routerLink]="['/administrador/citas']" routerLinkActive="router-link-active" 
+            [routerLink]="['/administrador/citas']" routerLinkActive="router-link-active"  [routerLinkActiveOptions]="{ exact: true }"
                 class="flex items-center justify-center w-12 h-12 mt-2 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
                 <span class="material-symbols-outlined">
                     schedule
                 </span>
             </a>
             <a
-                class="flex items-center justify-center w-12 h-12 mt-2 bg-red-100 rounded-full text-red-600 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                class="flex items-center justify-center w-12 h-12 mt-2  hover:bg-red-100 hover:text-red-600 hover:rounded-full">
                 <span class="material-symbols-outlined">
                     patient_list
                 </span>

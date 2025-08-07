@@ -9,15 +9,16 @@
 
 /* Tema opcional */
 // @import '~flatpickr/dist/themes/material_blue.css';
-.titulos{
-    font-family: "Poppins", sans-serif;
+.titulos {
+  font-family: "Poppins", sans-serif;
 }
-.letterGeneral{
-    font-family: "Work Sans", sans-serif; 
+
+.letterGeneral {
+  font-family: "Work Sans", sans-serif;
 }
 
 .inputGeneral {
-  @apply border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t  w-full px-3 py-2 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
+  @apply border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t w-full px-3 py-2 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
 }
 
 .inputGeneral2 {
@@ -28,11 +29,13 @@
   @apply border placeholder-gray-400 focus:outline-none focus:border-black w-full px-3 py-1.5 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-gray-100 border-gray-300 rounded-md;
 
 }
+
 .inputGeneral4 {
-  @apply border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t  w-full px-3 py-1.5 mt-0 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
+  @apply border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t w-full px-3 py-1.5 mt-0 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
 }
+
 .inputPhone {
-  @apply border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t  w-full px-3 py-1.5 mt-0 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-e-md;
+  @apply border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t w-full px-3 py-1.5 mt-0 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-e-md;
 }
 
 .labelGeneral {
@@ -52,13 +55,27 @@
 
 }
 
-.selectGeneral{
-    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
-}
-.selectGeneral2{
-    @apply appearance-none block text-sm w-full px-3 py-1.5 pr-12 bg-white border border-gray-300 rounded-md text-gray-600 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-gray-500 focus:border-gray-500 transition-colors duration-200
+.selectGeneral {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
 }
 
-.title{
-    color: rgb(93, 93, 93);
+.selectGeneral2 {
+  @apply appearance-none block text-sm w-full px-3 py-1.5 pr-12 bg-white border border-gray-300 rounded-md text-gray-600 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-gray-500 focus:border-gray-500 transition-colors duration-200
+}
+
+.title {
+  color: rgb(93, 93, 93);
+}
+
+.clip-top {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Flecha hacia abajo para tooltip que sale hacia arriba (original) */
+.clip-bottom {
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+
+.effectoZoomBoton {
+  @apply hover:shadow-2xl transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none
 }

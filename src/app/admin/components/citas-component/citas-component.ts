@@ -8,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export default class CitasComponent {
 
+  flagFilters = true;
+  showFilters(flag){
+    console.log('flag', flag);
+    
+    this.flagFilters=flag;
+  }
+
 }

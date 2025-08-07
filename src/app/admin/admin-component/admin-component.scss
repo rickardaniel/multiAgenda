@@ -1,12 +1,6 @@
- .clip-top {
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-        
-        /* Flecha hacia abajo para tooltip que sale hacia arriba (original) */
-        .clip-bottom {
-            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-        }
 
-        span{
-            // color: rgb(97, 96, 96);
-        }
+        .router-link-active {
+    background-color: #fee2e2 !important; /* bg-red-100 */
+    color: #dc2626 !important; /* text-red-600 */
+    border-radius: 9999px !important; /* rounded-full */
+}
