@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import CalendarComponetn from '../../../shared/calendar/calendar-components';
 import { BigCalendarComponent } from '../../../shared/big-calendar-component/big-calendar-component';
-import  {  AvatarModule  }  from  'ngx-avatars' ;
 import { ApiService } from '../../../services/api-service';
 import { stateColorsNormal, stateColorsStrong } from '../../../interface/styles-agenda.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-inicio-component',
-  imports: [CommonModule, CalendarComponetn, BigCalendarComponent, AvatarModule],
+  imports: [CommonModule, CalendarComponetn, BigCalendarComponent],
   templateUrl: './inicio-component.html',
   styleUrl: './inicio-component.scss'
 })
@@ -60,6 +59,27 @@ export default class InicioComponent {
   
   return colorMap[status] || { bg: '#f3f4f6', text: '#374151' };
 }
+
+getStatusClass(status:string):string{
+  return this.api.getStatusClass(status);
+}
+
+ getRandomColor(letter) {
+    return this.api.getDualColorObject(letter);
+  }
+
+
+// getStatusClass(status: string): string {
+//   const statusClasses: { [key: string]: string } = {
+//     'completada': 'bg-green-50 text-green-600',
+//     'en-proceso': 'bg-purple-100 text-purple-800', 
+//     'confirmada': 'bg-cyan-100 text-blue-600',
+//     'pendiente': 'bg-yellow-50 text-yellow-500',
+//     'sin-confirmar': 'bg-orange-100 text-orange-600',
+//     'cancelada': 'bg-red-50 text-red-600'
+//   };
+//   return statusClasses[status] || 'bg-gray-100 text-gray-800';
+// }
 
 
 

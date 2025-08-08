@@ -9,47 +9,87 @@
         </a>
 
         <div class="flex flex-col items-center border-t border-gray-300">
-            <a class=" w-16  bg-gray-100 "  >
+            <a class=" w-16  bg-gray-100 ">
                 <div class="flex justify-center">
                     <img src="assets/img/Agenda_Logo_Icon.svg" class="my-7" alt="">
                 </div>
             </a>
-            <a
-            [routerLink]="['/administrador']" routerLinkActive="router-link-active"  [routerLinkActiveOptions]="{ exact: true }"
+
+            <a [routerLink]="['/administrador']" routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }" #rla="routerLinkActive"
                 class="flex items-center justify-center w-12 h-12 mt-2  hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                @if(rla.isActive){
+                <span class="material-symbols-rounded">
+                    home
+                </span>
+
+                }@else{
                 <span class="material-symbols-outlined">
                     home
                 </span>
+                }
+
             </a>
-            <a
-            [routerLink]="['/administrador/citas']" routerLinkActive="router-link-active"  [routerLinkActiveOptions]="{ exact: true }"
+
+            <a [routerLink]="['/administrador/citas']" routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }" #rlC="routerLinkActive"
                 class="flex items-center justify-center w-12 h-12 mt-2 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                @if(rlC.isActive){
+                <span class="material-symbols-rounded">
+                    schedule
+                </span>
+                }@else{
                 <span class="material-symbols-outlined">
                     schedule
                 </span>
+                }
             </a>
-            <a
+
+            <a [routerLink]="['/administrador/clientes']" routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]="{ exact: true }" #rlU="routerLinkActive"
                 class="flex items-center justify-center w-12 h-12 mt-2  hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                @if(rlU.isActive){
+                <span class="material-symbols-rounded">
+                    patient_list
+                </span>
+                }@else{
                 <span class="material-symbols-outlined">
                     patient_list
                 </span>
+                }
             </a>
-            <a
+
+            <a [routerLink]="['/administrador/reportes']" routerLinkActive="router-link-active" #rlR="routerLinkActive"
                 class="flex items-center justify-center w-12 h-12 mt-2 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                @if(rlR.isActive){
+                <span class="material-symbols-rounded">
+                    browse_activity
+                </span>
+                }@else{
                 <span class="material-symbols-outlined">
                     browse_activity
                 </span>
-            </a>
-        </div>
-        <div class="flex flex-col items-center mt-2 border-t border-gray-300">
-            <a
-                class="flex items-center justify-center w-12 h-12 mt-2 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
-                <span class="material-symbols-outlined">
-                    settings
-                </span>
+                }
             </a>
 
         </div>
+        <div class="flex flex-col items-center mt-2 border-t border-gray-300">
+            <a [routerLink]="['/administrador/configuracion']" routerLinkActive="router-link-active" #rlConf="routerLinkActive"
+                class="flex items-center justify-center w-12 h-12 mt-2 hover:bg-red-100 hover:text-red-600 hover:rounded-full">
+                 @if(rlConf.isActive){
+                <span class="material-symbols-rounded">
+                    settings
+                </span>
+                }@else{
+                <span class="material-symbols-outlined">
+                    settings
+                </span>
+                }
+
+            </a>
+
+        </div>
+
         <a (click)="openSidebar(true)" class=" w-16 h-16 mt-auto bg-gray-200 hover:bg-gray-300">
             <div class="flex justify-center">
                 <span class="material-symbols-outlined py-2">
@@ -61,8 +101,6 @@
 
                 <i class="ri-copyright-line"></i> {{currentYear}}
             </div>
-
-
         </a>
     </div>
 
@@ -84,43 +122,91 @@
                     <h1 class="text-red-600 font-semibold ">Agenda</h1>
                 </div>
             </div>
-
         </a>
+
         <div class="w-full px-2">
 
             <div class="flex flex-col items-center w-full mt-1 ">
 
-                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" href="#">
+                <a [routerLink]="['/administrador']" routerLinkActive="router-link-active2"
+                    [routerLinkActiveOptions]="{ exact: true }" #rla="routerLinkActive"
+                    class="flex items-center w-full h-12 px-3 mt-2 hover:bg-gray-300 hover:rounded-full">
+                    @if(rla.isActive){
+                    <span class="material-symbols-rounded">
+                        home
+                    </span>
+
+                    }@else{
                     <span class="material-symbols-outlined">
                         home
                     </span>
+                    }
                     <span class="ml-2 text-sm font-medium">Inicio</span>
                 </a>
-                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" href="#">
+
+                <a [routerLink]="['/administrador/citas']" routerLinkActive="router-link-active2"
+                    [routerLinkActiveOptions]="{ exact: true }" #rlC="routerLinkActive"
+                    class="flex items-center w-full h-12 px-3 mt-2  hover:bg-gray-300 hover:rounded-full">
+                    @if(rlC.isActive){
+                    <span class="material-symbols-rounded">
+                        schedule
+                    </span>
+                    }@else{
                     <span class="material-symbols-outlined">
                         schedule
                     </span>
+                    }
+
                     <span class="ml-2 text-sm font-medium">Citas</span>
                 </a>
-                <a class="flex items-center w-full h-12 px-3 mt-2 bg-gray-300 rounded" href="#">
+
+                <a [routerLink]="['/administrador/clientes']" routerLinkActive="router-link-active2"
+                    [routerLinkActiveOptions]="{ exact: true }" #rlU="routerLinkActive"
+                    class="flex items-center w-full h-12 px-3 mt-2 hover:bg-gray-300 hover:rounded-full  ">
+                    @if(rlU.isActive){
+                    <span class="material-symbols-rounded">
+                        patient_list
+                    </span>
+                    }@else{
                     <span class="material-symbols-outlined">
                         patient_list
                     </span>
+                    }
+
                     <span class="ml-2 text-sm font-medium">Clientes</span>
                 </a>
-                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" href="#">
+
+                <a [routerLink]="['/administrador/reportes']" routerLinkActive="router-link-active2"
+                    #rlR="routerLinkActive"
+                    class="flex items-center w-full h-12 px-3 mt-2 hover:rounded-full hover:bg-gray-300">
+                    @if(rlR.isActive){
+                    <span class="material-symbols-rounded">
+                        browse_activity
+                    </span>
+                    }@else{
                     <span class="material-symbols-outlined">
                         browse_activity
                     </span>
+                    }
+
                     <span class="ml-2 text-sm font-medium">Reportes</span>
                 </a>
             </div>
 
             <div class="flex flex-col items-center w-full mt-2 border-t border-gray-300">
-                <a class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" href="#">
+                <a 
+                [routerLink]="['/administrador/configuracion']" routerLinkActive="router-link-active2"  #rlConf2="routerLinkActive"
+                class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-300" >
+                 @if(rlConf2.isActive){
+                    <span class="material-symbols-rounded">
+                        settings
+                    </span>
+                    }@else{
                     <span class="material-symbols-outlined">
                         settings
                     </span>
+                    }
+    
                     <span class="ml-2 text-sm font-medium">Configuración</span>
                 </a>
 
@@ -151,15 +237,33 @@
     <div class="w-full h-full flex flex-col  ">
         <!-- Header -->
         <header
-            class="h-16 w-full flex items-center justify-between px-5 border-b border-gray-200 bg-white text-gray-800">
+            class=" !z-50 h-16 w-full flex items-center justify-between px-5 border-b border-gray-200 bg-white text-gray-800">
+            @if(isReportesSection){
+            <div class="flex items-center    w-48 border-e-1 h-full  border-gray-200 ">
 
-            <!-- LOGO - LADO IZQUIERDO -->
+                <h1 class="text-red-600 font-semibold text-lg ">
+                    Reportes
+                </h1>
+            </div>
+            <div class="flex items-center  !mr-[1.75rem] ">
+
+                <h1 class="text-red-600 font-semibold text-xl ">
+                    AgendaSof
+                </h1>
+            </div>
+            }@else {
             <div class="flex items-center  ml-[45%] ">
 
                 <h1 class="text-red-600 font-semibold text-xl ">
                     AgendaSof
                 </h1>
             </div>
+            }
+
+
+
+            <!-- LOGO - LADO IZQUIERDO -->
+
 
             <!-- ICONOS Y PERFIL - LADO DERECHO -->
             <div class="flex items-center space-x-4 ">
@@ -168,7 +272,7 @@
                 <a
                     class="group max-w-max relative mx-1 flex flex-col items-center justify-center rounded-full  p-1 text-gray-500 hover:bg-gray-200 hover:text-gray-600 relative cursor-pointer hover:bg-gray-100 p-2 rounded-full transition-colors">
                     <!-- Text/Icon goes here -->
-                    <p class="text-xs text-center">
+                    <p class="text-xs text-center ">
                         <span class="material-symbols-outlined text-red-500 ">
                             notifications
                         </span>
@@ -197,16 +301,15 @@
                             <path
                                 d="M4 4h4v4H4V4zm6 0h4v4h-4V4zm6 0h4v4h-4V4zM4 10h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4zM4 16h4v4H4v-4zm6 0h4v4h-4v-4zm6 0h4v4h-4v-4z" />
                         </svg>
-                    </p>
 
-                    <div
-                        class=" pt-2 [transform:perspective(50px)_translateZ(0)_rotateX(-10deg)] group-hover:[transform:perspective(0px)_translateZ(0)_rotateX(0deg)] absolute top-0 mt-6 origin-top transform rounded text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
-                        <div class="flex max-w-xs flex-col items-center">
-                            <div class="clip-top h-2 w-4 bg-gray-900"></div>
-                            <div class="rounded bg-gray-900 p-2 text-xs text-center shadow-lg">Módulos
+                        <div
+                            class=" pt-2 [transform:perspective(50px)_translateZ(0)_rotateX(-10deg)] group-hover:[transform:perspective(0px)_translateZ(0)_rotateX(0deg)] absolute top-0 mt-6 origin-top transform rounded text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
+                            <div class="flex max-w-xs flex-col items-center">
+                                <div class="clip-top h-2 w-4 bg-gray-900"></div>
+                                <div class="rounded bg-gray-900 p-2 text-xs text-center shadow-lg">Módulos
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </a>
 
                 <!-- Call Suport -->
@@ -275,7 +378,7 @@
 
         <!-- Main -->
         <main class="h-screen w-full flex flex-col overflow-hidden     bg-gray-100 overflow-y-hidden ">
-            <div class="flex-2 overflow-auto h-full px-7 py-5">
+            <div class="flex-2 overflow-auto h-full ">
                 <router-outlet></router-outlet>
             </div>
         </main>

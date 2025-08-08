@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "iniciales": "AM",
+    "nombre": "Alicia Muñoz",
+    "documento": "110458934",
+    "telefono": "098701245",
+    "email": "alicia.munoz@mail.com",
+    "fechaRegistro": "2024-07-16",
+    "estado": "Activo"
+  },
+  {
+    "id": 2,
+    "iniciales": "JR",
+    "nombre": "Juan Rodríguez",
+    "documento": "120567843",
+    "telefono": "098765432",
+    "email": "juan.rodriguez@mail.com",
+    "fechaRegistro": "2024-07-15",
+    "estado": "Activo"
+  },
+  {
+    "id": 3,
+    "iniciales": "MG",
+    "nombre": "María García",
+    "documento": "130678952",
+    "telefono": "097654321",
+    "email": "maria.garcia@mail.com",
+    "fechaRegistro": "2024-07-14",
+    "estado": "Inactivo"
+  },
+  {
+    "id": 4,
+    "iniciales": "CS",
+    "nombre": "Carlos Silva",
+    "documento": "140789063",
+    "telefono": "096543210",
+    "email": "carlos.silva@mail.com",
+    "fechaRegistro": "2024-07-13",
+    "estado": "Activo"
+  },
+  {
+    "id": 5,
+    "iniciales": "LL",
+    "nombre": "Laura López",
+    "documento": "150890174",
+    "telefono": "095432109",
+    "email": "laura.lopez@mail.com",
+    "fechaRegistro": "2024-07-12",
+    "estado": "Activo"
+  },
+  {
+    "id": 6,
+    "iniciales": "DM",
+    "nombre": "Diego Martínez",
+    "documento": "160901285",
+    "telefono": "094321098",
+    "email": "diego.martinez@mail.com",
+    "fechaRegistro": "2024-07-11",
+    "estado": "Activo"
+  },
+  {
+    "id": 7,
+    "iniciales": "SF",
+    "nombre": "Sofia Fernández",
+    "documento": "171012396",
+    "telefono": "093210987",
+    "email": "sofia.fernandez@mail.com",
+    "fechaRegistro": "2024-07-10",
+    "estado": "Activo"
+  },
+  {
+    "id": 8,
+    "iniciales": "AP",
+    "nombre": "Andrés Pérez",
+    "documento": "181123407",
+    "telefono": "092109876",
+    "email": "andres.perez@mail.com",
+    "fechaRegistro": "2024-07-09",
+    "estado": "Activo"
+  },
+  {
+    "id": 9,
+    "iniciales": "VT",
+    "nombre": "Valentina Torres",
+    "documento": "191234518",
+    "telefono": "091098765",
+    "email": "valentina.torres@mail.com",
+    "fechaRegistro": "2024-07-08",
+    "estado": "Inactivo"
+  },
+  {
+    "id": 10,
+    "iniciales": "RH",
+    "nombre": "Roberto Herrera",
+    "documento": "201345629",
+    "telefono": "090987654",
+    "email": "roberto.herrera@mail.com",
+    "fechaRegistro": "2024-07-07",
+    "estado": "Activo"
+  },
+  {
+    "id": 11,
+    "iniciales": "NC",
+    "nombre": "Natalia Castro",
+    "documento": "211456730",
+    "telefono": "089876543",
+    "email": "natalia.castro@mail.com",
+    "fechaRegistro": "2024-07-06",
+    "estado": "Activo"
+  },
+  {
+    "id": 12,
+    "iniciales": "FS",
+    "nombre": "Fernando Sánchez",
+    "documento": "221567841",
+    "telefono": "088765432",
+    "email": "fernando.sanchez@mail.com",
+    "fechaRegistro": "2024-07-05",
+    "estado": "Activo"
+  },
+  {
+    "id": 13,
+    "iniciales": "IR",
+    "nombre": "Isabella Ruiz",
+    "documento": "231678952",
+    "telefono": "087654321",
+    "email": "isabella.ruiz@mail.com",
+    "fechaRegistro": "2024-07-04",
+    "estado": "Activo"
+  },
+  {
+    "id": 14,
+    "iniciales": "MV",
+    "nombre": "Miguel Vargas",
+    "documento": "241789063",
+    "telefono": "086543210",
+    "email": "miguel.vargas@mail.com",
+    "fechaRegistro": "2024-07-03",
+    "estado": "Activo"
+  },
+  {
+    "id": 15,
+    "iniciales": "LO",
+    "nombre": "Lucía Ortega",
+    "documento": "251890174",
+    "telefono": "085432109",
+    "email": "lucia.ortega@mail.com",
+    "fechaRegistro": "2024-07-02",
+    "estado": "Inactivo"
+  },
+  {
+    "id": 16,
+    "iniciales": "GN",
+    "nombre": "Gabriel Navarro",
+    "documento": "261901285",
+    "telefono": "084321098",
+    "email": "gabriel.navarro@mail.com",
+    "fechaRegistro": "2024-07-01",
+    "estado": "Activo"
+  },
+  {
+    "id": 17,
+    "iniciales": "PM",
+    "nombre": "Paola Morales",
+    "documento": "272012396",
+    "telefono": "083210987",
+    "email": "paola.morales@mail.com",
+    "fechaRegistro": "2024-06-30",
+    "estado": "Activo"
+  },
+  {
+    "id": 18,
+    "iniciales": "EJ",
+    "nombre": "Eduardo Jiménez",
+    "documento": "282123407",
+    "telefono": "082109876",
+    "email": "eduardo.jimenez@mail.com",
+    "fechaRegistro": "2024-06-29",
+    "estado": "Activo"
+  },
+  {
+    "id": 19,
+    "iniciales": "CM",
+    "nombre": "Carolina Mendoza",
+    "documento": "292234518",
+    "telefono": "081098765",
+    "email": "carolina.mendoza@mail.com",
+    "fechaRegistro": "2024-06-28",
+    "estado": "Activo"
+  },
+  {
+    "id": 20,
+    "iniciales": "JA",
+    "nombre": "Joaquín Aguilar",
+    "documento": "302345629",
+    "telefono": "080987654",
+    "email": "joaquin.aguilar@mail.com",
+    "fechaRegistro": "2024-06-27",
+    "estado": "Activo"
+  },
+  {
+    "id": 21,
+    "iniciales": "AD",
+    "nombre": "Adriana Delgado",
+    "documento": "312456730",
+    "telefono": "079876543",
+    "email": "adriana.delgado@mail.com",
+    "fechaRegistro": "2024-06-26",
+    "estado": "Inactivo"
+  },
+  {
+    "id": 22,
+    "iniciales": "RV",
+    "nombre": "Ricardo Vega",
+    "documento": "322567841",
+    "telefono": "078765432",
+    "email": "ricardo.vega@mail.com",
+    "fechaRegistro": "2024-06-25",
+    "estado": "Activo"
+  }
+]

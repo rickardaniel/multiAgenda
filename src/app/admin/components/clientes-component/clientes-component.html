@@ -2,9 +2,9 @@
     <div class="flex justify-between items-center ">
         <div class="p-1">
             <div class="title">
-                <h1 class="text-sm"> Citas /</h1>
-                <h1 class="mt-4 font-semibold text-xl">Citas</h1>
-                <span class="text-xs">Gestiona las citas de tus clientes</span>
+                <h1 class="text-sm"> Clientes /</h1>
+                <h1 class="mt-4 font-semibold text-xl">Clientes</h1>
+                <span class="text-xs">Gestiona la información de tus clientes</span>
             </div>
         </div>
         <div class="p-1 mt-13">
@@ -54,128 +54,90 @@
                         </div>
                     </a>
                     }
-                </div>
 
+                </div>
                 <button
                     class=" cursor-pointer py-1.75  ml-2 px-5 text-sm font-medium text-white bg-red-600 rounded-full  hover:bg-red-600  transition transform effectoZoomBoton  ">
                     <div class="flex justify-center items-center">
-                        <i class="ri-add-line"></i> Nueva Cita
+                        <i class="ri-add-line"></i> Nuevo Cliente
                     </div>
                 </button>
             </div>
-        </div>
-    </div>
-
-    @if(!flagFilters){
-    <div class="flex justify-between items-center mt-5 ">
-        <div>
-
-        </div>
-        <div class="flex justify-between !space-x-2 ">
-            <input type="date" class="inputGeneral4 !w-[10rem] placeholder-gray-500 text-gray-600 ">
-
-            <form [formGroup]="formService">
-                <div class="relative">
-                    <select formControlName="especialidad" class="selectGeneral2" (change)="filterByService($event)">
-                        <option selected disabled value="" class="!text-gray-500">Servicio</option>
-                        <option value="Consulta médica general">Consulta médica general</option>
-                        <option value="Control pediátrico">Control pediátrico</option>
-                        <option value="Vacunación">Vacunación</option>
-                        <option value="Control oftalmológico">Control oftalmológico</option>
-                        <option value="Consulta nutricional	">Consulta nutricional </option>
-                    </select>
-                    <div class="absolute inset-y-0 right-0 flex items-center px-1 pointer-events-none">
-                        <span class="material-symbols-outlined text-red-500">
-                            arrow_drop_down
-                        </span>
-                    </div>
-                </div>
-            </form>
-
-            <div class="relative">
-                <select class="selectGeneral2" required>
-                    <option selected disabled value="" class="!text-gray-700">Empleado</option>
-                    <option value="Dr. Carlos Miranda">Dr. Carlos Miranda</option>
-                    <option value="Dra. Ana López">Dra. Ana López</option>
-                    <option value="María Gonzales">María Gonzales</option>
-                    <option value="Dra. Patricia Vega">Dra. Patricia Vega</option>
-                    <option value="Juan C. Pérez">Juan C. Pérez</option>
-                    <option value="Dra. Elena Campos">Dra. Elena Campos</option>
-                </select>
-                <div class="absolute inset-y-0 right-0 flex items-center px-1 pointer-events-none">
-                    <span class="material-symbols-outlined text-red-500">
-                        arrow_drop_down
-                    </span>
-                </div>
-            </div>
-            <div class="relative">
-                <select class="selectGeneral2" required>
-                    <option selected disabled value="" class="!text-gray-500">Estado</option>
-                    <option value="Completada">Completada</option>
-                    <option value="Pendiente">Pendiente</option>
-                    <option value="Sin confirmar">Sin confirmar</option>
-                    <option value="En proceso">En proceso</option>
-                    <option value="Cancelada">Cancelada</option>
-                    <option value="Confirmada">Confirmada</option>
-                </select>
-                <div class="absolute inset-y-0 right-0 flex items-center px-1 pointer-events-none">
-                    <span class="material-symbols-outlined text-red-500">
-                        arrow_drop_down
-                    </span>
-                </div>
-            </div>
-
-            <i (click)="clearFilters()"
-                class="ml-3 ri-brush-3-line  text-xl pt-1 text-gray-500 cursor-pointer hover:transition-shadow   transition transform effectoZoomBoton  "></i>
 
         </div>
     </div>
-    }
-
 
     <div class=" w-full mt-5 ">
-
-
         <!-- Tabla principal -->
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 bg-white">
                 <thead class="text-md text-gray-700  bg-gray-50 border-gray-200 border-b">
                     <tr>
-                        <th scope="col" class="px-6 py-3 font-medium">Código</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Cliente</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Fecha</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Hora</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Servicio</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Empleado</th>
+                        <th scope="col" class="px-6 py-3 font-medium">Nombre del cliente</th>
+                        <th scope="col" class="px-6 py-3 font-medium">Cédula</th>
+                        <th scope="col" class="px-6 py-3 font-medium">Teléfono</th>
+                        <th scope="col" class="px-6 py-3 font-medium">Correo Electrónico</th>
+                        <th scope="col" class="px-6 py-3 font-medium">Fecha de Cumpleaños</th>
                         <th scope="col" class="px-6 py-3 font-medium">Estado</th>
-                        <!-- <th scope="col" class="px-6 py-3 font-medium">Acciones</th> -->
+                        <th scope="col" class="px-6 py-3 font-medium "></th>
                     </tr>
                 </thead>
                 <tbody class="text-xs">
                     <!-- Fila 1 -->
-                    @for(c of citas?.data; track c){
+                    @for(c of clientes?.data; track c){
                     <tr class="bg-white border-gray-200 border-b hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-medium text-gray-900">{{c.codigo}}</td>
-                        <td class="px-6 py-4 text-gray-900">{{c.cliente}}</td>
+                        <td class="px-6 py-2 font-medium text-gray-900">
+                            <div class="flex justify-start items-center">
+                                <div class="w-6 h-6 shadow-sm rounded-full flex items-center justify-center "
+                                    [ngStyle]="{'border':'1px solid '+getRandomColor(c.iniciales).border }"
+                                    [style.background-color]="getRandomColor(c.iniciales).backgroundColor"
+                                    [style.color]="getRandomColor(c.iniciales).color">
+                                    <span class=" font-bold text-[11px]  bg-clip-text ">{{nameAvatar(c.nombre)}}</span>
+                                </div>
+                                <h5 class=" ml-1.5 text-xs  text-gray-500">
+                                    {{c.nombre}}
+                                </h5>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-gray-600">{{c.documento}}</td>
                         <td class="px-6 py-4">
                             <div class="flex items-center">
-                                <i class="ri-calendar-line mr-1"></i>
-                                {{c.fecha}}
+                                <i class="ri-phone-line mr-1"></i> {{c.telefono}}
                             </div>
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center">
-                                <i class="ri-time-line mr-1"></i>
-                                {{c.hora}}
+                                <i class="ri-mail-line mr-1"></i>
+                                {{c.email}}
                             </div>
                         </td>
-                        <td class="px-6 py-4">{{c.servicio}}</td>
-                        <td class="px-6 py-4">{{c.empleado}}</td>
-                        <td class="px-6 py-4">
-                            <span class="  items-center w-[6rem] px-2.5 py-1 rounded-full text-xs font-normal"
-                                [ngClass]="getStatusClass(c.estado)">
-                                {{c.estadoN}}
+                        <td class="px-6"> <i class="ri-calendar-line mr-1"></i>
+                            {{c.fechaRegistro}}</td>
+                        <td class="">
+                            @if(c.estado=='Inactivo'){
+                            <span
+                                class="px-5  py-0.5 rounded-full bg-red-50 text-red-500  border-1  border-red-100 shadow-md ">
+                                <i class="ri-close-circle-line "></i> {{c.estado}}
                             </span>
+                            }@else{
+                            <span
+                                class="px-6  py-0.5 rounded-full bg-[#EBFCEB] border-1  border-green-100 shadow-md font-medium  text-[#60AD5E]">
+                                <i class="ri-checkbox-circle-line "></i> {{c.estado}}
+                            </span>
+                            }
+                        </td>
+                        <td class=" py-0.5 flex justify-center items-center border-s-1 border-gray-200 ">
+                            <div class="pt-2.5">
+
+                                <i class="ri-pencil-line  text-xl mr-2"></i>
+                                <i class="ri-delete-bin-6-line text-lg text-red-500 "></i>
+                                <!-- <span class="material-symbols-outlined">
+                                    edit
+                                </span> -->
+                                <!-- <span class="material-symbols-outlined">
+                                    delete
+                                </span> -->
+                            </div>
                         </td>
                     </tr>
                     }
@@ -196,34 +158,30 @@
                 <div>
                     <p class="text-sm text-gray-700">
                         Mostrando <span class="font-medium">1</span> a <span
-                            class="font-medium">{{citas?.pagination?.pageSize}}</span> de
-                        <span class="font-medium">{{citas?.pagination?.totalItems}}</span> resultados
+                            class="font-medium">{{clientes?.pagination?.pageSize}}</span> de
+                        <span class="font-medium">{{clientes?.pagination?.totalItems}}</span> resultados
                     </p>
                 </div>
                 <div>
 
                     <div class="flex items-center justify-between ">
-                        <!-- Botón Previa -->
-                        <button (click)="goToPreviousPage(citas?.pagination, all_data)"
-                            [disabled]="!citas?.pagination?.hasPreviousPage"
-                            [class]="!citas?.pagination?.hasPreviousPage ? 
+                        <button (click)="goToPreviousPage(clientes?.pagination, all_clientes)"
+                            [disabled]="!clientes?.pagination?.hasPreviousPage"
+                            [class]="!clientes?.pagination?.hasPreviousPage ? 
                                 'flex items-center px-3 py-1 text-xs font-medium text-gray-300 cursor-not-allowed border-1  rounded-l-md ' : 
                                 'flex items-center px-3 py-1 text-xs font-medium text-gray-600 hover:text-gray-700 transition-colors duration-200 rounded-l-md border-1 border-gray-300'"
                             type="button">
                             Previa
                         </button>
-
-                        <!-- Contador central -->
                         <button class="px-4 bg-gray-100 border-1 border-gray-300   ">
-                            <span class="text-sm font-semibold text-red-600">{{citas?.pagination?.currentPage}}</span>
+                            <span
+                                class="text-sm font-semibold text-red-600">{{clientes?.pagination?.currentPage}}</span>
                             <span class="text-sm text-red-600">/</span>
-                            <span class="text-sm font-medium text-red-600">{{citas?.pagination?.totalPages}}</span>
+                            <span class="text-sm font-medium text-red-600">{{clientes?.pagination?.totalPages}}</span>
                         </button>
-
-                        <!-- Botón Siguiente -->
-                        <button (click)="goToNextPage(citas?.pagination, all_data)"
-                            [disabled]="!citas?.pagination?.hasNextPage"
-                            [class]="!citas?.pagination?.hasNextPage ? 
+                        <button (click)="goToNextPage(clientes?.pagination, all_clientes)"
+                            [disabled]="!clientes?.pagination?.hasNextPage"
+                            [class]="!clientes?.pagination?.hasNextPage ? 
                                 'flex items-center px-2 py-1 text-xs font-medium text-gray-300 cursor-not-allowed rounded-r-md border-1 border-gray-300 ' : 
                                 'flex items-center px-2 py-1 text-xs font-medium text-gray-600 hover:text-gray-700 transition-colors duration-200 rounded-r-md border-1 border-gray-300'"
                             type="button">
@@ -235,6 +193,4 @@
         </div>
 
     </div>
-
-
 </div>

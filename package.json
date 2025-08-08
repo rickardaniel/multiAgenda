@@ -33,7 +33,7 @@
     "express": "^5.1.0",
     "flatpickr": "^4.6.13",
     "flowbite": "^3.1.2",
-    "ngx-avatars": "^1.10.0",
+    "randomcolor": "^0.6.2",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.11",
     "tslib": "^2.3.0"
@@ -46,6 +46,7 @@
     "@types/flatpickr": "^3.0.2",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "@types/randomcolor": "^0.5.9",
     "autoprefixer": "^10.4.21",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",

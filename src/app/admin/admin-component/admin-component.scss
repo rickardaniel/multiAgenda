@@ -1,6 +1,18 @@
 
-        .router-link-active {
+.router-link-active {
     background-color: #fee2e2 !important; /* bg-red-100 */
     color: #dc2626 !important; /* text-red-600 */
     border-radius: 9999px !important; /* rounded-full */
+}
+
+.router-link-active2 {
+    background-color: #E5E7EB !important; /* bg-red-100 */
+    color: #1F2937 !important; /* text-red-600 */
+    border-radius: 9999px !important; /* rounded-full */
+    font-weight: bold;
+}
+
+.material-icon-filled {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    color: black;
 }

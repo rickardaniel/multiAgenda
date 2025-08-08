@@ -1,0 +1,233 @@
+[
+  {
+    "id": 1,
+    "codigo": "CT-001",
+    "cliente": "Alicia Muñoz",
+    "fecha": "2025/07/21",
+    "hora": "09:00",
+    "servicio": "Consulta médica general",
+    "empleado": "Juan C. Pérez",
+    "estado": "completada",
+    "estadoN": "Completada"
+  },
+  {
+    "id": 2,
+    "codigo": "CT-002",
+    "cliente": "Rosa Velázquez",
+    "fecha": "2025/07/21",
+    "hora": "10:00",
+    "servicio": "Control pediátrico",
+    "empleado": "María Gonzales",
+    "estado": "completada",
+    "estadoN": "Completada"
+  },
+  {
+    "id": 3,
+    "codigo": "CT-003",
+    "cliente": "Pedro Jiménez",
+    "fecha": "2025/07/20",
+    "hora": "16:00",
+    "servicio": "Vacunación",
+    "empleado": "Juan C. Pérez",
+    "estado": "sin-confirmar",
+    "estadoN": "Sin confirmar"
+  },
+  {
+    "id": 4,
+    "codigo": "CT-004",
+    "cliente": "Ana Carrillo",
+    "fecha": "2025/07/22",
+    "hora": "08:30",
+    "servicio": "Consulta médica general",
+    "empleado": "Juan C. Pérez",
+    "estado": "completada",
+    "estadoN": "Completada"
+  },
+  {
+    "id": 5,
+    "codigo": "CT-005",
+    "cliente": "María Delgado Rodríguez",
+    "fecha": "2025/07/19",
+    "hora": "11:20",
+    "servicio": "Control pediátrico",
+    "empleado": "María Gonzales",
+    "estado": "en-proceso",
+    "estadoN": "En proceso"
+  },
+  {
+    "id": 6,
+    "codigo": "CT-006",
+    "cliente": "Kevin Martínez",
+    "fecha": "2025/07/18",
+    "hora": "15:00",
+    "servicio": "Vacunación",
+    "empleado": "Juan C. Pérez",
+    "estado": "confirmada",
+    "estadoN": "Confirmada"
+  },
+  {
+    "id": 7,
+    "codigo": "CT-007",
+    "cliente": "Daniela Torres",
+    "fecha": "2025/07/21",
+    "hora": "13:00",
+    "servicio": "Consulta médica general",
+    "empleado": "Juan C. Pérez",
+    "estado": "confirmada",
+    "estadoN": "Confirmada"
+  },
+  {
+    "id": 8,
+    "codigo": "CT-008",
+    "cliente": "Luis A. Quintero",
+    "fecha": "2025/07/20",
+    "hora": "14:10",
+    "servicio": "Control pediátrico",
+    "empleado": "María Gonzales",
+    "estado": "confirmada",
+    "estadoN": "Confirmada"
+  },
+  {
+    "id": 9,
+    "codigo": "CT-009",
+    "cliente": "Lucía Ordóñez",
+    "fecha": "2025/07/22",
+    "hora": "15:30",
+    "servicio": "Consulta médica general",
+    "empleado": "Juan C. Pérez",
+    "estado": "pendiente",
+    "estadoN": "Pendiente"
+  },
+  {
+    "id": 10,
+    "codigo": "CT-010",
+    "cliente": "Marco Estrella",
+    "fecha": "2025/07/19",
+    "hora": "09:40",
+    "servicio": "Vacunación",
+    "empleado": "Juan C. Pérez",
+    "estado": "cancelada",
+    "estadoN": "Cancelada"
+  },
+  {
+    "id": 11,
+    "codigo": "CT-011",
+    "cliente": "Carmen Sandoval",
+    "fecha": "2025/07/23",
+    "hora": "10:15",
+    "servicio": "Consulta médica general",
+    "empleado": "Dr. Carlos Miranda",
+    "estado": "confirmada",
+    "estadoN": "Confirmada"
+  },
+  {
+    "id": 12,
+    "codigo": "CT-012",
+    "cliente": "Roberto Silva",
+    "fecha": "2025/07/23",
+    "hora": "11:45",
+    "servicio": "Control cardiológico",
+    "empleado": "Dra. Ana López",
+    "estado": "pendiente",
+    "estadoN": "Pendiente"
+  },
+  {
+    "id": 13,
+    "codigo": "CT-013",
+    "cliente": "Isabella Romero",
+    "fecha": "2025/07/24",
+    "hora": "08:00",
+    "servicio": "Control pediátrico",
+    "empleado": "María Gonzales",
+    "estado": "confirmada",
+    "estadoN": "Confirmada"
+  },
+  {
+    "id": 14,
+    "codigo": "CT-014",
+    "cliente": "Miguel Herrera",
+    "fecha": "2025/07/24",
+    "hora": "16:30",
+    "servicio": "Consulta dermatológica",
+    "empleado": "Dr. Fernando Ruiz",
+    "estado": "sin-confirmar",
+    "estadoN": "Sin confirmar"
+  },
+  {
+    "id": 15,
+    "codigo": "CT-015",
+    "cliente": "Sofía Mendoza",
+    "fecha": "2025/07/25",
+    "hora": "09:15",
+    "servicio": "Control ginecológico",
+    "empleado": "Dra. Patricia Vega",
+    "estado": "confirmada",
+    "estadoN": "Confirmada"
+  },
+  {
+    "id": 16,
+    "codigo": "CT-016",
+    "cliente": "Alejandro Morales",
+    "fecha": "2025/07/25",
+    "hora": "12:00",
+    "servicio": "Consulta médica general",
+    "empleado": "Juan C. Pérez",
+    "estado": "en-proceso",
+    "estadoN": "En proceso"
+  },
+  {
+    "id": 17,
+    "codigo": "CT-017",
+    "cliente": "Valentina Cruz",
+    "fecha": "2025/07/26",
+    "hora": "14:45",
+    "servicio": "Vacunación",
+    "empleado": "María Gonzales",
+    "estado": "completada",
+    "estadoN": "Completada"
+  },
+  {
+    "id": 18,
+    "codigo": "CT-018",
+    "cliente": "Andrés Peña",
+    "fecha": "2025/07/26",
+    "hora": "17:00",
+    "servicio": "Control oftalmológico",
+    "empleado": "Dr. Ricardo Soto",
+    "estado": "cancelada",
+    "estadoN": "Cancelada"
+  },
+  {
+    "id": 19,
+    "codigo": "CT-019",
+    "cliente": "Camila Vargas",
+    "fecha": "2025/07/27",
+    "hora": "10:30",
+    "servicio": "Consulta nutricional",
+    "empleado": "Dra. Elena Campos",
+    "estado": "pendiente",
+    "estadoN": "Pendiente"
+  },
+  {
+    "id": 20,
+    "codigo": "CT-020",
+    "cliente": "Diego Ramírez",
+    "fecha": "2025/07/27",
+    "hora": "15:15",
+    "servicio": "Control pediátrico",
+    "empleado": "María Gonzales",
+    "estado": "confirmada",
+    "estadoN": "Confirmada"
+  },
+   {
+    "id": 21,
+    "codigo": "CT-021",
+    "cliente": "Diego Ramírez",
+    "fecha": "2025/07/27",
+    "hora": "15:15",
+    "servicio": "Control pediátrico",
+    "empleado": "María Gonzales",
+    "estado": "confirmada",
+    "estadoN": "Confirmada"
+  }
+]

@@ -27,6 +27,50 @@ export const routes: Routes = [
         loadComponent: () =>
           import('../app/admin/components/citas-component/citas-component'),
       },
+      {
+        path: 'clientes',
+        title: 'Clientes',
+        loadComponent: () =>
+          import('../app/admin/components/clientes-component/clientes-component'),
+      },
+      {
+        path: 'reportes',
+        loadComponent: () =>
+          import('../app/admin/components/reportes-component/reportes-component'),
+        children:[
+        {
+        path: '',
+        title: 'Dashboard',
+        loadComponent: () =>
+          import('../app/admin/components/adminReportes/dashboard-component/dashboard-component'),
+        },
+        {
+        path: 'citas_servicios',
+        title: 'Citas por servicio',
+        loadComponent: () =>
+          import('../app/admin/components/adminReportes/citas-servicio-component/citas-servicio-component'),
+        },
+        {
+        path: 'citas_especialista',
+        title: 'Citas por especialista',
+        loadComponent: () =>
+          import('../app/admin/components/adminReportes/citas-especialista-component/citas-especialista-component'),
+        },
+        {
+        path: 'citas_clientes',
+        title: 'Citas por cliente',
+        loadComponent: () =>
+          import('../app/admin/components/adminReportes/citas-clientes-component/citas-clientes-component'),
+        },
+        ]
+      },
+      {
+        path: 'configuracion',
+        loadComponent: () =>
+          import('../app/admin/components/configuracion-component/configuracion-component'),
+        children:[
+        ]
+      }
     ],
   },
 ];
