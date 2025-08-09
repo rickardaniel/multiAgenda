@@ -69,6 +69,30 @@ export const routes: Routes = [
         loadComponent: () =>
           import('../app/admin/components/configuracion-component/configuracion-component'),
         children:[
+           {
+        path: '',
+        title: 'Negocio',
+        loadComponent: () =>
+          import('../app/admin/components/adminConfiguracion/negocio-component/negocio-component'),
+        }, 
+           {
+        path: 'personal_cargos',
+        title: 'Persona y cargos',
+        loadComponent: () =>
+          import('../app/admin/components/adminConfiguracion/personal-cargos-component/personal-cargos-component'),
+        }, 
+           {
+        path: 'servicios',
+        title: 'Servicios',
+        loadComponent: () =>
+          import('../app/admin/components/adminConfiguracion/servicios/servicios'),
+        }, 
+           {
+        path: 'disponibilidad',
+        title: 'Disponibilidad',
+        loadComponent: () =>
+          import('../app/admin/components/adminConfiguracion/disponibilidad/disponibilidad'),
+        }, 
         ]
       }
     ],
