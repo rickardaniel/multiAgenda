@@ -30,13 +30,16 @@
     "@angular/router": "^20.1.0",
     "@angular/ssr": "^20.1.0",
     "@tailwindcss/postcss": "^4.1.11",
+    "apexcharts": "^5.3.3",
     "express": "^5.1.0",
     "flatpickr": "^4.6.13",
     "flowbite": "^3.1.2",
+    "ng-apexcharts": "^2.0.0",
     "randomcolor": "^0.6.2",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.11",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@angular/build": "^20.1.0",

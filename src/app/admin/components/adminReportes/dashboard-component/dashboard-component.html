@@ -1,1 +1,278 @@
-<p>dashboard-component works!</p>
+<div class=" w-full px-7 py-5 ">
+    <div class="flex justify-between items-center ">
+        <div class="p-1">
+            <div class="title">
+                <h1 class="text-sm"> Configuración / Reportes / <span class="font-medium"> Dashboard</span> </h1>
+                <h1 class="mt-5 font-semibold text-xl">Dashboard</h1>
+                <span class="text-xs">Resumen de tu negocio este mes </span>
+            </div>
+        </div>
+    </div>
+
+    <div class=" grid grid-cols-4 mt-3">
+
+        <div class="col-span-1">
+            <div class="max-w-sm mx-auto mb-8">
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-3 ">
+                    <!-- Ícono -->
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex items-center justify-center w-8 h-8 bg-cyan-50 shadow-sm  rounded-lg">
+                            <span class="material-symbols-outlined text-cyan-500 ">
+                                schedule
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Número principal -->
+                    <div class="mb-2">
+                        <h3 class="text-3xl font-semibold text-gray-900">48</h3>
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="mb-3">
+                        <p class="text-sm text-gray-600">Total de citas este mes - <span
+                                class="text-sm font-medium text-cyan-500">+12% vs mes anterior</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-1">
+            <div class="max-w-sm mx-auto mb-8">
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-3 ">
+                    <!-- Ícono -->
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex items-center justify-center w-8 h-8 bg-green-50 shadow-sm  rounded-lg">
+                            <span class="material-symbols-outlined text-lime-500 ">
+                                check_circle
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Número principal -->
+                    <div class="mb-2">
+                        <h3 class="text-3xl font-semibold text-gray-900">42</h3>
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="mb-3">
+                        <p class="text-sm text-gray-600">Citas completadas <span
+                                class="text-sm font-medium text-lime-500"> 87.5% de éxito</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-1">
+            <div class="max-w-sm mx-auto mb-8">
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-3 ">
+                    <!-- Ícono -->
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex items-center justify-center w-8 h-8 bg-red-50 shadow-sm  rounded-lg">
+                            <span class="material-symbols-outlined text-red-500 ">
+                                cancel
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Número principal -->
+                    <div class="mb-2">
+                        <h3 class="text-3xl font-semibold text-gray-900">6</h3>
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="mb-3">
+                        <p class="text-sm text-gray-600">Canceladas <span
+                                class="text-sm font-medium text-blue-600"></span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-1">
+            <div class="max-w-sm mx-auto mb-8">
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 px-5 py-3 ">
+                    <!-- Ícono -->
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex items-center justify-center w-8 h-8 bg-purple-50 shadow-sm  rounded-lg">
+                            <span class="material-symbols-outlined text-purple-500 ">
+                                person_add
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Número principal -->
+                    <div class="mb-2">
+                        <h3 class="text-3xl font-semibold text-gray-900">12</h3>
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="mb-3">
+                        <p class="text-sm text-gray-600">Clientes nuevos - <span
+                                class="text-sm font-medium text-purple-500">25% del total</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="grid grid-cols-3 ">
+
+        <div class="col-span-2">
+            <div class="grid grid-cols-2 space-y-3 ">
+                <div class="col-span-1 mr-3">
+                    <div id="chart" class="bg-white rounded-xl ">
+                        <!-- <span class="px-4  text-gray-600 text-sm ">Citas por semana - Agosto</span> -->
+                        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                            [title]="chartOptions.title" [dataLabels]="chartOptions.dataLabels"
+                            [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis"
+                            [xaxis]="chartOptions.xaxis" [legend]="chartOptions.legend" [colors]="chartOptions.colors"
+                            [grid]="chartOptions.grid"></apx-chart>
+                    </div>
+                </div>
+                <div class="col-span-1">
+
+                    <div id="chartPie" class="bg-white rounded-xl ">
+                        <!-- <span class="px-4  text-gray-600 text-sm ">Estado de las citas - Agosto</span> -->
+
+                        <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+                            [labels]="chartOptions2.labels" [responsive]="chartOptions2.responsive"
+                            [dataLabels]="chartOptions2.dataLabels" [title]="chartOptions2.title"
+                            [fill]="chartOptions2.fill" [colors]="chartOptions2.colors"
+                            [plotOptions]="chartOptions2.plotOptions"></apx-chart>
+                    </div>
+                </div>
+                <div class="col-span-2">
+
+                    <div id="chartLine" class="bg-white rounded-xl ">
+                        <apx-chart [series]="chartOptions3.series" [chart]="chartOptions3.chart"
+                            [xaxis]="chartOptions3.xaxis" [dataLabels]="chartOptions3.dataLabels"
+                            [grid]="chartOptions3.grid"  [colors]="chartOptions3.colors"
+                            [title]="chartOptions3.title"></apx-chart>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-span-1 ml-3">
+            <div class="grid grid-cols-1 space-y-4 ">
+                <div class="col-span-1">
+                    <div class="card bg-white rounded-xl  p-3  ">
+                        <div class="header">
+                            <div class="flex justify-between">
+                                <p class="text-gray-700  text-sm " style="font-family: 'Poppins';">Últimas citas</p>
+
+                                <button>
+                                    <span class="material-symbols-outlined text-gray-700 ">
+                                        info
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div class="relative overflow-x-auto">
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-600  !bg-gray-50  border-b  border-gray-200">
+                                    <tr class="">
+                                        <th scope="col" class="pl-2.5" style="text-align: left;">
+                                            Cliente
+                                        </th>
+                                        <th scope="col" class="" style="text-align: center;">
+                                            Fecha
+                                        </th>
+                                        <th scope="col" class="pl-10.5 py-3" style="text-align: left;">
+                                            Estado
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for(cl of citas; track cl){
+                                    <tr class="bg-white border-b text-xs  border-gray-200">
+                                        <td scope="row" class=" px-2 text-gray-500 ">
+                                            {{cl?.cliente}}
+                                        </td>
+                                        <td class="px-8 py-4">
+                                            {{cl?.fecha}} {{cl?.hora}}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span
+                                                class="  items-center w-[6rem] px-2.5 py-1 rounded-full text-xs font-normal"
+                                                [ngClass]="getStatusClass(cl?.estado)">
+                                                {{cl?.estado}}
+                                            </span>
+
+                                        </td>
+
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-span-1">
+                    <div class="card bg-white rounded-xl  p-3  ">
+                        <div class="header mb-3">
+                            <div class="flex justify-between">
+                                <p class="text-gray-700  text-sm " style="font-family: 'Poppins';">Estadísticas de la
+                                    semana</p>
+                            </div>
+                        </div>
+                        <div class="body text-sm ">
+                            <div class="flex justify-between border-b border-gray-200 py-3 ">
+                                <div class="flex items-center">
+                                    <span class="material-symbols-outlined text-lime-500  mr-1 ">
+                                        arrow_outward
+                                    </span> Tasa de asistencia
+                                </div>
+                                <span>
+                                    75%
+                                </span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200  py-3">
+                                <div class="flex items-center">
+                                    <span class="material-symbols-outlined text-purple-500  mr-1 ">
+                                        calendar_today
+                                    </span> Dia más activo
+                                </div>
+                                <span>
+                                    Jueves
+                                </span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-200 py-3 ">
+                                <div class="flex items-center">
+                                    <span class="material-symbols-outlined text-cyan-500 mr-1">
+                                        percent
+                                    </span>
+                                    Promedio de citas/día
+                                </div>
+                                <span>
+                                    4.6
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>

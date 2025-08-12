@@ -11,6 +11,7 @@ export class ApiService {
   urlAgendamientos = 'assets/json/agendamientos.json';
   urlCitas = 'assets/json/citas.json';
   urlClientes = 'assets/json/clientes.json';
+  urlCitasServicios= 'assets/json/citas_servicio.json';
 
   constructor(private http: HttpClient) {}
 
@@ -42,6 +43,11 @@ export class ApiService {
 
   getClientes() {
     return this.http.get(this.urlClientes);
+  }
+
+  getCitasPorServicio(){
+    return this.http.get(this.urlCitasServicios);
+
   }
 
   // utils

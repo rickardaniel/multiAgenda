@@ -1,0 +1,9 @@
+/* Método 6: CSS con variables */
+        .calendar-red::-webkit-calendar-picker-indicator {
+            filter: invert(27%) sepia(96%) saturate(6315%) hue-rotate(356deg) brightness(98%) contrast(85%);
+        }
+        
+        /* Estilos generales */
+        .inputGeneral4 {
+            font-size: 14px;
+        }

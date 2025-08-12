@@ -1,0 +1,212 @@
+[
+            {
+                "servicio" :"Consulta médica general",
+                "totalCitas" :48,
+                "confirmadas" :30,
+                "completadas" :28,
+                "canceladas" :8,
+                "sinConfirmar" :10,
+                "duracionTotal" :"24h",
+                "promedioPorDia" :3.2
+            },
+            {
+                "servicio" :"Control pediátrico",
+                "totalCitas" :67,
+                "confirmadas" :54,
+                "completadas" :51,
+                "canceladas" :9,
+                "sinConfirmar" :7,
+                "duracionTotal" :"11h 40m",
+                "promedioPorDia" :4.5
+            },
+            {
+                "servicio" :"Terapia física",
+                "totalCitas" :25,
+                "confirmadas" :18,
+                "completadas" :16,
+                "canceladas" :4,
+                "sinConfirmar" :3,
+                "duracionTotal" :"22h",
+                "promedioPorDia" :2.1
+            },
+            {
+                "servicio" :"Odontología preventiva",
+                "totalCitas" :39,
+                "confirmadas" :32,
+                "completadas" :30,
+                "canceladas" :3,
+                "sinConfirmar" :4,
+                "duracionTotal" :"13h 30m",
+                "promedioPorDia" :2.8
+            },
+            {
+                "servicio" :"Psicología infantil",
+                "totalCitas" :21,
+                "confirmadas" :16,
+                "completadas" :15,
+                "canceladas" :2,
+                "sinConfirmar" :3,
+                "duracionTotal" :"12h",
+                "promedioPorDia" :1.5
+            },
+            {
+                "servicio" :"Nutrición y dietética",
+                "totalCitas" :14,
+                "confirmadas" :11,
+                "completadas" :10,
+                "canceladas" :1,
+                "sinConfirmar" :2,
+                "duracionTotal" :"7h 30m",
+                "promedioPorDia" :1.0
+            },
+            {
+                "servicio" :"Dermatología",
+                "totalCitas" :33,
+                "confirmadas" :27,
+                "completadas" :25,
+                "canceladas" :5,
+                "sinConfirmar" :1,
+                "duracionTotal" :"6h 45m",
+                "promedioPorDia" :2.2
+            },
+            {
+                "servicio" :"Ginecología",
+                "totalCitas" :18,
+                "confirmadas" :15,
+                "completadas" :13,
+                "canceladas" :2,
+                "sinConfirmar" :1,
+                "duracionTotal" :"11h 40m",
+                "promedioPorDia" :1.4
+            },
+            {
+                "servicio" :"Cardiología",
+                "totalCitas" :44,
+                "confirmadas" :38,
+                "completadas" :35,
+                "canceladas" :5,
+                "sinConfirmar" :1,
+                "duracionTotal" :"11h",
+                "promedioPorDia" :3.6
+            },
+            {
+                "servicio" :"Medicina interna",
+                "totalCitas" :30,
+                "confirmadas" :22,
+                "completadas" :20,
+                "canceladas" :6,
+                "sinConfirmar" :2,
+                "duracionTotal" :"16h",
+                "promedioPorDia" :2.3
+            },
+            {
+                "servicio" :"Oftalmología",
+                "totalCitas" :52,
+                "confirmadas" :45,
+                "completadas" :42,
+                "canceladas" :4,
+                "sinConfirmar" :3,
+                "duracionTotal" :"8h 30m",
+                "promedioPorDia" :3.8
+            },
+            {
+                "servicio" :"Traumatología",
+                "totalCitas" :35,
+                "confirmadas" :28,
+                "completadas" :26,
+                "canceladas" :5,
+                "sinConfirmar" :2,
+                "duracionTotal" :"14h 15m",
+                "promedioPorDia" :2.5
+            },
+            {
+                "servicio" :"Urología",
+                "totalCitas" :19,
+                "confirmadas" :16,
+                "completadas" :14,
+                "canceladas" :3,
+                "sinConfirmar" :0,
+                "duracionTotal" :"9h 20m",
+                "promedioPorDia" :1.6
+            },
+            {
+                "servicio" :"Neurología",
+                "totalCitas" :27,
+                "confirmadas" :23,
+                "completadas" :21,
+                "canceladas" :2,
+                "sinConfirmar" :2,
+                "duracionTotal" :"18h 45m",
+                "promedioPorDia" :2.0
+            },
+            {
+                "servicio" :"Endocrinología",
+                "totalCitas" :16,
+                "confirmadas" :13,
+                "completadas" :12,
+                "canceladas" :1,
+                "sinConfirmar" :2,
+                "duracionTotal" :"10h 15m",
+                "promedioPorDia" :1.2
+            },
+            {
+                "servicio" :"Neumología",
+                "totalCitas" :22,
+                "confirmadas" :18,
+                "completadas" :17,
+                "canceladas" :2,
+                "sinConfirmar" :1,
+                "duracionTotal" :"12h 40m",
+                "promedioPorDia" :1.7
+            },
+            {
+                "servicio" :"Gastroenterología",
+                "totalCitas" :24,
+                "confirmadas" :20,
+                "completadas" :18,
+                "canceladas" :3,
+                "sinConfirmar" :1,
+                "duracionTotal" :"15h 20m",
+                "promedioPorDia" :1.8
+            },
+            {
+                "servicio" :"Reumatología",
+                "totalCitas" :13,
+                "confirmadas" :11,
+                "completadas" :10,
+                "canceladas" :1,
+                "sinConfirmar" :1,
+                "duracionTotal" :"8h 10m",
+                "promedioPorDia" :1.1
+            },
+            {
+                "servicio" :"Hematología",
+                "totalCitas" :8,
+                "confirmadas" :7,
+                "completadas" :6,
+                "canceladas" :1,
+                "sinConfirmar" :0,
+                "duracionTotal" :"5h 30m",
+                "promedioPorDia" :0.7
+            },
+            {
+                "servicio" :"Oncología",
+                "totalCitas" :15,
+                "confirmadas" :14,
+                "completadas" :13,
+                "canceladas" :0,
+                "sinConfirmar" :1,
+                "duracionTotal" :"19h 45m",
+                "promedioPorDia" :1.3
+            },
+            {
+                "servicio" :"Medicina del deporte",
+                "totalCitas" :31,
+                "confirmadas" :26,
+                "completadas" :24,
+                "canceladas" :4,
+                "sinConfirmar" :1,
+                "duracionTotal" :"13h 25m",
+                "promedioPorDia" :2.4
+            }
+        ]
