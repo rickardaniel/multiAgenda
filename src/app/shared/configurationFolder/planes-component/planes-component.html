@@ -1,0 +1,224 @@
+<!-- Plan Pro Header -->
+<div class="flex items-center justify-between mb-2">
+    <div class="flex items-center gap-3">
+        <h3 class="text-xl font-semibold text-lime-500">Plan Pro</h3>
+        <span class="inline-flex items-center px-3.5 py-0.5 rounded-full text-xs font-medium bg-green-50 text-lime-500">
+            Activo
+        </span>
+    </div>
+</div>
+
+<!-- Vigencia -->
+<p class="text-sm font-semibold text-gray-500 mb-6">Vigente hasta 14/1/2025</p>
+
+<!-- Plan Pro incluye -->
+<div class="bg-gray-100 rounded-lg p-6 mb-6">
+    <h4 class="text-sm font-medium text-gray-500 mb-4">Plan Pro incluye:</h4>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Columna izquierda -->
+        <div class="space-y-3">
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-sm text-gray-500">Usuarios múltiples con roles asignables</span>
+            </div>
+
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-sm text-gray-500">Gestión de personal y servicios</span>
+            </div>
+
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-sm text-gray-500">Subdominio personalizado para reservas</span>
+            </div>
+        </div>
+
+        <!-- Columna derecha -->
+        <div class="space-y-3">
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-sm text-gray-500">Recordatorios automáticos por correo y WhatsApp</span>
+            </div>
+
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-sm text-gray-500">Reportes detallados de agendamiento</span>
+            </div>
+
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-sm text-gray-500">Integración con sistemas externos</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Información de fechas -->
+@if(!flagSuscription){
+<div class="flex justify-start  ">
+    <div class="bg-cyan-50 p-2 mr-2">
+        <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs font-medium text-blue-500">Citas</span>
+        </div>
+
+        <div class="text-xs font-medium text-gray-600">Ilimitado</div>
+    </div>
+
+    <div class="bg-orange-50 p-2 mr-2">
+        <div class="text-xs text-gray-600 mb-2">
+            <span class="font-medium text-orange-400">Inicio:</span> 14/1/2024
+        </div>
+        <div class="text-xs text-gray-600 mb-1">
+            <span class="font-medium text-orange-400">Expiración:</span> 14/1/2025
+        </div>
+    </div>
+</div>
+
+}@else{
+<div class="flex justify-start  ">
+    <div class="bg-cyan-50 p-3 mr-2">
+        <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs font-medium text-blue-500">Citas utilizadas este mes </span>
+        </div>
+
+        <div class="text-sm font-medium text-gray-600">0 / 50</div>
+    </div>
+
+    <div class="bg-orange-50 p-3 mr-2">
+        <div class="text-xs text-gray-600 mb-2">
+            <span class="font-medium text-orange-400">Estado del plan</span>
+        </div>
+        <div class="text-sm font-medium text-gray-600">Gratuito</div>
+
+    </div>
+</div>
+
+
+}
+
+<!-- Botón Renovar -->
+@if(!flagSuscription){
+<div class="flex justify-center mb-6">
+    <button type="button"
+        class=" transition transform effectoZoomBoton  inline-flex items-center px-6 py-2.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
+        Renovar plan Pro
+    </button>
+</div>
+}@else{
+<div class="flex justify-center mb-6">
+    <button type="button"
+        class=" transition transform effectoZoomBoton  inline-flex items-center px-6 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
+        <span class="material-symbols-outlined text-white mr-2 ">
+            workspace_premium
+        </span> Actualizar al plan Pro
+    </button>
+</div>
+
+}
+
+
+<!-- Mensaje informativo -->
+<div class="text-center mb-6">
+    <p class="text-sm text-gray-500">
+        Renueva tu plan antes del 2/8/2026 para mantener todos los beneficios sin interrupciones.
+    </p>
+</div>
+
+<!-- Finalizar Suscripción -->
+@if(!flagSuscription){
+<div class="border-t border-gray-200 pt-6">
+    <div class="flex justify-center ">
+        <button type="button" (click)="openModal('#modalSuscription')"
+            class=" transition transform effectoZoomBoton flex items-center gap-2 text-red-600 hover:text-red-700 text-sm font-medium border border-gray-200 py-2 px-7 rounded-full   transition-colors duration-200">
+            <span class="material-symbols-outlined">
+                warning
+            </span>
+            Finalizar Suscripción Pro
+        </button>
+    </div>
+</div>
+}
+
+
+
+
+
+
+
+<!-- Main modal -->
+<div id="modalSuscription"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative !bg-white rounded-lg shadow-sm ">
+            <button type="button" (click)="closeModal()"
+                class="absolute top-3 end-2.5 text-gray-600 bg-transparent hover:bg-gray-200 hover:text-gray-300 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="p-4 md:p-5">
+                <h1 class="text-gray-600 font-medium  ">¿Deseas finalizar tu suscripción Pro? </h1>
+
+                <div class="px-3 py-8 text-sm">
+                    <p class="text-gray-500  mb-6">
+                        Al finalizar tu suscripción, tu cuenta volverá al Plan Started al final del periodo vigente.
+                        Perderás acceso a las funciones avanzadas y soporte prioritario
+                    <p>
+
+                    <div class="bg-cyan-50  rounded-lg p-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <span class="material-symbols-rounded text-cyan-500 ">
+                                    info
+                                </span>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-blue-700">
+                                    Este cambio se hará efectivo el <strong> 4/9/2026</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Modal footer -->
+                <div class="flex justify-end space-x-2 mt-1 ">
+                    <button (click)="closeModal()" type="button"
+                        class=" cursor-pointer transition transform effectoZoomBoton  py-1.5 px-7 text-sm font-medium text-red-600  bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-gray-700 ">Cancelar</button>
+
+                    <button (click)="suscriptionRenew(true)"
+                        class="cursor-pointer transition transform effectoZoomBoton  py-1.5 px-7  text-white bg-red-600 hover:bg-red-700 font-medium rounded-full text-sm ">Si,
+                        finalizar plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

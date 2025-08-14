@@ -1,1 +1,311 @@
-<p>personal-cargos-component works!</p>
+<div class=" w-full px-4 py-2 ">
+    <div class="flex justify-between items-center ">
+        <div class="p-1">
+            <div class="title">
+                <h1 class="text-sm"> Configuración / <span class="font-medium"> Personal y Cargos </span>
+                </h1>
+                <h1 class="mt-5 font-semibold text-xl"> Personal y Cargos</h1>
+                <span class="text-xs">Gestiona tu equipo de trabajo y sus horarios. </span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="flex justify-between mt-3">
+        <div>
+            <ul class="flex flex-wrap text-xs font-medium text-center text-gray-500 border-b border-gray-200 ">
+                @for(tab of tabs; track tab){
+                <li class="me-0.25" (click)="selectTab(tab.id)">
+
+                    <a [ngClass]="getTabClasses(tab.id)"
+                        class="inline-block p-2.5 px-5 rounded-t-lg transition-colors duration-200">
+                        {{ tab.label }}
+                    </a>
+                </li>
+                }
+
+            </ul>
+        </div>
+        @if(activeTab === 1){
+        <button (click)="createEditC('create', '', '#crearCargo')"
+            class="btnMain mb-2 cursor-pointer transition transform effectoZoomBoton">
+            <div class="flex items-center justify-center ">
+                <span class="material-symbols-outlined">
+                    add
+                </span> Agregar Cargo
+            </div>
+
+        </button>
+        }@else{
+        <button class="btnMain mb-2 cursor-pointer transition transform effectoZoomBoton">
+            <div class="flex items-center justify-center ">
+                <span class="material-symbols-outlined">
+                    add
+                </span> Agregar Empleado
+            </div>
+        </button>
+        }
+    </div>
+
+    <div class="h-full bg-white ">
+        @if(activeTab === 1){
+        <div class=" w-full p-5 ">
+            <div class="relative overflow-x-auto  sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500 bg-white">
+                    <thead class="text-md text-gray-700 border-gray-200 border-b">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 font-medium">Nombre del cargo</th>
+                            <th scope="col" class="px-6 py-3 font-medium">Descripción</th>
+                            <th scope="col" class="px-6 py-3 font-medium">Empleados asignados</th>
+                            <th scope="col" class="px-6 py-3 font-medium "></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-xs w-[100%]">
+                        @for(c of cargos; track c){
+                        <tr class="bg-white border-gray-200 border-b hover:bg-gray-100 transition-colors">
+                            <td class="px-6 py-3 w-[20%] ">
+                                {{c.nombre}}
+                            </td>
+                            <td class="px-6 py-3 2xl:w-[55%] w-[50%] ">
+                                {{c.descripcion}}
+                            </td>
+                            <td class="px-6 py-3 2xl:w-[15%] w-[20%]  border-e-1 border-gray-200  ">
+                                <span class="bg-cyan-50 text-cyan-500   px-7 py-1 rounded-full ">
+                                    {{c.asignados}} Empleados
+                                </span>
+                            </td>
+                            <td class="px-6 py-3 w-[10%] ">
+                                <div class=" flex  ">
+
+                                    <button (click)="createEditC('edit', c, '#crearCargo')" data-tooltip="Editar Cargo"
+                                        class=" tooltip-btn tooltip-top btn-effect cursor-pointer transition transform effectoZoomBoton  ">
+                                        <i class=" ri-pencil-line  text-xl mr-2"></i>
+                                    </button>
+
+                                    <button (click)="deleteModal('cargo', c, '#modalEliminar')" data-tooltip="Eliminar"
+                                        class=" tooltip-btn tooltip-top btn-effect cursor-pointer transition transform effectoZoomBoton">
+                                        <i class="  ri-delete-bin-6-line text-lg text-red-500 "></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        }@else {
+        <div class=" w-full p-5 ">
+
+            <div class="grid 2xl:grid-cols-4 xl:grid-cols-3 ">
+                @for(e of cardEmpleados; track e){
+                <div class="col-span-1 m-2">
+                    <div
+                        class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+                        <!-- Header con iniciales y estado -->
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 shadow-sm rounded-full flex items-center justify-center "
+                                    [ngStyle]="{'border':'1px solid '+getRandomColor(nameAvatar(e.nombre)).border }"
+                                    [style.background-color]="getRandomColor(nameAvatar(e.nombre)).backgroundColor"
+                                    [style.color]="getRandomColor(nameAvatar(e.nombre)).color">
+                                    <span class=" font-bold text-[12px]  bg-clip-text ">{{nameAvatar(e.nombre)}}</span>
+                                </div>
+                                <div>
+                                    <h3 class="2xl:text-lg text-sm  font-semibold text-gray-600">{{e.nombre}}</h3>
+                                </div>
+                            </div>
+                            <span
+                                class="inline-flex items-center px-3.5 py-0.5 rounded-full text-xs font-medium bg-lime-50 text-green-500">
+                                Activo
+                            </span>
+                        </div>
+                        <div class="space-y-0 mb-4">
+                            <div class="flex items-center gap-2  text-gray-500">
+                                <i class="ri-mail-line text-gray-400"></i>
+                                <span class="text-xs">{{e.email}}</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-500">
+                                <i class="ri-phone-line text-gray-400"></i>
+                                <span class="text-xs">{{e.telefono}}</span>
+                            </div>
+                            <div class="flex items-center gap-2 ">
+                                @if(e.disponible){
+                                <i class="ri-checkbox-circle-line text-lime-500"></i>
+                                <span class="text-xs text-lime-500">
+                                    Horario configurado
+                                </span>
+                                }@else{
+                                <i class="ri-alert-line text-yellow-500"></i>
+                                <span class="text-xs text-yellow-500">
+                                    Sin horario
+                                </span>
+                                }
+                            </div>
+
+                        </div>
+                        <div class="flex justify-between  gap-2 ">
+                            <button 
+                            (click)="openModal('#modalHorario', e)"
+                            class="border border-gray-200 rounded-lg 2xl:px-20 xl:px-15 cursor-pointer transition transform effectoZoomBoton ">
+                                <div class="flex justify-center items-center " >
+                                <i class="ri-time-line text-gray-500 mr-1"></i>
+                                <span class="text-gray-500 text-xs">
+                                    horario
+                                </span>
+                                </div>
+
+                            </button>
+                            <div>
+                                <div class=" flex  ">
+
+                                    <button data-tooltip="Editar Empleado"
+                                        class=" tooltip-btn tooltip-top btn-effect cursor-pointer transition transform effectoZoomBoton  ">
+                                        <i class=" ri-pencil-line  text-xl text-gray-600 mr-2"></i>
+                                    </button>
+
+                                    <button data-tooltip="Eliminar Empleado"
+                                        class=" tooltip-btn tooltip-top btn-effect cursor-pointer transition transform effectoZoomBoton">
+                                        <i class="  ri-delete-bin-6-line text-lg text-red-500 "></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+
+
+    <!-- Modal Crear - Editar Cargo -->
+
+    <div id="crearCargo" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative !bg-white rounded-lg shadow-sm ">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 ">
+                    <h3 class="text-lg font-semibold text-gray-600 ">
+                        @if(typeC=='create'){
+                        Agregar Nuevo Cargo
+                        }@else{
+                        Editar Cargo
+                        }
+
+                    </h3>
+                    <button type="button" (click)="closeModal()"
+                        class="absolute mt-1.5 top-3 end-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5">
+                    <form [formGroup]="formCargo" class="space-y-4">
+                        <div>
+                            <label for="email" class="labelGeneral3">Nombre del Cargo *</label>
+                            <input formControlName="nombre" type="text" class="inputGeneral4"
+                                placeholder="Ej. Medicina General, Cardiólogo  " required />
+                        </div>
+                        <div>
+                            <label class="labelGeneral3">Descripción del Cargo (Opcional)</label>
+                            <textarea formControlName="descripcion" rows="4" class=" textAreaGeneral  "
+                                placeholder="Breve descripción del cargo"></textarea>
+                        </div>
+
+                        <div class="flex justify-end space-x-2 pt-4 mb-5 ">
+                            <button (click)="closeModal()" type="button" class=" btnGrayGeneral effectoZoomBoton">
+                                <div class="flex justify-center items-center  ">
+                                    <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
+                                    Cancelar
+                                </div>
+                            </button>
+
+                            <button class="btnRedGeneral effectoZoomBoton">
+                                <div class="flex justify-center items-center  ">
+                                    <i class="ri-save-2-fill mr-1 text-lg "></i>
+                                    @if(typeC=='create'){
+                                    Crear Cargo
+                                    }@else{
+                                    Editar Cargo
+                                    }
+
+                                </div>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Eliminar Cargo -->
+
+    <div id="modalEliminar" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow-sm ">
+                <div class="p-4 md:p-5 text-center">
+                    <span class="material-symbols-rounded !text-8xl text-gray-200">
+                        delete_forever
+                    </span>
+                    <h3 class="mb-5 text-md font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de eliminar
+                        <strong>
+                            {{cargoSelected.nombre}}</strong>?
+                    </h3>
+                    <div class="flex justify-center py-3">
+                        <button (click)="closeModal()"
+                            class="btnGrayGeneral effectoZoomBoton  mr-2 flex items-center "><i
+                                class="ri-close-circle-line  text-xl mr-1 "></i> No,
+                            cancelar</button>
+                        <button (click)="closeModal()" class="btnRedGeneral effectoZoomBoton flex items-center  ">
+                            <i class="ri-check-line text-xl mr-1"></i> Si, eliminar
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ver Horario Empleado -->
+
+    <div id="modalHorario" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow-sm ">
+                       <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 rounded-t border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-600 ">
+                    Configurar disponibilidad - {{empleadoSelected.nombre}} 
+                </h3>
+                   <button type="button" (click)="closeModal()"
+                        class="absolute mt-1.5 top-3 end-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+            </div>
+
+             <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4">
+
+                <app-horario-atencion-component></app-horario-atencion-component>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+

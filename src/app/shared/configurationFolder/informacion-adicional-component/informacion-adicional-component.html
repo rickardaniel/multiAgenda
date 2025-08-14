@@ -1,0 +1,102 @@
+<form class="space-y-8">
+    <!-- Clase Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+            <h3 class="labelGeneral3">Clase</h3>
+            <div class="space-y-3">
+                <!-- Otros -->
+                <div class="flex items-center  p-4 rounded-lg  border border-gray-100 shadow-sm hover:shadow-md ">
+                    <input id="otros" name="clase" type="radio" value="otros" checked
+                        class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+                    <label for="otros" class="ml-3 block text-sm text-gray-500">
+                        <span class="font-medium">Otros</span>
+                        <div class="text-xs text-gray-500">Clasificación general</div>
+                    </label>
+                </div>
+
+                <!-- Especial -->
+                <div class="flex items-center  p-4 rounded-lg  border border-gray-100 shadow-sm hover:shadow-md ">
+                    <input id="especial" name="clase" type="radio" value="especial"
+                        class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+                    <label for="especial" class="ml-3 block text-sm text-gray-500">
+                        <span class="font-medium">Especial</span>
+                        <div class="text-xs text-gray-500">Clasificación especializada</div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contabilidad Section -->
+        <div>
+            <h3 class="labelGeneral3">Contabilidad</h3>
+            <div class="space-y-3">
+                <!-- Sí -->
+                <div class="flex items-center  p-4 rounded-lg  border border-gray-100 shadow-sm hover:shadow-md  ">
+                    <input id="contabilidad_si" name="contabilidad" type="radio" value="si" checked
+                        class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 ">
+                    <label for="contabilidad_si" class="ml-3 block text-sm text-gray-500">
+                        <span class="font-medium">Sí</span>
+                        <div class="text-xs text-gray-500">Mi negocio lleva contabilidad formal</div>
+                    </label>
+                </div>
+
+                <!-- No -->
+                <div class=" flex items-center  p-4 rounded-lg  border border-gray-100 shadow-sm hover:shadow-md ">
+                    <input id="contabilidad_no" name="contabilidad" type="radio" value="no"
+                        class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+                    <label for="contabilidad_no" class="ml-3 block text-sm text-gray-500">
+                        <span class="font-medium">No</span>
+                        <div class="text-xs text-gray-500">Mi negocio no requiere contabilidad formal</div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Fields -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Resolución -->
+        <div>
+            <label for="resolucion" class="labelGeneral3">
+                Resolución
+            </label>
+            <input type="text" id="resolucion" name="resolucion" placeholder="Ingrese resolución"
+                class="inputGeneral4">
+        </div>
+
+        <!-- Código de Artesano -->
+        <div>
+            <label for="codigo_artesano" class="labelGeneral3">
+                Código de Artesano
+            </label>
+            <input type="text" id="codigo_artesano" name="codigo_artesano" placeholder="Ingrese código artesano"
+                class="inputGeneral4 ">
+        </div>
+    </div>
+
+    <!-- Info Note -->
+    <div class="bg-cyan-50  rounded-lg p-4">
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <span class="material-symbols-rounded text-cyan-500 ">
+                    info
+                </span>
+            </div>
+            <div class="ml-3">
+                <h4 class="text-sm font-medium text-blue-800 mb-1">Nota</h4>
+                <p class="text-sm text-blue-700">
+                    Esta información adicional ayuda a clasificar correctamente tu negocio en el sistema tributario y
+                    puede otorgar beneficios fiscales específicos.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class=" flex justify-end mt-6">
+        <button
+            class=" transition transform effectoZoomBoton  rounded-full text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium  text-xs !px-7 py-2 text-center">
+            Guardar Cambios
+        </button>
+    </div>
+</form>

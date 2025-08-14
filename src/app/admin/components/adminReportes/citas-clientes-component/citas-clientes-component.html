@@ -1,1 +1,224 @@
-<p>citas-clientes-component works!</p>
+<div class=" w-full px-7 py-5 ">
+    <div class="flex justify-between items-center ">
+        <div class="p-1">
+            <div class="title">
+                <h1 class="text-sm"> Configuración / Reportes / <span class="font-medium"> Citas por clientes</span>
+                </h1>
+                <h1 class="mt-5 font-semibold text-xl">Reporte de citas por cliente</h1>
+                <span class="text-xs">Mostrando últimos 30 días ({{dayToday}})</span>
+            </div>
+        </div>
+        <div class="p-1 mt-13">
+            <div class="flex justify-between ">
+                <div class="flex items-center">
+                    <div class="relative w-full">
+                        <div
+                            class="flex absolute inset-y-0 left-0 items-center pl-3 pr-2 pointer-events-none bg-gray-100 rounded-l-full border-1 border-gray-200 ">
+                            <span class="material-symbols-outlined text-gray-400 ">
+                                search
+                            </span>
+                        </div>
+                        <input type="text"
+                            class="inputGeneral4 !rounded-full  !w-full !pl-13 !px-30 !py-2.25 !focus:shadow-lg "
+                            placeholder="¿Qué estás buscando?" required>
+                    </div>
+
+                    @if(flagFilters){
+                    <a (click)="showFilters(false)"
+                        class="group max-w-max relative mx-1 flex flex-col items-center justify-center p-1 text-gray-500 bg-white  hover:text-gray-600 relative cursor-pointer hover:bg-gray-100  hover:shadow-lg  p-1.75 rounded-full transition-colors">
+                        <p class="text-xs text-center">
+                            <span class="material-symbols-outlined">
+                                tune
+                            </span>
+                        </p>
+                        <div
+                            class="pb-3 [transform:perspective(50px)_translateZ(0)_rotateX(10deg)] group-hover:[transform:perspective(0px)_translateZ(0)_rotateX(0deg)] absolute bottom-0 mb-6 origin-bottom transform rounded text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
+                            <div class="flex max-w-xs flex-col items-center">
+                                <div class="rounded bg-gray-900 p-2 text-xs text-center shadow-lg">Filtros</div>
+                                <div class="clip-bottom h-2 w-4 bg-gray-900"></div>
+                            </div>
+                        </div>
+                    </a>
+                    }@else{
+                    <a (click)="showFilters(true)"
+                        class="  transition transform effectoZoomBoton  group max-w-max relative mx-1 flex flex-col items-center justify-center p-1 text-gray-500 bg-white  hover:text-gray-600 relative cursor-pointer hover:bg-gray-100  hover:shadow-lg  p-1.75 rounded-full transition-colors">
+                        <p class="text-xs text-center">
+                            <span class="material-symbols-outlined">
+                                close
+                            </span>
+                        </p>
+                        <div
+                            class="pb-3 [transform:perspective(50px)_translateZ(0)_rotateX(10deg)] group-hover:[transform:perspective(0px)_translateZ(0)_rotateX(0deg)] absolute bottom-0 mb-6 origin-bottom transform rounded text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
+                            <div class="flex max-w-xs flex-col items-center">
+                                <div class="rounded bg-gray-900 p-2 text-xs text-center shadow-lg">Filtros</div>
+                                <div class="clip-bottom h-2 w-4 bg-gray-900"></div>
+                            </div>
+                        </div>
+                    </a>
+                    }
+                </div>
+
+                <button
+                (click)="exportTable()"
+                    class=" cursor-pointer py-1.75  ml-2 px-5 text-sm font-medium text-white bg-[#008f39] rounded-full  hover:bg-green-600  transition transform effectoZoomBoton  ">
+                    <div class="flex justify-center items-center">
+                        <span class="material-symbols-outlined">
+                            download
+                        </span> Excel
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    @if(!flagFilters){
+    <div class="flex justify-between items-center mt-5 ">
+        <div>
+
+        </div>
+        <div class="flex justify-between !space-x-2 ">
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
+                    <i class="ri-calendar-line text-red-500 ml-1  pb-0.5"></i>
+                </div>
+                <select class="selectGeneral2 !pl-8" required>
+                    <option selected disabled value="" class="!text-gray-700">Rango de fechas</option>
+                    <option value="1">Hoy</option>
+                    <option value="Dra. Ana López">Últimos 7 días</option>
+                    <option value="María Gonzales">Mes actual</option>
+                    <option value="Dra. Patricia Vega">Mes anterior</option>
+                    <option value="Juan C. Pérez">Últimos 90 días</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center px-1 pointer-events-none">
+                    <span class="material-symbols-outlined text-red-500">
+                        arrow_drop_down
+                    </span>
+                </div>
+            </div>
+
+            <input type="date"
+                class="calendar-red inputGeneral4 !w-[10rem] placeholder-gray-500 text-gray-600 border border-gray-300 rounded-lg px-3 py-2">
+        </div>
+    </div>
+    }
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10" id="mi-tabla">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 titlecase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 font-medium">
+                        Cliente
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium text-center">
+                        Total Citas
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium text-center">
+                        Confirmadas
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium text-center">
+                        Completadas
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium text-center">
+                        Canceladas
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium text-center">
+                        Sin Confirmar
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium text-center">
+                        Servicios recibidos
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium text-center">
+                        Duración Total
+                    </th>
+                    <th scope="col" class="px-6 py-3 font-medium text-center">
+                        Última cita
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                @for(c of citasCliente?.data; track c){
+                 <tr class="bg-white border-gray-200 border-b hover:bg-gray-50 transition-colors text-sm ">
+                    <td class="px-6 py-3">
+                        {{c.cliente}}
+                    </td>
+                    <td style="text-align: center;" >
+                        {{c.totalCitas}}
+                    </td>
+                    <td style="text-align: center;">
+                        {{c.confirmadas}}
+                    </td>
+                    <td style="text-align: center;">
+                        {{c.completadas}}
+                    </td>
+                    <td style="text-align: center;">
+                        {{c.canceladas}}
+                    </td>
+                    <td style="text-align: center;">
+                        {{c.sinConfirmar}}
+                    </td>
+                    <td class="text-cyan-500 font-medium "  style="text-align: center;">
+                        2
+                    </td>
+                    <td style="text-align: center;">
+                        {{c.duracionTotal}}
+                    </td>
+                    <td style="text-align: center;">
+                        {{this.today | date:'short' }}
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+         <!-- Paginación -->
+        <div
+            class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-4 rounded-b-lg">
+            <div class="flex flex-1 justify-between sm:hidden">
+                <button
+                    class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Anterior</button>
+                <button
+                    class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Siguiente</button>
+            </div>
+            <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                <div>
+                    <p class="text-sm text-gray-700">
+                        Mostrando <span class="font-medium">1</span> a <span
+                            class="font-medium">{{citasCliente?.pagination?.pageSize}}</span> de
+                        <span class="font-medium">{{citasCliente?.pagination?.totalItems}}</span> resultados
+                    </p>
+                </div>
+                <div>
+
+                    <div class="flex items-center justify-between ">
+                        <!-- Botón Previa -->
+                        <button (click)="goToPreviousPage(citasCliente?.pagination, all_data)"
+                            [disabled]="!citasCliente?.pagination?.hasPreviousPage"
+                            [class]="!citasCliente?.pagination?.hasPreviousPage ? 
+                                'flex items-center px-3 py-1 text-xs font-medium text-gray-300 cursor-not-allowed border-1  rounded-l-md ' : 
+                                'flex items-center px-3 py-1 text-xs font-medium text-gray-600 hover:text-gray-700 transition-colors duration-200 rounded-l-md border-1 border-gray-300'"
+                            type="button">
+                            Previa
+                        </button>
+
+                        <!-- Contador central -->
+                        <button class="px-4 bg-gray-100 border-1 border-gray-300   ">
+                            <span class="text-sm font-semibold text-red-600">{{citasCliente?.pagination?.currentPage}}</span>
+                            <span class="text-sm text-red-600">/</span>
+                            <span class="text-sm font-medium text-red-600">{{citasCliente?.pagination?.totalPages}}</span>
+                        </button>
+
+                        <!-- Botón Siguiente -->
+                        <button (click)="goToNextPage(citasCliente?.pagination, all_data)"
+                            [disabled]="!citasCliente?.pagination?.hasNextPage"
+                            [class]="!citasCliente?.pagination?.hasNextPage ? 
+                                'flex items-center px-2 py-1 text-xs font-medium text-gray-300 cursor-not-allowed rounded-r-md border-1 border-gray-300 ' : 
+                                'flex items-center px-2 py-1 text-xs font-medium text-gray-600 hover:text-gray-700 transition-colors duration-200 rounded-r-md border-1 border-gray-300'"
+                            type="button">
+                            Siguiente
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>

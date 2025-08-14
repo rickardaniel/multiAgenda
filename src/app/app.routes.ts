@@ -85,13 +85,13 @@ export const routes: Routes = [
         path: 'servicios',
         title: 'Servicios',
         loadComponent: () =>
-          import('../app/admin/components/adminConfiguracion/servicios/servicios'),
+          import('../app/admin/components/adminConfiguracion/servicios-component/servicios-component'),
         }, 
            {
         path: 'disponibilidad',
         title: 'Disponibilidad',
         loadComponent: () =>
-          import('../app/admin/components/adminConfiguracion/disponibilidad/disponibilidad'),
+          import('../app/admin/components/adminConfiguracion/disponibilidad-component/disponibilidad-component'),
         }, 
         ]
       }

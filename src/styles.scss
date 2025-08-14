@@ -18,20 +18,20 @@
 }
 
 .inputGeneral {
-  @apply border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t w-full px-3 py-2 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
+  @apply border placeholder-gray-400 focus:outline-none !text-gray-600 focus:border-gray-400 focus:border-t w-full px-3 py-2 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
 }
 
 .inputGeneral2 {
-  @apply border placeholder-gray-400 focus:outline-none focus:border-black w-full px-3 py-2 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-gray-100 border-gray-300 rounded-md;
+  @apply border placeholder-gray-400 focus:outline-none !text-gray-600 focus:border-black w-full px-3 py-2 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-gray-100 border-gray-300 rounded-md;
 }
 
 .inputGeneral3 {
-  @apply border placeholder-gray-400 focus:outline-none focus:border-black w-full px-3 py-1.5 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-gray-100 border-gray-300 rounded-md;
+  @apply border placeholder-gray-400 focus:outline-none !text-gray-600 focus:border-black w-full px-3 py-1.5 mt-2 mr-0 mb-0 ml-0 text-base text-sm block bg-gray-100 border-gray-300 rounded-md;
 
 }
 
 .inputGeneral4 {
-  @apply border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t w-full px-3 py-1.5 mt-0 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
+  @apply border placeholder-gray-400 focus:outline-none !text-gray-600 focus:border-gray-400 focus:border-t w-full px-3 py-1.5 mt-0 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
 }
 
 .inputPhone {
@@ -44,6 +44,9 @@
 
 .labelGeneral2 {
   @apply bg-white pt-0 pr-2 pb-0 pl-2 -mt-1 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute rounded-lg xl:text-sm lg:text-xs md:text-xs text-xs;
+}
+.labelGeneral3 {
+  @apply block text-xs font-medium text-gray-500 mb-1 pl-1 ;
 }
 
 .inputInvalid {
@@ -63,6 +66,14 @@
   @apply appearance-none block text-sm w-full px-3 py-1.5 pr-12 bg-white border border-gray-300 rounded-md text-gray-600 placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-gray-500 focus:border-gray-500 transition-colors duration-200
 }
 
+.selectGeneral4 {
+  @apply appearance-none border placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:border-t w-full px-3 py-1.5 mt-0 mr-0 mb-0 ml-0 text-base text-sm block bg-white border-gray-300 rounded-md;
+}
+
+.textAreaGeneral{
+  @apply focus:outline-none block p-2.5 w-full text-sm !text-gray-600 !bg-gray-50 rounded-lg border border-gray-300  placeholder-gray-500 focus:outline-none focus:ring-0 focus:ring-gray-500 focus:border-gray-500 transition-colors duration-200
+}
+
 .title {
   color: rgb(93, 93, 93);
 }
@@ -79,3 +90,214 @@
 .effectoZoomBoton {
   @apply hover:shadow-2xl transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none
 }
+
+// Botones de accion
+.btnMain{
+  @apply bg-red-600 text-white px-7 py-1.5 rounded-full text-xs 
+}
+
+.btnGrayGeneral{
+  @apply cursor-pointer transition transform   py-1 px-7 text-sm font-medium text-red-600  bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-red-600 
+}
+
+.btnRedGeneral{
+ @apply cursor-pointer transition transform   py-1 px-7  text-white bg-red-600 hover:bg-red-700 font-medium rounded-full text-sm
+}
+
+// css Tooltip
+ /* Tooltip Base */
+        .tooltip-btn {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Tooltip con flecha hacia ABAJO (tooltip arriba del botón) */
+        .tooltip-top {
+            position: relative;
+        }
+
+        .tooltip-top:hover::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            z-index: 1000 !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            animation: tooltipFadeIn 0.2s ease-out;
+        }
+
+        /* Flecha hacia ABAJO */
+        .tooltip-top:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 113%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 1000;
+            animation: tooltipFadeIn 0.2s ease-out;
+        }
+
+        /* Tooltip con flecha hacia ARRIBA (tooltip abajo del botón) */
+        .tooltip-bottom {
+            position: relative;
+        }
+
+        .tooltip-bottom:hover::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+            animation: tooltipFadeIn 0.2s ease-out;
+        }
+
+        /* Flecha hacia ARRIBA */
+        .tooltip-bottom:hover::after {
+            content: '';
+            position: absolute;
+            top: 113%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-bottom-color: #dc2626;
+            z-index: 1000;
+            animation: tooltipFadeIn 0.2s ease-out;
+        }
+
+        /* Tooltip Azul con flecha hacia ABAJO */
+        .tooltip-blue {
+            position: relative;
+        }
+
+        .tooltip-blue:hover::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: tooltipSlideUp 0.3s ease-out;
+        }
+
+        .tooltip-blue:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 113%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 7px solid transparent;
+            border-top-color: #1e40af;
+            z-index: 1000;
+            animation: tooltipSlideUp 0.3s ease-out;
+        }
+
+        /* Tooltip Verde con flecha hacia ARRIBA */
+        .tooltip-green {
+            position: relative;
+        }
+
+        .tooltip-green:hover::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: tooltipSlideDown 0.3s ease-out;
+        }
+
+        .tooltip-green:hover::after {
+            content: '';
+            position: absolute;
+            top: 113%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 7px solid transparent;
+            border-bottom-color: #059669;
+            z-index: 1000;
+            animation: tooltipSlideDown 0.3s ease-out;
+        }
+
+        /* Animaciones */
+        @keyframes tooltipFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+        }
+
+        @keyframes tooltipSlideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes tooltipSlideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Efectos de botón */
+        .btn-effect {
+            transition: all 0.2s ease;
+        }
+
+        .btn-effect:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-effect:active {
+            transform: translateY(0);
+        }

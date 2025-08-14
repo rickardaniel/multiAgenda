@@ -7,7 +7,8 @@
                 "canceladas" :8,
                 "sinConfirmar" :10,
                 "duracionTotal" :"24h",
-                "promedioPorDia" :3.2
+                "promedioPorDia" :3.2,
+                "cliente":"Luis Díaz"
             },
             {
                 "servicio" :"Control pediátrico",
@@ -17,7 +18,8 @@
                 "canceladas" :9,
                 "sinConfirmar" :7,
                 "duracionTotal" :"11h 40m",
-                "promedioPorDia" :4.5
+                "promedioPorDia" :4.5,
+                "cliente":"Juan Pérez Díaz"
             },
             {
                 "servicio" :"Terapia física",
@@ -27,7 +29,8 @@
                 "canceladas" :4,
                 "sinConfirmar" :3,
                 "duracionTotal" :"22h",
-                "promedioPorDia" :2.1
+                "promedioPorDia" :2.1,
+                "cliente":"Jonathan Ruilova"
             },
             {
                 "servicio" :"Odontología preventiva",
@@ -37,7 +40,8 @@
                 "canceladas" :3,
                 "sinConfirmar" :4,
                 "duracionTotal" :"13h 30m",
-                "promedioPorDia" :2.8
+                "promedioPorDia" :2.8,
+                "cliente":"Karla Prieto"
             },
             {
                 "servicio" :"Psicología infantil",
@@ -47,7 +51,8 @@
                 "canceladas" :2,
                 "sinConfirmar" :3,
                 "duracionTotal" :"12h",
-                "promedioPorDia" :1.5
+                "promedioPorDia" :1.5,
+                "cliente":"Andrea Castillo"
             },
             {
                 "servicio" :"Nutrición y dietética",
@@ -57,7 +62,8 @@
                 "canceladas" :1,
                 "sinConfirmar" :2,
                 "duracionTotal" :"7h 30m",
-                "promedioPorDia" :1.0
+                "promedioPorDia" :1.0,
+                "cliente":"Daniela Herrera"
             },
             {
                 "servicio" :"Dermatología",
@@ -67,7 +73,8 @@
                 "canceladas" :5,
                 "sinConfirmar" :1,
                 "duracionTotal" :"6h 45m",
-                "promedioPorDia" :2.2
+                "promedioPorDia" :2.2,
+                "cliente":"Tatiana Pucha"
             },
             {
                 "servicio" :"Ginecología",
@@ -77,7 +84,8 @@
                 "canceladas" :2,
                 "sinConfirmar" :1,
                 "duracionTotal" :"11h 40m",
-                "promedioPorDia" :1.4
+                "promedioPorDia" :1.4,
+                "cliente":"Sandro Ocampo"
             },
             {
                 "servicio" :"Cardiología",
@@ -87,7 +95,8 @@
                 "canceladas" :5,
                 "sinConfirmar" :1,
                 "duracionTotal" :"11h",
-                "promedioPorDia" :3.6
+                "promedioPorDia" :3.6,
+                "cliente":"Daysi Tandazo"
             },
             {
                 "servicio" :"Medicina interna",
@@ -97,7 +106,8 @@
                 "canceladas" :6,
                 "sinConfirmar" :2,
                 "duracionTotal" :"16h",
-                "promedioPorDia" :2.3
+                "promedioPorDia" :2.3,
+                "cliente":"Diana Juela"
             },
             {
                 "servicio" :"Oftalmología",
@@ -107,7 +117,8 @@
                 "canceladas" :4,
                 "sinConfirmar" :3,
                 "duracionTotal" :"8h 30m",
-                "promedioPorDia" :3.8
+                "promedioPorDia" :3.8,
+                "cliente":"Gabriela Torres"
             },
             {
                 "servicio" :"Traumatología",
@@ -117,7 +128,8 @@
                 "canceladas" :5,
                 "sinConfirmar" :2,
                 "duracionTotal" :"14h 15m",
-                "promedioPorDia" :2.5
+                "promedioPorDia" :2.5,
+                "cliente":"Emilyn Medina"
             },
             {
                 "servicio" :"Urología",
@@ -127,7 +139,8 @@
                 "canceladas" :3,
                 "sinConfirmar" :0,
                 "duracionTotal" :"9h 20m",
-                "promedioPorDia" :1.6
+                "promedioPorDia" :1.6,
+                "cliente":"David Añazco"
             },
             {
                 "servicio" :"Neurología",
@@ -137,7 +150,8 @@
                 "canceladas" :2,
                 "sinConfirmar" :2,
                 "duracionTotal" :"18h 45m",
-                "promedioPorDia" :2.0
+                "promedioPorDia" :2.0,
+                "cliente":"Paola Cuenca"
             },
             {
                 "servicio" :"Endocrinología",
@@ -147,7 +161,8 @@
                 "canceladas" :1,
                 "sinConfirmar" :2,
                 "duracionTotal" :"10h 15m",
-                "promedioPorDia" :1.2
+                "promedioPorDia" :1.2,
+                "cliente":"Lorena Guasipungo"
             },
             {
                 "servicio" :"Neumología",
@@ -157,7 +172,8 @@
                 "canceladas" :2,
                 "sinConfirmar" :1,
                 "duracionTotal" :"12h 40m",
-                "promedioPorDia" :1.7
+                "promedioPorDia" :1.7,
+                "cliente":"Juan Santos"
             },
             {
                 "servicio" :"Gastroenterología",
@@ -167,7 +183,8 @@
                 "canceladas" :3,
                 "sinConfirmar" :1,
                 "duracionTotal" :"15h 20m",
-                "promedioPorDia" :1.8
+                "promedioPorDia" :1.8,
+                "cliente":"Damian Benitez"
             },
             {
                 "servicio" :"Reumatología",
@@ -177,7 +194,8 @@
                 "canceladas" :1,
                 "sinConfirmar" :1,
                 "duracionTotal" :"8h 10m",
-                "promedioPorDia" :1.1
+                "promedioPorDia" :1.1,
+                "cliente":"Darwin Medina"
             },
             {
                 "servicio" :"Hematología",
@@ -187,7 +205,8 @@
                 "canceladas" :1,
                 "sinConfirmar" :0,
                 "duracionTotal" :"5h 30m",
-                "promedioPorDia" :0.7
+                "promedioPorDia" :0.7,
+                "cliente":"Paola Morocho"
             },
             {
                 "servicio" :"Oncología",
@@ -197,7 +216,8 @@
                 "canceladas" :0,
                 "sinConfirmar" :1,
                 "duracionTotal" :"19h 45m",
-                "promedioPorDia" :1.3
+                "promedioPorDia" :1.3,
+                "cliente":"Lesli Contento"
             },
             {
                 "servicio" :"Medicina del deporte",
@@ -207,6 +227,7 @@
                 "canceladas" :4,
                 "sinConfirmar" :1,
                 "duracionTotal" :"13h 25m",
-                "promedioPorDia" :2.4
+                "promedioPorDia" :2.4,
+                "cliente":"Lautaro Martinez"
             }
         ]
