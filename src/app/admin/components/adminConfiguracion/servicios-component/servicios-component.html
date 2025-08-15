@@ -1,1 +1,377 @@
-<p>servicios-component works!</p>
+<div class=" w-full px-4 py-2 ">
+    <div class="flex justify-between items-center ">
+        <div class="p-1">
+            <div class="title">
+                <h1 class="text-sm"> Configuración / <span class="font-medium"> Servicios </span>
+                </h1>
+                <h1 class="mt-5 font-semibold text-xl"> Servicios </h1>
+                <span class="text-xs">Gestiona la información y configuración de tu negocio. </span>
+            </div>
+        </div>
+
+        <div class="p-1 mt-13">
+            <div class="flex justify-between ">
+                <div class="flex items-center">
+                    <div class="relative w-full">
+                        <div
+                            class="flex absolute inset-y-0 left-0 items-center pl-3 pr-2 pointer-events-none bg-gray-100 rounded-l-full border-1 border-gray-200 ">
+                            <span class="material-symbols-outlined text-gray-400 ">
+                                search
+                            </span>
+                        </div>
+                        <input type="text"
+                            class="inputGeneral4 !rounded-full  !w-full !pl-13 !px-30 !py-2.25 !focus:shadow-lg "
+                            placeholder="¿Qué estás buscando?" required>
+                    </div>
+
+                    <!-- @if(flagFilters){
+                    <a (click)="showFilters(false)"
+                        class="group max-w-max relative mx-1 flex flex-col items-center justify-center p-1 text-gray-500 bg-white  hover:text-gray-600 relative cursor-pointer hover:bg-gray-100  hover:shadow-lg  p-1.75 rounded-full transition-colors">
+                        <p class="text-xs text-center">
+                            <span class="material-symbols-outlined">
+                                tune
+                            </span>
+                        </p>
+                        <div
+                            class="pb-3 [transform:perspective(50px)_translateZ(0)_rotateX(10deg)] group-hover:[transform:perspective(0px)_translateZ(0)_rotateX(0deg)] absolute bottom-0 mb-6 origin-bottom transform rounded text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
+                            <div class="flex max-w-xs flex-col items-center">
+                                <div class="rounded bg-gray-900 p-2 text-xs text-center shadow-lg">Filtros</div>
+                                <div class="clip-bottom h-2 w-4 bg-gray-900"></div>
+                            </div>
+                        </div>
+                    </a>
+                    }@else{
+                    <a (click)="showFilters(true)"
+                        class="  transition transform effectoZoomBoton  group max-w-max relative mx-1 flex flex-col items-center justify-center p-1 text-gray-500 bg-white  hover:text-gray-600 relative cursor-pointer hover:bg-gray-100  hover:shadow-lg  p-1.75 rounded-full transition-colors">
+                        <p class="text-xs text-center">
+                            <span class="material-symbols-outlined">
+                                close
+                            </span>
+                        </p>
+                        <div
+                            class="pb-3 [transform:perspective(50px)_translateZ(0)_rotateX(10deg)] group-hover:[transform:perspective(0px)_translateZ(0)_rotateX(0deg)] absolute bottom-0 mb-6 origin-bottom transform rounded text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
+                            <div class="flex max-w-xs flex-col items-center">
+                                <div class="rounded bg-gray-900 p-2 text-xs text-center shadow-lg">Filtros</div>
+                                <div class="clip-bottom h-2 w-4 bg-gray-900"></div>
+                            </div>
+                        </div>
+                    </a>
+                    } -->
+                </div>
+
+                <button (click)="createEditServicio('create', '', '#crearServicio')"
+                    class=" cursor-pointer py-1.75  ml-2 px-5 text-sm font-medium text-white bg-red-600 rounded-full  hover:bg-red-700  transition transform effectoZoomBoton  ">
+                    <div class="flex justify-center items-center">
+                        <span class="material-symbols-outlined">
+                            add
+                        </span> Agregar Servicio
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="h-full bg-white mt-5 rounded-lg ">
+        <div class=" w-full p-5 ">
+            <div class="relative overflow-x-auto  sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500 bg-white">
+                    <thead class="text-md text-gray-700 border-gray-200 border-b">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 font-medium">Nombre del servicio</th>
+                            <th scope="col" class="px-6 py-3 font-medium">Duración</th>
+                            <th scope="col" class="px-6 py-3 font-medium">Intervalo</th>
+                            <th scope="col" class="px-6 py-3 font-medium">Especialistas Asignados</th>
+                            <th scope="col" class="px-6 py-3 font-medium">Estado</th>
+                            <th scope="col" class="px-6 py-3 font-medium "></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-xs w-[100%]">
+                        @for( s of servicios; track s ){
+                        <tr class="bg-white border-gray-200 border-b hover:bg-gray-100 transition-colors">
+                            <td class="px-6 py-3">
+                                {{s.nombre}}
+                            </td>
+                            <td class="px-6 py-3">
+                                {{s.duracion}}
+                            </td>
+                            <td class="px-6 py-3">
+                                {{s.intervalo}}
+                            </td>
+                            <td class="px-6">
+
+                                <div class="flex  justify-start items-center gap-3">
+                                    @for( prof of s.especialistas; track prof ){
+                                    <div class="w-8 h-8 shadow-sm rounded-full flex items-center justify-center "
+                                        [ngStyle]="{'border':'1px solid '+getRandomColor((prof.profesional)).border }"
+                                        [style.background-color]="getRandomColor((prof.profesional)).backgroundColor"
+                                        [style.color]="getRandomColor((prof.profesional)).color">
+                                        <span
+                                            class=" font-bold text-[12px]  bg-clip-text ">{{(prof.profesional)}}</span>
+                                    </div>
+                                    }
+
+                                </div>
+                            </td>
+                            <td class="">
+
+                                @if(s.estado==1){
+                                <span
+                                    class="px-6  py-0.5 rounded-full bg-[#EBFCEB] border-1  border-green-100 shadow-md font-medium  text-[#60AD5E]">
+                                    <i class="ri-checkbox-circle-line "></i> Activo
+                                </span>
+
+                                }@else{
+                                <span
+                                    class="px-5  py-0.5 rounded-full bg-red-50 text-red-500  border-1  border-red-100 shadow-md ">
+                                    <i class="ri-close-circle-line "></i> Inactivo
+                                </span>
+                                }
+
+                            </td>
+                            <td class=" px-1 border-s-1 border-gray-200">
+                                <div class="flex justify-center">
+
+                                    <button (click)="createEditServicio('edit', s, '#crearServicio')"
+                                        data-tooltip="Editar Servicio"
+                                        class=" tooltip-btn tooltip-top btn-effect cursor-pointer transition transform effectoZoomBoton  ">
+                                        <i class=" ri-pencil-line  text-xl mr-2"></i>
+                                    </button>
+
+                                    <button 
+                                        (click)="deleteServicio('#modalEliminar', s)"
+                                        data-tooltip="Eliminar"
+                                        class=" tooltip-btn tooltip-top btn-effect cursor-pointer transition transform effectoZoomBoton">
+                                        <i class="  ri-delete-bin-6-line text-lg text-red-500 "></i>
+                                    </button>
+
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Crear - Editar Servicio -->
+
+<div id="crearServicio" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-lg max-h-full">
+        <!-- Modal content -->
+        <div class="relative !bg-white rounded-lg shadow-sm ">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 ">
+                <h3 class="text-lg font-semibold text-gray-600 ">
+                    @if(typeS=='create'){
+                    Agregar Nuevo Servicio
+                    }@else{
+                    Editar Servicio
+                    }
+
+                </h3>
+                <button type="button" (click)="closeModal()"
+                    class="absolute mt-1.5 top-3 end-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-5  md:p-5">
+                <form [formGroup]="formServicio" class="space-y-4">
+                    <div>
+                        <label for="email" class="labelGeneral3">Nombre del servicio *</label>
+                        <input formControlName="nombre" type="text" class="inputGeneral4"
+                            placeholder="Ej. Medicina General, Cardiólogo  " required />
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 ">
+                        <div>
+                            <div>
+                                <label class="labelGeneral3">Duración *</label>
+                                <div class="relative">
+                                    <select formControlName="duracion" class="selectGeneral4 !text-gray-500">
+
+                                        <option selected di value="15 min">15 min</option>
+                                        <option value="20 min">20 min</option>
+                                        <option value="30 min">30 min</option>
+                                        <option value="40 min">40 min</option>
+                                        <option value="50 min">50 min</option>
+
+                                    </select>
+                                    <div
+                                        class="absolute bg-gray-100 border border-gray-300  rounded-r-lg inset-y-0 right-0 flex items-center px-1.5 pointer-events-none">
+                                        <i class="ri-arrow-down-s-fill"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <label class="labelGeneral3">Intervalo *</label>
+                                <div class="relative">
+                                    <select formControlName="intervalo" class="selectGeneral4 !text-gray-500">
+                                        <option selected di value="5 min">5 min</option>
+                                        <option value="10 min">10 min</option>
+                                        <option value="15 min">15 min</option>
+                                        <option value="20 min">20 min</option>
+                                        <option value="30 min">30 min</option>
+
+                                    </select>
+                                    <div
+                                        class="absolute bg-gray-100 border border-gray-300  rounded-r-lg inset-y-0 right-0 flex items-center px-1.5 pointer-events-none">
+                                        <i class="ri-arrow-down-s-fill"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div>
+                        <div>
+                            <label class="labelGeneral3">Personal Asignado *</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0  flex items-center px-3 pointer-events-none">
+                                    <!-- <i class="ri-search-line"></i> -->
+                                    <span class="material-symbols-outlined text-gray-600 !text-md  ">
+                                        search
+                                    </span>
+                                </div>
+                                <select (change)="addEmpleado($event)" class="selectGeneral4 !text-gray-500 !pl-10 ">
+                                    <option selected disabled value="" class="!text-gray-400 ">Seleccione el personal
+                                    </option>
+                                    <option value="Marco Tandazo"> Marco Tandazo</option>
+                                    <option value="Juan Peña">Juan Peña</option>
+                                    <option value="Carlos Lopez">Carlos Lopez</option>
+                                    <option value="Celia Langañate">Celia Langañate</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                                    <i class="ri-expand-up-down-line text-red-600 "></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="grid grid-cols-3 gap-1">
+                            @for(le of arrayEmpleados; track le){
+                            <div class="w-full  px-2 py-1  rounded-full flex items-center justify-between"
+                                [ngStyle]="{'border':'1px solid '+getRandomColor(nameAvatar(le)).border }"
+                                [style.background-color]="getRandomColor(nameAvatar(le)).backgroundColor"
+                                [style.color]="getRandomColor(nameAvatar(le)).color">
+                                <span class=" font-semibold text-[12px]  bg-clip-text ">{{(le)}}</span>
+                                <span (click)="removeEmpleado(le)"
+                                    class=" cursor-pointer material-symbols-outlined text-red-500 ">
+                                    close
+                                </span>
+                            </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="bg-white rounded-lg  border border-gray-300 px-5 py-4">
+
+                            <div class="flex justify-between items-center gap-4">
+                                <label class="text-xs font-medium text-gray-600">Estado:</label>
+                                @if(typeS=='create'){
+                                <div class="flex items-center">
+                                    <div class="flex items-center px-3 py-1.5 rounded-l-full  border border-gray-300">
+                                        <input name="estado1" type="radio" [value]="1" checked
+                                            class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                        <label for="activo1" class="ml-2 text-xs text-gray-600">Activo</label>
+                                    </div>
+
+                                    <div class="flex items-center px-3 py-1.5 rounded-r-full  border border-gray-200">
+                                        <input name="estado1" type="radio" [value]="0" disabled
+                                            class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                        <label for="inactivo1" class="ml-2 text-xs text-gray-600">Inactivo</label>
+                                    </div>
+                                </div>
+
+                                }@else{
+
+                                <div class="flex items-center">
+                                    <div class="flex items-center px-3 py-1.5 rounded-l-full border border-gray-300">
+                                        <input id="activo1" name="estado" type="radio" [value]="1"
+                                            formControlName="estado"
+                                            class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                        <label for="activo1" class="ml-2 text-xs text-gray-600">Activo</label>
+                                    </div>
+
+                                    <div class="flex items-center px-3 py-1.5 rounded-r-full border border-gray-200">
+                                        <input id="inactivo1" name="estado" type="radio" [value]="0"
+                                            formControlName="estado"
+                                            class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                        <label for="inactivo1" class="ml-2 text-xs text-gray-600">Inactivo</label>
+                                    </div>
+                                </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="flex justify-end space-x-2 pt-4 mb-5 ">
+                        <button (click)="closeModal()" type="button" class=" btnGrayGeneral effectoZoomBoton">
+                            <div class="flex justify-center items-center  ">
+                                <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
+                                Cancelar
+                            </div>
+                        </button>
+
+                        <button class="btnRedGeneral effectoZoomBoton">
+                            <div class="flex justify-center items-center  ">
+                                <i class="ri-save-2-fill mr-1 text-lg "></i>
+                                @if(typeS=='create'){
+                                Crear Servicio
+                                }@else{
+                                Editar Servicio
+                                }
+
+                            </div>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal Eliminar Cargo -->
+    <div id="modalEliminar" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow-sm ">
+                <div class="p-4 md:p-5 text-center">
+                    <span class="material-symbols-rounded !text-8xl text-gray-200">
+                        delete_forever
+                    </span>
+                    <h3 class="mb-5 text-md font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de eliminar
+                        <strong>
+                            {{servicioSelected.nombre}} </strong>?
+                    </h3>
+                    <div class="flex justify-center py-3">
+                        <button (click)="closeModal()"
+                            class="btnGrayGeneral effectoZoomBoton  mr-2 flex items-center "><i
+                                class="ri-close-circle-line  text-xl mr-1 "></i> No,
+                            cancelar</button>
+                        <button (click)="closeModal()" class="btnRedGeneral effectoZoomBoton flex items-center  ">
+                            <i class="ri-check-line text-xl mr-1"></i> Si, eliminar
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>

@@ -9,10 +9,11 @@ import {
 } from '@angular/forms';
 import { ApiService } from '../../../../services/api-service';
 import { HorarioAtencionComponent } from "../../../../shared/configurationFolder/horario-atencion-component/horario-atencion-component";
+import { InputPhoneComponent } from '../../../../shared/input-phone-component/input-phone-component';
 
 @Component({
   selector: 'app-personal-cargos-component',
-  imports: [CommonModule, ReactiveFormsModule, HorarioAtencionComponent],
+  imports: [CommonModule, ReactiveFormsModule, HorarioAtencionComponent, InputPhoneComponent],
   templateUrl: './personal-cargos-component.html',
   styleUrl: './personal-cargos-component.scss',
 })
@@ -51,8 +52,10 @@ export default class PersonalCargosComponent {
     { id: 2, label: 'Empleados o Especialidades', enabled: true },
   ];
 
+  especialidades:any=[];
   modal: any;
   typeC: any;
+  typeE: any;
   cargoSelected: any = [];
   empleadoSelected: any = [];
 
@@ -62,6 +65,7 @@ export default class PersonalCargosComponent {
 
   ngOnInit() {
     this.getEmpleados();
+    this.getEspecialidades();
   }
 
   // utils
@@ -71,6 +75,15 @@ export default class PersonalCargosComponent {
 
   nameAvatar(name) {
     return this.api.getInitials(name);
+  }
+
+    getEspecialidades() {
+    this.api.getEspecialidades().subscribe({
+      next: (resp: any) => {
+        console.log('especialidades', resp);
+        this.especialidades = resp;
+      },
+    });
   }
 
   getEmpleados() {
@@ -127,6 +140,15 @@ export default class PersonalCargosComponent {
     descripcion: new FormControl(''),
   });
 
+  formEmpleado = new FormGroup({
+    nombres: new FormControl('', Validators.required),
+    apellidos: new FormControl('', Validators.required),
+    correo: new FormControl('', Validators.required),
+    telefono: new FormControl('', Validators.required),
+    cargo: new FormControl('', Validators.required), 
+    estado: new FormControl(1),
+  });
+
   // ------------ Métodos Agregar Editar Orden ------------
 
   openModal(name, obj){
@@ -135,7 +157,7 @@ export default class PersonalCargosComponent {
       this.modal.show();
   }
 
-  // 1. Crear
+  // 1. Crear Cargo
   createEditC(type, obj, name) {
     if (type == 'create') {
       this.typeC = type;
@@ -153,13 +175,42 @@ export default class PersonalCargosComponent {
     }
   }
 
+  // 2. Crear Empleado
+  createEditEmpleado(type, obj, name) {
+    console.log('obj', obj);
+    
+    if (type == 'create') {
+      this.typeE = type;
+      this.modal = this.util.createModal(name);
+      this.modal.show();
+    } else {
+      this.typeE = type;
+      this.formEmpleado.setValue({
+        nombres: obj.nombre,
+        apellidos: obj.nombre,
+        correo: obj.email,
+        telefono: obj.telefono,
+        cargo: obj.especialidad,
+        estado: 1,
+      });
+      this.modal = this.util.createModal(name);
+      this.modal.show();
+    }
+  }
+
   closeModal() {
     this.modal.hide();
   }
 
   deleteModal(type, obj, name) {
+    this.cargoSelected=[];
+    this.empleadoSelected=[];
     if (type == 'cargo') {
       this.cargoSelected = obj;
+      this.modal = this.util.createModal(name);
+      this.modal.show();
+    }else{
+      this.empleadoSelected = obj;
       this.modal = this.util.createModal(name);
       this.modal.show();
     }

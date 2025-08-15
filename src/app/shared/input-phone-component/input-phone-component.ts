@@ -1,16 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ApiService } from '../../services/api-service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-input-phone-component',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './input-phone-component.html',
-  styleUrl: './input-phone-component.scss'
+  styleUrl: './input-phone-component.scss',
 })
-export class InputPhoneComponent {
+export class InputPhoneComponent implements OnChanges  {
+  @Input('tipo') tipo: any;
+  @Input('phone') phone: any;
 
-  @Input('tipo') tipo:any;
   dropdownOpen = false;
+
   selectedCountry = {
     nameES: 'Ecuador',
     nameEN: 'Ecuador',
@@ -24,19 +27,34 @@ export class InputPhoneComponent {
       'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EC.svg',
   };
 
-  constructor
-  (
-private api: ApiService
-  )
-  {
+  selectedCategory = this.selectedCountry;
+  countries: any = [];
+  countries2: any = [];
+
+  constructor(private api: ApiService) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('detect changes', changes);
+    this.formPhone.setValue({
+      phone: changes['phone'].currentValue
+    })
+
+    console.log('form', this.formPhone.value);
+    
+    
   }
 
-  ngOnInit(){
-  this.getCountries();
-
+  ngOnInit() {
+    this.getCountries();
+    console.log('phone', this.phone);
+    
   }
 
-    getCountries() {
+  formPhone = new FormGroup({
+    phone: new FormControl(''),
+  });
+
+  getCountries() {
     this.api.getCountries().subscribe({
       next: (resp: any) => {
         console.log('resp', resp);
@@ -46,15 +64,11 @@ private api: ApiService
     });
   }
 
-  selectedCategory = this.selectedCountry;
-   countries: any = [];
-  countries2: any = [];
-
-   toggleDropdown() {
+  toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
- closeDropdown() {
+  closeDropdown() {
     this.dropdownOpen = false;
   }
 
@@ -77,7 +91,8 @@ private api: ApiService
       this.countries = this.countries2;
     }
   }
-    selectCategory(category: any) {
+
+  selectCategory(category: any) {
     this.selectedCategory = category;
     this.dropdownOpen = false;
     this.countries = this.countries2;

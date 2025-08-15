@@ -64,9 +64,13 @@
                 </div>
 
                 <div class="relative w-full">
-                    <input type="search" [placeholder]="" class="inputPhone" formControlName="telefono"
-                        placeholder="0991XXXXXX" required />
+                    <form [formGroup]="formPhone">
+                        <input type="search" [placeholder]="" class="inputPhone !text-gray-500" formControlName="phone"
+                            placeholder="0991XXXXXX" required />
+                    </form>
+
                 </div>
+
             </div>
         </form>
     </div>
