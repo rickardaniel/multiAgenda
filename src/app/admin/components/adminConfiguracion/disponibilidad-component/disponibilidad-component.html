@@ -11,6 +11,7 @@
     </div>
 
     <div class="flex justify-between ">
+        
         <div class="flex justify-start gap-2">
             <div class="relative">
                 <div class="absolute inset-y-0 left-0  flex items-center px-3 pointer-events-none">
@@ -18,7 +19,7 @@
                         category
                     </span>
                 </div>
-                <select class="selectGeneral4 !text-gray-500 !pl-10 ">
+                <select class="selectGeneral4 !text-gray-500 !pl-10 !px-10">
                     <option selected disabled value="" class="!text-gray-400 ">Servicios
                     </option>
                     <option value="Marco Tandazo"> Marco Tandazo</option>
@@ -36,10 +37,10 @@
                         group
                     </span>
                 </div>
-                <select class="selectGeneral4 !text-gray-500 !pl-10 ">
+                <select class="selectGeneral4 !text-gray-500 !pl-10 !px-10 ">
                     <option selected disabled value="" class="!text-gray-400 ">Personal
                     </option>
-                    <option value="Marco Tandazo"> Marco Tandazo</option>
+                    <option class="pr-10" value="Marco Tandazo"> Marco Tandazo</option>
                     <option value="Juan Peña">Juan Peña</option>
                     <option value="Carlos Lopez">Carlos Lopez</option>
                     <option value="Celia Langañate">Celia Langañate</option>
@@ -50,26 +51,30 @@
             </div>
 
         </div>
+
         <div class="flex justify-start gap-5"> 
-            <div class="flex items-center px-3 py-1 hover:bg-white hover:px-3 hover:py-1 hover:rounded-full font-medium cursor-pointer">
+            <div class="flex items-center px-3 py-1 hover:bg-white hover:px-3 hover:py-1 hover:rounded-full font-medium cursor-pointer hover:shadow-md">
                 <span class="material-symbols-outlined text-gray-500 !text-[20px] ">
                     category
                 </span>
                 <span class="text-sm text-gray-500 ml-1">
-                    Conf.Servicio
+                    Conf. Servicio
                 </span>
             </div>
-            <div class="flex items-center px-3 py-1 hover:bg-white hover:px-3 hover:py-1 hover:rounded-full font-medium cursor-pointer" >
+            <div class="flex items-center px-3 py-1 hover:bg-white hover:px-3 hover:py-1 hover:rounded-full font-medium cursor-pointer hover:shadow-md" >
                 <span class="material-symbols-outlined text-gray-500 !text-[20px] ">
                     group
                 </span>
                 <span class="text-sm text-gray-500 ml-1" >
-                    Conf.Empleados
+                    Conf. Empleados
                 </span>
             </div>
 
-
         </div>
+    </div>
+
+    <div class="w-full h-full bg-white  mt-5 rounded-lg shadow-sm  p-3" >
+        <app-calendario-config-component></app-calendario-config-component>
     </div>
 
 </div>

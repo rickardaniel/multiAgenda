@@ -29,12 +29,12 @@ export default class CalendarComponetn
   @ViewChild('calendarContainer', { static: true })
   calendarContainer!: ElementRef;
   @ViewChild('dateInput') dateInput!: ElementRef;
-  @Input() dateFormat = 'Y-m-d';
-  @Input() enableTime = false;
-  @Input() minDate?: string;
-  @Input() maxDate?: string;
+  // @Input() dateFormat = 'Y-m-d';
+  // @Input() enableTime = false;
+  // @Input() minDate?: string;
+  // @Input() maxDate?: string;
   @Input() mode: 'single' | 'multiple' | 'range' = 'single';
-  @Input() defaultDate?: string | Date | Date[];
+  // @Input() defaultDate?: string | Date | Date[];
 
   @Output() dateChange = new EventEmitter<string | Date | Date[]>();
   @Output() dateSelect = new EventEmitter<string | Date | Date[]>();

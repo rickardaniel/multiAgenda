@@ -1,7 +1,18 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { ApiService } from '../../../services/api-service';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { UtilService } from '../../../services/util-service';
+import { Instance } from 'flatpickr/dist/types/instance';
+import { Spanish } from 'flatpickr/dist/l10n/es';
+import flatpickr from 'flatpickr';
 
 @Component({
   selector: 'app-citas-component',
@@ -13,28 +24,59 @@ export default class CitasComponent implements AfterViewInit {
   flagFilters = true;
   pagination: any;
   all_data: any = [];
-  citas: any; // Los datos paginados actuales
-  filteredCitas: any[] = []; // 👈 NUEVO: Datos filtrados
-  currentServiceFilter: string = ''; // 👈 NUEVO: Filtro actual
+  citas: any;
+  filteredCitas: any[] = [];
+  currentServiceFilter: string = '';
+  modal: any;
+  
+  @ViewChild('calendarContainer2', { static: true })
+  calendarContainer!: ElementRef;
+  @ViewChild('Horarios') horariosRef!: ElementRef<HTMLDivElement>;
+  
+  horarios = [
+    { id: 1, horaI: '09:00', horaF: '09:30' },
+    { id: 2, horaI: '09:30', horaF: '10:00' },
+    { id: 3, horaI: '10:00', horaF: '10:30' },
+    { id: 4, horaI: '10:30', horaF: '11:00' },
+    { id: 5, horaI: '11:00', horaF: '11:30' },
+  ];
+  
+  selectedScheduleId: number | null = null;
+  colorButtonOne = false;
+
+  private flatpickrInstance!: Instance;
+  selectedDate: string = '';
+  @Input() mode: 'single' | 'multiple' | 'range' = 'single';
+  today = new Date();
+  flagClassOverflow = false;
+  dateSelected: any;
+  private onChange = (value: any) => {};
+  servicios:any=[];
+  especialistas:any=[];
+
   constructor(
     private api: ApiService,
-    private cdr: ChangeDetectorRef // Inyectar ChangeDetectorRef
+    private util: UtilService,
+    private cdr: ChangeDetectorRef
   ) {}
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    // ❌ NO inicializar flatpickr aquí porque el modal está oculto
+    // this.initializeFlatpickr();
+  }
 
   ngOnInit() {
     this.getCitas();
+    this.getEspecialistas();
+    this.getServicios();
   }
 
   getCitas() {
     this.api.getCitas().subscribe({
       next: (resp: any) => {
         console.log('resp', resp);
-
-        // Guardar todos los datos originales
         this.all_data = resp;
-        this.filteredCitas = [...resp]; // 👈 Inicialmente, filtrados = todos
+        this.filteredCitas = [...resp];
 
         let search = {
           page: 1,
@@ -60,9 +102,6 @@ export default class CitasComponent implements AfterViewInit {
     params: PaginationParams,
     data
   ): Promise<PaginatedResponse<Cita>> {
-    // Simular delay de API
-
-    // ===== PAGINACIÓN =====
     const totalItems = data.length;
     const totalPages = Math.ceil(totalItems / params.pageSize);
     const currentPage = Math.max(1, Math.min(params.page, totalPages));
@@ -70,7 +109,6 @@ export default class CitasComponent implements AfterViewInit {
     const endIndex = startIndex + params.pageSize;
     const paginatedData = data.slice(startIndex, endIndex);
 
-    // ===== RESPUESTA =====
     return {
       data: paginatedData,
       pagination: {
@@ -92,24 +130,19 @@ export default class CitasComponent implements AfterViewInit {
     return this.api.getStatusClass(status);
   }
 
-  // ===== MÉTODO PARA GENERAR PÁGINAS VISIBLES =====
   getVisiblePages(pagination): (number | any)[] {
     const currentPage = pagination?.currentPage;
     const totalPages = pagination?.totalPages;
     const pages: (number | any)[] = [];
 
     if (totalPages <= 7) {
-      // Si hay 7 o menos páginas, mostrar todas
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
       }
     } else {
-      // Lógica para páginas con puntos suspensivos
       if (currentPage <= 4) {
-        // Inicio: 1 2 3 4 5 ... 10
         pages.push(1, 2, 3, 4, 5, '...', totalPages);
       } else if (currentPage >= totalPages - 3) {
-        // Final: 1 ... 6 7 8 9 10
         pages.push(
           1,
           '...',
@@ -120,7 +153,6 @@ export default class CitasComponent implements AfterViewInit {
           totalPages
         );
       } else {
-        // Medio: 1 ... 4 5 6 ... 10
         pages.push(
           1,
           '...',
@@ -135,8 +167,6 @@ export default class CitasComponent implements AfterViewInit {
 
     return pages;
   }
-
-  // ===== NAVEGACIÓN =====
 
   formService = new FormGroup({
     especialidad: new FormControl(''),
@@ -155,9 +185,7 @@ export default class CitasComponent implements AfterViewInit {
 
       this.getCitasFilter(search, data).then((datos: any) => {
         console.log('dataos', datos);
-
         this.citas = datos;
-        // this.pagination = data.pagination;
         this.cdr.detectChanges();
       });
     }
@@ -165,7 +193,6 @@ export default class CitasComponent implements AfterViewInit {
 
   goToPreviousPage(pagination, data) {
     if (pagination.hasPreviousPage) {
-      // this.getCitas(pagination.currentPage - 1, pagination.pageSize);
       let search = {
         page: pagination.currentPage - 1,
         pageSize: pagination.pageSize,
@@ -176,9 +203,7 @@ export default class CitasComponent implements AfterViewInit {
 
       this.getCitasFilter(search, data).then((datos: any) => {
         console.log('dataos', datos);
-
         this.citas = datos;
-        // this.pagination = data.pagination;
         this.cdr.detectChanges();
       });
     }
@@ -190,19 +215,15 @@ export default class CitasComponent implements AfterViewInit {
 
     console.log('Servicio seleccionado:', selectedService);
 
-    // Si no hay filtro, usar todos los datos
     if (!selectedService || selectedService === '') {
       this.filteredCitas = [...this.all_data];
     } else {
-      // Filtrar por servicio
       this.filteredCitas = this.all_data.filter(
         (cita) => cita.servicio === selectedService
       );
     }
 
     console.log('Datos filtrados:', this.filteredCitas);
-
-    // Resetear a la página 1 y aplicar paginación
     this.applyPaginationToFilteredData(1);
   }
 
@@ -220,16 +241,150 @@ export default class CitasComponent implements AfterViewInit {
   }
 
   clearFilters() {
-    // Resetear el formulario
     this.formService.patchValue({
       especialidad: '',
     });
 
-    // Resetear filtros
     this.currentServiceFilter = '';
     this.filteredCitas = [...this.all_data];
-
-    // Volver a la página 1
     this.applyPaginationToFilteredData(1);
+  }
+
+  // ✅ MÉTODO MODIFICADO: Inicializar flatpickr cuando se abre el modal
+  crearEditarCita(type, obj, name) {
+    if (type == 'create') {
+      this.modal = this.util.createModal(name);
+      this.modal.show();
+      
+      // ✅ Inicializar flatpickr DESPUÉS de mostrar el modal
+      setTimeout(() => {
+        this.initializeFlatpickr();
+      }, 100); // Pequeño delay para que el modal se renderice completamente
+    } else {
+      // Lógica para editar
+    }
+  }
+
+  closeModal() {
+    if (this.flatpickrInstance) {
+      this.flatpickrInstance.destroy();
+    }
+    this.modal.hide();
+    
+    // Resetear estado
+    this.flagClassOverflow = false;
+    this.selectedScheduleId = null;
+    this.dateSelected = null;
+  }
+
+  selectDay(event) {
+    console.log('event', event);
+    if (event) {
+      console.log('entra');
+      console.log('event', event.target?.value);
+      this.flagClassOverflow = true;
+      this.dateSelected = event.target?.value;
+      console.log('horarios', this.horariosRef);
+
+      if (this.horariosRef) {
+        this.scrollToHorarios();
+      }
+    }
+  }
+
+  private initializeFlatpickr() {
+    // ✅ Verificar que el elemento existe y es visible
+    if (!this.calendarContainer?.nativeElement) {
+      console.error('Elemento del calendario no encontrado');
+      return;
+    }
+
+    // ✅ Destruir instancia previa si existe
+    if (this.flatpickrInstance) {
+      this.flatpickrInstance.destroy();
+    }
+
+    const options: any = {
+      inline: true,
+      dateFormat: 'm-d-Y',
+      mode: this.mode,
+      locale: Spanish,
+      defaultDate: this.today,
+
+      onChange: (selectedDates: Date[], dateStr: string) => {
+        let value: string | Date | Date[] = dateStr;
+
+        if (this.mode === 'multiple' || this.mode === 'range') {
+          value = selectedDates;
+        } else if (selectedDates.length > 0) {
+          value = selectedDates[0];
+        }
+
+        this.onChange(value);
+        console.log('Fecha seleccionada:', value);
+      },
+    };
+
+    try {
+      this.flatpickrInstance = flatpickr(
+        this.calendarContainer.nativeElement,
+        options
+      );
+      console.log('Flatpickr inicializado correctamente');
+    } catch (error) {
+      console.error('Error al inicializar flatpickr:', error);
+    }
+  }
+
+  scrollToElement($element: any): void {
+    setTimeout(() => {
+      $element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'nearest',
+      });
+    }, 300);
+  }
+
+  scrollToHorarios(): void {
+    if (this.horariosRef) {
+      this.scrollToElement(this.horariosRef.nativeElement);
+    }
+  }
+
+  getButtonClasses(horarioId: number): string {
+    const baseClasses =
+      'cursor-pointer w-full rounded-lg py-3.5 text-xs transition-all duration-200';
+    if (this.isSelected(horarioId)) {
+      this.colorButtonOne = true;
+      return `${baseClasses} bg-red-500 text-white shadow-lg`;
+    } else {
+      return `${baseClasses} bg-transparent hover:bg-white hover:shadow-md shadow border border-gray-300`;
+    }
+  }
+
+  isSelected(horarioId: number): boolean {
+    return this.selectedScheduleId === horarioId;
+  }
+
+  selectSchedule(horario: any): void {
+    console.log('horario', horario);
+    this.selectedScheduleId = horario.id;
+  }
+
+  getServicios(){
+    this.api.getEspecialidades().subscribe({
+      next:(resp:any)=>{
+        this.servicios= resp;
+      }
+    })
+  }
+
+  getEspecialistas(){
+ this.api.getMedicos().subscribe({
+      next:(resp:any)=>{
+        this.especialistas= resp;
+      }
+    })
   }
 }

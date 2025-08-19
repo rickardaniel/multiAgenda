@@ -1,10 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api-service';
 import { CommonModule } from '@angular/common';
+import { UtilService } from '../../../services/util-service';
+import { InputPhoneComponent } from "../../../shared/input-phone-component/input-phone-component";
 
 @Component({
   selector: 'app-clientes-component',
-  imports: [CommonModule],
+  imports: [CommonModule, InputPhoneComponent],
   templateUrl: './clientes-component.html',
   styleUrl: './clientes-component.scss',
 })
@@ -16,11 +18,14 @@ export default class ClientesComponent implements OnInit {
   // allCitas: any[] = []; // Todos los datos originales
   filteredClientes: any[] = []; // 👈 NUEVO: Datos filtrados
   currentServiceFilter: string = ''; // 👈 NUEVO: Filtro actual
+  modal: any;
 
   constructor(
     private api: ApiService,
+    private util: UtilService,
     private cdr: ChangeDetectorRef // Inyectar ChangeDetectorRef
   ) {}
+
   ngOnInit(): void {
     this.getClients();
     // this.getRandomColor('RC');
@@ -137,5 +142,18 @@ export default class ClientesComponent implements OnInit {
 
   getRandomColor(letter) {
     return this.api.getDualColorObject(letter);
+  }
+
+  crearEditarClientes(type, obj, name) {
+    if (type == 'create') {
+      this.modal = this.util.createModal(name);
+      this.modal.show();
+    } else {
+      // Lógica para editar
+    }
+  }
+
+  closeModal() {
+    this.modal.hide();
   }
 }

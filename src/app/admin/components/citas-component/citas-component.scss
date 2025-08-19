@@ -28,3 +28,41 @@
             color: #991b1b;
             border: 1px solid #fecaca;
         }
+
+        
+
+        .inline-calendar-wrapper {
+    //   display: inline-block;
+    //   padding: 10px;
+    //   margin: 10px;
+      border: transparent !important;
+      box-shadow: transparent 0px !important;
+    }
+    
+    /* Estilos personalizados para el calendario inline */
+:host ::ng-deep .flatpickr-calendar {
+  /* ... otros estilos ... */
+  box-shadow: none !important;        /* ← Sin sombra */
+  border: none !important;            /* ← Sin borde */
+  background: transparent !important; /* ← Fondo transparente */
+}
+    :host ::ng-deep .flatpickr-calendar.open {
+      display: block !important;
+    }
+
+    :host ::ng-deep .flatpickr-day.selected {
+      background: red !important;
+      border-color: #e43838 !important;
+      color: white !important;
+      font-weight: bold;
+    }
+
+    :host ::ng-deep .flatpickr-day.today {
+      border-color: #e43838;
+      color: #e43838;
+    }
+
+    :host ::ng-deep .flatpickr-day:hover {
+      background: #f3f4f6;
+      font-weight: bold;
+    }

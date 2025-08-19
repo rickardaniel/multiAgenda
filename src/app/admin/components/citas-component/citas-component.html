@@ -56,7 +56,7 @@
                     }
                 </div>
 
-                <button
+                <button (click)="crearEditarCita('create', '', '#modalCita')"
                     class=" cursor-pointer py-1.75  ml-2 px-5 text-sm font-medium text-white bg-red-600 rounded-full  hover:bg-red-600  transition transform effectoZoomBoton  ">
                     <div class="flex justify-center items-center">
                         <i class="ri-add-line"></i> Nueva Cita
@@ -235,6 +235,167 @@
         </div>
 
     </div>
-
-
 </div>
+
+
+
+
+
+<!-- Main modal -->
+<div id="modalCita" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow-sm ">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 rounded-t dark:border-gray-600 border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-600 ">
+                    Crear nueva cita
+                </h3>
+                <button type="button" (click)="closeModal()"
+                    class="absolute mt-1.5 top-3 end-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5">
+                <div class="grid gap-4 mb-4 grid-cols-1">
+                    <div>
+                        <span class=" text-xs font-medium text-gray-500">1. Información del cliente </span>
+                        <div class="flex justify-between mt-7">
+                            <div class="relative ">
+                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                    <span class="material-symbols-outlined text-gray-400 ">
+                                        search
+                                    </span>
+                                </div>
+                                <input type="text"
+                                    class="inputGeneral4 !rounded-full  !w-full !pl-10 !px-30 !py-2.25 !focus:shadow-lg "
+                                    placeholder="¿Qué estás buscando?" required>
+
+                            </div>
+                            <span
+                                class="px-1.5 border border-gray-300 text-red-600 rounded-full  flex justify-center items-center ">
+                                <div class="">
+                                    <span class="material-symbols-outlined text-[12px] ">
+                                        person
+                                    </span>
+                                </div>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <span class=" text-xs font-medium text-gray-500 ">2. Detalles del servicio </span>
+
+                        <div class="mt-7">
+                            <label class="labelGeneral3">Servicios *</label>
+                            <div class="relative">
+                                <select class="selectGeneral4 !text-gray-500">
+                                    <option selected disabled value="" class="!text-gray-400">Seleccione una
+                                        opción</option>
+                                         @for(s of servicios; track s){
+                                              <option value="">{{s.nombre}}</option>
+                                        }
+                                      
+
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                                    <i class="ri-expand-up-down-line text-red-600 "></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <label class="labelGeneral3">Especialistas *</label>
+                            <div class="relative">
+                                <select class="selectGeneral4 !text-gray-500">
+                                    <option selected disabled value="" class="!text-gray-400">Seleccione una
+                                        opción</option>
+
+                                        @for(e of especialistas; track e){
+                                              <option value="">{{e.nombre}}</option>
+                                        }
+
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                                    <i class="ri-expand-up-down-line text-red-600 "></i>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <hr class="h-2 text-gray-300  my-3">
+
+                    <div>
+                        <span class=" text-xs font-medium text-gray-500 ">3. Programación de la cita </span>
+
+                    </div>
+
+                    <div>
+
+                        <!-- Calendar Header -->
+                        <div class="!w-full h-[22rem] bg-white flex justify-center py-5">
+                            <div #calendarContainer2 class="inline-calendar-wrapper " style="font-size: 8px !important;"
+                                (change)="selectDay($event)">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-2" #Horarios>
+                        @if(flagClassOverflow){
+                        <label class="block text-xs font-medium text-gray-500 mb-3">
+                            Selecciona un horario disponible
+                        </label>
+                        <div class="grid grid-cols-3 gap-2">
+                            @for(h of horarios; track h.id){
+                            <div class="col-span-1">
+                                <button (click)="selectSchedule(h)" [class]="getButtonClasses(h.id)"
+                                    class="cursor-pointer w-full rounded-lg py-3.5 text-xs transition-all duration-200">
+                                    {{h.horaI}} - {{h.horaF}}
+                                </button>
+                            </div>
+                            }
+                        </div>
+                        }
+                    </div>
+
+                    <div class="flex justify-end space-x-2 pt-7 mb-2 ">
+                        <button (click)="closeModal()" type="button" class=" btnGrayGeneral effectoZoomBoton">
+                            <div class="flex justify-center items-center  ">
+                                <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
+                                Cancelar
+                            </div>
+                        </button>
+
+                        <button class="btnRedGeneral effectoZoomBoton">
+                            <div class="flex justify-center items-center  ">
+                                <i class="ri-save-2-fill mr-1 text-lg "></i>
+                                Guardar Cita
+
+                            </div>
+                        </button>
+                    </div>
+
+                    <div>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

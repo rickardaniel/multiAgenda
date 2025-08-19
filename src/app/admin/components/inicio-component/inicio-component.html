@@ -1,5 +1,5 @@
 <!-- Container principal con padding y altura completa -->
-<div class=" w-full  px-7 py-5">
+<div class=" w-full  2xl:px-7 xl:px-3 lg:px-3 md:px-3  px-2 py-5">
     <div class="">
         <div class="p-1">
             <div class="title">
@@ -13,14 +13,15 @@
         <div class="grid grid-cols-10 gap-3 mt-5 h-full">
 
             <!-- Columna izquierda - 2 columnas -->
-            <div class="col-span-2 ">
+            <div class=" 2xl:col-span-2 xl:col-span-3 lg:col-span-4 md:col-span-10 col-span-10 ">
 
-                <div class="grid grid-cols-1 space-y-4 h-full ">
+                <div
+                    class="grid 2xl:grid-cols-1 xl:grid-cols-1 lg:col-span-1 md:grid-cols-2 md:space-x-2 space-y-4 h-full ">
 
                     <div class="col-span-1  bg-white  rounded-xl shadow-md  ">
 
                         <h1 class="mx-5 mt-3.5 !mb-5 text-md  font-semibold text-gray-700 ">Calendario de citas</h1>
-                        <div class="flex justify-center !m-2 ">
+                        <div class="flex justify-center ">
                             <app-calendar (dateSelect)="detectDate($event)"></app-calendar>
                         </div>
 
@@ -94,16 +95,18 @@
             </div>
 
             <!-- Columna central - 6 columnas -->
-            <div class="col-span-6 ">
+            <div class="2xl:col-span-6  xl:col-span-5 lg:col-span-6 md:col-span-10 col-span-10">
                 <div class="card w-full bg-white h-full  rounded-lg  shadow-md ">
-                    <app-big-calendar-component (sendCitas)="getCitas($event)"
-                        [dateSelected]="dateSelected"></app-big-calendar-component>
+
+                <app-big-calendar-component (sendCitas)="getCitas($event)"
+                        [dateSelected]="dateSelected">
+                    </app-big-calendar-component>
                 </div>
 
             </div>
 
             <!-- Columna derecha - 2 columnas -->
-            <div class="col-span-2 ">
+            <div class="2xl:col-span-2 xl:col-span-3 lg:col-span-4 md:col-span-10 col-span-10">
                 <div class="grid grid-cols-1 h-full ">
                     <div class="card  rounded-lg shadow-lg bg-white ">
                         <h1 class="p-3 ml-2 text-red-500 font-medium text-md ">
