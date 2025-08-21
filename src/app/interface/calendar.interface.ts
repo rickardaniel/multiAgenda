@@ -30,6 +30,14 @@
 
 // calendar.interface.ts - Interfaces actualizadas
 
+export interface CalendarEspecialista {
+  event_date: string;
+  event_title: string;
+  event_theme: string;
+  especialistas:string[];
+  cant: number;
+}
+
 export interface CalendarEvent {
   event_date: string;
   event_title: string;

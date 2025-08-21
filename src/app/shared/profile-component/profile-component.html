@@ -1,0 +1,181 @@
+<div>
+    <div class="grid grid-cols-4">
+        <div class="col-span-1  rounded-lg p-5">
+
+
+            <div class="bg-gray-50  z-10  ">
+
+                <div class="max-w-md mx-auto bg-white shadow-sm">
+
+                    <!-- Header del perfil -->
+                    <div class="px-6 pt-8 pb-6 text-center bg-white">
+                        <!-- Avatar -->
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+                                alt="Marlon Bravo" class="w-full h-full object-cover">
+                        </div>
+
+                        <!-- Nombre -->
+                        <h2 class="text-lg font-semibold text-gray-900 mb-1">
+                            Marlon Bravo
+                        </h2>
+
+                        <!-- Email -->
+                        <p class="text-sm text-gray-500">
+                            Mbravoyahoo.com
+                        </p>
+                    </div>
+
+                    <!-- Menú de opciones -->
+                    <div class="px-4">
+
+                        <!-- Sección General -->
+                        <div class="mb-6">
+                            <h3 class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3 px-2">
+                                General
+                            </h3>
+
+                            <!-- Datos de usuario -->
+                            <div class="bg-white rounded-lg border border-gray-200 mb-2">
+                                <button
+                                    class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors rounded-lg">
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="material-symbols-outlined text-gray-600 text-lg">
+                                                person
+                                            </span>
+                                        </div>
+                                        <span class="text-sm font-medium text-gray-700">
+                                            Datos de usuario
+                                        </span>
+                                    </div>
+                                    <span class="material-symbols-outlined text-gray-400">
+                                        chevron_right
+                                    </span>
+                                </button>
+                            </div>
+
+                            <!-- Seguridad - Activa -->
+                            <div class="bg-red-50 rounded-lg border border-red-200 mb-2">
+                                <button
+                                    class="w-full flex items-center justify-between p-4 text-left hover:bg-red-100 transition-colors rounded-lg">
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="material-symbols-outlined text-red-600 text-lg">
+                                                security
+                                            </span>
+                                        </div>
+                                        <span class="text-sm font-medium text-red-700">
+                                            Seguridad
+                                        </span>
+                                    </div>
+                                    <span class="material-symbols-outlined text-red-500">
+                                        chevron_right
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sección Sobre la aplicación -->
+                        <div class="mb-6">
+                            <h3 class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3 px-2">
+                                Sobre la aplicación
+                            </h3>
+
+                            <!-- Políticas de Privacidad -->
+                            <div class="bg-white rounded-lg border border-gray-200 mb-2">
+                                <button
+                                    class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors rounded-lg">
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="material-symbols-outlined text-gray-600 text-lg">
+                                                policy
+                                            </span>
+                                        </div>
+                                        <span class="text-sm font-medium text-gray-700">
+                                            Políticas de Privacidad
+                                        </span>
+                                    </div>
+                                    <span class="material-symbols-outlined text-gray-400">
+                                        chevron_right
+                                    </span>
+                                </button>
+                            </div>
+
+                            <!-- Preguntas Frecuentes -->
+                            <div class="bg-white rounded-lg border border-gray-200 mb-2">
+                                <button
+                                    class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors rounded-lg">
+                                    <div class="flex items-center">
+                                        <div
+                                            class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                                            <span class="material-symbols-outlined text-gray-600 text-lg">
+                                                help
+                                            </span>
+                                        </div>
+                                        <span class="text-sm font-medium text-gray-700">
+                                            Preguntas Frecuentes
+                                        </span>
+                                    </div>
+                                    <span class="material-symbols-outlined text-gray-400">
+                                        chevron_right
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <script>
+                    // Funcionalidad para manejar clicks en las opciones del menú
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const menuItems = document.querySelectorAll('button');
+
+                        menuItems.forEach(button => {
+                            button.addEventListener('click', function () {
+                                const optionText = this.querySelector('span:nth-child(2)').textContent;
+                                console.log('Opción seleccionada:', optionText);
+
+                                // Aquí puedes agregar la lógica de navegación
+                                // Por ejemplo, usando router de Angular o cambio de URL
+                                handleNavigation(optionText);
+                            });
+                        });
+                    });
+
+                    function handleNavigation(option) {
+                        switch (option) {
+                            case 'Datos de usuario':
+                                // Navegar a página de datos de usuario
+                                console.log('Navegando a datos de usuario...');
+                                break;
+                            case 'Seguridad':
+                                // Navegar a página de seguridad
+                                console.log('Navegando a seguridad...');
+                                break;
+                            case 'Políticas de Privacidad':
+                                // Navegar a políticas
+                                console.log('Navegando a políticas...');
+                                break;
+                            case 'Preguntas Frecuentes':
+                                // Navegar a FAQ
+                                console.log('Navegando a FAQ...');
+                                break;
+                            default:
+                                console.log('Opción no reconocida');
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+        <div class="col-span-1">
+
+        </div>
+
+    </div>
+
+</div>

@@ -11,7 +11,7 @@
     </div>
 
     <div class="flex justify-between ">
-        
+
         <div class="flex justify-start gap-2">
             <div class="relative">
                 <div class="absolute inset-y-0 left-0  flex items-center px-3 pointer-events-none">
@@ -52,8 +52,9 @@
 
         </div>
 
-        <div class="flex justify-start gap-5"> 
-            <div class="flex items-center px-3 py-1 hover:bg-white hover:px-3 hover:py-1 hover:rounded-full font-medium cursor-pointer hover:shadow-md">
+        <div class="flex justify-start gap-5">
+            <div
+                class="flex items-center px-3 py-1 hover:bg-white hover:px-3 hover:py-1 hover:rounded-full font-medium cursor-pointer hover:shadow-md">
                 <span class="material-symbols-outlined text-gray-500 !text-[20px] ">
                     category
                 </span>
@@ -61,11 +62,12 @@
                     Conf. Servicio
                 </span>
             </div>
-            <div class="flex items-center px-3 py-1 hover:bg-white hover:px-3 hover:py-1 hover:rounded-full font-medium cursor-pointer hover:shadow-md" >
+            <div
+                class="flex items-center px-3 py-1 hover:bg-white hover:px-3 hover:py-1 hover:rounded-full font-medium cursor-pointer hover:shadow-md">
                 <span class="material-symbols-outlined text-gray-500 !text-[20px] ">
                     group
                 </span>
-                <span class="text-sm text-gray-500 ml-1" >
+                <span class="text-sm text-gray-500 ml-1">
                     Conf. Empleados
                 </span>
             </div>
@@ -73,8 +75,144 @@
         </div>
     </div>
 
-    <div class="w-full h-full bg-white  mt-5 rounded-lg shadow-sm  p-3" >
-        <app-calendario-config-component></app-calendario-config-component>
+    <div class="w-full h-full ">
+        <div class="grid grid-cols-4 space-x-2 ">
+
+            <div class="col-span-3 bg-white  mt-5 rounded-lg shadow-sm  p-3">
+                <app-calendario-config-component (sendHorarios)="getHorarios($event)"></app-calendario-config-component>
+            </div>
+            <div class="col-span-1 bg-white  mt-5 rounded-lg shadow-sm  p-3">
+                <div class="h-full">
+                    @if(!flagHorarios){
+                    <div class="flex justify-center items-center ">
+                        <img class="pt-[50%]" src="assets/img/chore_list.svg" alt="">
+                    </div>
+                    }@else{
+
+                    <div>
+                        <span class="p-2 text-red-600 text-sm font-medium ">
+                            Martes, 01 de Agosto
+                        </span>
+                    </div>
+                    <hr class=" border-gray-300 w-full w-100 mt-4">
+
+                    <div class="p-2">
+                        <div class="flex justify-start items-center ">
+                            <div class="w-6 h-6 shadow-sm rounded-full flex items-center justify-center "
+                                [ngStyle]="{'border':'1px solid '+getRandomColor('RC').border }"
+                                [style.background-color]="getRandomColor('RC').backgroundColor"
+                                [style.color]="getRandomColor('RC').color">
+                                <span class=" font-bold text-[11px]  bg-clip-text ">RC</span>
+                            </div>
+                            <span class="ml-1 text-sm font-medium text-gray-700 ">
+                                Richard Chimbo
+                            </span>
+                        </div>
+
+                        <div class="w-full max-w-sm mt-2">
+
+                            @for(servicio of servicios; track servicio.titulo) {
+                            <div class="bg-white border-b border-gray-100">
+
+                                <!-- Header del servicio -->
+                                <div class="flex items-center justify-between rounded-lg mb-2 py-2 px-4 cursor-pointer bg-gray-100 hover:bg-gray-50 transition-colors"
+                                    (click)="toggleServicio(servicio.titulo)">
+
+                                    <span class="text-gray-700 text-xs font-normal">
+                                        {{ servicio.titulo }}
+                                    </span>
+
+                                    <!-- Flecha -->
+                                    <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200"
+                                        [class.rotate-90]="isExpanded(servicio.titulo)" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <!-- Contenido expandible -->
+                                @if(isExpanded(servicio.titulo)) {
+                                <div class="py-2 mb-2 px-4  bg-gray-100 animate-in slide-in-from-top duration-200">
+
+                                    <!-- Grid de horarios en 2 columnas -->
+                                    <div class="grid grid-cols-2 gap-x-8 gap-y-1 ">
+                                        @for(horario of servicio.horarios; track horario.inicio) {
+                                        <div
+                                            class=" flex justify-center my-0 rounded-lg  text-xs bg-white text-gray-600 py-1.25">
+                                            {{ horario.inicio }} - {{ horario.fin }}
+                                        </div>
+                                        }
+                                    </div>
+
+                                </div>
+                                }
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="flex justify-start items-center ">
+                            <div class="w-6 h-6 shadow-sm rounded-full flex items-center justify-center "
+                                [ngStyle]="{'border':'1px solid '+getRandomColor('PM').border }"
+                                [style.background-color]="getRandomColor('PM').backgroundColor"
+                                [style.color]="getRandomColor('PM').color">
+                                <span class=" font-bold text-[11px]  bg-clip-text ">PM</span>
+                            </div>
+                            <span class="ml-1 text-sm font-medium text-gray-700 ">
+                                Paola Morocho
+                            </span>
+                        </div>
+
+                        <div class="w-full max-w-sm mt-2">
+
+                            @for(servicio of servicios; track servicio.titulo) {
+                            <div class="bg-white border-b border-gray-100">
+
+                                <!-- Header del servicio -->
+                                <div class="flex items-center justify-between rounded-lg mb-2 py-2 px-4 cursor-pointer bg-gray-100 hover:bg-gray-50 transition-colors"
+                                    (click)="toggleServicio(servicio.titulo)">
+
+                                    <span class="text-gray-700 text-xs font-normal">
+                                        {{ servicio.titulo }}
+                                    </span>
+
+                                    <!-- Flecha -->
+                                    <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-200"
+                                        [class.rotate-90]="isExpanded(servicio.titulo)" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7">
+                                        </path>
+                                    </svg>
+                                </div>
+
+                                <!-- Contenido expandible -->
+                                @if(isExpanded(servicio.titulo)) {
+                                <div class="py-2 mb-2 px-4  bg-gray-100 animate-in slide-in-from-top duration-200">
+
+                                    <!-- Grid de horarios en 2 columnas -->
+                                    <div class="grid grid-cols-2 gap-x-8 gap-y-1 ">
+                                        @for(horario of servicio.horarios; track horario.inicio) {
+                                        <div
+                                            class=" flex justify-center my-0 rounded-lg  text-xs bg-white text-gray-600 py-1.25">
+                                            {{ horario.inicio }} - {{ horario.fin }}
+                                        </div>
+                                        }
+                                    </div>
+
+                                </div>
+                                }
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+
+            </div>
+        </div>
     </div>
 
 </div>

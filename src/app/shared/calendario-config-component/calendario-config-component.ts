@@ -9,6 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import {
+  CalendarEspecialista,
   CalendarEvent,
   DAYS,
   EventTheme,
@@ -33,13 +34,13 @@ interface CalendarDay {
 
 @Component({
   selector: 'app-calendario-config-component',
- imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './calendario-config-component.html',
-  styleUrl: './calendario-config-component.scss'
+  styleUrl: './calendario-config-component.scss',
 })
-export class CalendarioConfigComponent  implements OnChanges {
+export class CalendarioConfigComponent implements OnChanges {
   @Input('dateSelected') dateSelected: any;
-    @Output() sendCitas = new EventEmitter<any>();
+  @Output() sendHorarios = new EventEmitter<any>();
 
   // Signals para el estado
   month = signal<number>(new Date().getMonth());
@@ -48,39 +49,48 @@ export class CalendarioConfigComponent  implements OnChanges {
   selectedDate = signal<string>('');
   selectedCalendarDate = signal<Date | null>(null); // Nueva signal para el día seleccionado
 
-events = signal<CalendarEvent[]>([
+  events = signal<CalendarEspecialista[]>([
     {
       event_date: new Date(2025, 7, 1).toDateString(), // Agosto 2025
       event_title: 'Consulta médica',
       event_theme: 'blue',
-       cant:3
+      cant: 3,
+      especialistas: ['RC', 'PM', 'DA'],
     },
     {
       event_date: new Date(2025, 7, 2).toDateString(),
       event_title: 'Cita odontólogo',
       event_theme: 'green',
-       cant:5
+      cant: 5,
+      especialistas: ['RC', 'PM', 'DA'],
     },
     {
-      event_date: new Date(2025, 6, 2).toDateString(),
+      event_date: new Date(2025, 7, 3).toDateString(),
       event_title: 'Revisión anual',
       event_theme: 'red',
-       cant:4
+      cant: 4,
+      especialistas: ['RC', 'PM', 'DA'],
     },
     {
       event_date: new Date(2025, 7, 5).toDateString(),
       event_title: 'Consulta especialista',
       event_theme: 'blue',
-       cant:1
+      cant: 1,
+      especialistas: ['RC', 'PM', 'DA'],
     },
     {
       event_date: new Date(2025, 7, 7).toDateString(),
       event_title: 'Cita programada',
       event_theme: 'purple',
-      cant:6
+      cant: 6,
+      especialistas: ['RC', 'PM', 'DA'],
     },
   ]);
 
+  uniqueEspecialistas = computed(() => {
+    const allEspecialistas = this.events().flatMap((e) => e.especialistas);
+    return [...new Set(allEspecialistas)];
+  });
 
   openEventModal = signal<boolean>(false);
 
@@ -90,14 +100,14 @@ events = signal<CalendarEvent[]>([
   calendarDays = computed(() => {
     const year = this.year();
     const month = this.month();
-    
-    console.log('month original:', this.month()); 
+
+    console.log('month original:', this.month());
     console.log('month ajustado:', month);
 
     // Primer día del mes
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
-    
+
     // Calcular inicio para semana que empieza en LUNES
     const startDate = new Date(firstDay);
     const dayOfWeek = firstDay.getDay();
@@ -124,7 +134,7 @@ events = signal<CalendarEvent[]>([
 
     return days;
   });
-  
+
   // Constantes
   WEEKDAYS = [
     'Lunes',
@@ -143,13 +153,9 @@ events = signal<CalendarEvent[]>([
   currentMonth = new Date().getMonth();
   currentDay = new Date().getDate();
 
-  constructor
-  (
-    private fb: FormBuilder,
-    private api: ApiService,
 
-  ) 
-  {
+
+  constructor(private fb: FormBuilder, private api: ApiService) {
     this.eventForm = this.fb.group({
       event_title: ['', Validators.required],
       event_date: [''],
@@ -174,15 +180,15 @@ events = signal<CalendarEvent[]>([
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('cambios', changes);
-    
+
     if (changes['dateSelected'] && changes['dateSelected'].currentValue) {
       const selectedDate = changes['dateSelected'].currentValue;
       console.log('cambio fecha', selectedDate);
       this.dateSelected = selectedDate;
-      
+
       // Navegar al mes/año de la fecha seleccionada
       this.navigateToDate(selectedDate);
-      
+
       console.log('PRUEBA', this.dateSelected);
     }
   }
@@ -192,7 +198,7 @@ events = signal<CalendarEvent[]>([
    */
   private navigateToDate(date: any): void {
     let targetDate: Date;
-    
+
     // Convertir la fecha a objeto Date según el tipo que recibamos
     if (date instanceof Date) {
       targetDate = date;
@@ -202,15 +208,15 @@ events = signal<CalendarEvent[]>([
       console.warn('Formato de fecha no reconocido:', date);
       return;
     }
-    
+
     // Verificar que la fecha sea válida
     if (isNaN(targetDate.getTime())) {
       console.warn('Fecha inválida:', date);
       return;
     }
-    
+
     console.log('Navegando a:', targetDate);
-    
+
     // Actualizar mes, año y fecha seleccionada
     this.month.set(targetDate.getMonth());
     this.year.set(targetDate.getFullYear());
@@ -223,7 +229,7 @@ events = signal<CalendarEvent[]>([
   isSelectedDay(day: CalendarDay): boolean {
     const selectedDate = this.selectedCalendarDate();
     if (!selectedDate) return false;
-    
+
     return selectedDate.toDateString() === day.fullDate.toDateString();
   }
 
@@ -262,7 +268,7 @@ events = signal<CalendarEvent[]>([
         'bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center';
     } else if (this.isSelectedDay(day)) {
       // Estilo para el día seleccionado desde el calendario pequeño
-      classes += 
+      classes +=
         'bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center border-2 border-blue-400';
     } else if (!day.isCurrentMonth) {
       classes += 'text-gray-400';
@@ -273,14 +279,15 @@ events = signal<CalendarEvent[]>([
     return classes;
   }
 
-   getAppointmentsCount(day: CalendarDay): number {
+  getAppointmentsCount(day: CalendarDay): number {
     return this.events()
-      .filter((event) => 
-        new Date(event.event_date).toDateString() === day.fullDate.toDateString()
+      .filter(
+        (event) =>
+          new Date(event.event_date).toDateString() ===
+          day.fullDate.toDateString()
       )
       .reduce((total, event) => total + (event.cant || 0), 0);
   }
-
 
   showEventModal(day: CalendarDay): void {
     const dateString = day.fullDate.toLocaleDateString('es-ES', {
@@ -311,13 +318,14 @@ events = signal<CalendarEvent[]>([
     });
   }
 
-    addEvent(): void {
+  addEvent(): void {
     if (this.eventForm.valid && this.selectedDate()) {
-      const newEvent: CalendarEvent = {
+      const newEvent: CalendarEspecialista = {
         event_date: this.selectedDate(),
         event_title: this.eventForm.value.event_title,
         event_theme: this.eventForm.value.event_theme,
-        cant:1
+        cant: 1,
+        especialistas: ['RC', 'PM', 'DA'],
       };
 
       this.events.update((events) => [...events, newEvent]);
@@ -325,28 +333,17 @@ events = signal<CalendarEvent[]>([
     }
   }
 
-
   // ------------------------------------------------------------
   //  VER ORDENES POR DIA
-  seeAllOrders( numOrder){
-    console.log('entra',numOrder);
-    
-    // this.flagSeeOrders=true;
-    this.api.getAgendamientos().subscribe({
-      next:(resp:any)=>{
-        console.log('agenda', resp);
-        let arr=[];
-        for (let i = 0; i < numOrder; i++) {
-           arr.push(resp[i]);
 
-        }
-        console.log('resultado', arr);
-        
-        this.sendCitas.emit(arr);
-        
-      }
-    })
 
+  getRandomColor(letter) {
+    return this.api.getDualColorObject(letter);
   }
 
+  seeSchedule(pos){
+    console.log('pos', pos);
+    this.sendHorarios.emit(true);
+    
+  }
 }

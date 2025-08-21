@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { FlowbiteService } from '../../services/flowbite-service';
@@ -16,6 +16,8 @@ export default class AdminComponent {
   isReportesSection = false;
   isConfigSection = false;
   namePlace: any;
+      isDropdownOpen: boolean = true // Estado inicial del dropdown
+
   constructor(
     private flowbiteService: FlowbiteService,
     private router: Router
@@ -29,6 +31,8 @@ export default class AdminComponent {
   }
 
   ngOnInit(): void {
+            this.toggleDropdown()
+
     this.flowbiteService.loadFlowbite((flowbite) => {
       initFlowbite();
     });
@@ -52,4 +56,25 @@ export default class AdminComponent {
     console.log('res ==> ', this.isReportesSection);
     console.log('res ==> ', this.namePlace);
   }
+
+     // Cerrar el dropdown cuando se hace clic fuera de él
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    const dropdownButton = document.getElementById('dropdown-button')
+    const dropdownMenu = document.getElementById('dropdown-menu')
+
+    if (dropdownButton && dropdownMenu && !dropdownButton.contains(event.target as Node) && !dropdownMenu.contains(event.target as Node)) {
+      this.isDropdownOpen = false
+    }
+  }
+
+
+    toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen
+  }
+
+  redirectTo(){
+    this.router.navigateByUrl('/administrador/cuenta')
+  }
+
 }

@@ -232,9 +232,9 @@
             @if(isReportesSection){
             <a
                 class=" flex justify-start items-center  w-[13.10%] text-red-600 font-semibold text-lg h-full border-e-1 border-gray-200 ">
-               <span class="pl-5" >
-                {{namePlace}}
-               </span> 
+                <span class="pl-5">
+                    {{namePlace}}
+                </span>
 
             </a>
             <div class="flex items-center  !mr-[1.75rem] ">
@@ -244,19 +244,13 @@
                 </h1>
             </div>
             }@else if(isConfigSection){
-                            <a
+            <a
                 class=" flex justify-start items-center w-[13.10%] text-red-600 font-semibold text-lg h-full border-e-1 border-gray-200 ">
-               <span class="pl-5" >
-                {{namePlace}}
-               </span> 
+                <span class="pl-5">
+                    {{namePlace}}
+                </span>
 
             </a>
-            <!-- <div class="flex items-center    w-48.5 border-e-1 h-full  border-gray-200 ">
-
-                <h1 class="text-red-600 font-semibold text-lg ">
-                    {{namePlace}}
-                </h1>
-            </div> -->
             <div class="flex items-center  !mr-[1.75rem] ">
 
                 <h1 class="text-red-600 font-semibold text-xl ">
@@ -307,9 +301,8 @@
                 </a>
 
                 <!-- Icono de Apps/Grid -->
-                <a
+                <!-- <a
                     class="group max-w-max relative mx-1 flex flex-col items-center justify-center rounded-full  p-1 text-gray-500 hover:bg-gray-200 hover:text-gray-600 relative cursor-pointer hover:bg-gray-100 p-2 rounded-full transition-colors">
-                    <!-- Text/Icon goes here -->
                     <p class="text-xs text-center">
                         <svg class="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -324,7 +317,7 @@
                                 </div>
                             </div>
                         </div>
-                </a>
+                </a> -->
 
                 <!-- Call Suport -->
                 <a
@@ -374,14 +367,47 @@
 
                     <!-- Foto de perfil -->
                     <div class="relative">
-                        <div
-                            class="h-10 w-10 rounded-full cursor-pointer bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-white shadow-md flex items-center justify-center">
-                            <!-- Avatar placeholder -->
-                            <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                class="rounded-full shadow-lg " alt="">
-                        </div>
-                        <!-- Indicador en línea -->
-                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full">
+
+                        <div class="relative inline-block text-left place-self-end">
+                            <button id="dropdown-button" (click)="toggleDropdown()" class="inline-flex justify-center">
+                                <div
+                                    class="h-10 w-10 rounded-full cursor-pointer bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-white shadow-md flex items-center justify-center">
+                                    <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                        class="rounded-full shadow-lg " alt="">
+                                </div>
+
+                            </button>
+
+                            <div id="dropdown-menu" [class.hidden]="!isDropdownOpen"
+                                class="absolute right-0 z-50 w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg ">
+                                <div class="p-2 py-2" role="menu" aria-orientation="vertical"
+                                    aria-labelledby="dropdown-button">
+                                    <a 
+                                    (click)="redirectTo()"
+                                    class="flex block px-4 py-2 text-sm text-gray-700 rounded-md cursor-pointer hover:bg-gray-100 active:bg-blue-100"
+                                        role="menuitem">
+                                        <div class="flex justify-center items-center ">
+                                            <span class="material-symbols-outlined mr-1">
+                                                settings
+                                            </span>
+                                            Cuenta
+                                        </div>
+
+                                    </a>
+
+                                    <a class="flex block px-4 py-2 text-sm text-gray-700 rounded-md cursor-pointer hover:bg-gray-100 active:bg-blue-100"
+                                        role="menuitem">
+                                        <div class="flex justify-center items-center ">
+                                            <span class="material-symbols-outlined">
+                                                logout
+                                            </span>
+                                            Cerrar Sesión
+                                        </div>
+
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

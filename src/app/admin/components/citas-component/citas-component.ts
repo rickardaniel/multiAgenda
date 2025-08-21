@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  HostListener,
   Input,
   ViewChild,
 } from '@angular/core';
@@ -54,6 +55,8 @@ export default class CitasComponent implements AfterViewInit {
   servicios:any=[];
   especialistas:any=[];
 
+
+
   constructor(
     private api: ApiService,
     private util: UtilService,
@@ -65,7 +68,9 @@ export default class CitasComponent implements AfterViewInit {
     // this.initializeFlatpickr();
   }
 
+ 
   ngOnInit() {
+
     this.getCitas();
     this.getEspecialistas();
     this.getServicios();

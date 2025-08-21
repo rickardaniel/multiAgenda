@@ -2,11 +2,12 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api-service';
 import { CommonModule } from '@angular/common';
 import { UtilService } from '../../../services/util-service';
-import { InputPhoneComponent } from "../../../shared/input-phone-component/input-phone-component";
+import { InputPhoneComponent } from '../../../shared/input-phone-component/input-phone-component';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-clientes-component',
-  imports: [CommonModule, InputPhoneComponent],
+  imports: [CommonModule, InputPhoneComponent, ReactiveFormsModule],
   templateUrl: './clientes-component.html',
   styleUrl: './clientes-component.scss',
 })
@@ -19,6 +20,8 @@ export default class ClientesComponent implements OnInit {
   filteredClientes: any[] = []; // 👈 NUEVO: Datos filtrados
   currentServiceFilter: string = ''; // 👈 NUEVO: Filtro actual
   modal: any;
+  clienteSelected: any;
+  typeC: any;
 
   constructor(
     private api: ApiService,
@@ -144,16 +147,52 @@ export default class ClientesComponent implements OnInit {
     return this.api.getDualColorObject(letter);
   }
 
+  formCliente = new FormGroup({
+    nombres: new FormControl(''),
+    apellidos: new FormControl(''),
+    cedula: new FormControl(''),
+    telefono: new FormControl(''),
+    correo: new FormControl(''),
+    nacimiento: new FormControl(''),
+    estado: new FormControl(1),
+  });
+
   crearEditarClientes(type, obj, name) {
+    console.log('form', obj);
+    this.typeC = type;
     if (type == 'create') {
       this.modal = this.util.createModal(name);
       this.modal.show();
     } else {
+      this.clienteSelected = obj;
+      this.formCliente.setValue({
+        nombres: obj.nombre,
+        apellidos: obj.nombre,
+        cedula: obj.documento,
+        telefono: obj.telefono,
+        correo: obj.email,
+        nacimiento: obj.fechaRegistro,
+        estado: 1,
+      });
+
+      console.log('form', this.formCliente.value);
+
+      this.modal = this.util.createModal(name);
+      this.modal.show();
       // Lógica para editar
     }
   }
 
   closeModal() {
     this.modal.hide();
+  }
+  deleteModal(type, obj, name) {
+    this.clienteSelected = [];
+
+    if (type == 'cliente') {
+      this.clienteSelected = obj;
+      this.modal = this.util.createModal(name);
+      this.modal.show();
+    }
   }
 }

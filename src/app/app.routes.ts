@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login-component/login-component';
 import AgendaComponent from './login/agenda-component/agenda-component';
+import ProfileComponent from './shared/profile-component/profile-component';
 
 export const routes: Routes = [
   {
@@ -11,6 +12,10 @@ export const routes: Routes = [
     path: 'agendar',
     component: AgendaComponent,
   },
+  // {
+  //   path: 'cuenta',
+  //   component: ProfileComponent,
+  // },
   {
     path: 'administrador',
     loadComponent: () => import('./admin/admin-component/admin-component'),
@@ -33,6 +38,12 @@ export const routes: Routes = [
         loadComponent: () =>
           import('../app/admin/components/clientes-component/clientes-component'),
       },
+       {
+        path: 'cuenta',
+        title: 'Cuenta',
+        loadComponent: () =>
+          import('../app/shared/profile-component/profile-component'),
+        }, 
       {
         path: 'reportes',
         loadComponent: () =>
@@ -62,6 +73,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('../app/admin/components/adminReportes/citas-clientes-component/citas-clientes-component'),
         },
+        
         ]
       },
       {
@@ -93,6 +105,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('../app/admin/components/adminConfiguracion/disponibilidad-component/disponibilidad-component'),
         }, 
+          
         ]
       }
     ],

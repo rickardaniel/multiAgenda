@@ -129,12 +129,12 @@
                         <td class=" 2xl:px-2 px-5 py-0.5 flex justify-center items-center border-s-1 border-gray-200 ">
                             <div class="pt-2.5">
 
-                                <button data-tooltip="Editar"
+                                <button data-tooltip="Editar" (click)="crearEditarClientes('edit',c,'#modalCliente')"
                                     class=" tooltip-btn tooltip-top btn-effect cursor-pointer transition transform effectoZoomBoton  ">
                                     <i class=" ri-pencil-line  text-xl mr-2"></i>
                                 </button>
 
-                                <button data-tooltip="Eliminar"
+                                <button data-tooltip="Eliminar" (click)="deleteModal('cliente', c, '#modalEliminar')"
                                     class=" tooltip-btn tooltip-top btn-effect cursor-pointer transition transform effectoZoomBoton">
                                     <i class="  ri-delete-bin-6-line text-lg text-red-500 "></i>
                                 </button>
@@ -217,115 +217,179 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-4 md:p-5">
-                <div class="grid gap-4 mb-4 grid-cols-1">
 
-
-                    <div>
-
-
-                        <div class="mt-4">
-                            <label class="labelGeneral3">Nombres *</label>
-                            <div class="relative">
-                                <input class="selectGeneral4 !text-gray-500" placeholder="Nombres">
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <label class="labelGeneral3">Apellidos *</label>
-                            <div class="relative">
-                                <input class="selectGeneral4 !text-gray-500" placeholder="Apellidos">
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <label class="labelGeneral3">Cédula *</label>
-                            <div class="relative">
-                                <input class="selectGeneral4 !text-gray-500" placeholder="Apellidos">
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <div class="relative">
-                                <app-input-phone-component [tipo]="'Teléfono'"></app-input-phone-component>
-                            </div>
-                        </div>
-
-                        <div class="mt-4">
-                            <label for="servicio" class="pb-1 block text-xs font-medium text-gray-500 ">
-                                Correo electrónico *
-                            </label>
-                            <div class="relative">
-
-                                <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
-                                    <span class="material-symbols-outlined text-red-500  ml-1 !text-[20px]  pb-0.5">
-                                        mail
-                                    </span>
-                                </div>
-                                <input class="inputGeneral4 !pl-9 " placeholder="corre@prueba.com" type="text">
-
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <label for="servicio" class="pb-1 block text-xs font-medium text-gray-500 ">
-                                Fecha de Cumpleaños *
-                            </label>
-                            <div class="relative">
-
-                                <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
-                                    <span class="material-symbols-outlined text-red-500  ml-1 !text-[20px]  pb-0.5">
-                                        calendar_today
-                                    </span>
-                                </div>
-                                <input class="inputGeneral4 !pl-9 " placeholder="corre@prueba.com" type="date">
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg  border border-gray-300 px-5 py-4">
-                        <div class="flex justify-between items-center gap-4">
-                            <label class="text-xs font-medium text-gray-600">Estado:</label>
-
-                            <div class="flex items-center">
-                                <div class="flex items-center px-3 py-1.5 rounded-l-full  border border-gray-300">
-                                    <input name="estado1" type="radio" [value]="1" checked
-                                        class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
-                                    <label for="activo1" class="ml-2 text-xs text-gray-600">Activo</label>
-                                </div>
-
-                                <div class="flex items-center px-3 py-1.5 rounded-r-full  border border-gray-200">
-                                    <input name="estado1" type="radio" [value]="0" disabled
-                                        class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
-                                    <label for="inactivo1" class="ml-2 text-xs text-gray-600">Inactivo</label>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="mt-4" >
-
-                        <div class="flex justify-end space-x-2 pt-7 mb-2 ">
-                            <button (click)="closeModal()" type="button" class=" btnGrayGeneral effectoZoomBoton">
-                                <div class="flex justify-center items-center  ">
-                                    <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
-                                    Cancelar
-                                </div>
-                            </button>
-
-                            <button class="btnRedGeneral effectoZoomBoton">
-                                <div class="flex justify-center items-center  ">
-                                    <i class="ri-save-2-fill mr-1 text-lg "></i>
-                                    Crear Cliente
-
-                                </div>
-                            </button>
-                        </div>
+            <div class="px-4 md:p-5">
+                @if(formCliente ){
+                <form [formGroup]="formCliente">
+                    <div class="grid gap-4 mb-4 grid-cols-1">
 
                         <div>
+                            <div class="mt-4">
+                                <label class="labelGeneral3">Nombres *</label>
+                                <div class="relative">
+                                    <input formControlName="nombres" class="selectGeneral4 !text-gray-500"
+                                        placeholder="Ej. Luis">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="labelGeneral3">Apellidos *</label>
+                                <div class="relative">
+                                    <input formControlName="apellidos" class="selectGeneral4 !text-gray-500"
+                                        placeholder="Ej. Cordero">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="labelGeneral3">Cédula *</label>
+                                <div class="relative">
+                                    <input formControlName="cedula" class="selectGeneral4 !text-gray-500"
+                                        placeholder="1104XXXXXX">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="relative">
+                                    @if(typeC=='create'){
+                                    <app-input-phone-component [tipo]="'Teléfono'"
+                                        [phone]="''"></app-input-phone-component>
+                                    }@else{
+                                    <app-input-phone-component [tipo]="'Teléfono'"
+                                        [phone]="formCliente.controls['telefono'].value"></app-input-phone-component>
 
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <label for="servicio" class="pb-1 block text-xs font-medium text-gray-500 ">
+                                    Correo electrónico *
+                                </label>
+                                <div class="relative">
+
+                                    <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
+                                        <span class="material-symbols-outlined text-red-500  ml-1 !text-[20px]  pb-0.5">
+                                            mail
+                                        </span>
+                                    </div>
+                                    <input formControlName="correo" class="inputGeneral4 !pl-9 "
+                                        placeholder="corre@prueba.com" type="text">
+
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="servicio" class="pb-1 block text-xs font-medium text-gray-500 ">
+                                    Fecha de Cumpleaños *
+                                </label>
+                                <div class="relative">
+
+                                    <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
+                                        <span class="material-symbols-outlined text-red-500  ml-1 !text-[20px]  pb-0.5">
+                                            calendar_today
+                                        </span>
+                                    </div>
+                                    <input formControlName="nacimiento" class="inputGeneral4 !pl-9 "
+                                        placeholder="corre@prueba.com" type="date">
+
+                                </div>
+                            </div>
                         </div>
 
 
+                        <div>
+                            <div class="bg-white rounded-lg  border border-gray-300 px-5 py-4">
 
+                                <div class="flex justify-between items-center gap-4">
+                                    <label class="text-xs font-medium text-gray-600">Estado:</label>
+                                    @if(typeC=='create'){
+                                    <div class="flex items-center">
+                                        <div
+                                            class="flex items-center px-3 py-1.5 rounded-l-full  border border-gray-300">
+                                            <input name="estado1" type="radio" [value]="1" checked
+                                                class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                            <label for="activo1" class="ml-2 text-xs text-gray-600">Activo</label>
+                                        </div>
+
+                                        <div
+                                            class="flex items-center px-3 py-1.5 rounded-r-full  border border-gray-200">
+                                            <input name="estado1" type="radio" [value]="0" disabled
+                                                class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                            <label for="inactivo1" class="ml-2 text-xs text-gray-600">Inactivo</label>
+                                        </div>
+                                    </div>
+
+                                    }@else{
+                                    <div class="flex items-center">
+                                        <div
+                                            class="flex items-center px-3 py-1.5 rounded-l-full  border border-gray-300">
+                                            <input name="estado1" type="radio" [value]="1" checked
+                                                class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                            <label for="activo1" class="ml-2 text-xs text-gray-600">Activo</label>
+                                        </div>
+
+                                        <div
+                                            class="flex items-center px-3 py-1.5 rounded-r-full  border border-gray-200">
+                                            <input name="estado1" type="radio" [value]="0"
+                                                class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                            <label for="inactivo1" class="ml-2 text-xs text-gray-600">Inactivo</label>
+                                        </div>
+                                    </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+
+                            <div class="flex justify-end space-x-2 pt-7 mb-2 ">
+                                <button (click)="closeModal()" type="button" class=" btnGrayGeneral effectoZoomBoton">
+                                    <div class="flex justify-center items-center  ">
+                                        <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
+                                        Cancelar
+                                    </div>
+                                </button>
+
+                                <button class="btnRedGeneral effectoZoomBoton">
+                                    <div class="flex justify-center items-center  ">
+                                        <i class="ri-save-2-fill mr-1 text-lg "></i>
+                                        Crear Cliente
+
+                                    </div>
+                                </button>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                }
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+    <!-- Modal Eliminar Cliente -->
+    <div id="modalEliminar" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow-sm ">
+                <div class="p-4 md:p-5 text-center">
+                    <span class="material-symbols-rounded !text-8xl text-gray-200">
+                        delete_forever
+                    </span>
+                    <h3 class="mb-5 text-md font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de eliminar
+                        <strong>
+                            {{clienteSelected?.nombre}}</strong>?
+                    </h3>
+                    <div class="flex justify-center py-3">
+                        <button (click)="closeModal()"
+                            class="btnGrayGeneral effectoZoomBoton  mr-2 flex items-center "><i
+                                class="ri-close-circle-line  text-xl mr-1 "></i> No,
+                            cancelar</button>
+                        <button (click)="closeModal()" class="btnRedGeneral effectoZoomBoton flex items-center  ">
+                            <i class="ri-check-line text-xl mr-1"></i> Si, eliminar
+                        </button>
                     </div>
 
 
