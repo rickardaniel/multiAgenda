@@ -89,7 +89,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'red',
       event_time: '7:00',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
     {
       event_date: new Date(2025, 7, 8).toDateString(), // Viernes
@@ -97,7 +97,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'blue',
       event_time: '7:00',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
     {
       event_date: new Date(2025, 7, 9).toDateString(), // Sábado
@@ -105,7 +105,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'red',
       event_time: '7:00',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
     {
       event_date: new Date(2025, 7, 10).toDateString(), // Domingo
@@ -113,7 +113,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'green',
       event_time: '7:00',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
     {
       event_date: new Date(2025, 7, 11).toDateString(), // Lunes
@@ -121,7 +121,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'yellow',
       event_time: '7:00',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
     {
       event_date: new Date(2025, 7, 7).toDateString(),
@@ -129,7 +129,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'green',
       event_time: '7:30',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
     {
       event_date: new Date(2025, 7, 8).toDateString(),
@@ -137,7 +137,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'purple',
       event_time: '7:30',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
     {
       event_date: new Date(2025, 7, 10).toDateString(),
@@ -145,7 +145,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'purple',
       event_time: '7:30',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
     {
       event_date: new Date(2025, 7, 11).toDateString(),
@@ -153,7 +153,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'blue',
       event_time: '7:30',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
     // Agregar más eventos de ejemplo...
     {
@@ -162,7 +162,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'red',
       event_time: '8:30',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
     {
       event_date: new Date(2025, 7, 9).toDateString(),
@@ -170,7 +170,7 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'green',
       event_time: '8:30',
       duration: 30,
-      cant: 1
+      cant: 1,
     },
   ]);
 
@@ -183,19 +183,19 @@ export class BigCalendarComponent implements OnChanges {
   weekDays = computed(() => {
     const startDate = new Date(this.currentWeekStart());
     const days: WeekDay[] = [];
-    
+
     for (let i = 0; i < 7; i++) {
       const currentDate = new Date(startDate);
       currentDate.setDate(startDate.getDate() + i);
-      
+
       days.push({
         date: currentDate.getDate(),
         day: this.WEEKDAYS[i],
         fullDate: new Date(currentDate),
-        isToday: this.isToday(currentDate)
+        isToday: this.isToday(currentDate),
       });
     }
-    
+
     return days;
   });
 
@@ -204,32 +204,32 @@ export class BigCalendarComponent implements OnChanges {
     const days = this.weekDays();
     const start = days[0]?.fullDate;
     const end = days[6]?.fullDate;
-    
+
     if (!start || !end) return '';
-    
-    const startFormatted = start.toLocaleDateString('es-ES', { 
-      day: 'numeric', 
-      month: 'long' 
-    });
-    const endFormatted = end.toLocaleDateString('es-ES', { 
-      day: 'numeric', 
+
+    const startFormatted = start.toLocaleDateString('es-ES', {
+      day: 'numeric',
       month: 'long',
-      year: 'numeric'
     });
-    
+    const endFormatted = end.toLocaleDateString('es-ES', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+
     return `${startFormatted} - ${endFormatted}`;
   });
 
   calendarDays = computed(() => {
     const year = this.year();
     const month = this.month();
-    
-    console.log('month original:', this.month()); 
+
+    console.log('month original:', this.month());
     console.log('month ajustado:', month);
 
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
-    
+
     const startDate = new Date(firstDay);
     const dayOfWeek = firstDay.getDay();
     const daysToSubtract = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
@@ -254,7 +254,7 @@ export class BigCalendarComponent implements OnChanges {
 
     return days;
   });
-  
+
   // Constantes
   WEEKDAYS = [
     'Lunes',
@@ -272,11 +272,9 @@ export class BigCalendarComponent implements OnChanges {
   currentYear = new Date().getFullYear();
   currentMonth = new Date().getMonth();
   currentDay = new Date().getDate();
+  isDropdownOpen: boolean = true; // Estado inicial del dropdown
 
-  constructor(
-    private fb: FormBuilder,
-    private api: ApiService,
-  ) {
+  constructor(private fb: FormBuilder, private api: ApiService) {
     this.eventForm = this.fb.group({
       event_title: ['', Validators.required],
       event_date: [''],
@@ -289,6 +287,7 @@ export class BigCalendarComponent implements OnChanges {
   }
 
   ngOnInit() {
+    this.toggleDropdown();
     console.log('dateSelected', this.dateSelected);
     if (this.dateSelected) {
       this.navigateToDate(this.dateSelected);
@@ -300,7 +299,7 @@ export class BigCalendarComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('cambios', changes);
-    
+
     if (changes['dateSelected'] && changes['dateSelected'].currentValue) {
       const selectedDate = changes['dateSelected'].currentValue;
       console.log('cambio fecha', selectedDate);
@@ -331,8 +330,11 @@ export class BigCalendarComponent implements OnChanges {
   }
 
   // Obtener eventos para una fecha y hora específica
-  getEventsForTimeSlot(date: Date, timeSlot: TimeSlot): CalendarEventWithTime[] {
-    return this.events().filter(event => {
+  getEventsForTimeSlot(
+    date: Date,
+    timeSlot: TimeSlot
+  ): CalendarEventWithTime[] {
+    return this.events().filter((event) => {
       const eventDate = new Date(event.event_date);
       const sameDate = eventDate.toDateString() === date.toDateString();
       const sameTime = event.event_time === timeSlot.time;
@@ -343,12 +345,12 @@ export class BigCalendarComponent implements OnChanges {
   // Obtener clase CSS para el tema del evento
   getEventThemeClass(theme: string): string {
     const themeClasses = {
-      'red': 'bg-red-100 border-l-4 border-red-500 text-red-800',
-      'blue': 'bg-blue-100 border-l-4 border-blue-500 text-blue-800',
-      'green': 'bg-green-100 border-l-4 border-green-500 text-green-800',
-      'yellow': 'bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800',
-      'purple': 'bg-purple-100 border-l-4 border-purple-500 text-purple-800',
-      'cyan': 'bg-cyan-100 border-l-4 border-cyan-500 text-cyan-800',
+      red: 'bg-red-100 border-l-4 border-red-500 text-red-800',
+      blue: 'bg-blue-100 border-l-4 border-blue-500 text-blue-800',
+      green: 'bg-green-100 border-l-4 border-green-500 text-green-800',
+      yellow: 'bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800',
+      purple: 'bg-purple-100 border-l-4 border-purple-500 text-purple-800',
+      cyan: 'bg-cyan-100 border-l-4 border-cyan-500 text-cyan-800',
     };
     return themeClasses[theme] || themeClasses['blue'];
   }
@@ -356,7 +358,7 @@ export class BigCalendarComponent implements OnChanges {
   // Métodos existentes actualizados
   private navigateToDate(date: any): void {
     let targetDate: Date;
-    
+
     if (date instanceof Date) {
       targetDate = date;
     } else if (typeof date === 'string') {
@@ -365,18 +367,18 @@ export class BigCalendarComponent implements OnChanges {
       console.warn('Formato de fecha no reconocido:', date);
       return;
     }
-    
+
     if (isNaN(targetDate.getTime())) {
       console.warn('Fecha inválida:', date);
       return;
     }
-    
+
     console.log('Navegando a:', targetDate);
-    
+
     this.month.set(targetDate.getMonth());
     this.year.set(targetDate.getFullYear());
     this.selectedCalendarDate.set(targetDate);
-    
+
     // También actualizar la semana si está en vista de semana
     if (this.viewMode() === 'week') {
       this.currentWeekStart.set(this.getWeekStart(targetDate));
@@ -386,7 +388,7 @@ export class BigCalendarComponent implements OnChanges {
   isSelectedDay(day: CalendarDay): boolean {
     const selectedDate = this.selectedCalendarDate();
     if (!selectedDate) return false;
-    
+
     return selectedDate.toDateString() === day.fullDate.toDateString();
   }
 
@@ -418,7 +420,7 @@ export class BigCalendarComponent implements OnChanges {
 
   setView(view: 'week' | 'month'): void {
     this.viewMode.set(view);
-    
+
     // Si cambia a vista de semana, inicializar la semana actual
     if (view === 'week') {
       const currentDate = this.selectedCalendarDate() || new Date();
@@ -438,7 +440,7 @@ export class BigCalendarComponent implements OnChanges {
       classes +=
         'bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center';
     } else if (this.isSelectedDay(day)) {
-      classes += 
+      classes +=
         'bg-blue-100 text-blue-700 w-6 h-6 rounded-full flex items-center justify-center border-2 border-blue-400';
     } else if (!day.isCurrentMonth) {
       classes += 'text-gray-400';
@@ -451,8 +453,10 @@ export class BigCalendarComponent implements OnChanges {
 
   getAppointmentsCount(day: CalendarDay): number {
     return this.events()
-      .filter((event) => 
-        new Date(event.event_date).toDateString() === day.fullDate.toDateString()
+      .filter(
+        (event) =>
+          new Date(event.event_date).toDateString() ===
+          day.fullDate.toDateString()
       )
       .reduce((total, event) => total + (event.cant || 0), 0);
   }
@@ -496,7 +500,7 @@ export class BigCalendarComponent implements OnChanges {
         event_theme: this.eventForm.value.event_theme,
         event_time: this.eventForm.value.event_time,
         duration: 30,
-        cant: 1
+        cant: 1,
       };
 
       this.events.update((events) => [...events, newEvent]);
@@ -506,7 +510,7 @@ export class BigCalendarComponent implements OnChanges {
 
   seeAllOrders(numOrder: number) {
     console.log('entra', numOrder);
-    
+
     this.api.getAgendamientos().subscribe({
       next: (resp: any) => {
         console.log('agenda', resp);
@@ -516,7 +520,11 @@ export class BigCalendarComponent implements OnChanges {
         }
         console.log('resultado', arr);
         this.sendCitas.emit(arr);
-      }
+      },
     });
+  }
+
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 }

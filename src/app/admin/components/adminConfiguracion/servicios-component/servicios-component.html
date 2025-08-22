@@ -73,7 +73,8 @@
 
     <div class="h-full bg-white mt-5 rounded-lg ">
         <div class=" w-full p-5 ">
-            <div class="relative overflow-x-auto  sm:rounded-lg">
+
+            <!-- <div class="relative overflow-x-auto  sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 bg-white">
                     <thead class="text-md text-gray-700 border-gray-200 border-b">
                         <tr>
@@ -150,7 +151,88 @@
                         }
                     </tbody>
                 </table>
+            </div> -->
+            <div class="grid 2xl:grid-cols-4 xl:grid-cols-3 ">
+                @for( e of servicios; track e ){
+                <div class="col-span-1 m-1.5">
+                    <div
+                        class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
+
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="material-symbols-outlined bg-red-50 text-red-600 px-2 py-1.5 !text-[23px] rounded-md ">
+                                    category
+                                </span>
+                                <div>
+                                    <h3 class="2xl:text-lg text-sm  font-semibold text-gray-600">{{e.nombre}}</h3>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="flex justify-between gap-2">
+                            <div class="flex justify-center space-x-4">
+                                <div class="flex items-center gap-1  text-gray-500">
+                                    <span class="material-symbols-outlined !text-[18px] ">
+                                        schedule
+                                    </span>
+                                    <span class="text-xs">{{e.duracion}}</span>
+                                </div>
+                                <div class="flex items-center gap-1 text-gray-500">
+                                    <span class="material-symbols-outlined !text-[18px]">
+                                        timer
+                                    </span>
+                                    <span class="text-xs">{{e.intervalo}}</span>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end ">
+                                <span
+                                    class="inline-flex items-center px-3.5 py-0.5 rounded-full text-xs font-medium bg-lime-50 text-green-500 mb-1">
+                                    Activo
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="flex justify-between mt-2 gap-2 ">
+                            <div class="flex  justify-start items-center gap-3">
+                                @for( prof of e.especialistas; track prof ){
+                                <div class="w-8 h-8 shadow-sm rounded-full flex items-center justify-center "
+                                    [ngStyle]="{'border':'1px solid '+getRandomColor((prof.profesional)).border }"
+                                    [style.background-color]="getRandomColor((prof.profesional)).backgroundColor"
+                                    [style.color]="getRandomColor((prof.profesional)).color">
+                                    <span class=" font-bold text-[12px]  bg-clip-text ">{{(prof.profesional)}}</span>
+                                </div>
+                                }
+
+                            </div>
+
+                            <div>
+                                <div class=" flex  ">
+
+                                    <button (click)="createEditServicio('edit', e, '#crearServicio')"
+                                        data-tooltip="Editar Servicio"
+                                        class=" tooltip-btn tooltip-top btn-effect cursor-pointer transition transform effectoZoomBoton  ">
+                                        <i class=" ri-pencil-line  text-xl text-gray-600 mr-2"></i>
+                                    </button>
+
+                                    <button (click)="deleteServicio('#modalEliminar', e)" data-tooltip="Eliminar"
+                                        class=" tooltip-btn tooltip-top btn-effect cursor-pointer transition transform effectoZoomBoton">
+                                        <i class="  ri-delete-bin-6-line text-lg text-red-500 "></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
             </div>
+
+
+
+
         </div>
     </div>
 </div>
@@ -347,31 +429,30 @@
     </div>
 </div>
 
-    <!-- Modal Eliminar Cargo -->
-    <div id="modalEliminar" tabindex="-1"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
-            <div class="relative bg-white rounded-lg shadow-sm ">
-                <div class="p-4 md:p-5 text-center">
-                    <span class="material-symbols-rounded !text-8xl text-gray-200">
-                        delete_forever
-                    </span>
-                    <h3 class="mb-5 text-md font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de eliminar
-                        <strong>
-                            {{servicioSelected.nombre}} </strong>?
-                    </h3>
-                    <div class="flex justify-center py-3">
-                        <button (click)="closeModal()"
-                            class="btnGrayGeneral effectoZoomBoton  mr-2 flex items-center "><i
-                                class="ri-close-circle-line  text-xl mr-1 "></i> No,
-                            cancelar</button>
-                        <button (click)="closeModal()" class="btnRedGeneral effectoZoomBoton flex items-center  ">
-                            <i class="ri-check-line text-xl mr-1"></i> Si, eliminar
-                        </button>
-                    </div>
-
-
+<!-- Modal Eliminar Cargo -->
+<div id="modalEliminar" tabindex="-1"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow-sm ">
+            <div class="p-4 md:p-5 text-center">
+                <span class="material-symbols-rounded !text-8xl text-gray-200">
+                    delete_forever
+                </span>
+                <h3 class="mb-5 text-md font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de eliminar
+                    <strong>
+                        {{servicioSelected.nombre}} </strong>?
+                </h3>
+                <div class="flex justify-center py-3">
+                    <button (click)="closeModal()" class="btnGrayGeneral effectoZoomBoton  mr-2 flex items-center "><i
+                            class="ri-close-circle-line  text-xl mr-1 "></i> No,
+                        cancelar</button>
+                    <button (click)="closeModal()" class="btnRedGeneral effectoZoomBoton flex items-center  ">
+                        <i class="ri-check-line text-xl mr-1"></i> Si, eliminar
+                    </button>
                 </div>
+
+
             </div>
         </div>
     </div>
+</div>

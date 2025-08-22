@@ -9,15 +9,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { HorarioAtencionComponent } from "../../../../shared/configurationFolder/horario-atencion-component/horario-atencion-component";
+import { HorarioAtencionComponent } from '../../../../shared/configurationFolder/horario-atencion-component/horario-atencion-component';
 import { InformacionAdicionalComponent } from '../../../../shared/configurationFolder/informacion-adicional-component/informacion-adicional-component';
 import { PlanesComponent } from '../../../../shared/configurationFolder/planes-component/planes-component';
 
 @Component({
   selector: 'app-negocio-component',
-  imports: [CommonModule, InputPhoneComponent, ReactiveFormsModule, 
-    HorarioAtencionComponent, InformacionAdicionalComponent,
-    PlanesComponent
+  imports: [
+    CommonModule,
+    InputPhoneComponent,
+    ReactiveFormsModule,
+    HorarioAtencionComponent,
+    InformacionAdicionalComponent,
+    PlanesComponent,
   ],
   templateUrl: './negocio-component.html',
   styleUrl: './negocio-component.scss',
@@ -38,6 +42,19 @@ export default class NegocioComponent {
     { id: 5, label: 'Planes', enabled: true },
   ];
   formDatosNegocio!: FormGroup;
+  // Files Img Bussiness
+  imgBusiness: any = [];
+  flagBusiness = false;
+  pathTempB: any;
+  accountSelect: any;
+  cuentas: any = [];
+  type: any;
+  flagAcountSelect = false;
+  accountDefault: any;
+  urlImgFB: any;
+  urlImgBD: any;
+  idU:any;
+
   constructor(private fb: FormBuilder) {
     this.formDatosNegocio = new FormGroup({
       correo: new FormControl(''),
@@ -49,7 +66,7 @@ export default class NegocioComponent {
       direccion: new FormControl(''),
       redSocial: this.fb.array([
         this.createSocialMediaGroup(1, 'https://facebook.com/mi-empresa'),
-      ])
+      ]),
     });
   }
 
@@ -57,7 +74,7 @@ export default class NegocioComponent {
     return this.formDatosNegocio.get('redSocial') as FormArray;
   }
 
-addSocialMedia(): void {
+  addSocialMedia(): void {
     this.redSocial.push(this.createSocialMediaGroup());
   }
 
@@ -151,18 +168,101 @@ addSocialMedia(): void {
       button.innerHTML = originalHTML;
     }, 2000);
   }
+
+  createSocialMediaGroup(tipo: number = 1, url: string = ''): FormGroup {
+    return this.fb.group({
+      tipo: [tipo], // ✅ Cada elemento tiene su tipo
+      url: [url],
+    });
+  }
+
+  selectSocialMedia(event: any, index: number): void {
+    const selectedValue = parseInt(event.target.value);
+    // ✅ Solo actualizar el elemento específico
+    this.redSocial.at(index).get('tipo')?.setValue(selectedValue);
+  }
+
+  seeInputComprobante(flag: boolean) {
+    // this.seeComprobante = flag;
+  }
+
+ setImgBussiness(event: any) {
+  if (event.target.files.length > 0) {
+    const file = event.target.files[0];
+    
+    // Validar el archivo
+    const validation = this.validateImageFile(file);
+    
+    if (!validation.isValid) {
+      // this.alert.alertDanger(validation.error!, '');
+      console.error('Error de validación:', validation.error);
+      this.resetImageValues(event.target);
+      return;
+    }
+
+    // Procesar archivo válido
+    this.imgBusiness = file;
+    this.pathTempB = URL.createObjectURL(this.imgBusiness);
+    this.flagBusiness = true;
+
+    // Generar las URLs
+    this.urlImgFB = `business/${this.idU}/suscripcion/${this.imgBusiness.name}`;
+    this.urlImgBD = `business%2F${this.idU}%2Fsuscripcion%2F${this.imgBusiness.name}`;
+    
+    console.log('Archivo procesado exitosamente:', {
+      name: this.imgBusiness.name,
+      size: `${(this.imgBusiness.size / (1024 * 1024)).toFixed(2)}MB`,
+      type: this.imgBusiness.type
+    });
+  }
+}
+
+// Función de utilidad para validar imágenes
+private validateImageFile(file: File): { isValid: boolean; error?: string } {
+  // Validación de tamaño - 5MB máximo
+  const maxSize = 5 * 1024 * 1024; // 5MB en bytes
+  if (file.size > maxSize) {
+    const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+        alert(`El archivo es demasiado grande (${sizeInMB}MB). El tamaño máximo permitido es 5MB.`)
+
+    return {
+      isValid: false,
+      error: `El archivo es demasiado grande (${sizeInMB}MB). El tamaño máximo permitido es 5MB.`
+    };
+  }
+
+  // Validación de tipos de archivo
+  const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+  const allowedExtensions = ['.jpg', '.jpeg', '.png'];
   
-createSocialMediaGroup(tipo: number = 1, url: string = ''): FormGroup {
-  return this.fb.group({
-    tipo: [tipo], // ✅ Cada elemento tiene su tipo
-    url: [url]
-  });
+  const isValidType = allowedTypes.includes(file.type);
+  const isValidExtension = allowedExtensions.some(ext => 
+    file.name.toLowerCase().endsWith(ext)
+  );
+
+  if (!isValidType && !isValidExtension) {
+    return {
+      isValid: false,
+      error: 'Solo se permiten archivos JPG, JPEG y PNG. Por favor, seleccione un formato válido.'
+    };
+  }
+
+  return { isValid: true };
 }
 
-selectSocialMedia(event: any, index: number): void {
-  const selectedValue = parseInt(event.target.value);
-  // ✅ Solo actualizar el elemento específico
-  this.redSocial.at(index).get('tipo')?.setValue(selectedValue);
+private resetImageValues(fileInput?: HTMLInputElement) {
+  this.imgBusiness = {};
+  this.flagBusiness = false;
+  this.pathTempB = '';
+  
+  if (fileInput) {
+    fileInput.value = '';
+  }
 }
 
+
+      deleteImg() {
+      this.imgBusiness = [];
+      this.flagBusiness = false;
+    }
 }

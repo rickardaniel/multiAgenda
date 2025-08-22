@@ -16,9 +16,10 @@
                                 search
                             </span>
                         </div>
-                        <input type="text"
-                            class="inputGeneral4 !rounded-full  !w-full !pl-10 !px-30 !py-2.25 !focus:shadow-lg "
-                            placeholder="¿Qué estás buscando?" required>
+                        <input type="search" (keyup)="searchTable($event)"
+                            
+                            class="inputGeneral4 !rounded-full  !w-[300px] !pl-10  !py-2.25 !focus:shadow-lg "
+                            placeholder="¿Qué estás buscando?">
                     </div>
 
                     @if(flagFilters){
@@ -84,7 +85,7 @@
                 </thead>
                 <tbody class="text-xs">
                     <!-- Fila 1 -->
-                    @for(c of clientes?.data; track c){
+                    @for(c of clientesN; track c){
                     <tr class="bg-white border-gray-200 border-b hover:bg-gray-50 transition-colors">
                         <td class="px-6 py-2 font-medium text-gray-900">
                             <div class="flex justify-start items-center">
@@ -204,9 +205,14 @@
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow-sm ">
             <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 rounded-t dark:border-gray-600 border-gray-200">
+            <div class="flex items-center justify-between px-4 md:p-5 rounded-t dark:border-gray-600 border-gray-200">
                 <h3 class="text-lg font-semibold text-gray-600 ">
+                    @if(typeC=='create'){
                     Agregar Cliente
+                    }@else{
+                    Editar Cliente
+                    }
+
                 </h3>
                 <button type="button" (click)="closeModal()"
                     class="absolute mt-1.5 top-3 end-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
@@ -350,8 +356,11 @@
                                 <button class="btnRedGeneral effectoZoomBoton">
                                     <div class="flex justify-center items-center  ">
                                         <i class="ri-save-2-fill mr-1 text-lg "></i>
+                                        @if(typeC=='create'){
                                         Crear Cliente
-
+                                        }@else{
+                                        Guardar Cambios
+                                        }
                                     </div>
                                 </button>
                             </div>
@@ -369,31 +378,30 @@
     </div>
 </div>
 
-    <!-- Modal Eliminar Cliente -->
-    <div id="modalEliminar" tabindex="-1"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
-            <div class="relative bg-white rounded-lg shadow-sm ">
-                <div class="p-4 md:p-5 text-center">
-                    <span class="material-symbols-rounded !text-8xl text-gray-200">
-                        delete_forever
-                    </span>
-                    <h3 class="mb-5 text-md font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de eliminar
-                        <strong>
-                            {{clienteSelected?.nombre}}</strong>?
-                    </h3>
-                    <div class="flex justify-center py-3">
-                        <button (click)="closeModal()"
-                            class="btnGrayGeneral effectoZoomBoton  mr-2 flex items-center "><i
-                                class="ri-close-circle-line  text-xl mr-1 "></i> No,
-                            cancelar</button>
-                        <button (click)="closeModal()" class="btnRedGeneral effectoZoomBoton flex items-center  ">
-                            <i class="ri-check-line text-xl mr-1"></i> Si, eliminar
-                        </button>
-                    </div>
-
-
+<!-- Modal Eliminar Cliente -->
+<div id="modalEliminar" tabindex="-1"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow-sm ">
+            <div class="p-4 md:p-5 text-center">
+                <span class="material-symbols-rounded !text-8xl text-gray-200">
+                    delete_forever
+                </span>
+                <h3 class="mb-5 text-md font-normal text-gray-500 dark:text-gray-400">¿Estás seguro de eliminar
+                    <strong>
+                        {{clienteSelected?.nombre}}</strong>?
+                </h3>
+                <div class="flex justify-center py-3">
+                    <button (click)="closeModal()" class="btnGrayGeneral effectoZoomBoton  mr-2 flex items-center "><i
+                            class="ri-close-circle-line  text-xl mr-1 "></i> No,
+                        cancelar</button>
+                    <button (click)="closeModal()" class="btnRedGeneral effectoZoomBoton flex items-center  ">
+                        <i class="ri-check-line text-xl mr-1"></i> Si, eliminar
+                    </button>
                 </div>
+
+
             </div>
         </div>
     </div>
+</div>

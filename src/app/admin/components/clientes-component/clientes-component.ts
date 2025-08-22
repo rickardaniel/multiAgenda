@@ -16,6 +16,9 @@ export default class ClientesComponent implements OnInit {
   pagination: any;
   all_clientes: any = [];
   clientes: any; // Los datos paginados actuales
+  clientes2: any; // Los datos paginados actuales
+  clientesN: any; // Los datos paginados actuales
+  clientesN2: any; // Los datos paginados actuales
   // allCitas: any[] = []; // Todos los datos originales
   filteredClientes: any[] = []; // 👈 NUEVO: Datos filtrados
   currentServiceFilter: string = ''; // 👈 NUEVO: Filtro actual
@@ -50,7 +53,10 @@ export default class ClientesComponent implements OnInit {
 
         this.getClientesFilter(search, this.filteredClientes).then(
           (data: any) => {
+            this.clientesN = data.data;
+            this.clientesN2 = data.data;
             this.clientes = data;
+            this.clientes2 = data;
             console.log('data ==> ', this.clientes);
             this.cdr.detectChanges();
           }
@@ -114,8 +120,11 @@ export default class ClientesComponent implements OnInit {
 
       this.getClientesFilter(search, data).then((datos: any) => {
         console.log('dataos', datos);
+            this.clientesN = datos.data;
+            this.clientesN2 = datos.data;
 
         this.clientes = datos;
+        this.clientes2 = datos;
         // this.pagination = data.pagination;
         this.cdr.detectChanges();
       });
@@ -135,8 +144,11 @@ export default class ClientesComponent implements OnInit {
 
       this.getClientesFilter(search, data).then((datos: any) => {
         console.log('dataos', datos);
+            this.clientesN = datos.data;
+            this.clientesN2 = datos.data;
 
         this.clientes = datos;
+        this.clientes2 = datos;
         // this.pagination = data.pagination;
         this.cdr.detectChanges();
       });
@@ -184,6 +196,7 @@ export default class ClientesComponent implements OnInit {
   }
 
   closeModal() {
+    this.formCliente.reset();
     this.modal.hide();
   }
   deleteModal(type, obj, name) {
@@ -193,6 +206,20 @@ export default class ClientesComponent implements OnInit {
       this.clienteSelected = obj;
       this.modal = this.util.createModal(name);
       this.modal.show();
+    }
+  }
+
+  searchTable(event) {
+    let texto = event.target.value;
+    if (texto != '') {
+      console.log('event', texto);
+      texto = texto.toLowerCase();
+      
+      this.clientesN = this.clientesN2.filter((item) => {
+        return item.nombre.toLowerCase().includes(texto);
+      });
+    } else {
+    this.clientesN =  this.clientesN2
     }
   }
 }
