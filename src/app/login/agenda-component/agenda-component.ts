@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import CalendarComponent from '../../shared/calendar/calendar-components';
 import { CommonModule } from '@angular/common';
@@ -22,7 +22,7 @@ import FooterComponent from '../../shared/footer-component/footer-component';
   templateUrl: './agenda-component.html',
   styleUrl: './agenda-component.scss',
 })
-export default class AgendaComponent {
+export default class AgendaComponent implements AfterViewInit {
   flagStepOne = true;
   flagStepTwo = false;
   flagStepThree = false;
@@ -67,6 +67,9 @@ export default class AgendaComponent {
   flagTerms = false;
 
   constructor(private router: Router, private api: ApiService) { }
+  ngAfterViewInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit() {
     this.getCountries();

@@ -74,7 +74,19 @@ export default class AdminComponent {
   }
 
   redirectTo(){
-    this.router.navigateByUrl('/administrador/cuenta')
+    this.router.navigateByUrl('/administrador/cuenta');
+       this.toggleDropdown();
+  }
+
+  returnInit(){
+    console.log('exit');
+        this.toggleDropdown();
+        setTimeout(() => {
+                  this.router.navigateByUrl('/');
+
+        }, 300);
+
+
   }
 
 }

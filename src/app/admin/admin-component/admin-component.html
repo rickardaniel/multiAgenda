@@ -129,7 +129,7 @@
 
             <div class="flex flex-col items-center w-full mt-1 ">
 
-                <a [routerLink]="['/administrador']" routerLinkActive="router-link-active2"
+                <a [routerLink]="['administrador']" routerLinkActive="router-link-active2"
                     [routerLinkActiveOptions]="{ exact: true }" #rla="routerLinkActive"
                     class="flex items-center w-full h-12 px-3 mt-2 hover:bg-gray-300 hover:rounded-full">
                     @if(rla.isActive){
@@ -145,7 +145,7 @@
                     <span class="ml-2 text-sm font-medium">Inicio</span>
                 </a>
 
-                <a [routerLink]="['/administrador/citas']" routerLinkActive="router-link-active2"
+                <a [routerLink]="['administrador/citas']" routerLinkActive="router-link-active2"
                     [routerLinkActiveOptions]="{ exact: true }" #rlC="routerLinkActive"
                     class="flex items-center w-full h-12 px-3 mt-2  hover:bg-gray-300 hover:rounded-full">
                     @if(rlC.isActive){
@@ -161,7 +161,7 @@
                     <span class="ml-2 text-sm font-medium">Citas</span>
                 </a>
 
-                <a [routerLink]="['/administrador/clientes']" routerLinkActive="router-link-active2"
+                <a [routerLink]="['administrador/clientes']" routerLinkActive="router-link-active2"
                     [routerLinkActiveOptions]="{ exact: true }" #rlU="routerLinkActive"
                     class="flex items-center w-full h-12 px-3 mt-2 hover:bg-gray-300 hover:rounded-full  ">
                     @if(rlU.isActive){
@@ -177,7 +177,7 @@
                     <span class="ml-2 text-sm font-medium">Clientes</span>
                 </a>
 
-                <a [routerLink]="['/administrador/reportes']" routerLinkActive="router-link-active2"
+                <a [routerLink]="['administrador/reportes']" routerLinkActive="router-link-active2"
                     #rlR="routerLinkActive"
                     class="flex items-center w-full h-12 px-3 mt-2 hover:rounded-full hover:bg-gray-300">
                     @if(rlR.isActive){
@@ -396,8 +396,10 @@
                                     </a>
 
                                     <a class="flex block px-4 py-2 text-sm text-gray-700 rounded-md cursor-pointer hover:bg-gray-100 active:bg-blue-100"
-                                        role="menuitem">
-                                        <div class="flex justify-center items-center ">
+                                        role="menuitem" 
+                                        
+                                        >
+                                        <div  (click)="returnInit()" class="flex justify-center items-center ">
                                             <span class="material-symbols-outlined">
                                                 logout
                                             </span>

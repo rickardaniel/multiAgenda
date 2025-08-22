@@ -1,181 +1,243 @@
-<div>
-    <div class="grid grid-cols-4">
-        <div class="col-span-1  rounded-lg p-5">
-
-
-            <div class="bg-gray-50  z-10  ">
-
-                <div class="max-w-md mx-auto bg-white shadow-sm">
-
-                    <!-- Header del perfil -->
-                    <div class="px-6 pt-8 pb-6 text-center bg-white">
-                        <!-- Avatar -->
-                        <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-                                alt="Marlon Bravo" class="w-full h-full object-cover">
-                        </div>
-
-                        <!-- Nombre -->
-                        <h2 class="text-lg font-semibold text-gray-900 mb-1">
-                            Marlon Bravo
-                        </h2>
-
-                        <!-- Email -->
-                        <p class="text-sm text-gray-500">
-                            Mbravoyahoo.com
-                        </p>
+<div class="w-full 2xl:px-7 xl:px-3 lg:px-3 md:px-3 px-2 py-5">
+    <div class="grid grid-cols-4 h-[50rem]">
+        <!-- Sidebar -->
+        <div class="col-span-1 bg-white rounded-lg shadow-lg mr-2">
+            <div class="p-6">
+                <!-- User Profile Header -->
+                <div class="flex flex-col items-center mb-8">
+                    <div class="w-16 h-16 rounded-full bg-gray-300 mb-3">
+                        <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Richard Chimbo"
+                            class="w-full h-full rounded-full object-cover">
                     </div>
-
-                    <!-- Menú de opciones -->
-                    <div class="px-4">
-
-                        <!-- Sección General -->
-                        <div class="mb-6">
-                            <h3 class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3 px-2">
-                                General
-                            </h3>
-
-                            <!-- Datos de usuario -->
-                            <div class="bg-white rounded-lg border border-gray-200 mb-2">
-                                <button
-                                    class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors rounded-lg">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
-                                            <span class="material-symbols-outlined text-gray-600 text-lg">
-                                                person
-                                            </span>
-                                        </div>
-                                        <span class="text-sm font-medium text-gray-700">
-                                            Datos de usuario
-                                        </span>
-                                    </div>
-                                    <span class="material-symbols-outlined text-gray-400">
-                                        chevron_right
-                                    </span>
-                                </button>
-                            </div>
-
-                            <!-- Seguridad - Activa -->
-                            <div class="bg-red-50 rounded-lg border border-red-200 mb-2">
-                                <button
-                                    class="w-full flex items-center justify-between p-4 text-left hover:bg-red-100 transition-colors rounded-lg">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-3">
-                                            <span class="material-symbols-outlined text-red-600 text-lg">
-                                                security
-                                            </span>
-                                        </div>
-                                        <span class="text-sm font-medium text-red-700">
-                                            Seguridad
-                                        </span>
-                                    </div>
-                                    <span class="material-symbols-outlined text-red-500">
-                                        chevron_right
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Sección Sobre la aplicación -->
-                        <div class="mb-6">
-                            <h3 class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3 px-2">
-                                Sobre la aplicación
-                            </h3>
-
-                            <!-- Políticas de Privacidad -->
-                            <div class="bg-white rounded-lg border border-gray-200 mb-2">
-                                <button
-                                    class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors rounded-lg">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
-                                            <span class="material-symbols-outlined text-gray-600 text-lg">
-                                                policy
-                                            </span>
-                                        </div>
-                                        <span class="text-sm font-medium text-gray-700">
-                                            Políticas de Privacidad
-                                        </span>
-                                    </div>
-                                    <span class="material-symbols-outlined text-gray-400">
-                                        chevron_right
-                                    </span>
-                                </button>
-                            </div>
-
-                            <!-- Preguntas Frecuentes -->
-                            <div class="bg-white rounded-lg border border-gray-200 mb-2">
-                                <button
-                                    class="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors rounded-lg">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
-                                            <span class="material-symbols-outlined text-gray-600 text-lg">
-                                                help
-                                            </span>
-                                        </div>
-                                        <span class="text-sm font-medium text-gray-700">
-                                            Preguntas Frecuentes
-                                        </span>
-                                    </div>
-                                    <span class="material-symbols-outlined text-gray-400">
-                                        chevron_right
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Richard Chimbo</h3>
+                    <p class="text-sm text-gray-500">ridarichard0410gmail.com</p>
                 </div>
 
-                <script>
-                    // Funcionalidad para manejar clicks en las opciones del menú
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const menuItems = document.querySelectorAll('button');
+                <!-- Navigation Menu -->
+                <div class="space-y-1">
+                    <h4 class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">General</h4>
 
-                        menuItems.forEach(button => {
-                            button.addEventListener('click', function () {
-                                const optionText = this.querySelector('span:nth-child(2)').textContent;
-                                console.log('Opción seleccionada:', optionText);
+                    <!-- Botón Datos de usuario -->
+                    <button (click)="gotoSection(ProfileSection.DATOS)"
+                        [ngClass]="getNavButtonClasses(ProfileSection.DATOS)">
+                        <i class="fas fa-user mr-3"></i>
+                        Datos de usuario
+                        <i class="fas fa-chevron-right ml-auto"></i>
+                    </button>
 
-                                // Aquí puedes agregar la lógica de navegación
-                                // Por ejemplo, usando router de Angular o cambio de URL
-                                handleNavigation(optionText);
-                            });
-                        });
-                    });
+                    <!-- Botón Seguridad -->
+                    <button (click)="gotoSection(ProfileSection.SEGURIDAD)"
+                        [ngClass]="getNavButtonClasses(ProfileSection.SEGURIDAD)">
+                        <i class="fas fa-shield-alt mr-3"></i>
+                        Seguridad
+                        <i class="fas fa-chevron-right ml-auto"></i>
+                    </button>
+                </div>
 
-                    function handleNavigation(option) {
-                        switch (option) {
-                            case 'Datos de usuario':
-                                // Navegar a página de datos de usuario
-                                console.log('Navegando a datos de usuario...');
-                                break;
-                            case 'Seguridad':
-                                // Navegar a página de seguridad
-                                console.log('Navegando a seguridad...');
-                                break;
-                            case 'Políticas de Privacidad':
-                                // Navegar a políticas
-                                console.log('Navegando a políticas...');
-                                break;
-                            case 'Preguntas Frecuentes':
-                                // Navegar a FAQ
-                                console.log('Navegando a FAQ...');
-                                break;
-                            default:
-                                console.log('Opción no reconocida');
-                        }
-                    }
-                </script>
+                <div class="mt-8 space-y-1">
+                    <h4 class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Sobre la aplicación</h4>
+
+                    <button (click)="gotoSection(ProfileSection.PRIVACIDAD)"
+                        [ngClass]="getNavButtonClasses(ProfileSection.PRIVACIDAD)">
+                        <i class="fas fa-shield-alt mr-3"></i>
+                        Políticas de Privacidad
+                        <i class="fas fa-chevron-right ml-auto"></i>
+                    </button>
+
+                    <button (click)="gotoSection(ProfileSection.FAQ)"
+                        [ngClass]="getNavButtonClasses(ProfileSection.FAQ)">
+                        <i class="fas fa-question-circle mr-3"></i>
+                        Preguntas Frecuentes
+                        <i class="fas fa-chevron-right ml-auto"></i>
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="col-span-1">
 
+        <!-- Main Content -->
+        <div class="col-span-1 bg-white rounded-lg shadow-lg p-8">
+
+            <!-- Datos de usuario Section -->
+            @if(currentSection === ProfileSection.DATOS) {
+            <div class="content-section">
+                <div class="max-w-2xl">
+                    <div class="flex items-center mb-6">
+                        <h1 class="text-md font-medium text-gray-600">Datos de usuario</h1>
+                        <button class="ml-4 p-2 bg-gray-100 rounded-lg hover:bg-gray-200">
+                            <i class="fas fa-camera text-gray-600"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex flex-col items-center mb-8">
+                        <div class="w-16 h-16 rounded-full bg-gray-300 mb-3">
+                            <img src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                alt="Richard Chimbo" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+
+                    <form id="user-data-form" class="space-y-6">
+                        <div>
+                            <label for="cedula" class="labelGeneral3">Cédula</label>
+                            <input type="text" value="1104506892" placeholder="Placeholder" class="inputGeneral4">
+                        </div>
+
+                        <div>
+                            <label for="cedula" class="labelGeneral3">Nombres</label>
+                            <input type="text" value="Richard " placeholder="Placeholder" class="inputGeneral4">
+                        </div>
+
+                        <div>
+                            <label for="cedula" class="labelGeneral3">Apellidos</label>
+                            <input type="text" value="Chimbo " placeholder="Placeholder" class="inputGeneral4">
+                        </div>
+
+                        <div>
+                            <label for="cedula" class="labelGeneral3">Correo Electrónico</label>
+                            <input type="text" value="ridarichard0410gmail" placeholder="Placeholder"
+                                class="inputGeneral4">
+                        </div>
+
+                        <div>
+                            <app-input-phone-component [tipo]="'Teléfono'"
+                                [phone]="'0998715390'"></app-input-phone-component>
+                        </div>
+
+                        <div>
+                            <label for="cedula" class="labelGeneral3">Dirección</label>
+                            <input type="text" value="Esteban Godoy" placeholder="Placeholder" class="inputGeneral4">
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-red-600 text-xs text-white py-1.5 px-4 rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 flex items-center justify-center">
+                            <span class="material-symbols-rounded mr-1 !text-[20px] ">
+                                save
+                            </span> Actualizar Datos
+                        </button>
+                    </form>
+                </div>
+            </div>
+            }
+
+            <!-- Seguridad Section -->
+            @if(currentSection === ProfileSection.SEGURIDAD) {
+            <div>
+                <h1 class="text-lg font-medium text-gray-600 mb-6">Seguridad</h1>
+
+                <form class="space-y-6">
+
+                    <div>
+                        <label for="password"
+                            class="block 2xl:text-xs xl:text-[10px] md:text-[0.75rem] font-medium text-gray-400 mb-1">Contraseña
+                            Actual</label>
+                        <div class="relative">
+                            <input formControlName="password" type="password" id="password" name="password"
+                                placeholder="Ingrese su contraseña"
+                                class="block w-full text-sm px-4 py-2 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 transition-colors duration-200 pr-12"
+                                required>
+                            <!-- Botón para mostrar/ocultar contraseña -->
+                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                onclick="togglePassword()">
+                                <svg id="eye-open" class="h-5 w-5 text-red-500 hover:text-gray-600 transition-colors"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                <svg id="eye-closed"
+                                    class="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors hidden"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <label for="password"
+                            class="block 2xl:text-xs xl:text-[10px] md:text-[0.75rem] font-medium text-gray-400 mb-1">Nueva
+                            Contraseña</label>
+                        <div class="relative">
+                            <input formControlName="password" type="password" id="password" name="password"
+                                placeholder="Ingrese su contraseña"
+                                class="block w-full text-sm px-4 py-2 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 transition-colors duration-200 pr-12"
+                                required>
+                            <!-- Botón para mostrar/ocultar contraseña -->
+                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                onclick="togglePassword()">
+                                <svg id="eye-open" class="h-5 w-5 text-red-500 hover:text-gray-600 transition-colors"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                <svg id="eye-closed"
+                                    class="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors hidden"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="password"
+                            class="block 2xl:text-xs xl:text-[10px] md:text-[0.75rem] font-medium text-gray-400 mb-1">Confirmar
+                            Contraseña</label>
+                        <div class="relative">
+                            <input formControlName="password" type="password" id="password" name="password"
+                                placeholder="Ingrese su contraseña"
+                                class="block w-full text-sm px-4 py-2 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500 transition-colors duration-200 pr-12"
+                                required>
+                            <!-- Botón para mostrar/ocultar contraseña -->
+                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                onclick="togglePassword()">
+                                <svg id="eye-open" class="h-5 w-5 text-red-500 hover:text-gray-600 transition-colors"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                <svg id="eye-closed"
+                                    class="h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors hidden"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <button type="submit"
+                        class="w-full bg-red-600 text-xs text-white py-1.5 px-4 rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 flex items-center justify-center">
+                        <span class="material-symbols-rounded mr-1 !text-[20px] ">
+                            save
+                        </span> Actualizar Contraseña
+                    </button>
+                </form>
+            </div>
+            }
+
+            <!-- Otras secciones -->
+            @if(currentSection === ProfileSection.PRIVACIDAD) {
+            <div class="content-section">
+                <h1 class="text-2xl font-bold text-gray-900 mb-6">Políticas de Privacidad</h1>
+                <p class="text-gray-600">Contenido de políticas...</p>
+            </div>
+            }
+
+            @if(currentSection === ProfileSection.FAQ) {
+            <div class="content-section">
+                <h1 class="text-2xl font-bold text-gray-900 mb-6">Preguntas Frecuentes</h1>
+                <p class="text-gray-600">Contenido de FAQ...</p>
+            </div>
+            }
         </div>
-
     </div>
-
 </div>

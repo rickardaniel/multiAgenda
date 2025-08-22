@@ -28,6 +28,7 @@ export class LoginComponent {
   }
 
   accessSystem(form){
+    this.router.navigateByUrl('administrador')
 
   }
 
