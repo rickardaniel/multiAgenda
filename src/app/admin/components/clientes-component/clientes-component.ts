@@ -120,8 +120,8 @@ export default class ClientesComponent implements OnInit {
 
       this.getClientesFilter(search, data).then((datos: any) => {
         console.log('dataos', datos);
-            this.clientesN = datos.data;
-            this.clientesN2 = datos.data;
+        this.clientesN = datos.data;
+        this.clientesN2 = datos.data;
 
         this.clientes = datos;
         this.clientes2 = datos;
@@ -144,8 +144,8 @@ export default class ClientesComponent implements OnInit {
 
       this.getClientesFilter(search, data).then((datos: any) => {
         console.log('dataos', datos);
-            this.clientesN = datos.data;
-            this.clientesN2 = datos.data;
+        this.clientesN = datos.data;
+        this.clientesN2 = datos.data;
 
         this.clientes = datos;
         this.clientes2 = datos;
@@ -210,16 +210,28 @@ export default class ClientesComponent implements OnInit {
   }
 
   searchTable(event) {
-    let texto = event.target.value;
+    const texto = (event.target.value || '').trim();
     if (texto != '') {
       console.log('event', texto);
-      texto = texto.toLowerCase();
-      
-      this.clientesN = this.clientesN2.filter((item) => {
-        return item.nombre.toLowerCase().includes(texto);
+      const textoLower = texto.toLowerCase();
+
+      this.clientesN = this.clientesN2.filter((cliente) => {
+        const nombre = (cliente.nombre || '').toLowerCase();
+        const documento = (cliente.documento || '').toString();
+        const telefono = (cliente.telefono || '').toString();
+        const email = (cliente.email || '').toLowerCase();
+        const iniciales = (cliente.iniciales || '').toLowerCase();
+
+        return (
+          nombre.includes(textoLower) ||
+          documento.includes(texto) || // Sin toLowerCase para documento
+          telefono.includes(texto) || // Sin toLowerCase para teléfono
+          email.includes(textoLower) ||
+          iniciales.includes(textoLower)
+        );
       });
     } else {
-    this.clientesN =  this.clientesN2
+      this.clientesN = this.clientesN2;
     }
   }
 }

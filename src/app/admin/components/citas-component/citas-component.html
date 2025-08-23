@@ -16,7 +16,7 @@
                                 search
                             </span>
                         </div>
-                        <input type="text"
+                        <input type="text" (keyup)="searchTable($event)"
                             class="inputGeneral4 !rounded-full  !w-[300px] !pl-10  !py-2.25 !focus:shadow-lg "
                             placeholder="¿Qué estás buscando?" required>
                     </div>
@@ -77,7 +77,7 @@
             <form [formGroup]="formService">
                 <div class="relative">
                     <select formControlName="especialidad" class="selectGeneral2" (change)="filterByService($event)">
-                        <option selected disabled value="" class="!text-gray-500">Servicio</option>
+                        <option selected  value="" class="!text-gray-500">Servicio</option>
                         <option value="Consulta médica general">Consulta médica general</option>
                         <option value="Control pediátrico">Control pediátrico</option>
                         <option value="Vacunación">Vacunación</option>
@@ -93,8 +93,8 @@
             </form>
 
             <div class="relative">
-                <select class="selectGeneral2" required>
-                    <option selected disabled value="" class="!text-gray-700">Empleado</option>
+                <select class="selectGeneral2" (change)="filterByEmpleado($event)">
+                    <option selected  value="" class="!text-gray-700">Empleado</option>
                     <option value="Dr. Carlos Miranda">Dr. Carlos Miranda</option>
                     <option value="Dra. Ana López">Dra. Ana López</option>
                     <option value="María Gonzales">María Gonzales</option>
@@ -109,8 +109,8 @@
                 </div>
             </div>
             <div class="relative">
-                <select class="selectGeneral2" required>
-                    <option selected disabled value="" class="!text-gray-500">Estado</option>
+                <select class="selectGeneral2" (change)="filterByEstado($event)">
+                    <option selected  value="" class="!text-gray-500">Estado</option>
                     <option value="Completada">Completada</option>
                     <option value="Pendiente">Pendiente</option>
                     <option value="Sin confirmar">Sin confirmar</option>
@@ -153,7 +153,7 @@
                 </thead>
                 <tbody class="text-xs">
                     <!-- Fila 1 -->
-                    @for(c of citas?.data; track c){
+                    @for(c of citasN; track c){
                     <tr class="bg-white border-gray-200 border-b hover:bg-gray-50 transition-colors">
                         <td class="px-6 py-4 font-medium text-gray-900">{{c.codigo}}</td>
                         <td class="px-6 py-4 text-gray-900">{{c.cliente}}</td>

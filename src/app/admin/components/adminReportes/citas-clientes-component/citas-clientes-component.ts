@@ -7,23 +7,23 @@ import { CommonModule } from '@angular/common';
   selector: 'app-citas-clientes-component',
   imports: [CommonModule],
   templateUrl: './citas-clientes-component.html',
-  styleUrl: './citas-clientes-component.scss'
+  styleUrl: './citas-clientes-component.scss',
 })
 export default class CitasClientesComponent {
- flagFilters = true;
+  flagFilters = true;
   dayToday: any;
   filteredCitasServicio: any[] = []; // 👈 NUEVO: Datos filtrados
 
   pagination: any;
   all_data: any = [];
   citasCliente: any; // Los datos paginados actuales
-   today=new Date;
-  constructor
-  (
+  citasClienteN: any; // Los datos paginados actuales
+  citasClienteN2: any; // Los datos paginados actuales
+
+  today = new Date();
+  constructor(
     private api: ApiService,
     private cdr: ChangeDetectorRef // Inyectar ChangeDetectorRef
-
-  
   ) {}
 
   ngOnInit() {
@@ -69,11 +69,15 @@ export default class CitasClientesComponent {
           pageSize: 10,
         };
 
-        this.getCitasServicioFilter(search, this.filteredCitasServicio).then((data: any) => {
-          this.citasCliente = data;
-          console.log('data ==> ', this.citasCliente);
-          this.cdr.detectChanges();
-        });
+        this.getCitasServicioFilter(search, this.filteredCitasServicio).then(
+          (data: any) => {
+            this.citasCliente = data;
+            this.citasClienteN = data.data;
+            this.citasClienteN2 = data.data;
+            console.log('data ==> ', this.citasCliente);
+            this.cdr.detectChanges();
+          }
+        );
       },
       error(err) {
         console.error('Error:', err);
@@ -112,7 +116,7 @@ export default class CitasClientesComponent {
     };
   }
 
-   goToNextPage(pagination, data) {
+  goToNextPage(pagination, data) {
     console.log('data', data);
 
     if (pagination.hasNextPage) {
@@ -127,6 +131,8 @@ export default class CitasClientesComponent {
         console.log('dataos', datos);
 
         this.citasCliente = datos;
+        this.citasClienteN = datos.data;
+        this.citasClienteN2 = datos.data;
         // this.pagination = data.pagination;
         this.cdr.detectChanges();
       });
@@ -148,6 +154,8 @@ export default class CitasClientesComponent {
         console.log('dataos', datos);
 
         this.citasCliente = datos;
+        this.citasClienteN = datos.data;
+        this.citasClienteN2 = datos.data;
         // this.pagination = data.pagination;
         this.cdr.detectChanges();
       });
@@ -159,5 +167,30 @@ export default class CitasClientesComponent {
     const table = document.getElementById('mi-tabla');
     const wb = XLSX.utils.table_to_book(table);
     XLSX.writeFile(wb, 'mi-archivo.xlsx');
-}
+  }
+
+  searchTable(event) {
+    const texto = (event.target.value || '').trim();
+    if (texto != '') {
+      console.log('event', texto);
+      const textoLower = texto.toLowerCase();
+
+      this.citasClienteN = this.citasClienteN2.filter((cliente) => {
+        const client = (cliente.cliente || '').toLowerCase();
+        // const documento = (cliente.documento || '').toString();
+        // const telefono = (cliente.telefono || '').toString();
+        // const email = (cliente.email || '').toLowerCase();
+        // const iniciales = (cliente.iniciales || '').toLowerCase();
+
+        return client.includes(textoLower);
+        // ||
+        // documento.includes(texto) || // Sin toLowerCase para documento
+        // telefono.includes(texto) || // Sin toLowerCase para teléfono
+        // email.includes(textoLower) ||
+        // iniciales.includes(textoLower)
+      });
+    } else {
+      this.citasClienteN = this.citasClienteN2;
+    }
+  }
 }

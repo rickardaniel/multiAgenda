@@ -18,7 +18,7 @@
                                 search
                             </span>
                         </div>
-                        <input type="text"
+                        <input type="text" (keyup)="searchTable($event)"
                             class="inputGeneral4 !rounded-full  !w-full !pl-13 !px-30 !py-2.25 !focus:shadow-lg "
                             placeholder="¿Qué estás buscando?" required>
                     </div>
@@ -134,7 +134,7 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                @for(c of citasCliente?.data; track c){
+                @for(c of citasClienteN; track c){
                  <tr class="bg-white border-gray-200 border-b hover:bg-gray-50 transition-colors text-sm ">
                     <td class="px-6 py-3">
                         {{c.cliente}}

@@ -26,14 +26,16 @@ export default class CitasComponent implements AfterViewInit {
   pagination: any;
   all_data: any = [];
   citas: any;
+  citasN: any;
+  citasN2: any;
   filteredCitas: any[] = [];
   currentServiceFilter: string = '';
   modal: any;
-  
+
   @ViewChild('calendarContainer2', { static: true })
   calendarContainer!: ElementRef;
   @ViewChild('Horarios') horariosRef!: ElementRef<HTMLDivElement>;
-  
+
   horarios = [
     { id: 1, horaI: '09:00', horaF: '09:30' },
     { id: 2, horaI: '09:30', horaF: '10:00' },
@@ -41,7 +43,7 @@ export default class CitasComponent implements AfterViewInit {
     { id: 4, horaI: '10:30', horaF: '11:00' },
     { id: 5, horaI: '11:00', horaF: '11:30' },
   ];
-  
+
   selectedScheduleId: number | null = null;
   colorButtonOne = false;
 
@@ -52,10 +54,8 @@ export default class CitasComponent implements AfterViewInit {
   flagClassOverflow = false;
   dateSelected: any;
   private onChange = (value: any) => {};
-  servicios:any=[];
-  especialistas:any=[];
-
-
+  servicios: any = [];
+  especialistas: any = [];
 
   constructor(
     private api: ApiService,
@@ -68,9 +68,7 @@ export default class CitasComponent implements AfterViewInit {
     // this.initializeFlatpickr();
   }
 
- 
   ngOnInit() {
-
     this.getCitas();
     this.getEspecialistas();
     this.getServicios();
@@ -90,6 +88,8 @@ export default class CitasComponent implements AfterViewInit {
 
         this.getCitasFilter(search, this.filteredCitas).then((data: any) => {
           this.citas = data;
+          this.citasN = data.data;
+          this.citasN2 = data.data;
           console.log('data ==> ', this.citas);
           this.cdr.detectChanges();
         });
@@ -191,6 +191,8 @@ export default class CitasComponent implements AfterViewInit {
       this.getCitasFilter(search, data).then((datos: any) => {
         console.log('dataos', datos);
         this.citas = datos;
+        this.citasN = datos.data;
+        this.citasN2 = datos.data;
         this.cdr.detectChanges();
       });
     }
@@ -209,6 +211,9 @@ export default class CitasComponent implements AfterViewInit {
       this.getCitasFilter(search, data).then((datos: any) => {
         console.log('dataos', datos);
         this.citas = datos;
+        this.citasN = datos.data;
+        this.citasN2 = datos.data;
+
         this.cdr.detectChanges();
       });
     }
@@ -232,6 +237,42 @@ export default class CitasComponent implements AfterViewInit {
     this.applyPaginationToFilteredData(1);
   }
 
+  filterByEmpleado(event: any) {
+    const selectedEmpleado = event.target.value;
+    this.currentServiceFilter = selectedEmpleado;
+
+    console.log('Servicio seleccionado:', selectedEmpleado);
+
+    if (!selectedEmpleado || selectedEmpleado === '') {
+      this.filteredCitas = [...this.all_data];
+    } else {
+      this.filteredCitas = this.all_data.filter(
+        (cita) => cita.empleado === selectedEmpleado
+      );
+    }
+
+    console.log('Datos filtrados:', this.filteredCitas);
+    this.applyPaginationToFilteredData(1);
+  }
+
+  filterByEstado(event: any) {
+    const selectedEstado = event.target.value;
+    this.currentServiceFilter = selectedEstado;
+
+    console.log('Servicio seleccionado:', selectedEstado);
+
+    if (!selectedEstado || selectedEstado === '') {
+      this.filteredCitas = [...this.all_data];
+    } else {
+      this.filteredCitas = this.all_data.filter(
+        (cita) => cita.estadoN === selectedEstado
+      );
+    }
+
+    console.log('Datos filtrados:', this.filteredCitas);
+    this.applyPaginationToFilteredData(1);
+  }
+
   applyPaginationToFilteredData(page: number = 1) {
     const search = {
       page: page,
@@ -240,6 +281,8 @@ export default class CitasComponent implements AfterViewInit {
 
     this.getCitasFilter(search, this.filteredCitas).then((datos: any) => {
       this.citas = datos;
+      this.citasN = datos.data;
+      this.citasN2 = datos.data;
       console.log('Datos paginados con filtro:', this.citas);
       this.cdr.detectChanges();
     });
@@ -260,7 +303,7 @@ export default class CitasComponent implements AfterViewInit {
     if (type == 'create') {
       this.modal = this.util.createModal(name);
       this.modal.show();
-      
+
       // ✅ Inicializar flatpickr DESPUÉS de mostrar el modal
       setTimeout(() => {
         this.initializeFlatpickr();
@@ -275,7 +318,7 @@ export default class CitasComponent implements AfterViewInit {
       this.flatpickrInstance.destroy();
     }
     this.modal.hide();
-    
+
     // Resetear estado
     this.flagClassOverflow = false;
     this.selectedScheduleId = null;
@@ -377,19 +420,43 @@ export default class CitasComponent implements AfterViewInit {
     this.selectedScheduleId = horario.id;
   }
 
-  getServicios(){
+  getServicios() {
     this.api.getEspecialidades().subscribe({
-      next:(resp:any)=>{
-        this.servicios= resp;
-      }
-    })
+      next: (resp: any) => {
+        this.servicios = resp;
+      },
+    });
   }
 
-  getEspecialistas(){
- this.api.getMedicos().subscribe({
-      next:(resp:any)=>{
-        this.especialistas= resp;
-      }
-    })
+  getEspecialistas() {
+    this.api.getMedicos().subscribe({
+      next: (resp: any) => {
+        this.especialistas = resp;
+      },
+    });
+  }
+
+  searchTable(event) {
+    const texto = (event.target.value || '').trim();
+    if (texto != '') {
+      console.log('event', texto);
+      const textoLower = texto.toLowerCase();
+
+      this.citasN = this.citasN2.filter((citas) => {
+        const cliente = (citas.cliente || '').toLowerCase();
+        const codigo = (citas.codigo || '').toString();
+        const empleado = (citas.empleado || '').toString();
+        const servicio = (citas.servicio || '').toLowerCase();
+
+        return (
+          cliente.includes(textoLower) ||
+          codigo.includes(texto) || // Sin toLowerCase para documento
+          empleado.includes(texto) || // Sin toLowerCase para teléfono
+          servicio.includes(textoLower) 
+        );
+      });
+    } else {
+      this.citasN = this.citasN2;
+    }
   }
 }
