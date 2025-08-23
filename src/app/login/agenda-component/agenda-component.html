@@ -97,22 +97,29 @@
 
                                 </div>
 
+                                @if(flagActive){
+
                                 <div class="mt-5">
+
                                     @if(flagClassOverflow){
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                                        Selecciona un horario disponible
-                                    </label>
-                                    <div class="grid grid-cols-3 gap-2">
-                                        @for(h of horarios; track h.id){
-                                        <div class="col-span-1">
-                                            <button (click)="selectSchedule(h)" [class]="getButtonClasses(h.id)"
-                                                class="cursor-pointer w-full rounded-lg py-3.5 text-xs transition-all duration-200">
-                                                {{h.horaI}} - {{h.horaF}}
-                                            </button>
+
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                                            Selecciona un horario disponible
+                                        </label>
+
+                                        <div class="grid grid-cols-3 gap-2">
+                                            @for(h of horarios; track h.id){
+                                            <div class="col-span-1">
+                                                <button (click)="selectSchedule(h)" [class]="getButtonClasses(h.id)"
+                                                    class="cursor-pointer w-full rounded-lg py-3.5 text-xs transition-all duration-200">
+                                                    {{h.horaI}} - {{h.horaF}}
+                                                </button>
+                                            </div>
+                                            }
                                         </div>
-                                        }
-                                    </div>
+
                                     }
+
                                 </div>
 
                                 <!-- Siguiente Button -->
@@ -124,6 +131,12 @@
                                         Siguiente
                                     </button>
                                 </div>
+
+                                }
+
+
+
+
                             </div>
                         </div>
                         <!-- Vista XL -->
@@ -790,9 +803,7 @@
                     </p>
 
                     <div class="flex justify-end my-5">
-                        <button 
-                        (click)="resetAll()"
-                        class="bg-transparent text-red-500 text-semibold text-sm px-5 py-1.5 border-2 rounded-full border-gray-200
+                        <button (click)="resetAll()" class="bg-transparent text-red-500 text-semibold text-sm px-5 py-1.5 border-2 rounded-full border-gray-200
                         cursor-pointer hover:bg-gray-200 hover:shadow-lg hover:font-semibold
                         ">
                             Volver al inicio

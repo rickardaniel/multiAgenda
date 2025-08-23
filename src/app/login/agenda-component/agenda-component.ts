@@ -40,6 +40,8 @@ export default class AgendaComponent implements AfterViewInit {
     { id: 5, horaI: '11:00', horaF: '11:30' },
   ];
 
+  horarioSelected = this.horarios[0];
+  flagActive=false;
   @ViewChild('Horarios') horariosRef!: ElementRef<HTMLDivElement>;
   selectedScheduleId: number | null = null;
 
@@ -66,7 +68,7 @@ export default class AgendaComponent implements AfterViewInit {
   profesionalesAvaible: any = [];
   flagTerms = false;
 
-  constructor(private router: Router, private api: ApiService) { }
+  constructor(private router: Router, private api: ApiService) {}
   ngAfterViewInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -88,10 +90,9 @@ export default class AgendaComponent implements AfterViewInit {
     this.formInfoCita.reset();
     this.formInfoCita.controls['especialidad'].setValue('');
     this.formInfoCita.controls['medico'].setValue('');
-    this.selectedScheduleId=null;
-    this.flagClassOverflow=false;
+    this.selectedScheduleId = null;
+    this.flagClassOverflow = false;
     this.formInfoUser.reset();
-    
   }
   backStepOne() {
     this.flagStepOne = true;
@@ -104,28 +105,24 @@ export default class AgendaComponent implements AfterViewInit {
     this.flagStepTwo = true;
     this.flagStepThree = false;
     this.flagStepFour = false;
-
   }
   nextStepTwo() {
     this.flagStepOne = false;
     this.flagStepTwo = true;
     this.flagStepThree = false;
     this.flagStepFour = false;
-
   }
   nextStepThree() {
     this.flagStepOne = false;
     this.flagStepTwo = false;
     this.flagStepThree = true;
     this.flagStepFour = false;
-
   }
   nextStepFour() {
     this.flagStepOne = false;
     this.flagStepTwo = false;
     this.flagStepThree = false;
     this.flagStepFour = true;
-
   }
 
   detectDate(event) {
@@ -136,7 +133,9 @@ export default class AgendaComponent implements AfterViewInit {
       this.flagClassOverflow = true;
       this.dateSelected = event.target?.value;
       console.log('horarios', this.horariosRef);
-
+      this.selectSchedule(this.horarioSelected);
+      this.getButtonClasses(1);
+      this.flagActive=true;
       if (this.horariosRef) {
         this.scrollToHorarios();
       }
@@ -162,7 +161,6 @@ export default class AgendaComponent implements AfterViewInit {
   selectSchedule(horario: any): void {
     this.selectedScheduleId = horario.id;
     // Aquí puedes agregar tu lógica adicional
-
   }
 
   // Método helper para verificar si un horario está seleccionado
@@ -183,8 +181,6 @@ export default class AgendaComponent implements AfterViewInit {
       return `${baseClasses} bg-transparent hover:bg-white hover:shadow-md shadow border border-gray-300`;
     }
   }
-
-
 
   // Form First Part Select medic and especiality
 

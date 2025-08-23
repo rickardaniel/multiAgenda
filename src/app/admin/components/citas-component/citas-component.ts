@@ -31,6 +31,8 @@ export default class CitasComponent implements AfterViewInit {
   filteredCitas: any[] = [];
   currentServiceFilter: string = '';
   modal: any;
+  flagClassOverflow = false;
+  flagActive = false;
 
   @ViewChild('calendarContainer2', { static: true })
   calendarContainer!: ElementRef;
@@ -44,6 +46,8 @@ export default class CitasComponent implements AfterViewInit {
     { id: 5, horaI: '11:00', horaF: '11:30' },
   ];
 
+  horarioSelected = this.horarios[0];
+
   selectedScheduleId: number | null = null;
   colorButtonOne = false;
 
@@ -51,17 +55,26 @@ export default class CitasComponent implements AfterViewInit {
   selectedDate: string = '';
   @Input() mode: 'single' | 'multiple' | 'range' = 'single';
   today = new Date();
-  flagClassOverflow = false;
   dateSelected: any;
   private onChange = (value: any) => {};
   servicios: any = [];
   especialistas: any = [];
+  // isDropdownOpen: boolean = true; // Estado inicial del dropdown
+  openDropdownId: string | number | null = null; // ✅ AGREGAR
 
   constructor(
     private api: ApiService,
     private util: UtilService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    document.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      // Si no se hizo click dentro de un dropdown, cerrar todos
+      if (!target.closest('.dropdown-container')) {
+        this.openDropdownId = null;
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     // ❌ NO inicializar flatpickr aquí porque el modal está oculto
@@ -69,6 +82,7 @@ export default class CitasComponent implements AfterViewInit {
   }
 
   ngOnInit() {
+    // this.toggleDropdown();
     this.getCitas();
     this.getEspecialistas();
     this.getServicios();
@@ -333,7 +347,8 @@ export default class CitasComponent implements AfterViewInit {
       this.flagClassOverflow = true;
       this.dateSelected = event.target?.value;
       console.log('horarios', this.horariosRef);
-
+      this.selectSchedule(this.horarioSelected);
+      this.getButtonClasses(1);
       if (this.horariosRef) {
         this.scrollToHorarios();
       }
@@ -418,6 +433,7 @@ export default class CitasComponent implements AfterViewInit {
   selectSchedule(horario: any): void {
     console.log('horario', horario);
     this.selectedScheduleId = horario.id;
+    this.flagActive=true;
   }
 
   getServicios() {
@@ -452,11 +468,37 @@ export default class CitasComponent implements AfterViewInit {
           cliente.includes(textoLower) ||
           codigo.includes(texto) || // Sin toLowerCase para documento
           empleado.includes(texto) || // Sin toLowerCase para teléfono
-          servicio.includes(textoLower) 
+          servicio.includes(textoLower)
         );
       });
     } else {
       this.citasN = this.citasN2;
     }
+  }
+
+  toggleDropdown(registroId: string | number, event?: Event): void {
+    // Prevenir que el click se propague y cierre inmediatamente el dropdown
+    if (event) {
+      event.stopPropagation();
+    }
+
+    if (this.openDropdownId === registroId) {
+      this.openDropdownId = null;
+    } else {
+      this.openDropdownId = registroId;
+    }
+  }
+
+  isDropdownOpen(registroId: string | number): boolean {
+    return this.openDropdownId === registroId;
+  }
+
+  closeAllDropdowns(): void {
+    this.openDropdownId = null;
+  }
+
+  // Método para manejar clicks dentro del dropdown (prevenir cierre)
+  onDropdownClick(event: Event): void {
+    event.stopPropagation();
   }
 }

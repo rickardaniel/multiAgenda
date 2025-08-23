@@ -77,7 +77,7 @@
             <form [formGroup]="formService">
                 <div class="relative">
                     <select formControlName="especialidad" class="selectGeneral2" (change)="filterByService($event)">
-                        <option selected  value="" class="!text-gray-500">Servicio</option>
+                        <option selected value="" class="!text-gray-500">Servicio</option>
                         <option value="Consulta médica general">Consulta médica general</option>
                         <option value="Control pediátrico">Control pediátrico</option>
                         <option value="Vacunación">Vacunación</option>
@@ -94,7 +94,7 @@
 
             <div class="relative">
                 <select class="selectGeneral2" (change)="filterByEmpleado($event)">
-                    <option selected  value="" class="!text-gray-700">Empleado</option>
+                    <option selected value="" class="!text-gray-700">Empleado</option>
                     <option value="Dr. Carlos Miranda">Dr. Carlos Miranda</option>
                     <option value="Dra. Ana López">Dra. Ana López</option>
                     <option value="María Gonzales">María Gonzales</option>
@@ -110,7 +110,7 @@
             </div>
             <div class="relative">
                 <select class="selectGeneral2" (change)="filterByEstado($event)">
-                    <option selected  value="" class="!text-gray-500">Estado</option>
+                    <option selected value="" class="!text-gray-500">Estado</option>
                     <option value="Completada">Completada</option>
                     <option value="Pendiente">Pendiente</option>
                     <option value="Sin confirmar">Sin confirmar</option>
@@ -148,12 +148,10 @@
                         <th scope="col" class="px-6 py-3 font-medium">Servicio</th>
                         <th scope="col" class="px-6 py-3 font-medium">Empleado</th>
                         <th scope="col" class="px-6 py-3 font-medium">Estado</th>
-                        <!-- <th scope="col" class="px-6 py-3 font-medium">Acciones</th> -->
                     </tr>
                 </thead>
                 <tbody class="text-xs">
-                    <!-- Fila 1 -->
-                    @for(c of citasN; track c){
+                    @for(c of citasN; track c.codigo){
                     <tr class="bg-white border-gray-200 border-b hover:bg-gray-50 transition-colors">
                         <td class="px-6 py-4 font-medium text-gray-900">{{c.codigo}}</td>
                         <td class="px-6 py-4 text-gray-900">{{c.cliente}}</td>
@@ -172,10 +170,66 @@
                         <td class="px-6 py-4">{{c.servicio}}</td>
                         <td class="px-6 py-4">{{c.empleado}}</td>
                         <td class="px-6 py-4">
-                            <span class="  items-center w-[6rem] px-2.5 py-1 rounded-full text-xs font-normal"
-                                [ngClass]="getStatusClass(c.estado)">
-                                {{c.estadoN}}
-                            </span>
+                            <div class="relative dropdown-container">
+                                <div class="relative inline-block text-left place-self-end">
+                                    <!-- ✅ CAMBIO: Pasar c.codigo y event al método -->
+                                    <button (click)="toggleDropdown(c.codigo, $event)"
+                                        class="p-0 text-gray-400 hover:text-gray-600">
+                                        <span
+                                            class="cursor-pointer items-center w-[6rem] px-2.5 py-1 rounded-full text-xs font-normal"
+                                            [ngClass]="getStatusClass(c.estado)">
+                                            {{c.estadoN}}
+                                        </span>
+                                    </button>
+
+                                    <!-- ✅ CAMBIO: Usar el nuevo método y prevenir cierre al hacer click dentro -->
+                                    <div id="dropdown-menu-{{c.codigo}}" [class.hidden]="!isDropdownOpen(c.codigo)"
+                                        (click)="onDropdownClick($event)"
+                                        class="absolute right-0 z-50 w-52 mt-2 origin-top-right bg-white rounded-md shadow-lg border border-gray-200">
+                                        <div class="p-3.5 py-2" role="menu" aria-orientation="vertical"
+                                            aria-labelledby="dropdown-button">
+                                            <h3 class="text-sm font-semibold text-gray-600 mb-3">Estado de la cita</h3>
+                                            <div class="space-y-3">
+                                                <!-- Pendiente -->
+                                                <div class="flex items-center ">
+                                                    <input id="pendiente" name="clase" type="radio" value="Pendiente"
+                                                        checked
+                                                        class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+                                                    <label for="pendiente"
+                                                        class="ml-3 text-xs font-normal text-gray-500">
+                                                        Pendiente
+                                                    </label>
+                                                </div>
+
+                                                <hr class="border-gray-200">
+
+                                                <!-- Completa -->
+                                                <div class="flex items-center">
+                                                    <input id="completa" name="clase" type="radio" value="otros"
+                                                        class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+                                                    <label for="completa"
+                                                        class="ml-3 text-xs font-normal text-gray-500">
+                                                        Completa
+                                                    </label>
+                                                </div>
+                                                <hr class="border-gray-200">
+
+
+                                                <!-- Ausente -->
+                                                <div class="flex items-center">
+                                                    <input id="ausente" name="clase" type="radio" value="otros"
+                                                        class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+                                                    <label for="ausente" class="ml-3 text-xs font-normal text-gray-500">
+                                                        Ausente
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     }
@@ -243,70 +297,65 @@
 
 <!-- Main modal -->
 <div id="modalCita" tabindex="-1" aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow-sm ">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 rounded-t dark:border-gray-600 border-gray-200">
-                <h3 class="text-lg font-semibold text-gray-600 ">
+    class="hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full bg-transparent bg-opacity-50">
+
+    <!-- ✅ CAMBIO: Contenedor del modal con altura fija -->
+    <div class="relative p-4 w-full max-w-md h-[90vh] flex flex-col">
+
+        <!-- Modal content con altura completa -->
+        <div class="relative bg-white rounded-lg shadow-sm flex flex-col h-full">
+
+            <!-- ✅ Modal header - FIJO (no scroll) -->
+            <div class="flex items-center justify-between p-4 md:p-5 rounded-t border-b border-gray-200 flex-shrink-0">
+                <h3 class="text-lg font-semibold text-gray-600">
                     Crear nueva cita
                 </h3>
                 <button type="button" (click)="closeModal()"
-                    class="absolute mt-1.5 top-3 end-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
-                    <span class="material-symbols-outlined">
-                        close
-                    </span>
+                    class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 inline-flex justify-center items-center">
+                    <span class="material-symbols-outlined">close</span>
                     <span class="sr-only">Close modal</span>
                 </button>
             </div>
-            <!-- Modal body -->
-            <div class="p-4 md:p-5">
+
+            <!-- ✅ Modal body - SCROLLABLE -->
+            <div class="flex-1   p-4 md:p-5 "
+                [ngClass]="{'overflowClass': flagClassOverflow, 'scrollbar-hide':flagClassOverflow}">
                 <div class="grid gap-4 mb-4 grid-cols-1">
                     <div>
-                        <span class=" text-xs font-medium text-gray-500">1. Información del cliente </span>
-                        <div class="flex justify-between mt-7">
-                            <div class="relative ">
+                        <span class="text-xs font-medium text-gray-500">1. Información del cliente</span>
+                        <div class="flex justify-between mt-5">
+                            <div class="relative">
                                 <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                    <span class="material-symbols-outlined text-gray-400 ">
-                                        search
-                                    </span>
+                                    <span class="material-symbols-outlined text-gray-400">search</span>
                                 </div>
                                 <input type="text"
-                                    class="inputGeneral4 !rounded-full  !w-full !pl-10 !px-30 !py-2.25 !focus:shadow-lg "
+                                    class="inputGeneral4 !rounded-full !w-full !pl-10 !px-30 !py-2.25 !focus:shadow-lg"
                                     placeholder="¿Qué estás buscando?" required>
-
                             </div>
                             <span
-                                class="px-1.5 border border-gray-300 text-red-600 rounded-full  flex justify-center items-center ">
+                                class="px-1.5 border border-gray-300 text-red-600 rounded-full flex justify-center items-center effectoZoomBoton hover:bg-gray-100 hover:shadow cursor-pointer ">
                                 <div class="">
-                                    <span class="material-symbols-outlined text-[12px] ">
-                                        person
-                                    </span>
+                                    <span class="material-symbols-outlined text-[12px]">person</span>
                                 </div>
                             </span>
-
                         </div>
-
                     </div>
 
                     <div>
-                        <span class=" text-xs font-medium text-gray-500 ">2. Detalles del servicio </span>
+                        <span class="text-xs font-medium text-gray-500">2. Detalles del servicio</span>
 
-                        <div class="mt-7">
+                        <div class="mt-5">
                             <label class="labelGeneral3">Servicios *</label>
                             <div class="relative">
                                 <select class="selectGeneral4 !text-gray-500">
-                                    <option selected disabled value="" class="!text-gray-400">Seleccione una
-                                        opción</option>
+                                    <option selected disabled value="" class="!text-gray-400">Seleccione una opción
+                                    </option>
                                     @for(s of servicios; track s){
                                     <option value="">{{s.nombre}}</option>
                                     }
-
-
                                 </select>
                                 <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
-                                    <i class="ri-expand-up-down-line text-red-600 "></i>
+                                    <i class="ri-expand-up-down-line text-red-600"></i>
                                 </div>
                             </div>
                         </div>
@@ -315,39 +364,32 @@
                             <label class="labelGeneral3">Especialistas *</label>
                             <div class="relative">
                                 <select class="selectGeneral4 !text-gray-500">
-                                    <option selected disabled value="" class="!text-gray-400">Seleccione una
-                                        opción</option>
-
+                                    <option selected disabled value="" class="!text-gray-400">Seleccione una opción
+                                    </option>
                                     @for(e of especialistas; track e){
                                     <option value="">{{e.nombre}}</option>
                                     }
-
                                 </select>
                                 <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
-                                    <i class="ri-expand-up-down-line text-red-600 "></i>
+                                    <i class="ri-expand-up-down-line text-red-600"></i>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
 
-                    <hr class="h-2 text-gray-300  my-3">
+                    <hr class="h-2 text-gray-300 my-3">
 
                     <div>
-                        <span class=" text-xs font-medium text-gray-500 ">3. Programación de la cita </span>
-
+                        <span class="text-xs font-medium text-gray-500">3. Programación de la cita</span>
                     </div>
 
                     <div>
-
                         <!-- Calendar Header -->
-                        <div class="!w-full h-[22rem] bg-white flex justify-center py-5">
-                            <div #calendarContainer2 class="inline-calendar-wrapper " style="font-size: 8px !important;"
+                        <div class="!w-full h-[20rem] bg-white flex justify-center py-5">
+                            <div #calendarContainer2 class="inline-calendar-wrapper" style="font-size: 8px !important;"
                                 (change)="selectDay($event)">
                             </div>
                         </div>
-
                     </div>
 
                     <div class="mt-2" #Horarios>
@@ -367,36 +409,32 @@
                         </div>
                         }
                     </div>
-
-                    <div class="flex justify-end space-x-2 pt-7 mb-2 ">
-                        <button (click)="closeModal()" type="button" class=" btnGrayGeneral effectoZoomBoton">
-                            <div class="flex justify-center items-center  ">
-                                <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
-                                Cancelar
-                            </div>
-                        </button>
-
-                        <button class="btnRedGeneral effectoZoomBoton">
-                            <div class="flex justify-center items-center  ">
-                                <i class="ri-save-2-fill mr-1 text-lg "></i>
-                                Guardar Cita
-
-                            </div>
-                        </button>
-                    </div>
-
-                    <div>
-
-                    </div>
-
-
-
                 </div>
+            </div>
 
+            <!-- ✅ Modal footer - FIJO (no scroll) -->
+            @if( flagActive ){
+
+            <div class="flex justify-end space-x-2   p-4 border-t border-gray-200 flex-shrink-0">
+
+                <button (click)="closeModal()" type="button" class="btnGrayGeneral effectoZoomBoton">
+                    <div class="flex justify-center items-center">
+                        <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
+                        Cancelar
+                    </div>
+                </button>
+
+                <button class="btnRedGeneral effectoZoomBoton">
+                    <div class="flex justify-center items-center">
+                        <i class="ri-save-2-fill mr-1 text-lg"></i>
+                        Guardar Cita
+                    </div>
+                </button>
 
             </div>
+            }
+
+
         </div>
     </div>
 </div>
-
-
