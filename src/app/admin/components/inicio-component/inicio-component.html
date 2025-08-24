@@ -1,189 +1,357 @@
-<!-- Container principal con padding y altura completa -->
-<div class=" w-full  2xl:px-7 xl:px-3 lg:px-3 md:px-3  px-2 py-5">
-    <div class="">
-        <div class="p-1">
-            <div class="title">
-                <h1 class="text-sm"> Menu /</h1>
-                <h1 class="mt-4 font-semibold text-xl">AgendaSof Dashboard</h1>
-                <span class="text-xs">Bienvenido Richard Chimbo</span>
+<!-- Container principal con padding responsivo -->
+<div class="w-full px-3 sm:px-4 md:px-6 lg:px-8 xl:px-8 2xl:px-8 py-4 sm:py-6">
+    <!-- Header Section -->
+    <div class="mb-6 sm:mb-8">
+        <div class="space-y-2 sm:space-y-3">
+            <!-- Breadcrumb -->
+            <div class="flex items-center text-xs sm:text-sm text-gray-500">
+                <span>Menu</span>
+                <span class="mx-1">/</span>
+                <span class="text-gray-700">Dashboard</span>
+            </div>
+
+            <!-- Title -->
+            <div class="space-y-1">
+                <h1 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800">
+                    AgendaSof Dashboard
+                </h1>
+                <p class="text-xs sm:text-sm text-gray-600">
+                    Bienvenido Richard Chimbo
+                </p>
             </div>
         </div>
+    </div>
 
-        <!-- Grid principal ocupando todo el ancho disponible -->
-        <div class="grid grid-cols-10 gap-3 mt-5 h-full">
+    <!-- Mobile Tab Navigation -->
+    <div class="lg:hidden mb-6">
+        <div class="flex space-x-1 bg-gray-100 p-1 rounded-lg">
+            <button (click)="setActiveTab('calendar')" [class.bg-white]="activeTab === 'calendar'"
+                [class.shadow-sm]="activeTab === 'calendar'"
+                class="flex-1 py-2 px-3 text-sm font-medium rounded-md transition-all duration-200">
+                <div class="flex items-center justify-center">
+                    <span class="material-symbols-outlined text-base mr-1">calendar_month</span>
+                    Calendario
+                </div>
+            </button>
+            <button (click)="setActiveTab('appointments')" [class.bg-white]="activeTab === 'appointments'"
+                [class.shadow-sm]="activeTab === 'appointments'"
+                class="flex-1 py-2 px-3 text-sm font-medium rounded-md transition-all duration-200">
+                <div class="flex items-center justify-center">
+                    <span class="material-symbols-outlined text-base mr-1">event_note</span>
+                    Citas
+                </div>
+            </button>
+        </div>
+    </div>
 
-            <!-- Columna izquierda - 2 columnas -->
-            <div class=" 2xl:col-span-2 xl:col-span-3 lg:col-span-4 md:col-span-10 col-span-10 ">
+    <!-- Main Grid Container -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-1.5 ">
 
-                <div
-                    class="grid 2xl:grid-cols-1 xl:grid-cols-1 lg:col-span-1 md:grid-cols-2 md:space-x-2 space-y-4 h-full ">
+        <!-- Left Column - Calendar and Next Appointment -->
+        <div class="lg:col-span-3 xl:col-span-3 2xl:col-span-2" [class.hidden]="activeTab !== 'calendar'"
+            [class.lg:block]="true">
 
-                    <div class="col-span-1  bg-white  rounded-xl shadow-md  ">
+            <div class="space-y-4 sm:space-y-6">
 
-                        <h1 class="mx-5 mt-3.5 !mb-5 text-md  font-semibold text-gray-700 ">Calendario de citas</h1>
-                        <div class="flex justify-center ">
-                            <app-calendar (dateSelect)="detectDate($event)"></app-calendar>
+                <!-- Mini Calendar Card -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-4 sm:p-5">
+                        <h2 class="text-sm sm:text-base font-semibold text-gray-700 mb-4">
+                            Calendario de citas
+                        </h2>
+                        <div class="flex justify-center">
+                            <app-calendar 
+                                class="w-full" 
+                                (dateSelect)="detectDate($event)">
+                            </app-calendar>
+                            <!-- <app-calendar [config]="{
+    compact: true,
+    enableMobileGestures: true,
+    highlightToday: true
+  }" (dateSelect)="detectDate($event)" [customDayLabels]="['D', 'L', 'M', 'X', 'J', 'V', 'S']">
+                            </app-calendar> -->
+
                         </div>
-
                     </div>
+                </div>
 
-                    <div class="col-span-1   bg-white  rounded-xl shadow-md ">
-
-                        <div class="mx-5 mt-4 flex justify-start ">
-                            <span class="material-symbols-outlined mr-1 text-gray-600  !text-md">
+                <!-- Next Appointment Card -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-4 sm:p-5">
+                        <!-- Header -->
+                        <div class="flex items-center mb-2">
+                            <span class="material-symbols-outlined text-gray-600 text-lg sm:text-xl mr-2">
                                 calendar_clock
                             </span>
-                            <h1 class=" text-md  font-semibold text-gray-700 ">
+                            <h2 class="text-sm sm:text-base font-semibold text-gray-700">
                                 Próxima cita
-                            </h1>
-                        </div>
-                        <p class="text-xs text-gray-600 ml-5 mt-1 ">Tu proxima cita es en 10 minutos</p>
-                        <div class="flex justify-start items-center  mx-4 my-4 ">
-                            <span class="p-2 bg-purple-100 text-purple-500 font-medium  rounded-full mr-2  ">RC</span>
-                            <h1 class="text-gray-700 font-medium  text-sm ">Richard Chimbo</h1>
+                            </h2>
                         </div>
 
-                        <div class="grid-cols-1 space-y-2 mx-4 ">
-                            <div class="col-span-1">
-                                <div class="flex justify-start items-center   ">
-                                    <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
-                                        digital_wellbeing
-                                    </span>
-                                    <h1 class="text-gray-500 font-medium  text-xs   ml-2">Nutrición</h1>
-                                </div>
-                            </div>
-                            <div class="col-span-1">
-                                <div class="flex justify-start items-center  ">
-                                    <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
-                                        person
-                                    </span>
-                                    <h1 class="text-gray-500 font-medium  text-xs  ml-2 ">Dr. Miguel Lituma</h1>
-                                </div>
-                            </div>
-                            <div class="col-span-1">
-                                <div class="grid grid-cols-2 ">
-                                    <div class="col-span-1">
-                                        <div class="flex justify-start items-center">
-                                            <span class="material-symbols-outlined text-gray-500 font-medium  text-xs ">
-                                                calendar_today
-                                            </span>
-                                            <h1 class="text-gray-500 font-medium  text-xs ml-2 ">2025/08/05</h1>
-                                        </div>
-                                    </div>
-                                    <div class="col-span-1">
-                                        <div class="flex justify-start items-center">
-                                            <span class="material-symbols-outlined text-gray-500 font-medium  text-xs">
-                                                schedule
-                                            </span>
-                                            <h1 class="text-gray-500 font-medium  text-xs  ml-2 ">11:00 - 12:00</h1>
-                                        </div>
-                                    </div>
+                        <p class="text-xs sm:text-sm text-gray-600 mb-4">
+                            Tu próxima cita es en 10 minutos
+                        </p>
 
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="flex justify-start items-center  mx-4 mt-4 mb-20 ">
-                            <span
-                                class="px-5 py-1  bg-cyan-100 text-blue-700 text-xs  rounded-full mr-2  ">Confirmada</span>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Columna central - 6 columnas -->
-            <div class="2xl:col-span-6  xl:col-span-5 lg:col-span-6 md:col-span-10 col-span-10">
-                <div class="card w-full bg-white h-full  rounded-lg  shadow-md ">
-
-                <app-big-calendar-component (sendCitas)="getCitas($event)"
-                        [dateSelected]="dateSelected">
-                    </app-big-calendar-component>
-                </div>
-
-            </div>
-
-            <!-- Columna derecha - 2 columnas -->
-            <div class="2xl:col-span-2 xl:col-span-3 lg:col-span-4 md:col-span-10 col-span-10">
-                <div class="grid grid-cols-1 h-full ">
-                    <div class="card  rounded-lg shadow-lg bg-white ">
-                        <h1 class="p-3 ml-2 text-red-500 font-medium text-md ">
-                            Citas
-                        </h1>
-                        <hr class="text-gray-200 mb-2">
-                        @if(citasByDay.length==0){
-
-                        <div class="flex justify-center  pt-25">
-                            <img class="" src="assets/img/illustration_empty_state_appointment.svg" alt="">
-                        </div>
-                        <div class="flex justify-center   pb-25">
-                            <p class="p-2 text-xs text-gray-600   ">Selecciona una fecha y revisa todas las citas del
-                                día.</p>
-                        </div>
-                        }@else {
-
-
-                        <!-- Card de Cita Médica -->
-                        @for(cd of citasByDay; track cd){
-                        <div class="px-2 py-1">
+                        <!-- Patient Info -->
+                        <div class="flex items-center mb-4">
                             <div
-                                class="mx-2 w-full mx-auto bg-white rounded-lg  border-b border-gray-200  hover:shadow-md transition-shadow duration-200">
-                                <div class="p-3.5 ">
-                                    <!-- Información del profesional -->
-                                    <div class="  space-x-3">
+                                class="w-8 h-8 sm:w-10 sm:h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-xs sm:text-sm font-semibold">RC</span>
+                            </div>
+                            <h3 class="text-sm sm:text-base font-medium text-gray-700">
+                                Richard Chimbo
+                            </h3>
+                        </div>
 
-                                        <!-- Datos del profesional -->
-                                        <div class="flex justify-start items-center">
-                                            <div [style.background-color]="getRandomColor(nameAvatar(cd.professional?.name)).backgroundColor"
-                                                [style.color]="getRandomColor(nameAvatar(cd.professional?.name)).color"
-                                                class="w-6 h-6 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center">
-                                                <span
-                                                    class=" font-bold text-xs">{{nameAvatar(cd.professional?.name)}}</span>
-                                            </div>
-                                            <h5 class=" ml-1.5 text-sm font-semibold text-gray-700">
-                                                {{cd.professional?.name}}
-                                            </h5>
-                                        </div>
+                        <!-- Appointment Details -->
+                        <div class="space-y-3">
+                            <!-- Service -->
+                            <div class="flex items-center text-xs sm:text-sm text-gray-600">
+                                <span class="material-symbols-outlined text-base mr-2">
+                                    digital_wellbeing
+                                </span>
+                                <span>Nutrición</span>
+                            </div>
 
-                                        <div class="flex items-center text-xs text-gray-500 mt-1">
-                                            <i class="ri-service-line mr-1.5"></i>
-                                            {{cd.specialty}}
-                                        </div>
+                            <!-- Doctor -->
+                            <div class="flex items-center text-xs sm:text-sm text-gray-600">
+                                <span class="material-symbols-outlined text-base mr-2">
+                                    person
+                                </span>
+                                <span>Dr. Miguel Lituma</span>
+                            </div>
 
-                                        <div class="flex justify-between items-center">
-                                            <!-- Lado izquierdo - Horario -->
-                                            <div class="flex items-center text-xs text-gray-500">
-                                                <i class="ri-time-line mr-1.5"></i>
-                                                07:00 - 07:30
-                                            </div>
-
-                                            <!-- Lado derecho - Estado -->
-                                            <div class="flex !justify-end  ">
-                                                <!-- Badge de estado -->
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-normal"
-                                                    [ngClass]="getStatusClass(cd.status)">
-                                                    {{cd.statusText}}
-                                                </span>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-
+                            <!-- Date and Time -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center text-xs sm:text-sm text-gray-600">
+                                    <span class="material-symbols-outlined text-base mr-2">
+                                        calendar_today
+                                    </span>
+                                    <span>2025/08/05</span>
+                                </div>
+                                <div class="flex items-center text-xs sm:text-sm text-gray-600">
+                                    <span class="material-symbols-outlined text-base mr-2">
+                                        schedule
+                                    </span>
+                                    <span>11:00 - 12:00</span>
                                 </div>
                             </div>
                         </div>
 
-                        }
-                        }
+                        <!-- Status Badge -->
+                        <div class="mt-4">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cyan-100 text-blue-700">
+                                Confirmada
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Center Column - Big Calendar -->
+        <div class="lg:col-span-6 xl:col-span-6 2xl:col-span-7" [class.hidden]="activeTab !== 'calendar'"
+            [class.lg:block]="true">
+
+            <div class="bg-white rounded-xl shadow-md h-full overflow-hidden">
+                <app-big-calendar-component class="block w-full h-full" (sendCitas)="getCitas($event)"
+                    (sendSchedule)="getHorarioCitas($event)" [dateSelected]="dateSelected">
+                </app-big-calendar-component>
+            </div>
+        </div>
+
+        <!-- Right Column - Appointments List -->
+        <div class="lg:col-span-3 xl:col-span-3 2xl:col-span-3" [class.hidden]="activeTab !== 'appointments'"
+            [class.lg:block]="true">
+
+            <div class="bg-white rounded-xl shadow-md h-full overflow-hidden">
+                <!-- Header -->
+                <div class="p-2 sm:p-2.5 border-b border-gray-200">
+                    <h2 class="text-base sm:text-lg font-semibold text-red-500">
+                        Citas
+                    </h2>
+                </div>
+
+                <!-- Content Area -->
+                <div class="h-full overflow-y-auto custom-scrollbar">
+
+                    <!-- Daily Appointments List -->
+                    @if(citasByDay.length > 0) {
+                    <div class="p-3 sm:p-4 space-y-3">
+                        @for(cd of citasByDay; track $index){
+                        <div
+                            class="bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200 overflow-hidden">
+                            <div class="p-3 sm:p-4">
+                                <!-- Professional Info -->
+                                <div class="flex items-center mb-3">
+                                    <div [style.background-color]="getRandomColor(nameAvatar(cd.professional?.name)).backgroundColor"
+                                        [style.color]="getRandomColor(nameAvatar(cd.professional?.name)).color"
+                                        class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                                        <span class="font-bold text-xs sm:text-sm">
+                                            {{nameAvatar(cd.professional?.name)}}
+                                        </span>
+                                    </div>
+                                    <div class="min-w-0 flex-1">
+                                        <h4 class="text-sm sm:text-base font-semibold text-gray-800 truncate">
+                                            {{cd.professional?.name}}
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <!-- Specialty -->
+                                <div class="flex items-center text-xs sm:text-sm text-gray-600 mb-3">
+                                    <span class="material-symbols-outlined text-base mr-2">
+                                        medical_services
+                                    </span>
+                                    <span class="truncate">{{cd.specialty}}</span>
+                                </div>
+
+                                <!-- Time and Status Row -->
+                                <div class="flex justify-between items-center">
+                                    <!-- Time -->
+                                    <div class="flex items-center text-xs sm:text-sm text-gray-600">
+                                        <span class="material-symbols-outlined text-base mr-1">
+                                            schedule
+                                        </span>
+                                        <span>07:00 - 07:30</span>
+                                    </div>
+
+                                    <!-- Status Badge -->
+                                    <span
+                                        class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap"
+                                        [ngClass]="getStatusClass(cd.status)">
+                                        {{cd.statusText}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+                    } @else if(citasHora.length > 0) {
+                    <!-- Hourly Appointment Details -->
+                    <div class="p-4 sm:p-6">
+                        <!-- Patient Header -->
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mr-3 border"
+                                [ngStyle]="{'border-color': getRandomColor(citasHora[0].iniciales).border}"
+                                [style.background-color]="getRandomColor(citasHora[0].iniciales).backgroundColor"
+                                [style.color]="getRandomColor(citasHora[0].iniciales).color">
+                                <span class="font-bold text-sm">
+                                    {{citasHora[0].iniciales}}
+                                </span>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                                {{citasHora[0].nombre}}
+                            </h3>
+                        </div>
+
+                        <!-- Status Badge -->
+                        <div class="mb-4">
+                            <span [class]="getEventThemeClass(citasHora[0].event_theme)"
+                                class="inline-block font-medium py-2 px-4 rounded-full text-xs sm:text-sm">
+                                @if(citasHora[0].event_theme=='purple'){
+                                En proceso
+                                }@else if(citasHora[0].event_theme=='red'){
+                                Cancelada
+                                }@else if(citasHora[0].event_theme=='green'){
+                                Completada
+                                }@else if(citasHora[0].event_theme=='blue'){
+                                Confirmada
+                                }@else if(citasHora[0].event_theme=='yellow'){
+                                Pendiente
+                                }
+                            </span>
+                        </div>
+
+                        <!-- Appointment Details -->
+                        <div class="space-y-3 mb-6">
+                            <!-- Service -->
+                            <div class="flex items-center text-xs sm:text-sm text-gray-600">
+                                <span class="material-symbols-outlined text-lg mr-3">
+                                    category
+                                </span>
+                                <span>{{citasHora[0].cita}}</span>
+                            </div>
+
+                            <!-- Patient -->
+                            <div class="flex items-center text-xs sm:text-sm text-gray-600">
+                                <span class="material-symbols-outlined text-lg mr-3">
+                                    person
+                                </span>
+                                <span>{{citasHora[0].nombre}}</span>
+                            </div>
+
+                            <!-- Date and Time -->
+                            <div class="space-y-2 sm:space-y-0 sm:flex sm:justify-between">
+                                <div class="flex items-center text-xs sm:text-sm text-gray-600">
+                                    <span class="material-symbols-outlined text-lg mr-3">
+                                        calendar_today
+                                    </span>
+                                    <span>{{citasHora[0].event_date | date:'short'}}</span>
+                                </div>
+                                <div class="flex items-center text-xs sm:text-sm text-gray-600">
+                                    <span class="material-symbols-outlined text-lg mr-3">
+                                        schedule
+                                    </span>
+                                    <span>{{citasHora[0].event_time}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons (only for in-progress appointments) -->
+                        @if(citasHora[0].event_theme=='purple'){
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <button
+                                class="w-full bg-green-50 text-green-600 py-3 px-4 font-medium text-sm border border-green-300 rounded-lg hover:bg-green-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                                <div class="flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-base mr-2">
+                                        check_circle
+                                    </span>
+                                    <span>Finalizar</span>
+                                </div>
+                            </button>
+                            <button
+                                class="w-full bg-red-50 text-red-600 py-3 px-4 font-medium text-sm border border-red-300 rounded-lg hover:bg-red-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                                <div class="flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-base mr-2">
+                                        cancel
+                                    </span>
+                                    <span>Cancelar</span>
+                                </div>
+                            </button>
+                        </div>
+                        }
+                    </div>
+
+                    } @else {
+                    <!-- Empty State -->
+                    <div class="flex flex-col items-center justify-center h-64 sm:h-80 p-6">
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 mb-4">
+                            <img class="w-full h-full object-contain opacity-60"
+                                src="assets/img/illustration_empty_state_appointment.svg" alt="No appointments">
+                        </div>
+                        <div class="text-center">
+                            <p class="text-sm sm:text-base text-gray-600 max-w-xs">
+                                Selecciona una fecha y revisa todas las citas del día
+                            </p>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Fixed Action Button -->
+    <div class="lg:hidden fixed bottom-6 right-6 z-50">
+        <button
+            class="bg-red-500 hover:bg-red-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            (click)="openQuickActions()">
+            <span class="material-symbols-outlined text-xl">
+                add
+            </span>
+        </button>
     </div>
 </div>

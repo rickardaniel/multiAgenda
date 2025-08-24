@@ -94,6 +94,9 @@ export class BigCalendarComponent implements OnChanges {
       event_time: '7:00',
       duration: 30,
       cant: 1,
+      iniciales:'AA',
+      nombre:'Andrea Almeida',
+      cita:'Consulta médica general',
     },
     {
       event_date: new Date(2025, 7, 26).toDateString(), // Jueves
@@ -101,7 +104,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'red',
       event_time: '7:00',
       duration: 30,
-      cant: 1,
+      cant: 1, iniciales:'AC',
+      nombre:'Andrea Castillo',
+      cita:'Traumatología',
     },
     {
       event_date: new Date(2025, 7, 27).toDateString(), // Jueves
@@ -109,7 +114,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'yellow',
       event_time: '7:00',
       duration: 30,
-      cant: 1,
+      cant: 1, iniciales:'RC',
+      nombre:'Richard Chimbo',
+      cita:'Dermatología',
     },
     {
       event_date: new Date(2025, 7, 28).toDateString(), // Jueves
@@ -117,7 +124,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'blue',
       event_time: '7:00',
       duration: 30,
-      cant: 1,
+      cant: 1, iniciales:'LC',
+      nombre:'Luis Carpio',
+      cita:'Consulta médica general',
     },
     {
       event_date: new Date(2025, 7, 29).toDateString(), // Jueves
@@ -125,7 +134,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'purple',
       event_time: '7:00',
       duration: 30,
-      cant: 1,
+      cant: 1, iniciales:'AA',
+      nombre:'Andrea Almeida',
+      cita:'Consulta médica general',
     },
     {
       event_date: new Date(2025, 7, 28).toDateString(), // Jueves
@@ -133,7 +144,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'purple',
       event_time: '10:00',
       duration: 30,
-      cant: 1,
+      cant: 1, iniciales:'AA',
+      nombre:'Andrea Almeida',
+      cita:'Consulta médica general',
     },
     {
       event_date: new Date(2025, 7, 27).toDateString(), // Jueves
@@ -141,7 +154,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'green',
       event_time: '8:00',
       duration: 30,
-      cant: 1,
+      cant: 1, iniciales:'AA',
+      nombre:'Andrea Almeida',
+      cita:'Consulta médica general',
     },
     {
       event_date: new Date(2025, 7, 25).toDateString(), // Viernes
@@ -149,7 +164,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'blue',
       event_time: '7:30',
       duration: 30,
-      cant: 1,
+      cant: 1, iniciales:'MC',
+      nombre:'Mariana Chávez',
+      cita:'Nutrición',
     },
     {
       event_date: new Date(2025, 7, 9).toDateString(), // Sábado
@@ -157,15 +174,19 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'red',
       event_time: '7:00',
       duration: 30,
-      cant: 1,
+      cant: 1,  iniciales:'JN',
+      nombre:'Julia Narváez',
+      cita:'Consulta médica general',
     },
     {
       event_date: new Date(2025, 7, 10).toDateString(), // Domingo
-      event_title: 'Alejandro Torres - Terapia física',
+      event_title: 'Alejandro Torres -Traumatologia',
       event_theme: 'green',
       event_time: '7:00',
       duration: 30,
-      cant: 1,
+      cant: 1,  iniciales:'AT',
+      nombre:'Alejandro Torres',
+      cita:'Traumatologia',
     },
     {
       event_date: new Date(2025, 7, 11).toDateString(), // Lunes
@@ -173,15 +194,19 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'yellow',
       event_time: '7:00',
       duration: 30,
-      cant: 1,
-    },
+      cant: 1,  iniciales:'KD',
+      nombre:'Karen Delgado',
+      cita:'Terapia física',
+    }, 
     {
       event_date: new Date(2025, 7, 7).toDateString(),
       event_title: 'Luis Espinoza - Terapia física',
       event_theme: 'green',
       event_time: '7:30',
       duration: 30,
-      cant: 1,
+      cant: 1,  iniciales:'LE',
+      nombre:'Luis Espinoza',
+      cita:'Terapia física',
     },
     {
       event_date: new Date(2025, 7, 8).toDateString(),
@@ -189,7 +214,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'purple',
       event_time: '7:30',
       duration: 30,
-      cant: 1,
+      cant: 1,  iniciales:'JP',
+      nombre:'Javier Paredes',
+      cita:'Psicología',
     },
     {
       event_date: new Date(2025, 7, 10).toDateString(),
@@ -197,7 +224,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'purple',
       event_time: '7:30',
       duration: 30,
-      cant: 1,
+      cant: 1,  iniciales:'AP',
+      nombre:'Ana Lucía Pérez',
+      cita:'Psicología',
     },
     {
       event_date: new Date(2025, 7, 11).toDateString(),
@@ -205,7 +234,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'blue',
       event_time: '7:30',
       duration: 30,
-      cant: 1,
+      cant: 1,  iniciales:'JM',
+      nombre:'Jorge Macías',
+      cita:'Nutrición',
     },
     // Agregar más eventos de ejemplo...
     {
@@ -214,7 +245,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'red',
       event_time: '8:30',
       duration: 30,
-      cant: 1,
+      cant: 1,  iniciales:'SM',
+      nombre:'Sofía Mejía',
+      cita:'Consulta médica general',
     },
     {
       event_date: new Date(2025, 7, 9).toDateString(),
@@ -222,7 +255,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'green',
       event_time: '8:30',
       duration: 30,
-      cant: 1,
+      cant: 1,  iniciales:'TC',
+      nombre:'Tomás Cedeñ',
+      cita:'Odontología general',
     },
   ]);
 
@@ -566,7 +601,9 @@ export class BigCalendarComponent implements OnChanges {
         event_theme: this.eventForm.value.event_theme,
         event_time: this.eventForm.value.event_time,
         duration: 30,
-        cant: 1,
+        cant: 1, iniciales:'AA',
+        nombre: this.eventForm.value.nombres,
+        cita: this.eventForm.value.cita,
       };
 
       this.events.update((events) => [...events, newEvent]);
@@ -641,6 +678,11 @@ export class BigCalendarComponent implements OnChanges {
       this.modal2 = this.util.createModal('#modalCliente3');
       this.modal2.show();
     }
+  }
+
+  sendHorario(evento){
+    console.log('evento', evento);
+    this.sendSchedule.emit(evento);
   }
 
 }

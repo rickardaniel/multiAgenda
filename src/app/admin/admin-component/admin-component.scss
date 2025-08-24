@@ -1,4 +1,22 @@
 
+// .router-link-active {
+//     background-color: #fee2e2 !important; /* bg-red-100 */
+//     color: #dc2626 !important; /* text-red-600 */
+//     border-radius: 9999px !important; /* rounded-full */
+// }
+
+// .router-link-active2 {
+//     background-color: #E5E7EB !important; /* bg-red-100 */
+//     color: #1F2937 !important; /* text-red-600 */
+//     border-radius: 9999px !important; /* rounded-full */
+//     font-weight: bold;
+// }
+
+// .material-icon-filled {
+//     font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+//     color: black;
+// }
+// Active router link styles
 .router-link-active {
     background-color: #fee2e2 !important; /* bg-red-100 */
     color: #dc2626 !important; /* text-red-600 */
@@ -6,8 +24,8 @@
 }
 
 .router-link-active2 {
-    background-color: #E5E7EB !important; /* bg-red-100 */
-    color: #1F2937 !important; /* text-red-600 */
+    background-color: #E5E7EB !important; /* bg-gray-200 */
+    color: #1F2937 !important; /* text-gray-800 */
     border-radius: 9999px !important; /* rounded-full */
     font-weight: bold;
 }
@@ -15,4 +33,238 @@
 .material-icon-filled {
     font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     color: black;
+}
+
+// Custom responsive utilities
+.sidebar-mobile {
+    @media (max-width: 1023px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 50;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+
+        &.show {
+            transform: translateX(0);
+        }
+    }
+}
+
+// Enhanced tooltip positioning for mobile
+.tooltip-mobile {
+    @media (max-width: 640px) {
+        display: none !important;
+    }
+}
+
+// Responsive text sizing
+.responsive-text-sm {
+    @media (max-width: 640px) {
+        font-size: 0.75rem;
+    }
+}
+
+.responsive-text-base {
+    @media (max-width: 640px) {
+        font-size: 0.875rem;
+    }
+}
+
+.responsive-text-lg {
+    @media (max-width: 640px) {
+        font-size: 1rem;
+    }
+}
+
+// Custom scrollbar for webkit browsers
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 #f7fafc;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f7fafc;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #cbd5e0;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #a0aec0;
+    }
+}
+
+// Animation classes
+.slide-in-left {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+.slide-out-left {
+    animation: slideOutLeft 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+// Overlay styles
+.overlay {
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+// Mobile-first responsive design
+@media (max-width: 640px) {
+    .sidebar-toggle-btn {
+        display: block;
+    }
+    
+    .sidebar-expanded {
+        width: 280px;
+        max-width: 85vw;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+    .sidebar-expanded {
+        width: 240px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar-expanded {
+        width: 256px;
+    }
+}
+
+// Focus styles for accessibility
+.focus-visible:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+// Enhanced hover states
+.nav-item {
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+// Header responsive adjustments
+.header-responsive {
+    @media (max-width: 640px) {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        
+        .header-title {
+            font-size: 1.125rem;
+        }
+        
+        .header-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+    }
+}
+
+// Logo responsive sizing
+.logo-responsive {
+    @media (max-width: 640px) {
+        width: 75%;
+    }
+    
+    @media (min-width: 641px) and (max-width: 768px) {
+        width: 80%;
+    }
+}
+
+// Button responsive sizing
+.btn-responsive {
+    @media (max-width: 640px) {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+}
+
+// Dropdown responsive positioning
+.dropdown-responsive {
+    @media (max-width: 640px) {
+        right: 0.5rem;
+        width: 160px;
+    }
+}
+
+// Safe area for devices with notch
+@supports (padding-top: env(safe-area-inset-top)) {
+    .header-safe-area {
+        padding-top: env(safe-area-inset-top);
+    }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+    .router-link-active {
+        border: 2px solid #dc2626 !important;
+    }
+    
+    .router-link-active2 {
+        border: 2px solid #1F2937 !important;
+    }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+    .sidebar-mobile,
+    .nav-item,
+    .slide-in-left,
+    .slide-out-left {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+// Dark mode support (if needed in the future)
+@media (prefers-color-scheme: dark) {
+    // Add dark mode styles here if needed
+}
+
+// Print styles
+@media print {
+    .sidebar-mobile,
+    .header-responsive {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
 }

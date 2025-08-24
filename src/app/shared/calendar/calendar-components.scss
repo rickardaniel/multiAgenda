@@ -31,6 +31,7 @@
       border-color: #e43838 !important;
       color: white !important;
       font-weight: bold;
+      border-radius: 50% !important;
     }
 
     :host ::ng-deep .flatpickr-day.today {
@@ -42,3 +43,389 @@
       background: #f3f4f6;
       font-weight: bold;
     }
+
+
+// // Calendar wrapper styles
+.inline-calendar-wrapper {
+  border: transparent !important;
+  box-shadow: transparent 0px !important;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  
+  @media (max-width: 640px) {
+    max-width: 250px;
+    font-size: 11px;
+  }
+  
+  @media (max-width: 480px) {
+    max-width: 220px;
+    font-size: 10px;
+  }
+}
+
+// // Compact calendar modifier
+.compact-calendar {
+  font-size: 12px !important;
+  
+  @media (max-width: 640px) {
+    font-size: 11px !important;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 10px !important;
+  }
+}
+
+// // Flatpickr calendar base styles
+:host ::ng-deep .flatpickr-calendar {
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: inherit !important;
+  width: 100% !important;
+  max-width: 280px;
+  
+  // Force visibility for all text elements
+  * {
+    color: inherit !important;
+  }
+  
+  @media (max-width: 640px) {
+    max-width: 250px;
+    padding: 0.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    max-width: 220px;
+    padding: 0.25rem;
+  }
+}
+
+:host ::ng-deep .flatpickr-calendar.open {
+  display: block !important;
+}
+
+// // Month navigation styles
+:host ::ng-deep .flatpickr-months {
+  padding: 0.5rem 0;
+  
+  @media (max-width: 480px) {
+    padding: 0.25rem 0;
+  }
+}
+
+:host ::ng-deep .flatpickr-current-month {
+  font-size: 14px !important;
+  font-weight: 600;
+  
+  @media (max-width: 640px) {
+    font-size: 13px !important;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 12px !important;
+  }
+}
+
+:host ::ng-deep .flatpickr-monthDropdown-months,
+:host ::ng-deep .numInputWrapper input {
+  font-size: 12px !important;
+  
+  @media (max-width: 480px) {
+    font-size: 11px !important;
+  }
+}
+
+// // Navigation arrows
+:host ::ng-deep .flatpickr-prev-month,
+:host ::ng-deep .flatpickr-next-month {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @media (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+  }
+  
+  svg {
+    width: 12px;
+    height: 12px;
+    
+    @media (max-width: 480px) {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+// // Weekdays header
+:host ::ng-deep .flatpickr-weekdays {
+  background: #f8f9fa !important;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  padding: 2px 0;
+  
+  @media (max-width: 480px) {
+    margin-bottom: 2px;
+    padding: 1px 0;
+  }
+}
+
+:host ::ng-deep .flatpickr-weekday {
+  background: transparent !important;
+  color: #374151 !important;
+  cursor: default;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  height: 26px !important;
+  line-height: 26px !important;
+  text-align: center;
+  border: none !important;
+  
+  @media (max-width: 640px) {
+    font-size: 10px !important;
+    height: 24px !important;
+    line-height: 24px !important;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 9px !important;
+    height: 22px !important;
+    line-height: 22px !important;
+  }
+}
+
+// // Days grid
+:host ::ng-deep .flatpickr-days {
+  width: 100%;
+}
+
+:host ::ng-deep .dayContainer {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+// // Individual day cells
+:host ::ng-deep .flatpickr-day {
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  height: 32px !important;
+  // line-height: 32px !important;
+  // margin: 1px;
+  text-align: center;
+  width: 32px !important;
+  font-size: 10px !important;
+  // transition: all 0.2s ease;
+  
+  // @media (max-width: 640px) {
+  //   height: 28px !important;
+  //   line-height: 28px !important;
+  //   width: 28px !important;
+  //   font-size: 11px !important;
+  //   margin: 0.5px;
+  // }
+  
+  // @media (max-width: 480px) {
+  //   height: 26px !important;
+  //   line-height: 26px !important;
+  //   width: 26px !important;
+  //   font-size: 10px !important;
+  //   margin: 0.5px;
+  // }
+}
+
+// // Today's date
+// :host ::ng-deep .flatpickr-day.today {
+//   border: 2px solid #ef4444 !important;
+//   color: #ef4444 !important;
+//   font-weight: 600;
+//   background: #fef2f2;
+  
+//   &:hover {
+//     border-color: #dc2626 !important;
+//     background: #fee2e2;
+//   }
+// }
+
+// // Selected date
+// :host ::ng-deep .flatpickr-day.selected {
+//   background: #ef4444 !important;
+//   border-color: #dc2626 !important;
+//   color: white !important;
+//   font-weight: 600;
+//   box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+  
+//   &:hover {
+//     background: #dc2626 !important;
+//     transform: scale(1.05);
+//   }
+// }
+
+// // Hover state
+// :host ::ng-deep .flatpickr-day:hover {
+//   background: #f3f4f6 !important;
+//   font-weight: 600;
+//   transform: translateY(-1px);
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// }
+
+// // Disabled/other month dates
+// :host ::ng-deep .flatpickr-day.flatpickr-disabled,
+// :host ::ng-deep .flatpickr-day.prevMonthDay,
+// :host ::ng-deep .flatpickr-day.nextMonthDay {
+//   color: #d1d5db !important;
+//   cursor: not-allowed;
+  
+//   &:hover {
+//     background: transparent !important;
+//     transform: none;
+//     box-shadow: none;
+//   }
+// }
+
+// // Weekend styling
+// :host ::ng-deep .flatpickr-day.weekend {
+//   color: #6b7280;
+// }
+
+// // Focus styles for accessibility
+// :host ::ng-deep .flatpickr-day:focus {
+//   outline: 2px solid #3b82f6;
+//   outline-offset: 2px;
+//   border-radius: 6px;
+// }
+
+// // Animation for month transitions
+// :host ::ng-deep .flatpickr-calendar.animating .flatpickr-months {
+//   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+// }
+
+// // Responsive adjustments for very small screens
+// @media (max-width: 360px) {
+//   .inline-calendar-wrapper {
+//     max-width: 200px;
+//     font-size: 9px !important;
+//   }
+  
+//   :host ::ng-deep .flatpickr-calendar {
+//     max-width: 200px;
+//   }
+  
+//   :host ::ng-deep .flatpickr-day {
+//     height: 24px !important;
+//     line-height: 24px !important;
+//     width: 24px !important;
+//     font-size: 9px !important;
+//   }
+  
+//   :host ::ng-deep .flatpickr-weekday {
+//     font-size: 7px !important;
+//     height: 18px;
+//     line-height: 18px;
+//   }
+  
+//   :host ::ng-deep .flatpickr-current-month {
+//     font-size: 11px !important;
+//   }
+// }
+
+// // High contrast mode support
+// @media (prefers-contrast: high) {
+//   :host ::ng-deep .flatpickr-day.selected {
+//     border: 3px solid #000 !important;
+//     background: #000 !important;
+//   }
+  
+//   :host ::ng-deep .flatpickr-day.today {
+//     border: 3px solid #ef4444 !important;
+//   }
+// }
+
+// // Reduced motion support
+// @media (prefers-reduced-motion: reduce) {
+//   :host ::ng-deep .flatpickr-day {
+//     transition: none !important;
+//   }
+  
+//   :host ::ng-deep .flatpickr-day:hover {
+//     transform: none !important;
+//   }
+  
+//   :host ::ng-deep .flatpickr-day.selected:hover {
+//     transform: none !important;
+//   }
+// }
+
+// // Dark mode support (future-ready)
+// @media (prefers-color-scheme: dark) {
+//   :host ::ng-deep .flatpickr-weekdays {
+//     background: #374151;
+//   }
+  
+//   :host ::ng-deep .flatpickr-weekday {
+//     color: #d1d5db !important;
+//   }
+  
+//   :host ::ng-deep .flatpickr-day {
+//     color: #f9fafb;
+    
+//     &:hover {
+//       background: #4b5563 !important;
+//     }
+//   }
+  
+//   :host ::ng-deep .flatpickr-day.today {
+//     background: #1f2937;
+//     border-color: #ef4444 !important;
+//   }
+  
+//   :host ::ng-deep .flatpickr-current-month {
+//     color: #f9fafb;
+//   }
+// }
+
+// // Loading state (if needed)
+// .calendar-loading {
+//   opacity: 0.5;
+//   pointer-events: none;
+//   position: relative;
+  
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     width: 20px;
+//     height: 20px;
+//     margin: -10px 0 0 -10px;
+//     border: 2px solid #ef4444;
+//     border-radius: 50%;
+//     border-top-color: transparent;
+//     animation: spin 1s linear infinite;
+//   }
+// }
+
+// @keyframes spin {
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
+
+// // Print styles
+// @media print {
+//   :host ::ng-deep .flatpickr-calendar {
+//     box-shadow: none !important;
+//     border: 1px solid #000 !important;
+//   }
+  
+//   :host ::ng-deep .flatpickr-day.selected {
+//     background: #000 !important;
+//     color: white !important;
+//   }
+// }

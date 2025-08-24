@@ -45,6 +45,9 @@ export interface CalendarEvent {
   event_time?: string; // Nuevo campo para la hora (formato "HH:mm")
   duration?: number;   // Nuevo campo para duración en minutos
   cant: number;
+  iniciales: string;
+  nombre: string;
+  cita: string;
 }
 
 export interface EventTheme {

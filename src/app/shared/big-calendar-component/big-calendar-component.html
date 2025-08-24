@@ -212,7 +212,7 @@
 
                             <!-- Eventos en esta hora y día -->
                             @for (event of getEventsForTimeSlot(weekDay.fullDate, timeSlot); track event.event_title) {
-                            <div [class]="getEventThemeClass(event.event_theme)"
+                            <div [class]="getEventThemeClass(event.event_theme)" (click)="sendHorario(event)"
                                 class="absolute inset-1 rounded p-1 text-xs overflow-hidden">
                                 <div class="font-medium truncate">
                                     {{ event.event_title.split(' - ')[0] }}
