@@ -1,87 +1,182 @@
-<div class=" w-full px-7 py-5 ">
-    <div class="flex justify-between items-center ">
-        <div class="p-1">
-            <div class="title">
-                <h1 class="text-sm"> Citas /</h1>
-                <h1 class="mt-4 font-semibold text-xl">Citas</h1>
-                <span class="text-xs">Gestiona las citas de tus clientes</span>
+<!-- Main Container -->
+<div class="w-full px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6">
+
+    <!-- Header Section -->
+    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4 mb-6">
+
+        <!-- Title Section -->
+        <div class="flex-shrink-0">
+            <div class="space-y-2">
+                <div class="flex items-center text-xs sm:text-sm text-gray-500">
+                    <span>Citas</span>
+                    <span class="mx-1">/</span>
+                </div>
+                <h1 class="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800">
+                    Citas
+                </h1>
+                <p class="text-xs sm:text-sm text-gray-600">
+                    Gestiona las citas de tus clientes
+                </p>
             </div>
         </div>
-        <div class="p-1 mt-13">
-            <div class="flex justify-between ">
-                <div class="flex items-center">
-                    <div class="relative w-full">
-                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                            <span class="material-symbols-outlined text-gray-400 ">
-                                search
-                            </span>
-                        </div>
-                        <input type="text" (keyup)="searchTable($event)"
-                            class="inputGeneral4 !rounded-full  !w-[300px] !pl-10  !py-2.25 !focus:shadow-lg "
-                            placeholder="¿Qué estás buscando?" required>
-                    </div>
 
-                    @if(flagFilters){
-                    <a (click)="showFilters(false)"
-                        class="group max-w-max relative mx-1 flex flex-col items-center justify-center p-1 text-gray-500 bg-white  hover:text-gray-600 relative cursor-pointer hover:bg-gray-100  hover:shadow-lg  p-1.75 rounded-full transition-colors">
-                        <p class="text-xs text-center">
-                            <span class="material-symbols-outlined">
-                                tune
-                            </span>
-                        </p>
-                        <div
-                            class="pb-3 [transform:perspective(50px)_translateZ(0)_rotateX(10deg)] group-hover:[transform:perspective(0px)_translateZ(0)_rotateX(0deg)] absolute bottom-0 mb-6 origin-bottom transform rounded text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
-                            <div class="flex max-w-xs flex-col items-center">
-                                <div class="rounded bg-gray-900 p-2 text-xs text-center shadow-lg">Filtros</div>
-                                <div class="clip-bottom h-2 w-4 bg-gray-900"></div>
-                            </div>
-                        </div>
-                    </a>
-                    }@else{
-                    <a (click)="showFilters(true)"
-                        class="  transition transform effectoZoomBoton  group max-w-max relative mx-1 flex flex-col items-center justify-center p-1 text-gray-500 bg-white  hover:text-gray-600 relative cursor-pointer hover:bg-gray-100  hover:shadow-lg  p-1.75 rounded-full transition-colors">
-                        <p class="text-xs text-center">
-                            <span class="material-symbols-outlined">
-                                close
-                            </span>
-                        </p>
-                        <div
-                            class="pb-3 [transform:perspective(50px)_translateZ(0)_rotateX(10deg)] group-hover:[transform:perspective(0px)_translateZ(0)_rotateX(0deg)] absolute bottom-0 mb-6 origin-bottom transform rounded text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
-                            <div class="flex max-w-xs flex-col items-center">
-                                <div class="rounded bg-gray-900 p-2 text-xs text-center shadow-lg">Filtros</div>
-                                <div class="clip-bottom h-2 w-4 bg-gray-900"></div>
-                            </div>
-                        </div>
-                    </a>
-                    }
+        <!-- Actions Section -->
+        <div class="flex flex-col sm:flex-row gap-3 lg:items-center">
+
+            <!-- Search Bar -->
+            <div class="relative flex-1 lg:flex-none">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <span class="material-symbols-outlined text-gray-400 text-lg sm:text-xl">
+                        search
+                    </span>
                 </div>
+                <input type="text" (keyup)="searchTable($event)"
+                    class="w-full sm:w-64 lg:w-80 pl-10 pr-4 py-2.5 text-sm border border-gray-300 rounded-full focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-white shadow-sm transition-all duration-200"
+                    placeholder="¿Qué estás buscando?">
+            </div>
 
-                <button (click)="crearEditarCita('create', '', '#modalCita')"
-                    class=" cursor-pointer py-1.75  ml-2 px-5 text-sm font-medium text-white bg-red-600 rounded-full  hover:bg-red-600  transition transform effectoZoomBoton  ">
-                    <div class="flex justify-center items-center">
-                        <i class="ri-add-line"></i> Nueva Cita
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2">
+
+                <!-- Filter Toggle Button -->
+                <button (click)="showFilters(!flagFilters)" [class.bg-red-50]="!flagFilters"
+                    [class.border-red-200]="!flagFilters"
+                    class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 border border-gray-300 rounded-full hover:bg-gray-50 hover:shadow-md transition-all duration-200 group bg-white">
+
+                    <span class="material-symbols-outlined text-lg sm:text-xl" [class.text-red-500]="!flagFilters"
+                        [class.text-gray-500]="flagFilters">
+                        {{flagFilters ? 'tune' : 'close'}}
+                    </span>
+
+                    <!-- Tooltip -->
+                    <div
+                        class="absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50">
+                        {{flagFilters ? 'Mostrar Filtros' : 'Ocultar Filtros'}}
+                        <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45">
+                        </div>
                     </div>
+                </button>
+
+                <!-- New Appointment Button -->
+                <button (click)="crearEditarCita('create', '', '#modalCita')"
+                    class="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-red-600 rounded-full hover:bg-red-700 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+                    <span class="material-symbols-outlined text-lg">add</span>
+                    <span class="hidden sm:inline">Nueva Cita</span>
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- Filters Section (Collapsible) -->
+    <div class="transition-all duration-300 ease-in-out overflow-hidden" [class.max-h-0]="flagFilters"
+        [class.max-h-96]="!flagFilters" [class.opacity-0]="flagFilters" [class.opacity-100]="!flagFilters">
+
+        <div class="bg-gray-50 rounded-xl p-4 sm:p-6 mb-6 border border-gray-200 2xl:hidden xl:hidden block">
+            <h3 class="text-sm font-semibold text-gray-700 mb-4">Filtros de búsqueda</h3>
+
+            <!-- Mobile/Desktop Filter Layout -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+
+                <!-- Date Filter -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-medium text-gray-600">Fecha</label>
+                    <input type="date"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm bg-white">
+                </div>
+
+                <!-- Service Filter -->
+                <form [formGroup]="formService" class="space-y-2">
+                    <label class="block text-xs font-medium text-gray-600">Servicio</label>
+                    <div class="relative">
+                        <select formControlName="especialidad" (change)="filterByService($event)"
+                            class="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm bg-white appearance-none">
+                            <option value="">Todos los servicios</option>
+                            <option value="Consulta médica general">Consulta médica general</option>
+                            <option value="Control pediátrico">Control pediátrico</option>
+                            <option value="Vacunación">Vacunación</option>
+                            <option value="Control oftalmológico">Control oftalmológico</option>
+                            <option value="Consulta nutricional">Consulta nutricional</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                            <span class="material-symbols-outlined text-red-500 text-sm">expand_more</span>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Employee Filter -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-medium text-gray-600">Empleado</label>
+                    <div class="relative">
+                        <select (change)="filterByEmpleado($event)"
+                            class="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm bg-white appearance-none">
+                            <option value="">Todos los empleados</option>
+                            <option value="Dr. Carlos Miranda">Dr. Carlos Miranda</option>
+                            <option value="Dra. Ana López">Dra. Ana López</option>
+                            <option value="María Gonzales">María Gonzales</option>
+                            <option value="Dra. Patricia Vega">Dra. Patricia Vega</option>
+                            <option value="Juan C. Pérez">Juan C. Pérez</option>
+                            <option value="Dra. Elena Campos">Dra. Elena Campos</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                            <span class="material-symbols-outlined text-red-500 text-sm">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Filter -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-medium text-gray-600">Estado</label>
+                    <div class="relative">
+                        <select (change)="filterByEstado($event)"
+                            class="w-full px-3 py-2 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm bg-white appearance-none">
+                            <option value="">Todos los estados</option>
+                            <option value="Completada">Completada</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Sin confirmar">Sin confirmar</option>
+                            <option value="En proceso">En proceso</option>
+                            <option value="Cancelada">Cancelada</option>
+                            <option value="Confirmada">Confirmada</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                            <span class="material-symbols-outlined text-red-500 text-sm">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clear Filters -->
+                <div class="flex items-end">
+                    <button (click)="clearFilters()"
+                        class="w-full sm:w-auto px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-800 transition-all duration-200 flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-lg">refresh</span>
+                        <span>Limpiar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between items-center mt-5 ">
+            <div>
+
+            </div>
+
+        </div>
+    </div>
+
     @if(!flagFilters){
-    <div class="flex justify-between items-center mt-5 ">
+    <div class="flex justify-end  2xl:block xl:block hidden mb-5">
         <div>
 
         </div>
-        <div class="flex justify-between !space-x-2 ">
+        <div class="flex justify-end !space-x-2 ">
             <input type="date" class="inputGeneral4 !w-[10rem] placeholder-gray-500 text-gray-600 ">
 
             <form [formGroup]="formService">
                 <div class="relative">
                     <select formControlName="especialidad" class="selectGeneral2" (change)="filterByService($event)">
                         <option selected value="" class="!text-gray-500">Servicio</option>
-                        <option value="Consulta médica general">Consulta médica general</option>
-                        <option value="Control pediátrico">Control pediátrico</option>
-                        <option value="Vacunación">Vacunación</option>
-                        <option value="Control oftalmológico">Control oftalmológico</option>
+                        <option value="Consulta mÃ©dica general">Consulta mÃ©dica general</option>
+                        <option value="Control pediÃ¡trico">Control pediÃ¡trico</option>
+                        <option value="VacunaciÃ³n">VacunaciÃ³n</option>
+                        <option value="Control oftalmolÃ³gico">Control oftalmolÃ³gico</option>
                         <option value="Consulta nutricional	">Consulta nutricional </option>
                     </select>
                     <div class="absolute inset-y-0 right-0 flex items-center px-1 pointer-events-none">
@@ -96,10 +191,10 @@
                 <select class="selectGeneral2" (change)="filterByEmpleado($event)">
                     <option selected value="" class="!text-gray-700">Empleado</option>
                     <option value="Dr. Carlos Miranda">Dr. Carlos Miranda</option>
-                    <option value="Dra. Ana López">Dra. Ana López</option>
-                    <option value="María Gonzales">María Gonzales</option>
+                    <option value="Dra. Ana LÃ³pez">Dra. Ana LÃ³pez</option>
+                    <option value="MarÃ­a Gonzales">MarÃ­a Gonzales</option>
                     <option value="Dra. Patricia Vega">Dra. Patricia Vega</option>
-                    <option value="Juan C. Pérez">Juan C. Pérez</option>
+                    <option value="Juan C. PÃ©rez">Juan C. PÃ©rez</option>
                     <option value="Dra. Elena Campos">Dra. Elena Campos</option>
                 </select>
                 <div class="absolute inset-y-0 right-0 flex items-center px-1 pointer-events-none">
@@ -130,103 +225,88 @@
 
         </div>
     </div>
+
     }
 
 
-    <div class=" w-full mt-5 ">
 
+    <!-- Data Section -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
 
-        <!-- Tabla principal -->
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left text-gray-500 bg-white">
-                <thead class="text-md text-gray-700  bg-gray-50 border-gray-200 border-b">
+        <!-- Desktop Table View -->
+        <div class="hidden lg:block overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
-                        <th scope="col" class="px-6 py-3 font-medium">Código</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Cliente</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Fecha</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Hora</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Servicio</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Empleado</th>
-                        <th scope="col" class="px-6 py-3 font-medium">Estado</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 titlecase tracking-wider">
+                            Código</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 titlecase tracking-wider">
+                            Cliente</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 titlecase tracking-wider">
+                            Fecha</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 titlecase tracking-wider">
+                            Hora</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 titlecase tracking-wider">
+                            Servicio</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 titlecase tracking-wider">
+                            Empleado</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 titlecase tracking-wider">
+                            Estado</th>
                     </tr>
                 </thead>
-                <tbody class="text-xs">
+                <tbody class="bg-white divide-y divide-gray-200">
                     @for(c of citasN; track c.codigo){
-                    <tr class="bg-white border-gray-200 border-b hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 font-medium text-gray-900">{{c.codigo}}</td>
-                        <td class="px-6 py-4 text-gray-900">{{c.cliente}}</td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <i class="ri-calendar-line mr-1"></i>
+                    <tr class="hover:bg-gray-50 transition-colors duration-200">
+                        <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">{{c.codigo}}</td>
+                        <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-900">{{c.cliente}}</td>
+                        <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-600">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-gray-400 text-sm">calendar_today</span>
                                 {{c.fecha}}
                             </div>
                         </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <i class="ri-time-line mr-1"></i>
+                        <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-600">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-gray-400 text-sm">schedule</span>
                                 {{c.hora}}
                             </div>
                         </td>
-                        <td class="px-6 py-4">{{c.servicio}}</td>
-                        <td class="px-6 py-4">{{c.empleado}}</td>
-                        <td class="px-6 py-4">
-                            <div class="relative dropdown-container">
-                                <div class="relative inline-block text-left place-self-end">
-                                    <!-- ✅ CAMBIO: Pasar c.codigo y event al método -->
-                                    <button (click)="toggleDropdown(c.codigo, $event)"
-                                        class="p-0 text-gray-400 hover:text-gray-600">
-                                        <span
-                                            class="cursor-pointer items-center w-[6rem] px-2.5 py-1 rounded-full text-xs font-normal"
-                                            [ngClass]="getStatusClass(c.estado)">
-                                            {{c.estadoN}}
-                                        </span>
-                                    </button>
+                        <td class="px-6 py-2 text-sm text-gray-600">
+                            <div class="max-w-xs truncate">{{c.servicio}}</div>
+                        </td>
+                        <td class="px-6 py-2 text-sm text-gray-600">
+                            <div class="max-w-xs truncate">{{c.empleado}}</div>
+                        </td>
+                        <td class="px-6 py-2 whitespace-nowrap">
+                            <div class="relative inline-block text-left">
+                                <button (click)="toggleDropdown(c.codigo, $event)"
+                                    class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium transition-colors duration-200"
+                                    [ngClass]="getStatusClass(c.estado)">
+                                    {{c.estadoN}}
+                                    <span class="material-symbols-outlined text-xs ml-1">expand_more</span>
+                                </button>
 
-                                    <!-- ✅ CAMBIO: Usar el nuevo método y prevenir cierre al hacer click dentro -->
-                                    <div id="dropdown-menu-{{c.codigo}}" [class.hidden]="!isDropdownOpen(c.codigo)"
-                                        (click)="onDropdownClick($event)"
-                                        class="absolute right-0 z-50 w-52 mt-2 origin-top-right bg-white rounded-md shadow-lg border border-gray-200">
-                                        <div class="p-3.5 py-2" role="menu" aria-orientation="vertical"
-                                            aria-labelledby="dropdown-button">
-                                            <h3 class="text-sm font-semibold text-gray-600 mb-3">Estado de la cita</h3>
-                                            <div class="space-y-3">
-                                                <!-- Pendiente -->
-                                                <div class="flex items-center ">
-                                                    <input id="pendiente" name="clase" type="radio" value="Pendiente"
-                                                        checked
-                                                        class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
-                                                    <label for="pendiente"
-                                                        class="ml-3 text-xs font-normal text-gray-500">
-                                                        Pendiente
-                                                    </label>
-                                                </div>
-
-                                                <hr class="border-gray-200">
-
-                                                <!-- Completa -->
-                                                <div class="flex items-center">
-                                                    <input id="completa" name="clase" type="radio" value="otros"
-                                                        class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
-                                                    <label for="completa"
-                                                        class="ml-3 text-xs font-normal text-gray-500">
-                                                        Completa
-                                                    </label>
-                                                </div>
-                                                <hr class="border-gray-200">
-
-
-                                                <!-- Ausente -->
-                                                <div class="flex items-center">
-                                                    <input id="ausente" name="clase" type="radio" value="otros"
-                                                        class="checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
-                                                    <label for="ausente" class="ml-3 text-xs font-normal text-gray-500">
-                                                        Ausente
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
+                                <!-- Status Dropdown -->
+                                <div [class.hidden]="!isDropdownOpen(c.codigo)" (click)="onDropdownClick($event)"
+                                    class="absolute right-0 z-50 w-48 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                                    <h4 class="px-3 py-2 text-xs font-semibold text-gray-600 border-b border-gray-200">
+                                        Estado de la cita</h4>
+                                    <div class="py-2 space-y-1">
+                                        <label class="flex items-center px-3 py-2 hover:bg-gray-50 cursor-pointer">
+                                            <input type="radio" name="status-{{c.codigo}}" value="Pendiente"
+                                                class="w-3 h-3 text-red-600">
+                                            <span class="ml-2 text-xs text-gray-700">Pendiente</span>
+                                        </label>
+                                        <label class="flex items-center px-3 py-2 hover:bg-gray-50 cursor-pointer">
+                                            <input type="radio" name="status-{{c.codigo}}" value="Completada"
+                                                class="w-3 h-3 text-red-600">
+                                            <span class="ml-2 text-xs text-gray-700">Completada</span>
+                                        </label>
+                                        <label class="flex items-center px-3 py-2 hover:bg-gray-50 cursor-pointer">
+                                            <input type="radio" name="status-{{c.codigo}}" value="Cancelada"
+                                                class="w-3 h-3 text-red-600">
+                                            <span class="ml-2 text-xs text-gray-700">Cancelada</span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -237,355 +317,376 @@
             </table>
         </div>
 
-        <!-- Paginación -->
-        <div
-            class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-4 rounded-b-lg">
-            <div class="flex flex-1 justify-between sm:hidden">
-                <button
-                    class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Anterior</button>
-                <button
-                    class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Siguiente</button>
-            </div>
-            <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-                <div>
-                    <p class="text-sm text-gray-700">
-                        Mostrando <span class="font-medium">1</span> a <span
-                            class="font-medium">{{citas?.pagination?.pageSize}}</span> de
-                        <span class="font-medium">{{citas?.pagination?.totalItems}}</span> resultados
-                    </p>
-                </div>
-                <div>
+        <!-- Mobile Card View -->
+        <div class="lg:hidden">
+            @for(c of citasN; track c.codigo){
+            <div class="border-b border-gray-200 last:border-b-0">
+                <div class="p-4 space-y-3">
 
-                    <div class="flex items-center justify-between ">
-                        <!-- Botón Previa -->
-                        <button (click)="goToPreviousPage(citas?.pagination, all_data)"
-                            [disabled]="!citas?.pagination?.hasPreviousPage"
-                            [class]="!citas?.pagination?.hasPreviousPage ? 
-                                'flex items-center px-3 py-1 text-xs font-medium text-gray-300 cursor-not-allowed border-1  rounded-l-md ' : 
-                                'flex items-center px-3 py-1 text-xs font-medium text-gray-600 hover:text-gray-700 transition-colors duration-200 rounded-l-md border-1 border-gray-300'"
-                            type="button">
-                            Previa
-                        </button>
+                    <!-- Header -->
+                    <div class="flex justify-between items-start">
+                        <div class="space-y-1">
+                            <p class="text-sm font-semibold text-gray-900">{{c.cliente}}</p>
+                            <p class="text-xs text-gray-500">Código: {{c.codigo}}</p>
+                        </div>
 
-                        <!-- Contador central -->
-                        <button class="px-4 bg-gray-100 border-1 border-gray-300   ">
-                            <span class="text-sm font-semibold text-red-600">{{citas?.pagination?.currentPage}}</span>
-                            <span class="text-sm text-red-600">/</span>
-                            <span class="text-sm font-medium text-red-600">{{citas?.pagination?.totalPages}}</span>
-                        </button>
+                        <!-- Status Badge -->
+                        <div class="relative">
+                            <button (click)="toggleDropdown(c.codigo, $event)"
+                                class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium transition-colors duration-200"
+                                [ngClass]="getStatusClass(c.estado)">
+                                {{c.estadoN}}
+                                <span class="material-symbols-outlined text-xs ml-1">expand_more</span>
+                            </button>
 
-                        <!-- Botón Siguiente -->
-                        <button (click)="goToNextPage(citas?.pagination, all_data)"
-                            [disabled]="!citas?.pagination?.hasNextPage"
-                            [class]="!citas?.pagination?.hasNextPage ? 
-                                'flex items-center px-2 py-1 text-xs font-medium text-gray-300 cursor-not-allowed rounded-r-md border-1 border-gray-300 ' : 
-                                'flex items-center px-2 py-1 text-xs font-medium text-gray-600 hover:text-gray-700 transition-colors duration-200 rounded-r-md border-1 border-gray-300'"
-                            type="button">
-                            Siguiente
-                        </button>
+                            <!-- Mobile Status Dropdown -->
+                            <div [class.hidden]="!isDropdownOpen(c.codigo)" (click)="onDropdownClick($event)"
+                                class="absolute right-0 z-50 w-44 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                                <h4 class="px-3 py-2 text-xs font-semibold text-gray-600 border-b border-gray-200">
+                                    Cambiar estado</h4>
+                                <div class="py-2 space-y-1">
+                                    <label class="flex items-center px-3 py-2 hover:bg-gray-50 cursor-pointer">
+                                        <input type="radio" name="mobile-status-{{c.codigo}}" value="Pendiente"
+                                            class="w-3 h-3 text-red-600">
+                                        <span class="ml-2 text-xs text-gray-700">Pendiente</span>
+                                    </label>
+                                    <label class="flex items-center px-3 py-2 hover:bg-gray-50 cursor-pointer">
+                                        <input type="radio" name="mobile-status-{{c.codigo}}" value="Completada"
+                                            class="w-3 h-3 text-red-600">
+                                        <span class="ml-2 text-xs text-gray-700">Completada</span>
+                                    </label>
+                                    <label class="flex items-center px-3 py-2 hover:bg-gray-50 cursor-pointer">
+                                        <input type="radio" name="mobile-status-{{c.codigo}}" value="Cancelada"
+                                            class="w-3 h-3 text-red-600">
+                                        <span class="ml-2 text-xs text-gray-700">Cancelada</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Details Grid -->
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <span class="material-symbols-outlined text-gray-400 text-sm">calendar_today</span>
+                            <span>{{c.fecha}}</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-600">
+                            <span class="material-symbols-outlined text-gray-400 text-sm">schedule</span>
+                            <span>{{c.hora}}</span>
+                        </div>
+                    </div>
+
+                    <!-- Service and Employee -->
+                    <div class="space-y-2 text-xs text-gray-600">
+                        <div class="flex items-start gap-2">
+                            <span
+                                class="material-symbols-outlined text-gray-400 text-sm mt-0.5 flex-shrink-0">medical_services</span>
+                            <span class="flex-1 leading-relaxed">{{c.servicio}}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-gray-400 text-sm flex-shrink-0">person</span>
+                            <span class="flex-1">{{c.empleado}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
+            }
+
+            <!-- Empty State -->
+            @if(citasN.length === 0) {
+            <div class="flex flex-col items-center justify-center py-12 px-4">
+                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                    <span class="material-symbols-outlined text-gray-400 text-2xl">event_busy</span>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900 mb-2">No hay citas</h3>
+                <p class="text-xs text-gray-500 text-center max-w-sm">
+                    No se encontraron citas que coincidan con los filtros seleccionados.
+                </p>
+            </div>
+            }
         </div>
 
-    </div>
-</div>
+        <!-- Pagination -->
+        <div class="bg-gray-50 border-t border-gray-200 px-4 py-3 sm:px-6">
 
-
-
-
-
-<!-- Main modal -->
-<div id="modalCita" tabindex="-1" aria-hidden="true"
-    class="hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full bg-transparent bg-opacity-50">
-  
-    <!-- ✅ CAMBIO: Contenedor del modal con altura fija -->
-    <div class="relative p-4 w-full max-w-md h-[90vh] flex flex-col">
-
-        <!-- Modal content con altura completa -->
-        <div class="relative bg-white rounded-lg shadow-sm flex flex-col h-full">
-
-            <!-- ✅ Modal header - FIJO (no scroll) -->
-            <div class="flex items-center justify-between p-4 md:p-5 rounded-t border-b border-gray-200 flex-shrink-0">
-                <h3 class="text-lg font-semibold text-gray-600">
-                    Crear nueva cita
-                </h3>
-                <button type="button" (click)="closeModal()"
-                    class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 inline-flex justify-center items-center">
-                    <span class="material-symbols-outlined">close</span>
-                    <span class="sr-only">Close modal</span>
+            <!-- Mobile Pagination -->
+            <div class="flex justify-between items-center sm:hidden">
+                <button (click)="goToPreviousPage(citas?.pagination, all_data)"
+                    [disabled]="!citas?.pagination?.hasPreviousPage"
+                    class="px-3 py-2 text-xs font-medium rounded-lg border transition-colors duration-200" [class]="!citas?.pagination?.hasPreviousPage 
+                        ? 'text-gray-300 border-gray-200 cursor-not-allowed' 
+                        : 'text-gray-600 border-gray-300 hover:bg-white'">
+                    Anterior
+                </button>
+                <span class="text-xs text-gray-500">
+                    {{citas?.pagination?.currentPage}} / {{citas?.pagination?.totalPages}}
+                </span>
+                <button (click)="goToNextPage(citas?.pagination, all_data)" [disabled]="!citas?.pagination?.hasNextPage"
+                    class="px-3 py-2 text-xs font-medium rounded-lg border transition-colors duration-200" [class]="!citas?.pagination?.hasNextPage 
+                        ? 'text-gray-300 border-gray-200 cursor-not-allowed' 
+                        : 'text-gray-600 border-gray-300 hover:bg-white'">
+                    Siguiente
                 </button>
             </div>
 
-            <!-- ✅ Modal body - SCROLLABLE -->
-            <div class="flex-1   p-4 md:p-5 "
-                [ngClass]="{'overflowClass': flagClassOverflow, 'scrollbar-hide':flagClassOverflow}">
-                <div class="grid gap-4 mb-4 grid-cols-1">
-                    <div>
-                        <span class="text-xs font-medium text-gray-500">1. Información del cliente</span>
-                        <div class="flex justify-between mt-5">
-                            <div class="relative">
-                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                    <span class="material-symbols-outlined text-gray-400">search</span>
-                                </div>
-                                <input type="text"
-                                    class="inputGeneral4 !rounded-full !w-full !pl-10 !px-30 !py-2.25 !focus:shadow-lg"
-                                    placeholder="¿Qué estás buscando?" required>
-                            </div>
-                            <span (click)="changeView(true)"
-                                class="px-1.5 border border-gray-300 text-red-600 rounded-full flex justify-center items-center effectoZoomBoton hover:bg-gray-100 hover:shadow cursor-pointer ">
-                                <div class="">
-                                    <span class="material-symbols-outlined text-[12px]">person</span>
-                                </div>
-                            </span>
-                        </div>
+            <!-- Desktop Pagination -->
+            <div class="hidden sm:flex sm:justify-between sm:items-center">
+                <div class="text-sm text-gray-700">
+                    Mostrando <span class="font-medium">1</span> a
+                    <span class="font-medium">{{citas?.pagination?.pageSize}}</span> de
+                    <span class="font-medium">{{citas?.pagination?.totalItems}}</span> resultados
+                </div>
+
+                <div class="flex items-center space-x-0 border border-gray-300 rounded-lg overflow-hidden">
+                    <button (click)="goToPreviousPage(citas?.pagination, all_data)"
+                        [disabled]="!citas?.pagination?.hasPreviousPage"
+                        class="px-4 py-2 text-sm font-medium transition-colors duration-200 bg-white" [class]="!citas?.pagination?.hasPreviousPage 
+                            ? 'text-gray-300 cursor-not-allowed' 
+                            : 'text-gray-600 hover:bg-gray-50'">
+                        Anterior
+                    </button>
+
+                    <div class="px-4 py-2 bg-gray-100 border-x border-gray-300">
+                        <span class="text-sm font-semibold text-red-600">{{citas?.pagination?.currentPage}}</span>
+                        <span class="text-sm text-red-600 mx-1">/</span>
+                        <span class="text-sm font-medium text-red-600">{{citas?.pagination?.totalPages}}</span>
                     </div>
 
-                    <div>
-                        <span class="text-xs font-medium text-gray-500">2. Detalles del servicio</span>
+                    <button (click)="goToNextPage(citas?.pagination, all_data)"
+                        [disabled]="!citas?.pagination?.hasNextPage"
+                        class="px-4 py-2 text-sm font-medium transition-colors duration-200 bg-white" [class]="!citas?.pagination?.hasNextPage 
+                            ? 'text-gray-300 cursor-not-allowed' 
+                            : 'text-gray-600 hover:bg-gray-50'">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                        <div class="mt-5">
-                            <label class="labelGeneral3">Servicios *</label>
-                            <div class="relative">
-                                <select class="selectGeneral4 !text-gray-500">
-                                    <option selected disabled value="" class="!text-gray-400">Seleccione una opción
-                                    </option>
-                                    @for(s of servicios; track s){
-                                    <option value="">{{s.nombre}}</option>
-                                    }
-                                </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
-                                    <i class="ri-expand-up-down-line text-red-600"></i>
-                                </div>
-                            </div>
+<!-- Create Appointment Modal -->
+<div id="modalCita" tabindex="-1" aria-hidden="true"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+
+    <div class="relative w-full max-w-md max-h-[90vh] flex flex-col bg-white rounded-lg shadow-xl">
+
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 flex-shrink-0">
+            <h3 class="text-lg font-semibold text-gray-800">Crear nueva cita</h3>
+            <button type="button" (click)="closeModal()"
+                class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors duration-200">
+                <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+        </div>
+
+        <!-- Modal Body - Scrollable -->
+        <div class="flex-1 overflow-y-auto p-4 space-y-6" [ngClass]="{'max-h-96 scrollbar-hide': flagClassOverflow}">
+
+            <!-- Customer Information -->
+            <div class="space-y-4">
+                <h4 class="text-sm font-medium text-gray-600">1. Información del cliente</h4>
+                <div class="flex gap-2">
+                    <div class="relative flex-1">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <span class="material-symbols-outlined text-gray-400 text-lg">search</span>
                         </div>
-
-                        <div class="mt-2">
-                            <label class="labelGeneral3">Especialistas *</label>
-                            <div class="relative">
-                                <select class="selectGeneral4 !text-gray-500">
-                                    <option selected disabled value="" class="!text-gray-400">Seleccione una opción
-                                    </option>
-                                    @for(e of especialistas; track e){
-                                    <option value="">{{e.nombre}}</option>
-                                    }
-                                </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
-                                    <i class="ri-expand-up-down-line text-red-600"></i>
-                                </div>
-                            </div>
-                        </div>
+                        <input type="text"
+                            class="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                            placeholder="Buscar cliente...">
                     </div>
+                    <button (click)="changeView(true)"
+                        class="w-10 h-10 flex items-center justify-center border border-gray-300 text-red-600 rounded-lg hover:bg-red-50 hover:border-red-200 transition-colors duration-200">
+                        <span class="material-symbols-outlined text-lg">person_add</span>
+                    </button>
+                </div>
+            </div>
 
-                    <hr class="h-2 text-gray-300 my-2">
+            <!-- Service Details -->
+            <div class="space-y-4">
+                <h4 class="text-sm font-medium text-gray-600">2. Detalles del servicio</h4>
 
-                    <div>
-                        <span class="text-xs font-medium text-gray-500">3. Programación de la cita</span>
-                    </div>
-
-                    <div>
-                        <!-- Calendar Header -->
-                        <div class="!w-full h-[20rem] bg-white flex justify-center py-5">
-                            <div #calendarContainer2 class="inline-calendar-wrapper" style="font-size: 8px !important;"
-                                (change)="selectDay($event)">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-2" #Horarios>
-                        @if(flagClassOverflow){
-                        <label class="block text-xs font-medium text-gray-500 mb-3">
-                            Selecciona un horario disponible
-                        </label>
-                        <div class="grid grid-cols-3 gap-2">
-                            @for(h of horarios; track h.id){
-                            <div class="col-span-1">
-                                <button (click)="selectSchedule(h)" [class]="getButtonClasses(h.id)"
-                                    class="cursor-pointer w-full rounded-lg py-3.5 text-xs transition-all duration-200">
-                                    {{h.horaI}} - {{h.horaF}}
-                                </button>
-                            </div>
+                <!-- Services -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-medium text-gray-600">Servicios *</label>
+                    <div class="relative">
+                        <select
+                            class="w-full px-3 py-2.5 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm appearance-none bg-white">
+                            <option disabled selected>Seleccione una opción</option>
+                            @for(s of servicios; track s.id){
+                            <option [value]="s.id">{{s.nombre}}</option>
                             }
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                            <span class="material-symbols-outlined text-red-600 text-sm">expand_more</span>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Specialists -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-medium text-gray-600">Especialistas *</label>
+                    <div class="relative">
+                        <select
+                            class="w-full px-3 py-2.5 pr-8 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm appearance-none bg-white">
+                            <option disabled selected>Seleccione una opción</option>
+                            @for(e of especialistas; track e.id){
+                            <option [value]="e.id">{{e.nombre}}</option>
+                            }
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                            <span class="material-symbols-outlined text-red-600 text-sm">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schedule Section -->
+            <div class="space-y-4">
+                <h4 class="text-sm font-medium text-gray-600">3. Programación de la cita</h4>
+
+                <!-- Calendar -->
+                <div class="bg-gray-50 rounded-lg p-4 flex justify-center">
+                    <div #calendarContainer2 class="inline-calendar-wrapper compact-calendar"></div>
+                </div>
+
+                <!-- Time Slots -->
+                <div #Horarios [class.hidden]="!flagClassOverflow" class="space-y-3">
+                    <label class="block text-xs font-medium text-gray-600">
+                        Selecciona un horario disponible
+                    </label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        @for(h of horarios; track h.id){
+                        <button (click)="selectSchedule(h)" [class]="getButtonClasses(h.id)"
+                            class="py-2.5 px-3 text-xs font-medium rounded-lg border transition-all duration-200">
+                            {{h.horaI}} - {{h.horaF}}
+                        </button>
                         }
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- ✅ Modal footer - FIJO (no scroll) -->
-            @if( flagActive ){
-
-            <div class="flex justify-end space-x-2   p-4 border-t border-gray-200 flex-shrink-0">
-
-                <button (click)="closeModal()" type="button" class="btnGrayGeneral effectoZoomBoton">
-                    <div class="flex justify-center items-center">
-                        <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
-                        Cancelar
-                    </div>
-                </button>
-
-                <button class="btnRedGeneral effectoZoomBoton">
-                    <div class="flex justify-center items-center">
-                        <i class="ri-save-2-fill mr-1 text-lg"></i>
-                        Guardar Cita
-                    </div>
-                </button>
-
-            </div>
-            }
-
-
+        <!-- Modal Footer -->
+        <div [class.hidden]="!flagActive"
+            class="flex flex-col sm:flex-row gap-2 p-4 border-t border-gray-200 flex-shrink-0">
+            <button (click)="closeModal()" type="button"
+                class="flex-1 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                Cancelar
+            </button>
+            <button
+                class="flex-1 px-4 py-2.5 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200">
+                Guardar Cita
+            </button>
         </div>
     </div>
-
 </div>
 
+<!-- Create Client Modal -->
 <div id="modalCliente2" tabindex="-1" aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow-sm ">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between px-4 md:p-5 rounded-t dark:border-gray-600 border-gray-200">
-                <h3 class="text-lg font-semibold text-gray-600 ">
-                    Agregar Cliente
-              
+    class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
 
-                </h3>
-                <button type="button" (click)="closeModal2()"
-                    class="absolute mt-1.5 top-3 end-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
-                    <span class="material-symbols-outlined">
-                        close
-                    </span>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
+    <div class="relative w-full max-w-md max-h-[90vh] bg-white rounded-lg shadow-xl overflow-hidden">
 
-            <div class="px-4 md:p-5">
-                @if(formCliente ){
-                <form [formGroup]="formCliente">
-                    <div class="grid gap-4 mb-4 grid-cols-1">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between p-4 border-b border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-800">Agregar Cliente</h3>
+            <button type="button" (click)="closeModal2()"
+                class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors duration-200">
+                <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+        </div>
 
-                        <div>
-                            <div class="mt-4">
-                                <label class="labelGeneral3">Nombres *</label>
-                                <div class="relative">
-                                    <input formControlName="nombres" class="selectGeneral4 !text-gray-500"
-                                        placeholder="Ej. Luis">
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <label class="labelGeneral3">Apellidos *</label>
-                                <div class="relative">
-                                    <input formControlName="apellidos" class="selectGeneral4 !text-gray-500"
-                                        placeholder="Ej. Cordero">
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <label class="labelGeneral3">Cédula *</label>
-                                <div class="relative">
-                                    <input formControlName="cedula" class="selectGeneral4 !text-gray-500"
-                                        placeholder="1104XXXXXX">
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <div class="relative">
-                                    <app-input-phone-component [tipo]="'Teléfono'"
-                                        [phone]="''"></app-input-phone-component>
+        <!-- Modal Body -->
+        <div class="overflow-y-auto max-h-[70vh] p-4">
+            @if(formCliente) {
+            <form [formGroup]="formCliente" class="space-y-4">
 
-                                </div>
-                            </div>
+                <!-- Names -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-medium text-gray-600">Nombres *</label>
+                        <input formControlName="nombres"
+                            class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm"
+                            placeholder="Ej. Luis">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs font-medium text-gray-600">Apellidos *</label>
+                        <input formControlName="apellidos"
+                            class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm"
+                            placeholder="Ej. Cordero">
+                    </div>
+                </div>
 
-                            <div class="mt-4">
-                                <label for="servicio" class="pb-1 block text-xs font-medium text-gray-500 ">
-                                    Correo electrónico *
-                                </label>
-                                <div class="relative">
+                <!-- ID -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-medium text-gray-600">Cédula *</label>
+                    <input formControlName="cedula"
+                        class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm"
+                        placeholder="1104XXXXXX">
+                </div>
 
-                                    <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
-                                        <span class="material-symbols-outlined text-red-500  ml-1 !text-[20px]  pb-0.5">
-                                            mail
-                                        </span>
-                                    </div>
-                                    <input formControlName="correo" class="inputGeneral4 !pl-9 "
-                                        placeholder="corre@prueba.com" type="text">
+                <!-- Phone -->
+                <div class="space-y-2">
+                    <app-input-phone-component [tipo]="'Teléfono'" [phone]="''"></app-input-phone-component>
+                </div>
 
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <label for="servicio" class="pb-1 block text-xs font-medium text-gray-500 ">
-                                    Fecha de Cumpleaños *
-                                </label>
-                                <div class="relative">
-
-                                    <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
-                                        <span class="material-symbols-outlined text-red-500  ml-1 !text-[20px]  pb-0.5">
-                                            calendar_today
-                                        </span>
-                                    </div>
-                                    <input formControlName="nacimiento" class="inputGeneral4 !pl-9 "
-                                        placeholder="corre@prueba.com" type="date">
-
-                                </div>
-                            </div>
+                <!-- Email -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-medium text-gray-600">Correo electrónico *</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <span class="material-symbols-outlined text-red-500 text-lg">mail</span>
                         </div>
+                        <input formControlName="correo" type="email"
+                            class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm"
+                            placeholder="correo@prueba.com">
+                    </div>
+                </div>
 
-
-                        <div>
-                            <div class="bg-white rounded-lg  border border-gray-300 px-5 py-4">
-
-                                <div class="flex justify-between items-center gap-4">
-                                    <label class="text-xs font-medium text-gray-600">Estado:</label>
-                                    <div class="flex items-center">
-                                        <div
-                                            class="flex items-center px-3 py-1.5 rounded-l-full  border border-gray-300">
-                                            <input name="estado1" type="radio" [value]="1" checked
-                                                class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
-                                            <label for="activo1" class="ml-2 text-xs text-gray-600">Activo</label>
-                                        </div>
-
-                                        <div
-                                            class="flex items-center px-3 py-1.5 rounded-r-full  border border-gray-200">
-                                            <input name="estado1" type="radio" [value]="0" disabled
-                                                class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
-                                            <label for="inactivo1" class="ml-2 text-xs text-gray-600">Inactivo</label>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
+                <!-- Birth Date -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-medium text-gray-600">Fecha de Cumpleaños *</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <span class="material-symbols-outlined text-red-500 text-lg">calendar_today</span>
                         </div>
+                        <input formControlName="nacimiento" type="date"
+                            class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm">
+                    </div>
+                </div>
 
-                        <div class="mt-4">
-
-                            <div class="flex justify-end space-x-2 pt-7 mb-2 ">
-                                <button (click)="closeModal2()" type="button" class=" btnGrayGeneral effectoZoomBoton">
-                                    <div class="flex justify-center items-center  ">
-                                        <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
-                                        Cancelar
-                                    </div>
-                                </button>
-
-                                <button class="btnRedGeneral effectoZoomBoton">
-                                    <div class="flex justify-center items-center  ">
-                                        <i class="ri-save-2-fill mr-1 text-lg "></i>
-                                        Crear Cliente
-
-                                    </div>
-                                </button>
-                            </div>
-                            <div>
-                            </div>
+                <!-- Status -->
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <label class="text-xs font-medium text-gray-600">Estado:</label>
+                        <div class="flex rounded-lg overflow-hidden border border-gray-300">
+                            <label class="flex items-center px-3 py-2 bg-white cursor-pointer">
+                                <input name="estado" type="radio" value="1" checked class="w-3 h-3 text-red-600 mr-2">
+                                <span class="text-xs text-gray-700">Activo</span>
+                            </label>
+                            <label class="flex items-center px-3 py-2 bg-gray-100 cursor-pointer">
+                                <input name="estado" type="radio" value="0" disabled class="w-3 h-3 text-red-600 mr-2">
+                                <span class="text-xs text-gray-500">Inactivo</span>
+                            </label>
                         </div>
                     </div>
-                </form>
-                }
+                </div>
+            </form>
+            }
+        </div>
 
-            </div>
-
-
+        <!-- Modal Footer -->
+        <div class="flex flex-col sm:flex-row gap-2 p-4 border-t border-gray-200">
+            <button (click)="closeModal2()" type="button"
+                class="flex-1 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                Cancelar
+            </button>
+            <button
+                class="flex-1 px-4 py-2.5 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200">
+                Crear Cliente
+            </button>
         </div>
     </div>
 </div>

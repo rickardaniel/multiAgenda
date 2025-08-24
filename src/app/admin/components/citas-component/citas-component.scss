@@ -1,93 +1,863 @@
- .badge-completada {
-            background-color: #d1fae5;
-            color: #065f46;
-            border: 1px solid #a7f3d0;
-        }
-        .badge-sin-confirmar {
-            background-color: #fef3c7;
-            color: #92400e;
-            border: 1px solid #fde68a;
-        }
-        .badge-en-proceso {
-            background-color: #e0e7ff;
-            color: #5b21b6;
-            border: 1px solid #c7d2fe;
-        }
-        .badge-confirmada {
-            background-color: #dbeafe;
-            color: #1e40af;
-            border: 1px solid #93c5fd;
-        }
-        .badge-pendiente {
-            background-color: #fef9c3;
-            color: #a16207;
-            border: 1px solid #fef08a;
-        }
-        .badge-cancelada {
-            background-color: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
-        }
+//  .badge-completada {
+//             background-color: #d1fae5;
+//             color: #065f46;
+//             border: 1px solid #a7f3d0;
+//         }
+//         .badge-sin-confirmar {
+//             background-color: #fef3c7;
+//             color: #92400e;
+//             border: 1px solid #fde68a;
+//         }
+//         .badge-en-proceso {
+//             background-color: #e0e7ff;
+//             color: #5b21b6;
+//             border: 1px solid #c7d2fe;
+//         }
+//         .badge-confirmada {
+//             background-color: #dbeafe;
+//             color: #1e40af;
+//             border: 1px solid #93c5fd;
+//         }
+//         .badge-pendiente {
+//             background-color: #fef9c3;
+//             color: #a16207;
+//             border: 1px solid #fef08a;
+//         }
+//         .badge-cancelada {
+//             background-color: #fee2e2;
+//             color: #991b1b;
+//             border: 1px solid #fecaca;
+//         }
 
         
 
-        .inline-calendar-wrapper {
-    //   display: inline-block;
-    //   padding: 10px;
-    //   margin: 10px;
-      border: transparent !important;
-      box-shadow: transparent 0px !important;
-    }
+//         .inline-calendar-wrapper {
+//     //   display: inline-block;
+//     //   padding: 10px;
+//     //   margin: 10px;
+//       border: transparent !important;
+//       box-shadow: transparent 0px !important;
+//     }
     
-    /* Estilos personalizados para el calendario inline */
+//     /* Estilos personalizados para el calendario inline */
+// :host ::ng-deep .flatpickr-calendar {
+//   /* ... otros estilos ... */
+//   box-shadow: none !important;        /* ← Sin sombra */
+//   border: none !important;            /* ← Sin borde */
+//   background: transparent !important; /* ← Fondo transparente */
+// }
+//     :host ::ng-deep .flatpickr-calendar.open {
+//       display: block !important;
+//     }
+
+//     :host ::ng-deep .flatpickr-day.selected {
+//       background: red !important;
+//       border-color: #e43838 !important;
+//       color: white !important;
+//       font-weight: bold;
+//     }
+
+//     :host ::ng-deep .flatpickr-day.today {
+//       border-color: #e43838;
+//       color: #e43838;
+//     }
+
+//     :host ::ng-deep .flatpickr-day:hover {
+//       background: #f3f4f6;
+//       font-weight: bold;
+//     }
+
+//     .classActive{
+//     background-color: #E02424;
+//     color: white;
+//         border: 1px #E5E7EB solid;
+
+//     // box-shadow: #cfcfcf 0px 1px 0px 1px;
+// }
+
+// .scrollbar-hide::-webkit-scrollbar {
+//     display: none;
+// }
+
+// /* For IE, Edge and Firefox */
+// .scrollbar-hide {
+//     -ms-overflow-style: none;  /* IE and Edge */
+//     scrollbar-width: none;  /* Firefox */
+// }
+
+
+// .overflowClass{
+// // @apply    overflow-y-auto  scrollbar-hide
+// overflow-y: auto;
+
+// }
+
+// Status badges
+.badge-completada {
+    @apply bg-green-50 text-green-700 border border-green-200;
+}
+
+.badge-sin-confirmar {
+    @apply bg-yellow-50 text-yellow-700 border border-yellow-200;
+}
+
+.badge-en-proceso {
+    @apply bg-purple-50 text-purple-700 border border-purple-200;
+}
+
+.badge-confirmada {
+    @apply bg-blue-50 text-blue-700 border border-blue-200;
+}
+
+.badge-pendiente {
+    @apply bg-orange-50 text-orange-700 border border-orange-200;
+}
+
+.badge-cancelada {
+    @apply bg-red-50 text-red-700 border border-red-200;
+}
+
+// Compact calendar styles
+.inline-calendar-wrapper {
+    border: transparent !important;
+    box-shadow: transparent 0px !important;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    
+    @media (max-width: 640px) {
+        max-width: 250px;
+    }
+}
+
+.compact-calendar {
+    font-size: 11px !important;
+    
+    @media (max-width: 640px) {
+        font-size: 10px !important;
+    }
+}
+
+// Flatpickr calendar overrides
 :host ::ng-deep .flatpickr-calendar {
-  /* ... otros estilos ... */
-  box-shadow: none !important;        /* ← Sin sombra */
-  border: none !important;            /* ← Sin borde */
-  background: transparent !important; /* ← Fondo transparente */
-}
-    :host ::ng-deep .flatpickr-calendar.open {
-      display: block !important;
-    }
-
-    :host ::ng-deep .flatpickr-day.selected {
-      background: red !important;
-      border-color: #e43838 !important;
-      color: white !important;
-      font-weight: bold;
-    }
-
-    :host ::ng-deep .flatpickr-day.today {
-      border-color: #e43838;
-      color: #e43838;
-    }
-
-    :host ::ng-deep .flatpickr-day:hover {
-      background: #f3f4f6;
-      font-weight: bold;
-    }
-
-    .classActive{
-    background-color: #E02424;
-    color: white;
-        border: 1px #E5E7EB solid;
-
-    // box-shadow: #cfcfcf 0px 1px 0px 1px;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    width: 100% !important;
+    font-size: inherit !important;
 }
 
+:host ::ng-deep .flatpickr-calendar.open {
+    display: block !important;
+}
+
+:host ::ng-deep .flatpickr-day.selected {
+    background: #ef4444 !important;
+    border-color: #dc2626 !important;
+    color: white !important;
+    font-weight: 600;
+}
+
+:host ::ng-deep .flatpickr-day.today {
+    border: 2px solid #ef4444;
+    color: #ef4444;
+    background: #fef2f2;
+}
+
+:host ::ng-deep .flatpickr-day:hover {
+    background: #f3f4f6 !important;
+    font-weight: 600;
+}
+
+:host ::ng-deep .flatpickr-weekday {
+    background: #f8f9fa !important;
+    color: #374151 !important;
+    font-weight: 700 !important;
+    font-size: 10px !important;
+    
+    @media (max-width: 640px) {
+        font-size: 9px !important;
+    }
+}
+
+// Active schedule button
+.classActive {
+    @apply bg-red-500 text-white border-red-600 shadow-lg;
+}
+
+// Custom scrollbar
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
 
-/* For IE, Edge and Firefox */
 .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
+.overflowClass {
+    overflow-y: auto;
+    max-height: 400px;
+    
+    @media (max-width: 640px) {
+        max-height: 300px;
+    }
+}
 
-.overflowClass{
-// @apply    overflow-y-auto  scrollbar-hide
-overflow-y: auto;
+// Header responsive layout
+.header-section {
+    @media (max-width: 1024px) {
+        .search-bar {
+            width: 100%;
+            max-width: none;
+        }
+        
+        .action-buttons {
+            justify-content: stretch;
+            
+            .new-appointment-btn {
+                flex: 1;
+            }
+        }
+    }
+}
 
+// Filters section animation and layout
+.filters-container {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    .filter-grid {
+        @media (max-width: 640px) {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+// Table responsive behavior
+.data-table {
+    .table-container {
+        @media (max-width: 1024px) {
+            display: none;
+        }
+    }
+    
+    .mobile-cards {
+        @media (min-width: 1025px) {
+            display: none;
+        }
+    }
+}
+
+// Mobile appointment cards
+.appointment-card {
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+        background-color: #fafafa;
+        
+        @media (hover: none) {
+            background-color: transparent;
+        }
+    }
+    
+    .card-header {
+        .status-badge {
+            min-width: fit-content;
+            white-space: nowrap;
+        }
+    }
+    
+    .card-details {
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            
+            .icon {
+                flex-shrink: 0;
+                width: 16px;
+                height: 16px;
+            }
+            
+            .text {
+                flex: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+// Status dropdown responsive
+.status-dropdown {
+    z-index: 1000;
+    
+    @media (max-width: 640px) {
+        left: auto;
+        right: 0;
+        width: 180px;
+    }
+    
+    .dropdown-content {
+        .radio-option {
+            &:hover {
+                background-color: #f9fafb;
+            }
+            
+            input[type="radio"] {
+                accent-color: #ef4444;
+            }
+        }
+    }
+}
+
+// Pagination responsive
+.pagination-container {
+    .mobile-pagination {
+        @media (min-width: 640px) {
+            display: none;
+        }
+        
+        .page-info {
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+    }
+    
+    .desktop-pagination {
+        @media (max-width: 639px) {
+            display: none;
+        }
+    }
+}
+
+// Modal responsive styles
+.modal-overlay {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.modal-container {
+    @media (max-width: 640px) {
+        margin: 1rem;
+        max-width: calc(100vw - 2rem);
+        max-height: calc(100vh - 2rem);
+    }
+    
+    .modal-header {
+        flex-shrink: 0;
+        border-bottom: 1px solid #e5e7eb;
+        
+        .close-button {
+            transition: all 0.2s ease;
+            
+            &:hover {
+                background-color: #f3f4f6;
+                transform: scale(1.1);
+            }
+        }
+    }
+    
+    .modal-body {
+        flex: 1;
+        overflow-y: auto;
+        
+        @media (max-width: 640px) {
+            padding: 1rem;
+        }
+        
+        .form-section {
+            .section-title {
+                color: #6b7280;
+                font-weight: 500;
+                margin-bottom: 1rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid #f3f4f6;
+            }
+        }
+        
+        .customer-search {
+            .search-input-container {
+                position: relative;
+                flex: 1;
+                
+                .search-icon {
+                    position: absolute;
+                    left: 0.75rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #9ca3af;
+                    pointer-events: none;
+                }
+            }
+            
+            .add-customer-btn {
+                flex-shrink: 0;
+                aspect-ratio: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s ease;
+                
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+        }
+        
+        .service-selects {
+            .select-container {
+                position: relative;
+                
+                select {
+                    appearance: none;
+                    background-image: none;
+                    
+                    &:focus {
+                        outline: none;
+                        border-color: #ef4444;
+                        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+                    }
+                }
+                
+                .select-arrow {
+                    position: absolute;
+                    right: 0.75rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    pointer-events: none;
+                    transition: transform 0.2s ease;
+                }
+                
+                &:focus-within .select-arrow {
+                    transform: translateY(-50%) rotate(180deg);
+                }
+            }
+        }
+        
+        .calendar-section {
+            .calendar-container {
+                background: #f9fafb;
+                border-radius: 0.5rem;
+                padding: 1rem;
+                display: flex;
+                justify-content: center;
+                
+                @media (max-width: 640px) {
+                    padding: 0.75rem;
+                }
+            }
+        }
+        
+        .time-slots {
+            .slots-grid {
+                display: grid;
+                gap: 0.5rem;
+                
+                @media (max-width: 640px) {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                
+                @media (min-width: 641px) {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+                
+                .time-slot-button {
+                    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                    
+                    &:hover:not(.selected) {
+                        background-color: #fff;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                        transform: translateY(-1px);
+                    }
+                    
+                    &.selected {
+                        background-color: #ef4444;
+                        color: white;
+                        border-color: #dc2626;
+                        box-shadow: 0 4px 6px rgba(239, 68, 68, 0.3);
+                        transform: translateY(-2px);
+                    }
+                }
+            }
+        }
+    }
+    
+    .modal-footer {
+        flex-shrink: 0;
+        border-top: 1px solid #e5e7eb;
+        
+        @media (max-width: 640px) {
+            flex-direction: column;
+            gap: 0.5rem;
+            
+            button {
+                width: 100%;
+            }
+        }
+        
+        .cancel-button {
+            transition: all 0.2s ease;
+            
+            &:hover {
+                background-color: #f9fafb;
+                border-color: #d1d5db;
+            }
+        }
+        
+        .save-button {
+            transition: all 0.2s ease;
+            
+            &:hover {
+                background-color: #dc2626;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 6px rgba(239, 68, 68, 0.3);
+            }
+        }
+    }
+}
+
+// Client modal specific styles
+.client-modal {
+    .form-grid {
+        @media (max-width: 640px) {
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+    
+    .input-with-icon {
+        position: relative;
+        
+        .input-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        input {
+            padding-left: 2.5rem;
+        }
+    }
+    
+    .status-toggle {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        
+        .toggle-buttons {
+            display: flex;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            border: 1px solid #d1d5db;
+            
+            label {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                padding: 0.5rem 0.75rem;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                
+                input[type="radio"] {
+                    margin-right: 0.5rem;
+                    accent-color: #ef4444;
+                }
+                
+                &:first-child {
+                    background: white;
+                    border-right: 1px solid #d1d5db;
+                }
+                
+                &:last-child {
+                    background: #f3f4f6;
+                    
+                    &:has(input:checked) {
+                        background: #fef2f2;
+                        color: #dc2626;
+                    }
+                }
+                
+                &:has(input:checked) {
+                    background: #fef2f2;
+                    color: #dc2626;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+
+// Empty state styles
+.empty-state {
+    .empty-icon {
+        background: #f3f4f6;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+    }
+    
+    .empty-title {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+    
+    .empty-description {
+        color: #6b7280;
+        text-align: center;
+        max-width: 20rem;
+        margin: 0 auto;
+        line-height: 1.5;
+    }
+}
+
+// Loading states
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 0.375rem;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .modal-container {
+        transform: none !important;
+    }
+    
+    .appointment-card:hover {
+        transform: none !important;
+    }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+    .badge-completada,
+    .badge-sin-confirmar,
+    .badge-en-proceso,
+    .badge-confirmada,
+    .badge-pendiente,
+    .badge-cancelada {
+        border-width: 2px;
+        font-weight: 600;
+    }
+    
+    .status-dropdown {
+        border-width: 2px;
+        border-color: #000;
+    }
+}
+
+// Dark mode support (future-ready)
+@media (prefers-color-scheme: dark) {
+    .modal-overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .modal-container {
+        background-color: #1f2937;
+        border: 1px solid #374151;
+        
+        .modal-header,
+        .modal-footer {
+            border-color: #374151;
+        }
+        
+        h3,
+        h4,
+        label {
+            color: #f9fafb;
+        }
+        
+        input,
+        select {
+            background-color: #374151;
+            border-color: #4b5563;
+            color: #f9fafb;
+            
+            &::placeholder {
+                color: #9ca3af;
+            }
+        }
+    }
+    
+    .filters-container {
+        background-color: #1f2937;
+        border-color: #374151;
+    }
+    
+    .appointment-card {
+        border-color: #374151;
+        
+        &:hover {
+            background-color: #1f2937;
+        }
+    }
+}
+
+// Print styles
+@media print {
+    .header-section .action-buttons,
+    .filters-container,
+    .pagination-container,
+    .modal-overlay {
+        display: none !important;
+    }
+    
+    .data-table {
+        .mobile-cards {
+            display: none !important;
+        }
+        
+        .table-container {
+            display: block !important;
+            
+            table {
+                font-size: 0.75rem;
+            }
+        }
+    }
+    
+    .appointment-card {
+        break-inside: avoid;
+        margin-bottom: 0.5rem;
+        border: 1px solid #000;
+    }
+}
+
+// Focus management for better keyboard navigation
+.focus-visible:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+}
+
+// Button focus styles
+button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+// Input focus styles
+input:focus,
+select:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+// Safe area support for devices with notch
+@supports (padding: env(safe-area-inset-top)) {
+    .modal-container {
+        padding-top: max(1rem, env(safe-area-inset-top));
+        padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+}
+
+// Container queries support (progressive enhancement)
+@supports (container-type: inline-size) {
+    .appointment-card {
+        container-type: inline-size;
+    }
+    
+    @container (max-width: 300px) {
+        .appointment-card .card-details {
+            .detail-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+        }
+    }
+}
+
+// Smooth scrolling
+html {
+    scroll-behavior: smooth;
+}
+
+// Custom form controls
+.custom-radio {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    
+    &:checked {
+        border-color: #ef4444;
+        background-color: #ef4444;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0.375rem;
+            height: 0.375rem;
+            background-color: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    
+    &:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+}
+
+// Utility classes for responsive design
+.mobile-only {
+    @media (min-width: 640px) {
+        display: none !important;
+    }
+}
+
+.desktop-only {
+    @media (max-width: 639px) {
+        display: none !important;
+    }
+}
+
+.tablet-up {
+    @media (max-width: 767px) {
+        display: none !important;
+    }
+}
+
+.tablet-down {
+    @media (min-width: 768px) {
+        display: none !important;
+    }
 }
