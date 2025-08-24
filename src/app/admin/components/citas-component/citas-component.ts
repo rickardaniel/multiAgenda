@@ -14,10 +14,11 @@ import { UtilService } from '../../../services/util-service';
 import { Instance } from 'flatpickr/dist/types/instance';
 import { Spanish } from 'flatpickr/dist/l10n/es';
 import flatpickr from 'flatpickr';
+import { InputPhoneComponent } from '../../../shared/input-phone-component/input-phone-component';
 
 @Component({
   selector: 'app-citas-component',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, InputPhoneComponent],
   templateUrl: './citas-component.html',
   styleUrl: './citas-component.scss',
 })
@@ -31,9 +32,10 @@ export default class CitasComponent implements AfterViewInit {
   filteredCitas: any[] = [];
   currentServiceFilter: string = '';
   modal: any;
+  modal2: any;
   flagClassOverflow = false;
   flagActive = false;
-
+  formOne = false;
   @ViewChild('calendarContainer2', { static: true })
   calendarContainer!: ElementRef;
   @ViewChild('Horarios') horariosRef!: ElementRef<HTMLDivElement>;
@@ -339,6 +341,10 @@ export default class CitasComponent implements AfterViewInit {
     this.dateSelected = null;
   }
 
+  closeModal2() {
+   this.modal2.hide();
+  }
+
   selectDay(event) {
     console.log('event', event);
     if (event) {
@@ -433,7 +439,7 @@ export default class CitasComponent implements AfterViewInit {
   selectSchedule(horario: any): void {
     console.log('horario', horario);
     this.selectedScheduleId = horario.id;
-    this.flagActive=true;
+    this.flagActive = true;
   }
 
   getServicios() {
@@ -500,5 +506,24 @@ export default class CitasComponent implements AfterViewInit {
   // Método para manejar clicks dentro del dropdown (prevenir cierre)
   onDropdownClick(event: Event): void {
     event.stopPropagation();
+  }
+
+  formCliente = new FormGroup({
+    nombres: new FormControl(''),
+    apellidos: new FormControl(''),
+    cedula: new FormControl(''),
+    telefono: new FormControl(''),
+    correo: new FormControl(''),
+    nacimiento: new FormControl(''),
+    estado: new FormControl(1),
+  });
+
+  changeView(flag) {
+    this.formOne = flag;
+    if (flag) {
+      this.modal.hide();
+      this.modal2 = this.util.createModal('#modalCliente2');
+      this.modal2.show();
+    }
   }
 }

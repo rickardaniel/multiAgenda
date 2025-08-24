@@ -75,33 +75,33 @@
                                 class="absolute right-0 z-50 w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg ">
                                 <div class="p-3.5 py-2" role="menu" aria-orientation="vertical"
                                     aria-labelledby="dropdown-button">
-                                        <h3 class="text-sm font-semibold text-gray-600 mb-3">Leyenda - Estados</h3>
-                                        <div class="space-y-3 mb-3">
-                                            <div class="flex items-center gap-2">
-                                                <span class="flex w-3 h-3 bg-yellow-400 rounded-full"></span>
-                                                <span class="text-xs text-gray-600">Cita Pendiente</span>
-                                            </div>
-                                            <div class="flex items-center gap-2">
-                                                <span class="flex w-3 h-3 bg-blue-500 rounded-full"></span>
-                                                <span class="text-xs text-gray-600">Cita Confirmada</span>
-                                            </div>
-                                            <div class="flex items-center gap-2">
-                                                <span class="flex w-3 h-3 bg-purple-500 rounded-full"></span>
-                                                <span class="text-xs text-gray-600">Cita En Proceso</span>
-                                            </div>
-                                            <div class="flex items-center gap-2">
-                                                <span class="flex w-3 h-3 bg-green-500 rounded-full"></span>
-                                                <span class="text-xs text-gray-600">Cita Completada</span>
-                                            </div>
-                                            <div class="flex items-center gap-2">
-                                                <span class="flex w-3 h-3 bg-red-500 rounded-full"></span>
-                                                <span class="text-xs text-gray-600">Cita Cancelada</span>
-                                            </div>
-                                            <div class="flex items-center gap-2">
-                                                <span class="flex w-3 h-3 bg-orange-500 rounded-full"></span>
-                                                <span class="text-xs text-gray-600">Cita Sin Confirmar</span>
-                                            </div>
+                                    <h3 class="text-sm font-semibold text-gray-600 mb-3">Leyenda - Estados</h3>
+                                    <div class="space-y-3 mb-3">
+                                        <div class="flex items-center gap-2">
+                                            <span class="flex w-3 h-3 bg-yellow-400 rounded-full"></span>
+                                            <span class="text-xs text-gray-600">Cita Pendiente</span>
                                         </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="flex w-3 h-3 bg-blue-500 rounded-full"></span>
+                                            <span class="text-xs text-gray-600">Cita Confirmada</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="flex w-3 h-3 bg-purple-500 rounded-full"></span>
+                                            <span class="text-xs text-gray-600">Cita En Proceso</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="flex w-3 h-3 bg-green-500 rounded-full"></span>
+                                            <span class="text-xs text-gray-600">Cita Completada</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="flex w-3 h-3 bg-red-500 rounded-full"></span>
+                                            <span class="text-xs text-gray-600">Cita Cancelada</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="flex w-3 h-3 bg-orange-500 rounded-full"></span>
+                                            <span class="text-xs text-gray-600">Cita Sin Confirmar</span>
+                                        </div>
+                                    </div>
 
 
 
@@ -110,7 +110,7 @@
 
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -208,7 +208,7 @@
                         <!-- Celdas para cada día -->
                         @for (weekDay of weekDays(); track weekDay.fullDate.getTime()) {
                         <div
-                            class="relative border-r border-gray-200 h-16 hover:bg-gray-50 transition-colors cursor-pointer">
+                            class="relative border-r border-gray-200 h-16 hover:bg-gray-100 transition-colors cursor-pointer">
 
                             <!-- Eventos en esta hora y día -->
                             @for (event of getEventsForTimeSlot(weekDay.fullDate, timeSlot); track event.event_title) {
@@ -227,7 +227,7 @@
 
                             <!-- Indicador visual cuando no hay eventos -->
                             @if (getEventsForTimeSlot(weekDay.fullDate, timeSlot).length === 0) {
-                            <div
+                            <div (click)="openModalCita()"
                                 class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-20 transition-opacity">
                                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
@@ -246,83 +246,272 @@
         </div>
     </div>
 
-    <!-- Modal (actualizado para incluir hora) -->
-    @if (openEventModal()) {
-    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
 
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between p-6 border-b border-gray-200">
-                <h3 class="text-lg font-medium text-gray-900">
-                    {{ selectedDate() ? 'Agregar Cita' : 'Nueva Cita' }}
+</div>
+
+
+<div id="modalAgendar" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow-sm ">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between px-4 md:p-5 rounded-t dark:border-gray-600 border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-600 ">
+                    Crear nueva cita
+
+
                 </h3>
-                <button (click)="closeModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
-                    </svg>
+                <button type="button" (click)="closeModalCita()"
+                    class="absolute mt-1.5 top-3 end-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                    <span class="sr-only">Close modal</span>
                 </button>
             </div>
+            <!-- Modal body -->
 
-            <!-- Modal Body -->
-            <form [formGroup]="eventForm" (ngSubmit)="addEvent()" class="p-6">
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Título de la cita
-                        </label>
-                        <input type="text" formControlName="event_title"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                            placeholder="Ingresa el título de la cita">
+            <div class="px-4 md:p-5">
+
+                <div
+                    class="w-full bg-gray-100 rounded-sm shadow px-2 py-1.5 text-gray-700 text-sm flex justify-start items-center">
+                    <span class="material-symbols-outlined text-red-600 mr-1 !text-[20px] ">
+                        calendar_today
+                    </span> Miércoles 09 de Julio, 7:30 a 8:00
+                </div>
+
+                <div class=" mt-5">
+                    <span class="text-xs font-medium text-gray-500 ">1. Información del cliente</span>
+
+                    <span class="labelGeneral3 mt-5"> Buscar cliente </span>
+                    <div class="flex justify-between">
+                        <div class="relative">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <span class="material-symbols-outlined text-gray-400">search</span>
+                            </div>
+                            <input type="text"
+                                class="inputGeneral4 !rounded-full !w-full !pl-10 !px-30 !py-2.25 !focus:shadow-lg"
+                                placeholder="¿Qué estás buscando?" required>
+                        </div>
+                        <span (click)="changeView(true)"
+                            class="px-1.5 border border-gray-300 text-red-600 rounded-full flex justify-center items-center effectoZoomBoton hover:bg-gray-100 hover:shadow cursor-pointer ">
+                            <div class="">
+                                <span class="material-symbols-outlined text-[12px]">person</span>
+                            </div>
+                        </span>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Fecha
-                        </label>
-                        <input type="text" formControlName="event_date" readonly
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-600">
+                </div>
+
+                <div>
+                    <span class="text-xs font-medium text-gray-500">2. Detalles del servicio</span>
+
+                    <div class="mt-5">
+                        <label class="labelGeneral3">Servicios *</label>
+                        <div class="relative">
+                            <select class="selectGeneral4 !text-gray-500">
+                                <option selected disabled value="" class="!text-gray-400">Seleccione una opción
+                                </option>
+                                @for(s of servicios; track s){
+                                <option value="">{{s.nombre}}</option>
+                                }
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                                <i class="ri-expand-up-down-line text-red-600"></i>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Campo de hora (nuevo) -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Hora
-                        </label>
-                        <select formControlName="event_time"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                            @for (timeSlot of WORK_HOURS; track timeSlot.time) {
-                            <option [value]="timeSlot.time">{{ timeSlot.time }}</option>
-                            }
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Categoría
-                        </label>
-                        <select formControlName="event_theme"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                            @for (theme of THEMES; track theme.value) {
-                            <option [value]="theme.value">{{ theme.label }}</option>
-                            }
-                        </select>
+                    <div class="mt-4">
+                        <label class="labelGeneral3">Especialistas *</label>
+                        <div class="relative">
+                            <select class="selectGeneral4 !text-gray-500">
+                                <option selected disabled value="" class="!text-gray-400">Seleccione una opción
+                                </option>
+                                @for(e of especialistas; track e){
+                                <option value="">{{e.nombre}}</option>
+                                }
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                                <i class="ri-expand-up-down-line text-red-600"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Modal Footer -->
-                <div class="flex justify-end space-x-3 mt-6 pt-6 border-t border-gray-200">
-                    <button type="button" (click)="closeModal()"
-                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
-                        Cancelar
+                <div class="flex justify-end space-x-2  mt-10  p-4  flex-shrink-0">
+
+                    <button (click)="closeModalCita()" type="button" class="btnGrayGeneral effectoZoomBoton">
+                        <div class="flex justify-center items-center">
+                            <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
+                            Cancelar
+                        </div>
                     </button>
-                    <button type="submit" [disabled]="eventForm.invalid"
-                        class="px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-                        Guardar Cita
+
+                    <button class="btnRedGeneral effectoZoomBoton">
+                        <div class="flex justify-center items-center">
+                            <i class="ri-save-2-fill mr-1 text-lg"></i>
+                            Guardar Cita
+                        </div>
                     </button>
+
                 </div>
-            </form>
+
+
+            </div>
+
+
         </div>
     </div>
-    }
+</div>
+
+<div id="modalCliente3" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow-sm ">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between px-4 md:p-5 rounded-t dark:border-gray-600 border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-600 ">
+                    Agregar Cliente
+
+
+                </h3>
+                <button type="button" (click)="closeModal3()"
+                    class="absolute mt-1.5 top-3 end-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+
+            <div class="px-4 md:p-5">
+                @if(formCliente ){
+                <form [formGroup]="formCliente">
+                    <div class="grid gap-4 mb-4 grid-cols-1">
+
+                        <div>
+                            <div class="mt-4">
+                                <label class="labelGeneral3">Nombres *</label>
+                                <div class="relative">
+                                    <input formControlName="nombres" class="selectGeneral4 !text-gray-500"
+                                        placeholder="Ej. Luis">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="labelGeneral3">Apellidos *</label>
+                                <div class="relative">
+                                    <input formControlName="apellidos" class="selectGeneral4 !text-gray-500"
+                                        placeholder="Ej. Cordero">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="labelGeneral3">Cédula *</label>
+                                <div class="relative">
+                                    <input formControlName="cedula" class="selectGeneral4 !text-gray-500"
+                                        placeholder="1104XXXXXX">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="relative">
+                                    <app-input-phone-component [tipo]="'Teléfono'"
+                                        [phone]="''"></app-input-phone-component>
+
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <label for="servicio" class="pb-1 block text-xs font-medium text-gray-500 ">
+                                    Correo electrónico *
+                                </label>
+                                <div class="relative">
+
+                                    <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
+                                        <span class="material-symbols-outlined text-red-500  ml-1 !text-[20px]  pb-0.5">
+                                            mail
+                                        </span>
+                                    </div>
+                                    <input formControlName="correo" class="inputGeneral4 !pl-9 "
+                                        placeholder="corre@prueba.com" type="text">
+
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="servicio" class="pb-1 block text-xs font-medium text-gray-500 ">
+                                    Fecha de Cumpleaños *
+                                </label>
+                                <div class="relative">
+
+                                    <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
+                                        <span class="material-symbols-outlined text-red-500  ml-1 !text-[20px]  pb-0.5">
+                                            calendar_today
+                                        </span>
+                                    </div>
+                                    <input formControlName="nacimiento" class="inputGeneral4 !pl-9 "
+                                        placeholder="corre@prueba.com" type="date">
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="bg-white rounded-lg  border border-gray-300 px-5 py-4">
+
+                                <div class="flex justify-between items-center gap-4">
+                                    <label class="text-xs font-medium text-gray-600">Estado:</label>
+                                    <div class="flex items-center">
+                                        <div
+                                            class="flex items-center px-3 py-1.5 rounded-l-full  border border-gray-300">
+                                            <input name="estado1" type="radio" [value]="1" checked
+                                                class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                            <label for="activo1" class="ml-2 text-xs text-gray-600">Activo</label>
+                                        </div>
+
+                                        <div
+                                            class="flex items-center px-3 py-1.5 rounded-r-full  border border-gray-200">
+                                            <input name="estado1" type="radio" [value]="0" disabled
+                                                class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                            <label for="inactivo1" class="ml-2 text-xs text-gray-600">Inactivo</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+
+                            <div class="flex justify-end space-x-2 pt-7 mb-2 ">
+                                <button (click)="closeModal3()" type="button" class=" btnGrayGeneral effectoZoomBoton">
+                                    <div class="flex justify-center items-center  ">
+                                        <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
+                                        Cancelar
+                                    </div>
+                                </button>
+
+                                <button class="btnRedGeneral effectoZoomBoton">
+                                    <div class="flex justify-center items-center  ">
+                                        <i class="ri-save-2-fill mr-1 text-lg "></i>
+                                        Crear Cliente
+
+                                    </div>
+                                </button>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                }
+
+            </div>
+
+
+        </div>
+    </div>
 </div>

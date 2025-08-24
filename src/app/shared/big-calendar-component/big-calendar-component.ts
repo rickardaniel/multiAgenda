@@ -19,12 +19,15 @@ import {
 } from '../../interface/calendar.interface';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api-service';
+import { InputPhoneComponent } from '../input-phone-component/input-phone-component';
+import { UtilService } from '../../services/util-service';
 
 interface CalendarDay {
   date: number;
@@ -54,13 +57,14 @@ interface CalendarEventWithTime extends CalendarEvent {
 
 @Component({
   selector: 'app-big-calendar-component',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, InputPhoneComponent],
   templateUrl: './big-calendar-component.html',
   styleUrl: './big-calendar-component.scss',
 })
 export class BigCalendarComponent implements OnChanges {
   @Input('dateSelected') dateSelected: any;
   @Output() sendCitas = new EventEmitter<any>();
+  @Output() sendSchedule = new EventEmitter<any>();
 
   // Signals para el estado
   month = signal<number>(new Date().getMonth());
@@ -84,18 +88,66 @@ export class BigCalendarComponent implements OnChanges {
 
   events = signal<CalendarEventWithTime[]>([
     {
-      event_date: new Date(2025, 7, 7).toDateString(), // Jueves
+      event_date: new Date(2025, 7, 25).toDateString(), // Jueves
       event_title: 'Andrea Almeida - Consulta médica general',
+      event_theme: 'green',
+      event_time: '7:00',
+      duration: 30,
+      cant: 1,
+    },
+    {
+      event_date: new Date(2025, 7, 26).toDateString(), // Jueves
+      event_title: 'Andrea Castillo - Traumatología',
       event_theme: 'red',
       event_time: '7:00',
       duration: 30,
       cant: 1,
     },
     {
-      event_date: new Date(2025, 7, 8).toDateString(), // Viernes
-      event_title: 'Mariana Chávez - Nutrición',
+      event_date: new Date(2025, 7, 27).toDateString(), // Jueves
+      event_title: 'Richard Chimbo - Dermatología',
+      event_theme: 'yellow',
+      event_time: '7:00',
+      duration: 30,
+      cant: 1,
+    },
+    {
+      event_date: new Date(2025, 7, 28).toDateString(), // Jueves
+      event_title: 'Luis Carpio - Consulta médica general',
       event_theme: 'blue',
       event_time: '7:00',
+      duration: 30,
+      cant: 1,
+    },
+    {
+      event_date: new Date(2025, 7, 29).toDateString(), // Jueves
+      event_title: 'Andrea Almeida - Consulta médica general',
+      event_theme: 'purple',
+      event_time: '7:00',
+      duration: 30,
+      cant: 1,
+    },
+    {
+      event_date: new Date(2025, 7, 28).toDateString(), // Jueves
+      event_title: 'Andrea Almeida - Consulta médica general',
+      event_theme: 'purple',
+      event_time: '10:00',
+      duration: 30,
+      cant: 1,
+    },
+    {
+      event_date: new Date(2025, 7, 27).toDateString(), // Jueves
+      event_title: 'Andrea Almeida - Consulta médica general',
+      event_theme: 'green',
+      event_time: '8:00',
+      duration: 30,
+      cant: 1,
+    },
+    {
+      event_date: new Date(2025, 7, 25).toDateString(), // Viernes
+      event_title: 'Mariana Chávez - Nutrición',
+      event_theme: 'blue',
+      event_time: '7:30',
       duration: 30,
       cant: 1,
     },
@@ -273,8 +325,17 @@ export class BigCalendarComponent implements OnChanges {
   currentMonth = new Date().getMonth();
   currentDay = new Date().getDate();
   isDropdownOpen: boolean = true; // Estado inicial del dropdown
+  modal: any;
+  modal2: any;
+  servicios: any = [];
+  especialistas: any = [];
+  formOne = false;
 
-  constructor(private fb: FormBuilder, private api: ApiService) {
+  constructor(
+    private fb: FormBuilder,
+    private api: ApiService,
+    private util: UtilService
+  ) {
     this.eventForm = this.fb.group({
       event_title: ['', Validators.required],
       event_date: [''],
@@ -288,6 +349,8 @@ export class BigCalendarComponent implements OnChanges {
 
   ngOnInit() {
     this.toggleDropdown();
+    this.getEspecialistas();
+    this.getServicios();
     console.log('dateSelected', this.dateSelected);
     if (this.dateSelected) {
       this.navigateToDate(this.dateSelected);
@@ -345,11 +408,11 @@ export class BigCalendarComponent implements OnChanges {
   // Obtener clase CSS para el tema del evento
   getEventThemeClass(theme: string): string {
     const themeClasses = {
-      red: 'bg-red-100 border-l-4 border-red-500 text-red-800',
-      blue: 'bg-blue-100 border-l-4 border-blue-500 text-blue-800',
-      green: 'bg-green-100 border-l-4 border-green-500 text-green-800',
-      yellow: 'bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800',
-      purple: 'bg-purple-100 border-l-4 border-purple-500 text-purple-800',
+      red: 'bg-red-50 border-l-4 border-red-500 text-red-800',
+      blue: 'bg-blue-50 border-l-4 border-blue-500 text-blue-800',
+      green: 'bg-lime-50 border-l-4 border-lime-500 text-lime-700',
+      yellow: 'bg-yellow-50 border-l-4 border-yellow-500 text-yellow-800',
+      purple: 'bg-purple-50 border-l-4 border-purple-400 text-purple-700',
       cyan: 'bg-cyan-100 border-l-4 border-cyan-500 text-cyan-800',
     };
     return themeClasses[theme] || themeClasses['blue'];
@@ -491,6 +554,9 @@ export class BigCalendarComponent implements OnChanges {
       event_theme: 'blue',
     });
   }
+  closeModalCita(){
+    this.modal.hide();
+  }
 
   addEvent(): void {
     if (this.eventForm.valid && this.selectedDate()) {
@@ -527,4 +593,54 @@ export class BigCalendarComponent implements OnChanges {
   toggleDropdown(): void {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
+
+  formCliente = new FormGroup({
+    nombres: new FormControl(''),
+    apellidos: new FormControl(''),
+    cedula: new FormControl(''),
+    telefono: new FormControl(''),
+    correo: new FormControl(''),
+    nacimiento: new FormControl(''),
+    estado: new FormControl(1),
+  });
+
+  openModalCita() {
+    console.log('red');
+    this.modal = this.util.createModal('#modalAgendar');
+    this.modal.show();
+    // this.sendSchedule.emit()
+  }
+
+  closeModal2() {
+    this.modal.hide();
+  }
+  closeModal3(){
+    this.modal2.hide();
+  }
+
+    getServicios() {
+    this.api.getEspecialidades().subscribe({
+      next: (resp: any) => {
+        this.servicios = resp;
+      },
+    });
+  }
+
+  getEspecialistas() {
+    this.api.getMedicos().subscribe({
+      next: (resp: any) => {
+        this.especialistas = resp;
+      },
+    });
+  }
+
+    changeView(flag) {
+    this.formOne = flag;
+    if (flag) {
+      this.modal.hide();
+      this.modal2 = this.util.createModal('#modalCliente3');
+      this.modal2.show();
+    }
+  }
+
 }

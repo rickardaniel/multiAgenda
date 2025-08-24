@@ -298,7 +298,7 @@
 <!-- Main modal -->
 <div id="modalCita" tabindex="-1" aria-hidden="true"
     class="hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full h-full bg-transparent bg-opacity-50">
-
+  
     <!-- ✅ CAMBIO: Contenedor del modal con altura fija -->
     <div class="relative p-4 w-full max-w-md h-[90vh] flex flex-col">
 
@@ -332,7 +332,7 @@
                                     class="inputGeneral4 !rounded-full !w-full !pl-10 !px-30 !py-2.25 !focus:shadow-lg"
                                     placeholder="¿Qué estás buscando?" required>
                             </div>
-                            <span
+                            <span (click)="changeView(true)"
                                 class="px-1.5 border border-gray-300 text-red-600 rounded-full flex justify-center items-center effectoZoomBoton hover:bg-gray-100 hover:shadow cursor-pointer ">
                                 <div class="">
                                     <span class="material-symbols-outlined text-[12px]">person</span>
@@ -377,7 +377,7 @@
                         </div>
                     </div>
 
-                    <hr class="h-2 text-gray-300 my-3">
+                    <hr class="h-2 text-gray-300 my-2">
 
                     <div>
                         <span class="text-xs font-medium text-gray-500">3. Programación de la cita</span>
@@ -433,6 +433,157 @@
 
             </div>
             }
+
+
+        </div>
+    </div>
+
+</div>
+
+<div id="modalCliente2" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow-sm ">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between px-4 md:p-5 rounded-t dark:border-gray-600 border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-600 ">
+                    Agregar Cliente
+              
+
+                </h3>
+                <button type="button" (click)="closeModal2()"
+                    class="absolute mt-1.5 top-3 end-2.5 text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-400 rounded-full text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
+                    <span class="material-symbols-outlined">
+                        close
+                    </span>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+
+            <div class="px-4 md:p-5">
+                @if(formCliente ){
+                <form [formGroup]="formCliente">
+                    <div class="grid gap-4 mb-4 grid-cols-1">
+
+                        <div>
+                            <div class="mt-4">
+                                <label class="labelGeneral3">Nombres *</label>
+                                <div class="relative">
+                                    <input formControlName="nombres" class="selectGeneral4 !text-gray-500"
+                                        placeholder="Ej. Luis">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="labelGeneral3">Apellidos *</label>
+                                <div class="relative">
+                                    <input formControlName="apellidos" class="selectGeneral4 !text-gray-500"
+                                        placeholder="Ej. Cordero">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="labelGeneral3">Cédula *</label>
+                                <div class="relative">
+                                    <input formControlName="cedula" class="selectGeneral4 !text-gray-500"
+                                        placeholder="1104XXXXXX">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="relative">
+                                    <app-input-phone-component [tipo]="'Teléfono'"
+                                        [phone]="''"></app-input-phone-component>
+
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <label for="servicio" class="pb-1 block text-xs font-medium text-gray-500 ">
+                                    Correo electrónico *
+                                </label>
+                                <div class="relative">
+
+                                    <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
+                                        <span class="material-symbols-outlined text-red-500  ml-1 !text-[20px]  pb-0.5">
+                                            mail
+                                        </span>
+                                    </div>
+                                    <input formControlName="correo" class="inputGeneral4 !pl-9 "
+                                        placeholder="corre@prueba.com" type="text">
+
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="servicio" class="pb-1 block text-xs font-medium text-gray-500 ">
+                                    Fecha de Cumpleaños *
+                                </label>
+                                <div class="relative">
+
+                                    <div class="absolute inset-y-0 left-0 flex items-center px-1 pointer-events-none">
+                                        <span class="material-symbols-outlined text-red-500  ml-1 !text-[20px]  pb-0.5">
+                                            calendar_today
+                                        </span>
+                                    </div>
+                                    <input formControlName="nacimiento" class="inputGeneral4 !pl-9 "
+                                        placeholder="corre@prueba.com" type="date">
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="bg-white rounded-lg  border border-gray-300 px-5 py-4">
+
+                                <div class="flex justify-between items-center gap-4">
+                                    <label class="text-xs font-medium text-gray-600">Estado:</label>
+                                    <div class="flex items-center">
+                                        <div
+                                            class="flex items-center px-3 py-1.5 rounded-l-full  border border-gray-300">
+                                            <input name="estado1" type="radio" [value]="1" checked
+                                                class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                            <label for="activo1" class="ml-2 text-xs text-gray-600">Activo</label>
+                                        </div>
+
+                                        <div
+                                            class="flex items-center px-3 py-1.5 rounded-r-full  border border-gray-200">
+                                            <input name="estado1" type="radio" [value]="0" disabled
+                                                class=" checkbox-red w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                                            <label for="inactivo1" class="ml-2 text-xs text-gray-600">Inactivo</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+
+                            <div class="flex justify-end space-x-2 pt-7 mb-2 ">
+                                <button (click)="closeModal2()" type="button" class=" btnGrayGeneral effectoZoomBoton">
+                                    <div class="flex justify-center items-center  ">
+                                        <i class="ri-close-circle-line mr-1 text-red-600 text-xl"></i>
+                                        Cancelar
+                                    </div>
+                                </button>
+
+                                <button class="btnRedGeneral effectoZoomBoton">
+                                    <div class="flex justify-center items-center  ">
+                                        <i class="ri-save-2-fill mr-1 text-lg "></i>
+                                        Crear Cliente
+
+                                    </div>
+                                </button>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                }
+
+            </div>
 
 
         </div>
